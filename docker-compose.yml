@@ -1,0 +1,8 @@
+version: '2'
+services:
+  db:
+    image: postgres:11.4
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      - POSTGRES_USER=${USER}
