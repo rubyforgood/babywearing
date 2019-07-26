@@ -20,9 +20,9 @@ babywearing.
 
 ## About this Project
 
-MAB has a lending library, so that their members can try different types of
-cariers, and find what works best for their family. They currently have software
-that works pretty well, but is a strain on their budget. The software will keep
+MAB has a lending library so that their members can try different types of
+carriers and find what works best for their family. They currently have software
+that works pretty well, but is a strain on their budget. The new software will keep
 track of members & dues as well as the lending library items and their due
 dates.
 
@@ -40,9 +40,9 @@ organization. The primary set of features this project will focus on includes:
 * Recording (not processing) financial transactions such as late fees and
   membership dues
 
-  * Simplify the process to waive late fees
+  * Simplifying the process to waive late fees
 
-* Improved notification of activities to members such as
+* Improved notification of activities to members including:
 
   * Due date reminders for checked out items
 
@@ -67,10 +67,10 @@ Some additional stretch goals include:
 ### Technical considerations
 
 The volunteers in this group are very mobile and are using their personal phones
-or tables (mostly iPad mini's) to capture event attendance, register users, and
-process transactions. This project needs to consider a mobile first design to
+or tablets (mostly iPad minis) to capture event attendance, register users, and
+process transactions. This project needs to consider a mobile-first design to
 continue to provide the users the flexibility of working remote without having
-to carry a laptop. Some events are also ad-hoc popup so a phone is the only
+to carry a laptop. Some events are also more of an ad-hoc popup so a phone could be the only
 device available in those moments.
 
 ## How to Contribute
