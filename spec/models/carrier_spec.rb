@@ -21,7 +21,7 @@ RSpec.describe Carrier, :type => :model do
   end
 
   it 'is not valid without a manufacturer' do
-    expect(described_class.new(manufacturer: nil)).to_not
+    expect(described_class.new(manufacturer: nil)).to_not be_valid
   end
 
   it 'is not valid without an model' do
@@ -33,6 +33,6 @@ RSpec.describe Carrier, :type => :model do
   end
 
   it 'is not valid without a location_id' do
-    expect(described_class.new(location_id: nil)).to_not
+    expect(described_class.new(location_id: nil)).to_not be_valid
   end
 end
