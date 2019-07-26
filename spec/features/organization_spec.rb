@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Organization', type: :feature do
+RSpec.describe 'Organization' do
   fixtures :users
   let(:user) { users(:user) }
 
