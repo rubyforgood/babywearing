@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "category", type: :request do
+RSpec.feature "category", type: :feature do
   fixtures :categories
   let!(:category) { categories(:category) }
   fixtures :users
