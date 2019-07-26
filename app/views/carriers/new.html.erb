@@ -1,3 +1,11 @@
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h1>New Carrier</h1>
 
 <%= render 'carrier_form' %>

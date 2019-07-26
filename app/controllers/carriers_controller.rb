@@ -17,6 +17,7 @@ class CarriersController < ApplicationController
     @carrier.save
 
     if @carrier.errors.any?
+      flash[:errors] = @carrier.errors.full_messages
       render :new
     else
       flash[:success] = 'Carrier successfully created'
@@ -31,8 +32,10 @@ class CarriersController < ApplicationController
     @carrier.update(carrier_params)
 
     if @carrier.errors.any?
+      flash[:errors] = @carrier.errors.full_messages
       render :edit
     else
+      flash[:success] = 'Carrier successfully updated'
       redirect_to @carrier
     end
   end
@@ -40,6 +43,7 @@ class CarriersController < ApplicationController
   def destroy
     @carrier = Carrier.find(params[:id])
     @carrier.destroy
+    flash[:success] = 'Carrier successfully destroyed'
     redirect_to carriers_path
   end
 
