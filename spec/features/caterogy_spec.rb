@@ -1,8 +1,15 @@
 require 'rails_helper'
 
-RSpec.feature "category", type: :feature do
+RSpec.feature "category", type: :request do
   fixtures :categories
   let!(:category) { categories(:category) }
+  fixtures :users
+  let(:user) { users(:user) }
+
+  before :each do
+    visit "/"
+    sign_in user
+  end
 
   scenario "should allow user to create a category" do
     visit "/categories"
