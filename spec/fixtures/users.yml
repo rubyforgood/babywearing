@@ -1,0 +1,3 @@
+user:
+  email: 'hello@test.com'
+  encrypted_password: 'password'

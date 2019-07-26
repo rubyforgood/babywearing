@@ -36,6 +36,12 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Adding bootstrap, using this walkthrough: https://github.com/twbs/bootstrap-rubygem#a-ruby-on-rails
+gem 'bootstrap', '~> 4.3.1'
+
+# Adding jQuery, using this walkthrough: https://github.com/twbs/bootstrap-rubygem#a-ruby-on-rails
+gem 'jquery-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -51,6 +57,7 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec-rails', '~> 3.8'
   gem 'capybara'
@@ -58,3 +65,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'devise'
