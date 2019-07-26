@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :agreements
   resources :locations
   resources :organizations
   devise_for :users
