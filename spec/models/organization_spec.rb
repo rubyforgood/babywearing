@@ -1,13 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Organization, :type => :model do
-  it "is invalid without name attribute" do
-    organization = Organization.new(name: nil, description:'test description')
-    expect(organization).to_not be_valid
-  end
+  subject { 
+    described_class.new(name: 'name of organization', description: 'test description') 
+  }
 
   it "is valid with required attributes" do
-    organization = Organization.new(name: 'organization name', description:'test description')
-    expect(organization).to be_valid
+    expect(subject).to be_valid
+  end
+
+  it "is invalid without name attribute" do
+    subject.name = nil
+    expect(subject).to_not be_valid
   end
 end
