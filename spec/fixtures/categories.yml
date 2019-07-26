@@ -1,0 +1,4 @@
+category:
+  name: 'new category'
+  description: 'new description'
+  parent_id: 1
