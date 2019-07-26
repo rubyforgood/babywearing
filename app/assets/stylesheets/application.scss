@@ -1,0 +1,26 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/*
+# From walkthrough: https://github.com/twbs/bootstrap-rubygem#a-ruby-on-rails
+# Make sure the file has .scss extension (or .sass for Sass syntax). If you have just generated a new Rails app, it may come with a .css file instead. If this file exists, it will be served instead of Sass, so rename it:
+# $ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
+# Then, remove all the *= require and *= require_tree statements from the Sass file. Instead, use @import to import Sass files.
+# Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
+*/
+
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
