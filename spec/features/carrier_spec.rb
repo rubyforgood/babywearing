@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Carrier', type: :request do
+RSpec.describe 'Carrier', type: :feature do
   fixtures :carriers
   let(:carrier) { carriers(:carrier) }
   fixtures :users
@@ -31,13 +31,23 @@ RSpec.describe 'Carrier', type: :request do
     expect(page).to have_content('Updated Model')
   end
 
-  scenario 'EDIT without name' do
+  scenario 'EDIT without any required fields' do
     visit edit_carrier_path(carrier.id)
 
-    fill_in 'Name', with: ''
+    fill_in 'Name', with: nil
+    fill_in 'Item', with: nil
+    fill_in 'Manufacturer', with: nil
+    fill_in 'Model', with: nil
+    fill_in 'Color', with: nil
+    fill_in 'Location', with: nil
     click_on 'Update Carrier'
 
     expect(page).to have_content('Name can\'t be blank')
+    expect(page).to have_content('Item can\'t be blank')
+    expect(page).to have_content('Manufacturer can\'t be blank')
+    expect(page).to have_content('Model can\'t be blank')
+    expect(page).to have_content('Color can\'t be blank')
+    expect(page).to have_content('Location can\'t be blank')
   end
 
   scenario 'DESTROY' do
@@ -55,7 +65,6 @@ RSpec.describe 'Carrier', type: :request do
     fill_in 'Manufacturer', with: 'Test Manufacturer'
     fill_in 'Model', with: 'Test Model'
     fill_in 'Color', with: 'White'
-    fill_in 'Size', with: 8
     fill_in 'Location', with: 1
 
     click_on 'Create Carrier'
