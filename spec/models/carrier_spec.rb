@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Carrier, :type => :model do
+RSpec.describe Carrier do
   it 'is valid with valid attributes' do
     expect(described_class.new(
       item_id: 1,

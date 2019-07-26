@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Carrier', type: :feature do
+RSpec.describe 'Carrier' do
   fixtures :carriers
   let(:carrier) { carriers(:carrier) }
   fixtures :users
