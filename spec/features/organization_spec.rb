@@ -35,7 +35,7 @@ RSpec.describe 'Organization', type: :feature do
     expect(page).to have_content('Desciption of Fake Organization')
   end
 
-  scenario 'destroy button is clicked on organization index page' do
+  scenario 'DESTROY when delete button is clicked' do
     visit organizations_path
     click_link 'Destroy'
   
