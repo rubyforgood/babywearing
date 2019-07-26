@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_07_26_141822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carriers", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "name"
+    t.string "manufacturer"
+    t.string "model"
+    t.string "color"
+    t.string "size"
+    t.integer "location_id"
+    t.integer "default_loan_length", default: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
