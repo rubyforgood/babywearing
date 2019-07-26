@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Organization', type: :feature do
   before(:each) do
-    @organization = Organization.new(name: 'Henrys Baby Hammocks', description: 'Hammocks for the babiez')
+    @organization = Organization.new(name: 'Henrys Baby Hammocks', description: 'Hammocks for the babies')
     @organization.save!
   end
 
