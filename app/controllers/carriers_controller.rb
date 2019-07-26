@@ -1,9 +1,64 @@
 class CarriersController < ApplicationController
+  before_action :set_carrier, only: [:show, :edit, :update]
+
   def index
     @carriers = Carrier.all
   end
 
   def show
+  end
+
+  def new
+    @carrier = Carrier.new
+  end
+
+  def create
+    @carrier = Carrier.new(carrier_params)
+    @carrier.save
+
+    if @carrier.errors.any?
+      render :new
+    else
+      flash[:success] = 'Carrier successfully created'
+      redirect_to @carrier
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @carrier.update(carrier_params)
+
+    if @carrier.errors.any?
+      render :edit
+    else
+      redirect_to @carrier
+    end
+  end
+
+  def destroy
     @carrier = Carrier.find(params[:id])
+    @carrier.destroy
+    redirect_to carriers_path
+  end
+
+  private
+
+  def set_carrier
+    @carrier = Carrier.find(params[:id])
+  end
+
+  def carrier_params
+    params.require(:carrier).permit(
+      :name,
+      :item_id,
+      :manufacturer,
+      :model,
+      :color,
+      :size,
+      :location_id,
+      :default_loan_length
+    )
   end
 end
