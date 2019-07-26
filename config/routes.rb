@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :locations
+  resources :organizations
   devise_for :users
   get 'home/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  resources :categories
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
 
   resources :carriers
