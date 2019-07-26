@@ -1,0 +1,42 @@
+<%= form_with(model: membership_type, local: true) do |form| %>
+  <% if membership_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(membership_type.errors.count, "error") %> prohibited this membership_type from being saved:</h2>
+
+      <ul>
+      <% membership_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fee %>
+    <%= form.text_field :fee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.text_field :duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_items %>
+    <%= form.text_field :number_of_items %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
