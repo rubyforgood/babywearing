@@ -1,0 +1,9 @@
+<h1>Carriers</h1>
+
+<ul>
+  <% @carriers.each do |carrier| %>
+    <li>
+      <%= link_to carrier.name, carrier %><br>
+    </li>
+  <% end %>
+</ul>
