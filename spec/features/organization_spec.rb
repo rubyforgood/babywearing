@@ -1,7 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'Organization', type: :feature do
+RSpec.describe 'Organization', type: :request do
+  fixtures :users
+  let(:user) { users(:user) }
+
   before(:each) do
+    visit "/"
+    sign_in user
+
     @organization = Organization.new(name: 'Henrys Baby Hammocks', description: 'Hammocks for the babies')
     @organization.save!
   end
@@ -11,7 +17,7 @@ RSpec.describe 'Organization', type: :feature do
     click_link 'Show'
   
     expect(page).to have_content('Henrys Baby Hammocks')
-    expect(page).to have_content('Hammocks for the babiez')
+    expect(page).to have_content('Hammocks for the babies')
   end
 
   scenario 'EDIT when name is NOT given' do
