@@ -1,6 +1,8 @@
 class LocationsController < ApplicationController
 
-  def 
+  def index
+    @locations = Location.all
+  end
 
 
 end
