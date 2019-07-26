@@ -6,7 +6,7 @@ class CreateCarriers < ActiveRecord::Migration[5.2]
       t.string :manufacturer
       t.string :model
       t.string :color
-      t.string :size
+      t.integer :size
       t.integer :location_id
       t.integer :default_loan_length, :default => 30
       t.timestamps
