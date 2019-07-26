@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_142403) do
     t.integer "default_loan_length", default: 30
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
