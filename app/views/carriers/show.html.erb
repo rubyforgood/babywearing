@@ -1,1 +1,18 @@
+<% if flash[:success] %>
+  <div><%= flash[:success] %></div>
+<% end %>
+
 <h1><%= @carrier.name %></h1>
+
+<ul>
+  <li>Item Id: <%= @carrier.item_id %></li>
+  <li>Manufacturer: <%= @carrier.manufacturer %></li>
+  <li>Model: <%= @carrier.model %></li>
+  <li>Color: <%= @carrier.color %></li>
+  <li>Size: <%= @carrier.size %></li>
+  <li>Location: <%= @carrier.location_id %></li>
+  <li>Default Loan Length: <%= @carrier.default_loan_length %></li>
+</ul>
+
+<%= link_to 'Edit', edit_carrier_path %>
+<%= link_to 'Delete', @carrier, method: :delete  %>

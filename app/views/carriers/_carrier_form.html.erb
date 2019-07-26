@@ -1,0 +1,43 @@
+<%= form_for @carrier do |c| %>
+  <%= c.label :name %>
+  <%= c.text_field :name %>
+
+  <br><br>
+
+  <%= c.label :item_id %>
+  <%= c.text_field :item_id %>
+
+  <br><br>
+
+  <%= c.label :manufacturer %>
+  <%= c.text_field :manufacturer %>
+
+  <br><br>
+
+  <%= c.label :model %>
+  <%= c.text_field :model %>
+
+  <br><br>
+
+  <%= c.label :color %>
+  <%= c.text_field :color %>
+
+  <br><br>
+
+  <%= c.label :size %>
+  <%= c.text_field :size %>
+
+  <br><br>
+
+  <%= c.label :location_id %>
+  <%= c.text_field :location_id %>
+
+  <br><br>
+
+  <%= c.label :default_loan_length %>
+  <%= c.text_field :default_loan_length %> days
+
+  <br><br>
+
+  <%= c.submit %>
+<% end %>
