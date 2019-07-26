@@ -1,0 +1,8 @@
+carrier:
+  name: "test carrier"
+  item_id: 1
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  location_id: 1
