@@ -5,7 +5,6 @@ class Carrier < ApplicationRecord
     :manufacturer,
     :model,
     :color,
-    :size,
     :location_id
   ]
 end
