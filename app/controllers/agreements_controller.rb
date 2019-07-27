@@ -7,7 +7,6 @@ class AgreementsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -16,8 +15,16 @@ class AgreementsController < ApplicationController
 
   def create
     @agreement = Agreement.new(agreement_params)
-    @agreement.save
-    redirect_to agreement_path(@agreement)
+
+    respond_to do |format|
+      if @agreement.save
+        format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
+        format.json { render :show, status: :created, location: @agreement }
+      else
+        format.html { render :new }
+        format.json { render json: @agreement.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit 
