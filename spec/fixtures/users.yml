@@ -1,3 +1,10 @@
 user:
   email: 'hello@test.com'
   encrypted_password: 'password'
+  first_name: 'pineapple'
+  last_name: 'orange'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
