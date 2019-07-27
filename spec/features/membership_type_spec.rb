@@ -9,8 +9,8 @@ RSpec.describe 'MembershipType', type: :feature do
     sign_in user
 
     @membership_type = MembershipType.new(
-      name: '',
-      fee: 50.00,
+      name: 'Annual',
+      fee: 30.00,
       duration: 3,
       number_of_items: 3,
       description: "A text description goes here.")
@@ -18,61 +18,56 @@ RSpec.describe 'MembershipType', type: :feature do
     @membership_type.save!
   end
 
-  # scenario 'SHOW' do
-  #   visit organizations_path
-  #   click_link 'Show'
+  scenario 'SHOW' do
+    visit "/membership_types"
+    expect(page).to have_content('New Membership Type')
+  end
+
+  scenario 'EDIT when name is NOT given' do
+    visit edit_membership_type_path(@membership_type.id)
+
+    fill_in 'Name', with: ""
+    click_on 'Update Membership type'
+
+    expect(page).to have_content("Name can't be blank")
+  end
+
+  scenario 'EDIT when all expected information is given' do
+    visit edit_membership_type_path(@membership_type.id)
+
+    fill_in 'Name', with: 'Trial'
+    fill_in 'Description', with: 'This is a trial membership'
+    click_on 'Update Membership type'
+
+    expect(page).to have_content('Membership type was successfully updated.')
+  end
+
+  scenario 'DESTROY when delete button is clicked' do
+    visit membership_types_path
+    click_link 'Destroy'
   
-  #   expect(page).to have_content('Henrys Baby Hammocks')
-  #   expect(page).to have_content('Hammocks for the babies')
-  # end
+    expect(page).to have_content('Membership type was successfully destroyed.')
+  end
 
-  # scenario 'EDIT when name is NOT given' do
-  #   visit edit_organization_path(@organization.id)
+  scenario 'CREATE when name is NOT given' do
+    visit membership_types_path
+    click_link('New Membership Type')
+    fill_in 'Name', with: ""
+    click_on 'Create Membership type'
+    expect(page).to have_content("Name can't be blank")
+  end
 
-  #   fill_in 'Name', with: nil
-  #   click_on 'Update Organization'
+  scenario 'CREATE when all expected information is given' do
+    visit membership_types_path
 
-  #   expect(page).to have_content("Name can't be blank")
-  # end
+    click_link('New Membership Type')
+    fill_in 'Name', with: 'Trial'
+    fill_in 'Description', with: 'A text description goes here.'
+    fill_in 'Duration', with: 2
+    fill_in 'Number of items', with: 3
+    fill_in 'Fee', with: 4
+    click_on 'Create Membership type'
 
-  # scenario 'EDIT when all expected information is given' do
-  #   visit edit_organization_path(@organization.id)
-
-  #   fill_in 'Name', with: 'Fake Organization'
-  #   fill_in 'Description', with: 'Desciption of Fake Organization'
-  #   click_on 'Update Organization'
-
-  #   expect(page).to have_content('Organization was successfully updated.')
-  #   expect(page).to have_content('Fake Organization')
-  #   expect(page).to have_content('Desciption of Fake Organization')
-  # end
-
-  # scenario 'DESTROY when delete button is clicked' do
-  #   visit organizations_path
-  #   click_link 'Destroy'
-  
-  #   expect(page).to have_content('Organization was successfully destroyed.')
-  # end
-
-  # scenario 'CREATE when name is NOT given' do
-  #   visit organizations_path
-
-  #   click_link('New Organization')
-  #   fill_in 'Name', with: nil
-  #   fill_in 'Description', with: 'Desciption of Fake Organization'
-  #   click_on 'Create Organization'
-
-  #   expect(page).to have_content("Name can't be blank")
-  # end
-
-  # scenario 'CREATE when all expected information is given' do
-  #   visit organizations_path
-
-  #   click_link('New Organization')
-  #   fill_in 'Name', with: 'Fake Organization'
-  #   fill_in 'Description', with: 'Desciption of Fake Organization'
-  #   click_on 'Create Organization'
-
-  #   expect(page).to have_content('Organization was successfully created.')
-  # end
+    expect(page).to have_content('Membership type was successfully created.')
+  end
 end
