@@ -1,8 +1,7 @@
 user:
   email: 'hello@test.com'
   encrypted_password: 'password'
-  first_name: 'pineapple'
-  last_name: 'orange'
+  full_name: 'pineapple'
   street_address: '123 main street'
   city: 'fairfax'
   state: 'VA'
