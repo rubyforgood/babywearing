@@ -10,6 +10,11 @@ Location.create(name: 'Erie')
 Location.create(name: 'Carnegie')
 Location.create(name: 'Heidelberg')
 
+role_names_array = ['admin', 'volunteer', 'member', 'user']
+role_names_array.each do |role_name|
+  Role.create(name: role_name)
+end
+
 # Categories
 asian_inspired_carriers = Category.create(name: 'Asian Inspired Carriers')
 asian_inspired_carriers.subcategories << Category.create([
