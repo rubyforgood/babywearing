@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 2019_07_27_160127) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "agreements", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "carriers", force: :cascade do |t|
     t.string "item_id"
     t.string "name"
@@ -42,6 +49,17 @@ ActiveRecord::Schema.define(version: 2019_07_27_160127) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organization_id"
+  end
+
+  create_table "membership_types", force: :cascade do |t|
+    t.string "name"
+    t.integer "fee_cents"
+    t.integer "duration_days"
+    t.integer "number_of_items"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -49,6 +67,16 @@ ActiveRecord::Schema.define(version: 2019_07_27_160127) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,8 +87,23 @@ ActiveRecord::Schema.define(version: 2019_07_27_160127) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "full_name", null: false
+    t.string "street_address", null: false
+    t.string "street_address_second"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "postal_code", null: false
+    t.string "phone_number", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
 end

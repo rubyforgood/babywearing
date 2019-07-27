@@ -5,6 +5,7 @@ RSpec.feature 'create a location', type: :feature do
   let(:user) { users(:user) }
 
   before :each do
+    Organization.create name: "Ruby For Good"
     visit "/"
     sign_in user
   end
@@ -13,6 +14,7 @@ RSpec.feature 'create a location', type: :feature do
     visit "/locations"
     find_link("Add a new location", match: :first).click
     fill_in "name", with: "Bellvue"
+    select "Ruby For Good", from: "location_organization_id"
     click_button "Create Location"
     expect(page).to have_content "Bellvue"
   end

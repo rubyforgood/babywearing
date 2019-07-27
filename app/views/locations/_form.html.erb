@@ -1,4 +1,6 @@
 <%= form_for @location do |f| %>
   <%= f.text_field :name, placeholder: "name" %>
+
+  <%= f.collection_select(:organization_id, Organization.all, :id, :name) %>
   <%= f.submit %>
 <% end %>
