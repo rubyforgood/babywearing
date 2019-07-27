@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :membership_types
   resources :organizations
   resources :users, only: [:index]
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   get 'home/index'
 
   resources :categories
