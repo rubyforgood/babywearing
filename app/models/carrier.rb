@@ -1,5 +1,6 @@
 class Carrier < ApplicationRecord
   belongs_to :location
+  belongs_to :category
 
   validates_presence_of [
     :name,
