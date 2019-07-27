@@ -42,16 +42,10 @@ RSpec.describe 'Carrier' do
 
     fill_in 'Name', with: nil
     fill_in 'Item', with: nil
-    fill_in 'Manufacturer', with: nil
-    fill_in 'Model', with: nil
-    fill_in 'Color', with: nil
     click_on 'Update Carrier'
 
     expect(page).to have_content('Name can\'t be blank')
     expect(page).to have_content('Item can\'t be blank')
-    expect(page).to have_content('Manufacturer can\'t be blank')
-    expect(page).to have_content('Model can\'t be blank')
-    expect(page).to have_content('Color can\'t be blank')
   end
 
   scenario 'DESTROY' do
@@ -83,8 +77,5 @@ RSpec.describe 'Carrier' do
 
     expect(page).to have_content('Name can\'t be blank')
     expect(page).to have_content('Item can\'t be blank')
-    expect(page).to have_content('Manufacturer can\'t be blank')
-    expect(page).to have_content('Model can\'t be blank')
-    expect(page).to have_content('Color can\'t be blank')
   end
 end
