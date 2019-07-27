@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @membership_type.name %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @membership_type.fee_cents %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @membership_type.duration_days %>
+</p>
+
+<p>
+  <strong>Number of items:</strong>
+  <%= @membership_type.number_of_items %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @membership_type.description %>
+</p>
+
+<%= link_to 'Edit', edit_membership_type_path(@membership_type) %> |
+<%= link_to 'Back', membership_types_path %>
