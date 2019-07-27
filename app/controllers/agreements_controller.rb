@@ -20,6 +20,13 @@ class AgreementsController < ApplicationController
     redirect_to agreement_path(@agreement)
   end
 
+  def destroy
+    @agreement.destroy
+    respond_to do |format|
+      format.html { redirect_to agreements_url, notice: 'Category was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   private 
 
