@@ -11,6 +11,7 @@ class CarriersController < ApplicationController
   def new
     @carrier = Carrier.new
     @locations = Location.all
+    @categories = Category.all
   end
 
   def create
@@ -28,6 +29,7 @@ class CarriersController < ApplicationController
 
   def edit
     @locations = Location.all
+    @categories = Category.all
   end
 
   def update
@@ -64,6 +66,7 @@ class CarriersController < ApplicationController
       :color,
       :size,
       :location_id,
+      :category_id,
       :default_loan_length_days
     )
   end

@@ -1,7 +1,9 @@
 RSpec.describe Carrier do
   fixtures :locations
   let(:location) { locations(:location) }
-  
+  fixtures :categories
+  let(:category) { categories(:category) }
+
   it 'is valid with valid attributes' do
     expect(described_class.new(
       item_id: 1,
@@ -9,7 +11,8 @@ RSpec.describe Carrier do
       manufacturer: 'apple',
       model: 'iCarry',
       color: 'blue',
-      location_id: location.id
+      location_id: location.id,
+      category_id: category.id
     )).to be_valid
   end
 

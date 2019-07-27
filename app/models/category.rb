@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
+  has_many :carriers
   has_many :subcategories, class_name: "Category",
                           foreign_key: "parent_id"
 

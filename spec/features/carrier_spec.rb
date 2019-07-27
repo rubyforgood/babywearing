@@ -1,4 +1,6 @@
 RSpec.describe 'Carrier' do
+  fixtures :categories
+  let(:category) { categories(:category) }
   fixtures :locations
   let(:location) { locations(:location) }
   fixtures :carriers
@@ -7,7 +9,7 @@ RSpec.describe 'Carrier' do
   let(:user) { users(:user) }
 
   before do
-    carrier.update_attributes(location_id: location.id)
+    carrier.update_attributes(location_id: location.id, category_id: category.id)
 
     visit '/'
     sign_in user
@@ -15,7 +17,7 @@ RSpec.describe 'Carrier' do
 
   scenario 'SHOW' do
     visit carriers_path
-    click_link 'test carrier'
+    click_link carrier.name
 
     expect(page).to have_content('test carrier')
     expect(page).to have_content('babywearing')
@@ -38,16 +40,10 @@ RSpec.describe 'Carrier' do
 
     fill_in 'Name', with: nil
     fill_in 'Item', with: nil
-    fill_in 'Manufacturer', with: nil
-    fill_in 'Model', with: nil
-    fill_in 'Color', with: nil
     click_on 'Update Carrier'
 
     expect(page).to have_content('Name can\'t be blank')
     expect(page).to have_content('Item can\'t be blank')
-    expect(page).to have_content('Manufacturer can\'t be blank')
-    expect(page).to have_content('Model can\'t be blank')
-    expect(page).to have_content('Color can\'t be blank')
   end
 
   scenario 'DESTROY' do
@@ -65,10 +61,20 @@ RSpec.describe 'Carrier' do
     fill_in 'Manufacturer', with: 'Test Manufacturer'
     fill_in 'Model', with: 'Test Model'
     fill_in 'Color', with: 'White'
+    find('#carrier_category_id').find(:option, category.name).select_option
 
     click_on 'Create Carrier'
 
     expect(page).to have_content('Carrier successfully created')
+  end
+
+  scenario 'CREATE with duplicated item_id' do
+    visit new_carrier_path
+    fill_in 'Item', with: carrier.item_id
+
+    click_on 'Create Carrier'
+
+    expect(page).to have_content('Item ID has already been taken')
   end
 
   scenario 'CREATE without required fields' do
@@ -78,8 +84,5 @@ RSpec.describe 'Carrier' do
 
     expect(page).to have_content('Name can\'t be blank')
     expect(page).to have_content('Item can\'t be blank')
-    expect(page).to have_content('Manufacturer can\'t be blank')
-    expect(page).to have_content('Model can\'t be blank')
-    expect(page).to have_content('Color can\'t be blank')
   end
 end
