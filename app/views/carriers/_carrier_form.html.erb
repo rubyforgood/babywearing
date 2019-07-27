@@ -46,10 +46,11 @@
 
   <% if @carrier.photos.attached? %>
     <% @carrier.photos.each do |photo| %>
-      <%= photo.id %>
-      <div class="card">
-        <%= image_tag(photo, class: "img-thumbnail") %>
-        <%= link_to 'Remove', photo_path(photo.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <div class="card col-3">
+        <%= image_tag(photo.variant(resize: "100x100").processed, class: "card-img-top") %>
+        <div class="card-body">
+          <%= link_to 'Remove', photo_path(photo.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </div>
       </div>
     <% end %>
   <% end%>
