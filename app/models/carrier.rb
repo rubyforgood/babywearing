@@ -7,6 +7,7 @@ class Carrier < ApplicationRecord
     :manufacturer,
     :model,
     :color,
-    :location_id
+    :location_id,
+    :default_loan_length_days
   ]
 end
