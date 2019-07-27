@@ -25,17 +25,17 @@
   <br><br>
 
   <%= c.label :size %>
-  <%= c.text_field :size %>
+  <%= c.number_field :size %>
 
   <br><br>
 
   <%= c.label :location_id %>
-  <%= c.text_field :location_id %>
+  <%= c.collection_select :location_id, @locations, :id, :name %>
 
   <br><br>
 
-  <%= c.label :default_loan_length %>
-  <%= c.text_field :default_loan_length %> days
+  <%= c.label :default_loan_length_days, 'Default Loan Length' %>
+  <%= c.number_field :default_loan_length_days %> days
 
   <br><br>
 
