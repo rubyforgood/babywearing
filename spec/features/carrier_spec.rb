@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Carrier' do
   fixtures :locations
   let(:location) { locations(:location) }

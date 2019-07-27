@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature "user registration" do
   scenario "should allow user to create a user account" do
     visit "/"

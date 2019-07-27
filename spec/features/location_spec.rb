@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'create a location', type: :feature do
   fixtures :users
   let(:user) { users(:user) }
