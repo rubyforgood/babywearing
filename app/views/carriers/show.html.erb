@@ -10,8 +10,8 @@
   <li>Model: <%= @carrier.model %></li>
   <li>Color: <%= @carrier.color %></li>
   <li>Size: <%= @carrier.size %></li>
-  <li>Location: <%= @carrier.location_id %></li>
-  <li>Default Loan Length: <%= @carrier.default_loan_length %></li>
+  <li>Location: <%= @carrier.location.name %></li>
+  <li>Default Loan Length: <%= @carrier.default_loan_length_days %> days</li>
 </ul>
 
 <%= link_to 'Edit', edit_carrier_path %>

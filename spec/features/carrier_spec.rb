@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Carrier' do
+  fixtures :locations
+  let(:location) { locations(:location) }
   fixtures :carriers
   let(:carrier) { carriers(:carrier) }
   fixtures :users
   let(:user) { users(:user) }
 
   before do
+    carrier.update_attributes(location_id: location.id)
+
     visit '/'
     sign_in user
   end
@@ -39,7 +43,6 @@ RSpec.describe 'Carrier' do
     fill_in 'Manufacturer', with: nil
     fill_in 'Model', with: nil
     fill_in 'Color', with: nil
-    fill_in 'Location', with: nil
     click_on 'Update Carrier'
 
     expect(page).to have_content('Name can\'t be blank')
@@ -47,7 +50,6 @@ RSpec.describe 'Carrier' do
     expect(page).to have_content('Manufacturer can\'t be blank')
     expect(page).to have_content('Model can\'t be blank')
     expect(page).to have_content('Color can\'t be blank')
-    expect(page).to have_content('Location can\'t be blank')
   end
 
   scenario 'DESTROY' do
@@ -65,7 +67,6 @@ RSpec.describe 'Carrier' do
     fill_in 'Manufacturer', with: 'Test Manufacturer'
     fill_in 'Model', with: 'Test Model'
     fill_in 'Color', with: 'White'
-    fill_in 'Location', with: 1
 
     click_on 'Create Carrier'
 
@@ -82,6 +83,5 @@ RSpec.describe 'Carrier' do
     expect(page).to have_content('Manufacturer can\'t be blank')
     expect(page).to have_content('Model can\'t be blank')
     expect(page).to have_content('Color can\'t be blank')
-    expect(page).to have_content('Location can\'t be blank')
   end
 end

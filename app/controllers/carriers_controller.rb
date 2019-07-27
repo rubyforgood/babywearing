@@ -10,6 +10,7 @@ class CarriersController < ApplicationController
 
   def new
     @carrier = Carrier.new
+    @locations = Location.all
   end
 
   def create
@@ -18,7 +19,7 @@ class CarriersController < ApplicationController
 
     if @carrier.errors.any?
       flash[:errors] = @carrier.errors.full_messages
-      render :new
+      redirect_to new_carrier_path(@carrier)
     else
       flash[:success] = 'Carrier successfully created'
       redirect_to @carrier
@@ -26,6 +27,7 @@ class CarriersController < ApplicationController
   end
 
   def edit
+    @locations = Location.all
   end
 
   def update
@@ -33,7 +35,7 @@ class CarriersController < ApplicationController
 
     if @carrier.errors.any?
       flash[:errors] = @carrier.errors.full_messages
-      render :edit
+      redirect_to edit_carrier_path(@carrier)
     else
       flash[:success] = 'Carrier successfully updated'
       redirect_to @carrier
@@ -62,7 +64,7 @@ class CarriersController < ApplicationController
       :color,
       :size,
       :location_id,
-      :default_loan_length
+      :default_loan_length_days
     )
   end
 end

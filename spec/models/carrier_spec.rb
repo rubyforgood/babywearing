@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Carrier do
+  fixtures :locations
+  let(:location) { locations(:location) }
+  
   it 'is valid with valid attributes' do
     expect(described_class.new(
       item_id: 1,
@@ -8,7 +11,7 @@ RSpec.describe Carrier do
       manufacturer: 'apple',
       model: 'iCarry',
       color: 'blue',
-      location_id: 1
+      location_id: location.id
     )).to be_valid
   end
 

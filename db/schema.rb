@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_143703) do
+ActiveRecord::Schema.define(version: 2019_07_26_223302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "carriers", force: :cascade do |t|
-    t.integer "item_id"
+    t.string "item_id"
     t.string "name"
     t.string "manufacturer"
     t.string "model"
     t.string "color"
     t.integer "size"
     t.integer "location_id"
-    t.integer "default_loan_length", default: 30
+    t.integer "default_loan_length_days", default: 30
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_143703) do
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -60,4 +61,5 @@ ActiveRecord::Schema.define(version: 2019_07_26_143703) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 end

@@ -1,4 +1,5 @@
 class Location < ApplicationRecord
-  validates_presence_of :name
+  has_many :carriers
 
+  validates_presence_of :name
 end
