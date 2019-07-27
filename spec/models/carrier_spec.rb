@@ -1,7 +1,7 @@
 RSpec.describe Carrier do
   fixtures :locations
   let(:location) { locations(:location) }
-  
+
   it 'is valid with valid attributes' do
     expect(described_class.new(
       item_id: 1,
@@ -35,5 +35,36 @@ RSpec.describe Carrier do
 
   it 'is not valid without a location_id' do
     expect(described_class.new(location_id: nil)).to_not be_valid
+  end
+
+  describe '#build_loan' do
+    fixtures(:carriers)
+
+    let(:carrier) { described_class.first }
+
+    context "without parameters" do
+      subject { carrier.build_loan }
+
+      it 'creates a loan with the default due date set' do
+        expect(subject.due_date).to eq Date.today + carrier.default_loan_length_days.days
+      end
+    end
+
+    context "with parameters" do
+      fixtures(:users)
+
+      let(:user) { User.first }
+      let(:cart) { Cart.new(user: user) }
+
+      subject { carrier.build_loan(cart: cart) }
+
+      it 'creates a loan with the default due date set' do
+        expect(subject.due_date).to eq Date.today + carrier.default_loan_length_days.days
+      end
+
+      it 'honors the additional parameters' do
+        expect(subject.cart).to eq cart
+      end
+    end
   end
 end
