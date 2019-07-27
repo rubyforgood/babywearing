@@ -18,8 +18,8 @@
     <% @membership_types.each do |membership_type| %>
       <tr>
         <td><%= membership_type.name %></td>
-        <td><%= membership_type.fee %></td>
-        <td><%= membership_type.duration %></td>
+        <td><%= membership_type.fee_cents %></td>
+        <td><%= membership_type.duration_days %></td>
         <td><%= membership_type.number_of_items %></td>
         <td><%= membership_type.description %></td>
         <td><%= link_to 'Show', membership_type %></td>

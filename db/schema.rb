@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_192055) do
+ActiveRecord::Schema.define(version: 2019_07_27_141156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(version: 2019_07_26_192055) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organization_id"
   end
 
   create_table "membership_types", force: :cascade do |t|
     t.string "name"
-    t.decimal "fee"
-    t.integer "duration"
+    t.integer "fee_cents"
+    t.integer "duration_days"
     t.integer "number_of_items"
     t.text "description"
     t.datetime "created_at", null: false
@@ -68,6 +69,13 @@ ActiveRecord::Schema.define(version: 2019_07_26_192055) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "full_name", null: false
+    t.string "street_address", null: false
+    t.string "street_address_second"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "postal_code", null: false
+    t.string "phone_number", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
