@@ -34,6 +34,11 @@
 
   <br><br>
 
+  <%= c.label :category_id %>
+  <%= c.collection_select :category_id, @categories, :id, :name %>
+
+  <br><br>
+
   <%= c.label :default_loan_length_days, 'Default Loan Length' %>
   <%= c.number_field :default_loan_length_days %> days
 
