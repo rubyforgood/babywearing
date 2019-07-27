@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Organization' do
   fixtures :users
   let(:user) { users(:user) }

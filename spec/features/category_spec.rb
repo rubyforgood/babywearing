@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature "category" do
   fixtures :categories
   let!(:category) { categories(:category) }

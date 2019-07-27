@@ -1,3 +1,7 @@
+require 'csv'
+
+include ActionView::Helpers::SanitizeHelper #included for strip_tags method to remove html from carrier descriptions
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -5,8 +9,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+organization = Organization.create(name: 'MidAtlantic Babywearing')
 
-#Location
 Location.create(name: 'Pittsburgh')
 Location.create(name: 'Erie')
 Location.create(name: 'Carnegie')
@@ -43,7 +47,7 @@ asian_inspired_carriers.subcategories << Category.create([
 
 buckle_carriers = Category.create(name: 'Buckle Carriers')
 buckle_carriers.subcategories << Category.create([
-  { name: 'Full Buckle Carriers' }, { name: 'Half Bucket Carriers' }, { name: 'Other Buckle Carriers' },
+  { name: 'Full Buckle Carriers' }, { name: 'Half Buckle Carriers' }, { name: 'Other Buckle Carriers' },
   { name: 'Ring Waist Carriers' }, { name: 'Reverse Half Buckle Carriers' }
 ])
 
@@ -76,3 +80,27 @@ FeeType.create(name: 'Late Fee', amount: 100)
 FeeType.create(name: 'Membership Donation', amount: 3000)
 FeeType.create(name: 'Second Carrier Addition', amount: 500)
 FeeType.create(name: 'Trial Membership', amount: 1000)
+# Importing carriers
+path = File.join Rails.root, 'db/data/inventory.csv'
+csv_text = File.read(path)
+
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
+  csv_carrier = row.to_hash
+  carrier_params = {
+    name: csv_carrier['Name'],
+    manufacturer: csv_carrier['Manufacturer'],
+    model: csv_carrier['Model'],
+    color: csv_carrier['Color'],
+    size: csv_carrier['Size'],
+    location_id: Location.find_or_create_by(name: csv_carrier['Home Location'], organization: organization).id,
+    default_loan_length_days: csv_carrier['Default Loan Length'].to_i,
+    category: Category.find_by(name: csv_carrier['Item Type']),
+    # image_url: csv_carrier['Image'],
+    # description: strip_tags(csv_carrier['Description'])
+  }
+
+  Carrier.find_or_create_by(item_id: csv_carrier['Item ID']) do |carrier|
+    carrier.update_attributes(carrier_params)
+  end
+end

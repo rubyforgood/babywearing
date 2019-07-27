@@ -25,12 +25,17 @@
   <br><br>
 
   <%= c.label :size %>
-  <%= c.number_field :size %>
+  <%= c.text_field :size %>
 
   <br><br>
 
   <%= c.label :location_id %>
   <%= c.collection_select :location_id, @locations, :id, :name %>
+
+  <br><br>
+
+  <%= c.label :category_id %>
+  <%= c.collection_select :category_id, @categories, :id, :name %>
 
   <br><br>
 
