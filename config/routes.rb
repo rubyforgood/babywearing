@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :membership_types
   resources :organizations
+  resources :users, only: [:index]
   devise_for :users
   get 'home/index'
 
