@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fee_types
   resources :agreements
   resources :locations
   resources :membership_types

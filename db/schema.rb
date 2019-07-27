@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_07_27_141720) do
+ActiveRecord::Schema.define(version: 2019_07_27_185412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +44,13 @@ ActiveRecord::Schema.define(version: 2019_07_27_141720) do
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
+  create_table "fee_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -58,13 +64,6 @@ ActiveRecord::Schema.define(version: 2019_07_27_141720) do
     t.integer "duration_days"
     t.integer "number_of_items"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "organizations", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

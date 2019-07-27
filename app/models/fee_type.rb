@@ -1,0 +1,2 @@
+class FeeType < ApplicationRecord
+end
