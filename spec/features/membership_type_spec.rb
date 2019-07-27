@@ -7,14 +7,12 @@ RSpec.describe 'MembershipType', type: :feature do
   before(:each) do
     visit "/"
     sign_in user
-
     @membership_type = MembershipType.new(
       name: 'Annual',
-      fee: 30.00,
-      duration: 3,
+      fee_cents: 30_00, 
+      duration_days: 3,
       number_of_items: 3,
       description: "A text description goes here.")
-
     @membership_type.save!
   end
 

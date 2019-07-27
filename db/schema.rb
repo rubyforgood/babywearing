@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 2019_07_26_192055) do
 
   create_table "membership_types", force: :cascade do |t|
     t.string "name"
-    t.decimal "fee"
-    t.integer "duration"
+    t.integer "fee_cents"
+    t.integer "duration_days"
     t.integer "number_of_items"
     t.text "description"
     t.datetime "created_at", null: false
