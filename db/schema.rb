@@ -15,6 +15,19 @@ ActiveRecord::Schema.define(version: 2019_07_26_192055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "carriers", force: :cascade do |t|
+    t.string "item_id"
+    t.string "name"
+    t.string "manufacturer"
+    t.string "model"
+    t.string "color"
+    t.integer "size"
+    t.integer "location_id"
+    t.integer "default_loan_length_days", default: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
