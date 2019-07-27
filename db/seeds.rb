@@ -10,7 +10,6 @@ Location.create(name: 'Erie')
 Location.create(name: 'Carnegie')
 Location.create(name: 'Heidelberg')
 
-<<<<<<< HEAD
 Agreement.create(title: 'Membership Agreement', content: 'MidAtlantic Babywearing is the local babywearing education group for Pennsylvania, New Jersey, and
   Delaware, and is a non-profit group.
   To become a member of our chapter you must:
@@ -26,7 +25,6 @@ Agreement.create(title: 'Membership Agreement', content: 'MidAtlantic Babywearin
     you agree to indemnify and hold harmless MAB, its volunteers and members (the “Releasees”),
     for any harm that may result to you or your child from using the carrier, including any harm
     allegedly resulting from the Releasees’ instruction or alleged failure to instruct.')
-=======
 # Categories
 asian_inspired_carriers = Category.create(name: 'Asian Inspired Carriers')
 asian_inspired_carriers.subcategories << Category.create([
@@ -61,4 +59,3 @@ Category.find_by_name('Woven Wrap Carriers').subcategories << Category.create([
   { name: 'Chitenges' }, { name: 'Khangas' }, { name: 'Lesos' },
   { name: 'Mantas' }, { name: 'Rebozos' }
 ])
->>>>>>> 0ce6a4473a4e0d453a693b811b9c0ba147b4c450
