@@ -28,11 +28,12 @@ ActiveRecord::Schema.define(version: 2019_07_27_180939) do
     t.string "manufacturer"
     t.string "model"
     t.string "color"
-    t.integer "size"
+    t.string "size"
     t.integer "location_id"
     t.integer "default_loan_length_days", default: 30
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
   end
 
   create_table "carts", force: :cascade do |t|
