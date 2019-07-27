@@ -9,6 +9,8 @@ include ActionView::Helpers::SanitizeHelper #included for strip_tags method to r
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+organization = Organization.create(name: 'MidAtlantic Babywearing')
+
 Location.create(name: 'Pittsburgh')
 Location.create(name: 'Erie')
 Location.create(name: 'Carnegie')
@@ -70,25 +72,26 @@ Category.find_by_name('Woven Wrap Carriers').subcategories << Category.create([
 ])
 
 # Importing carriers
-path = File.join Rails.root, 'public', 'inventory.csv'
+path = File.join Rails.root, 'db/data/inventory.csv'
 csv_text = File.read(path)
 
 csv = CSV.parse(csv_text, :headers => true)
 csv.each do |row|
   csv_carrier = row.to_hash
   carrier_params = {
-    item_id: csv_carrier['Item ID'],
     name: csv_carrier['Name'],
     manufacturer: csv_carrier['Manufacturer'],
     model: csv_carrier['Model'],
     color: csv_carrier['Color'],
     size: csv_carrier['Size'],
-    location_id: Location.find_or_create_by(name: csv_carrier['Home Location']).id,
+    location_id: Location.find_or_create_by(name: csv_carrier['Home Location'], organization: organization).id,
     default_loan_length_days: csv_carrier['Default Loan Length'].to_i,
     category: Category.find_by(name: csv_carrier['Item Type']),
     # image_url: csv_carrier['Image'],
     # description: strip_tags(csv_carrier['Description'])
   }
 
-  Carrier.create!(carrier_params)
+  Carrier.find_or_create_by(item_id: csv_carrier['Item ID']) do |carrier|
+    carrier.update_attributes(carrier_params)
+  end
 end
