@@ -70,6 +70,15 @@ RSpec.describe 'Carrier' do
     expect(page).to have_content('Carrier successfully created')
   end
 
+  scenario 'CREATE with duplicated item_id' do
+    visit new_carrier_path
+    fill_in 'Item', with: carrier.item_id
+
+    click_on 'Create Carrier'
+
+    expect(page).to have_content('Item ID has already been taken')
+  end
+
   scenario 'CREATE without required fields' do
     visit new_carrier_path(carrier.id)
 

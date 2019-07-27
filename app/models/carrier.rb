@@ -2,7 +2,7 @@ class Carrier < ApplicationRecord
   belongs_to :location
   belongs_to :category
 
-  validates :item_id, uniqueness: true
+  validates :item_id, uniqueness: { message: 'Item ID has already been taken' }
   validates_presence_of [
     :name,
     :item_id,
