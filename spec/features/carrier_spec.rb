@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Carrier' do
+  fixtures :categories
+  let(:category) { categories(:category) }
   fixtures :locations
   let(:location) { locations(:location) }
   fixtures :carriers
@@ -9,7 +11,7 @@ RSpec.describe 'Carrier' do
   let(:user) { users(:user) }
 
   before do
-    carrier.update_attributes(location_id: location.id)
+    carrier.update_attributes(location_id: location.id, category_id: category.id)
 
     visit '/'
     sign_in user
@@ -17,7 +19,7 @@ RSpec.describe 'Carrier' do
 
   scenario 'SHOW' do
     visit carriers_path
-    click_link 'test carrier'
+    click_link carrier.name
 
     expect(page).to have_content('test carrier')
     expect(page).to have_content('babywearing')
@@ -67,6 +69,7 @@ RSpec.describe 'Carrier' do
     fill_in 'Manufacturer', with: 'Test Manufacturer'
     fill_in 'Model', with: 'Test Model'
     fill_in 'Color', with: 'White'
+    find('#carrier_category_id').find(:option, category.name).select_option
 
     click_on 'Create Carrier'
 
