@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Organization, :type => :model do
   subject { 
     described_class.new(name: 'name of organization', description: 'test description') 
