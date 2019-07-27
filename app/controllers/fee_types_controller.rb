@@ -10,6 +10,7 @@ class FeeTypesController < ApplicationController
   # GET /fee_types/1
   # GET /fee_types/1.json
   def show
+    # binding.pry
   end
 
   # GET /fee_types/new
@@ -67,8 +68,9 @@ class FeeTypesController < ApplicationController
       @fee_type = FeeType.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def fee_type_params
-      params.fetch(:fee_type, {})
+      params.require(:fee_type).permit(:name, :amount)
     end
+   
 end
+
