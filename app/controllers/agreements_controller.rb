@@ -20,10 +20,26 @@ class AgreementsController < ApplicationController
     redirect_to agreement_path(@agreement)
   end
 
+  def edit 
+
+  end
+
+  def update
+    respond_to do |format|
+      if @agreement.update(agreement_params)
+        format.html { redirect_to @agreement, notice: 'agreement was successfully updated.' }
+        format.json { render :show, status: :ok, location: @agreement }
+      else
+        format.html { render :edit }
+        format.json { render json: @agreement.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @agreement.destroy
     respond_to do |format|
-      format.html { redirect_to agreements_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to agreements_url, notice: 'agreement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
