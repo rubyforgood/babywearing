@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_27_160127) do
+ActiveRecord::Schema.define(version: 2019_07_27_202234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 2019_07_27_160127) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "signed_agreements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "agreement_id"
+    t.string "signature"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agreement_id"], name: "index_signed_agreements_on_agreement_id"
+    t.index ["user_id"], name: "index_signed_agreements_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
