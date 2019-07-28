@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2019_07_28_154543) do
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
+  create_table "fee_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "loans", force: :cascade do |t|
     t.integer "cart_id"
     t.integer "carrier_id"
