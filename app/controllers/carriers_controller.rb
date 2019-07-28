@@ -2,7 +2,7 @@ class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update]
 
   def index
-    @carriers = Carrier.all
+    @carriers = Carrier.all.with_attached_photos
   end
 
   def show
@@ -11,6 +11,7 @@ class CarriersController < ApplicationController
   def new
     @carrier = Carrier.new
     @locations = Location.all
+    @categories = Category.all
   end
 
   def create
@@ -28,6 +29,7 @@ class CarriersController < ApplicationController
 
   def edit
     @locations = Location.all
+    @categories = Category.all
   end
 
   def update
@@ -64,7 +66,9 @@ class CarriersController < ApplicationController
       :color,
       :size,
       :location_id,
-      :default_loan_length_days
+      :category_id,
+      :default_loan_length_days,
+      photos: []
     )
   end
 end
