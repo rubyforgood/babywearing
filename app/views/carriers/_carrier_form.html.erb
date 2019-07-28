@@ -25,7 +25,7 @@
   <br><br>
 
   <%= c.label :size %>
-  <%= c.number_field :size %>
+  <%= c.text_field :size %>
 
   <br><br>
 
@@ -34,10 +34,31 @@
 
   <br><br>
 
+  <%= c.label :category_id %>
+  <%= c.collection_select :category_id, @categories, :id, :name %>
+
+  <br><br>
+
   <%= c.label :default_loan_length_days, 'Default Loan Length' %>
   <%= c.number_field :default_loan_length_days %> days
 
   <br><br>
+
+  <% if @carrier.photos.attached? %>
+    <% @carrier.photos.each do |photo| %>
+      <div class="card col-3">
+        <%= image_tag(photo.variant(resize: "100x100").processed, class: "card-img-top") %>
+        <div class="card-body">
+          <%= link_to 'Remove', photo_path(photo.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </div>
+      </div>
+    <% end %>
+  <% end%>
+
+  <%= c.label :photos %>
+  <%= c.file_field :photos, multiple: true %>
+
+  <br></br>
 
   <%= c.submit %>
 <% end %>

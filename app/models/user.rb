@@ -6,4 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :full_name, :street_address, :city,
             :state, :postal_code, :phone_number, presence: true
+
+  has_many :carts
 end

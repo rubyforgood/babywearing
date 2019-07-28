@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'MembershipType', type: :feature do
   fixtures :users
   let(:user) { users(:user) }

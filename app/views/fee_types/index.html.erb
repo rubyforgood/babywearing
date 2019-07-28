@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fee Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fee_types.each do |fee_type| %>
+      <tr>
+        <td><%= fee_type.name %></td>
+        <td><%= number_to_currency(fee_type.amount/100) %></td>
+        <td><%= link_to 'Show', fee_type %></td>
+        <td><%= link_to 'Edit', edit_fee_type_path(fee_type) %></td>
+        <td><%= link_to 'Destroy', fee_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fee Type', new_fee_type_path %>

@@ -10,8 +10,16 @@
   <li>Model: <%= @carrier.model %></li>
   <li>Color: <%= @carrier.color %></li>
   <li>Size: <%= @carrier.size %></li>
+  <li>Category: <%= @carrier.category.name %></li>
   <li>Location: <%= @carrier.location.name %></li>
   <li>Default Loan Length: <%= @carrier.default_loan_length_days %> days</li>
+  <% if @carrier.photos.attached? %>
+    <li>Photos:
+      <% @carrier.photos.each do |photo| %>
+        <%= image_tag(photo.variant(resize: "100x100").processed, class: "img-thumbnail img-fluid") %>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
 
 <%= link_to 'Edit', edit_carrier_path %>
