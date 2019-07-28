@@ -1,6 +1,7 @@
 RSpec.describe Carrier do
   fixtures :locations
   let(:location) { locations(:location) }
+
   fixtures :categories
   let(:category) { categories(:category) }
 
@@ -14,6 +15,13 @@ RSpec.describe Carrier do
       location_id: location.id,
       category_id: category.id
     )).to be_valid
+  end
+
+  it "should have a photo attached" do
+    carrier = Carrier.new
+    file = Rails.root.join('public', 'apple-touch-icon.png')
+    carrier.photos.attach(io: File.open(file), filename: 'apple-touch-icon.png')
+    assert carrier.photos.attached?
   end
 
   it 'is not valid without an item_id' do
@@ -38,5 +46,36 @@ RSpec.describe Carrier do
 
   it 'is not valid without a location_id' do
     expect(described_class.new(location_id: nil)).to_not be_valid
+  end
+
+  describe '#build_loan' do
+    fixtures(:carriers)
+
+    let(:carrier) { described_class.first }
+
+    context "without parameters" do
+      subject { carrier.build_loan }
+
+      it 'creates a loan with the default due date set' do
+        expect(subject.due_date).to eq Date.today + carrier.default_loan_length_days.days
+      end
+    end
+
+    context "with parameters" do
+      fixtures(:users)
+
+      let(:user) { User.first }
+      let(:cart) { Cart.new(user: user) }
+
+      subject { carrier.build_loan(cart: cart) }
+
+      it 'creates a loan with the default due date set' do
+        expect(subject.due_date).to eq Date.today + carrier.default_loan_length_days.days
+      end
+
+      it 'honors the additional parameters' do
+        expect(subject.cart).to eq cart
+      end
+    end
   end
 end

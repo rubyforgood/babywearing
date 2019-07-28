@@ -1,0 +1,20 @@
+
+<h1>User Listing</h1>
+
+<table>
+  <tr>
+    <th>Full Name</th>
+    <th>Email Address</th>
+    <th>Phone Number</th>
+    <th>Join Date</th>
+  </tr>
+
+  <% @users.each do |user| %>                    
+    <tr>
+      <td><%= user.full_name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.phone_number %></td>
+      <td><%= user.created_at %></td>
+    </tr>
+  <% end %>
+</table>

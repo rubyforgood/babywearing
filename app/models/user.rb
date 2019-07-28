@@ -8,4 +8,5 @@ class User < ApplicationRecord
             :state, :postal_code, :phone_number, presence: true
 
   has_many :signed_agreements
+  has_many :carts
 end
