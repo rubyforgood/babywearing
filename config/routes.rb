@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :signed_agreements, only: [:show, :create]
   resources :agreements
   resources :locations
   resources :membership_types
