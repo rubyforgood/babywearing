@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 2019_07_27_185412) do
     t.integer "category_id"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -48,6 +54,14 @@ ActiveRecord::Schema.define(version: 2019_07_27_185412) do
   create_table "fee_types", force: :cascade do |t|
     t.string "name", null: false
     t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer "cart_id"
+    t.integer "carrier_id"
+    t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
