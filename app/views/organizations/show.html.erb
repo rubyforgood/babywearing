@@ -18,7 +18,7 @@
           <% if carrier.photos.attached? %>
             <%= image_tag(carrier.photos.first.variant(resize: "200x300").processed, class: "img-thumbnail img-fluid") %>
           <% else %>
-            <%= image_tag("https://placeimg.com/250/150/nature/grayscale", class: "img-thumbnail img-fluid") %>
+            <%= image_tag("img_placeholder.svg", class: "img-thumbnail img-fluid h-100") %>
           <% end %>
           <div class="card-body">
             <p class="card-text"><%= carrier.name %></p>
