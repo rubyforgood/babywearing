@@ -1,11 +1,12 @@
 RSpec.describe Cart do
   fixtures(:users)
 
-  let(:user) { User.first }
+  let(:member)    { users(:user) }
+  let(:volunteer) { users(:volunteer) }
 
   describe '#valid?' do
-    context "with a user" do
-      subject { described_class.new(user: user) }
+    context "with a member and a volunteer" do
+      subject { described_class.new(member: member, volunteer: volunteer) }
 
       it 'returns true' do
         expect(subject).to be_valid
@@ -16,10 +17,10 @@ RSpec.describe Cart do
   describe '#line_items' do
     fixtures(:carriers)
 
-    let(:carrier)  { Carrier.first }
+    let(:carrier)  { carriers(:carrier) }
     let(:due_date) { Date.today + 1.days }
 
-    subject { Cart.create!(user: user) }
+    subject { described_class.create!(member: member, volunteer: volunteer) }
 
     context "with a single loan" do
       let(:loan) { subject.loans.create!(carrier: carrier, due_date: due_date) }
