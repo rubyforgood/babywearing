@@ -1,27 +1,23 @@
-require 'rails_helper'
-
 RSpec.feature 'create an agreement', type: :feature do
-  fixtures :users
+  fixtures :users, :agreements
   let(:user) { users(:user) }
+  let(:agreement) { agreements(:agreement) }
 
   before :each do
     visit "/"
     sign_in user
-
-    @agreement = Agreement.new(title: 'Rules', content:'Content')
-    @agreement.save!
   end
 
   scenario 'SHOW' do
     visit agreements_path
-    click_link 'Show'
+    click_on 'Show'
 
-    expect(page).to have_content('Rules')
+    expect(page).to have_content('Test Agreement')
     expect(page).to have_content('Content')
   end
 
   scenario 'EDIT when name is NOT given' do
-    visit edit_agreement_path(@agreement.id)
+    visit edit_agreement_path(agreement.id)
 
     fill_in 'Title', with: nil
     click_on 'Update Agreement'
@@ -30,7 +26,7 @@ RSpec.feature 'create an agreement', type: :feature do
   end
 
   scenario 'EDIT when all expected information is given' do
-    visit edit_agreement_path(@agreement.id)
+    visit edit_agreement_path(agreement.id)
 
     fill_in 'Title', with: 'Fake agreement'
     fill_in 'Content', with: 'Content of Fake agreement'

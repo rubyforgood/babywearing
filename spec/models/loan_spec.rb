@@ -1,10 +1,11 @@
 RSpec.describe Loan do
-  fixtures(:carriers)
-  fixtures(:users)
+  fixtures(:carriers, :users)
 
-  let(:user)    { User.first }
-  let(:cart)    { Cart.new(user: user) }
-  let(:carrier) { Carrier.first }
+  let(:member)    { users(:user) }
+  let(:volunteer) { users(:volunteer) }
+
+  let(:cart)    { Cart.new(member: member, volunteer: volunteer) }
+  let(:carrier) { carriers(:carrier) }
 
   describe '#valid?' do
     context "with a cart, a carrier, and a due date" do

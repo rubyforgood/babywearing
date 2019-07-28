@@ -2,7 +2,7 @@ class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update]
 
   def index
-    @carriers = Carrier.all
+    @carriers = Carrier.all.with_attached_photos
   end
 
   def show
@@ -67,7 +67,8 @@ class CarriersController < ApplicationController
       :size,
       :location_id,
       :category_id,
-      :default_loan_length_days
+      :default_loan_length_days,
+      photos: []
     )
   end
 end

@@ -46,6 +46,11 @@
     </ul>
   </div>
 </nav>
+
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: flash_class(name) %>
+      <% end -%>
+      
       <%= yield %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>

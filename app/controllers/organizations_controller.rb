@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :set_organization, only: [:edit, :update, :destroy]
 
   # GET /organizations
   # GET /organizations.json
@@ -10,6 +10,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @organization = Organization.includes(:carriers).find(params[:id])
   end
 
   # GET /organizations/new

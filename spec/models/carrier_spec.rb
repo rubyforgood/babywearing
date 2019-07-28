@@ -17,6 +17,13 @@ RSpec.describe Carrier do
     )).to be_valid
   end
 
+  it "should have a photo attached" do
+    carrier = Carrier.new
+    file = Rails.root.join('public', 'apple-touch-icon.png')
+    carrier.photos.attach(io: File.open(file), filename: 'apple-touch-icon.png')
+    assert carrier.photos.attached?
+  end
+
   it 'is not valid without an item_id' do
     expect(described_class.new(item_id: nil)).to_not be_valid
   end
@@ -57,8 +64,9 @@ RSpec.describe Carrier do
     context "with parameters" do
       fixtures(:users)
 
-      let(:user) { User.first }
-      let(:cart) { Cart.new(user: user) }
+      let(:member)    { users(:user) }
+      let(:volunteer) { users(:volunteer) }
+      let(:cart)      { Cart.new(member: member, volunteer: volunteer) }
 
       subject { carrier.build_loan(cart: cart) }
 

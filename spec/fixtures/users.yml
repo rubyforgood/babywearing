@@ -7,3 +7,14 @@ user:
   state: 'VA'
   postal_code: '22032'
   phone_number: '18888888888'
+
+volunteer:
+  email: 'volunteer@test.com'
+  encrypted_password: 'password'
+  full_name: 'volunteer'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+
