@@ -15,7 +15,7 @@
   <tbody>
     <% @agreements.each do |agreement| %>
       <tr>
-        <td><%= check_box_tag 'signed', '', agreement.signed?(current_user.id), disabled: true %></td>
+        <td><%= check_box_tag 'signed', '', agreement.signed_by?(current_user), disabled: true %></td>
         <td><%= agreement.title %></td>
         
         <td><%= link_to 'Show', agreement %></td>

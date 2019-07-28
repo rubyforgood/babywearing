@@ -1,7 +1,9 @@
 class Agreement < ApplicationRecord
+  has_many :signed_agreements
+
   validates_presence_of :title, :content
 
-  def signed?(user_id)
-    SignedAgreement.where(agreement_id: id, user_id: user_id).present?
+  def signed_by?(user)
+    signed_agreements.where(user: user).present?
   end
 end
