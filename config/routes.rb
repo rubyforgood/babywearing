@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :membership_types
   resources :organizations
+  resources :users, only: [:index]
   resources :carriers
   resources :photos, only: :destroy
   devise_for :users, controllers: { registrations: "users/registrations" }
