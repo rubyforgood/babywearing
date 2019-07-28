@@ -122,6 +122,16 @@ ActiveRecord::Schema.define(version: 2019_07_28_154543) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
+  create_table "signed_agreements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "agreement_id"
+    t.string "signature"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agreement_id"], name: "index_signed_agreements_on_agreement_id"
+    t.index ["user_id"], name: "index_signed_agreements_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

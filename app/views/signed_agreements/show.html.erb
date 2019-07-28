@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @agreement.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @agreement.content %>
+</p>
+
+<%= form_for @signed_agreement, url: signed_agreements_path, method: 'post' do |form| %>
+  <%= form.hidden_field :user_id %>
+  <%= hidden_field_tag 'signed_agreement[user_id]', current_user.id %>
+
+  <%= form.hidden_field :agreement_id %>
+  <%= hidden_field_tag 'signed_agreement[agreement_id]', @agreement.id %>
+  
+  <%= form.text_field :signature %>
+
+  <%= form.submit 'I Agree' %>
+<% end %>
