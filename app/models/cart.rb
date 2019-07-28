@@ -1,6 +1,9 @@
 class Cart < ApplicationRecord
-  belongs_to :user
-  validates :user, presence: true
+  belongs_to :member, class_name: "User"
+  validates :member, presence: true
+
+  belongs_to :volunteer, class_name: "User"
+  validates :volunteer, presence: true
 
   has_many :loans
 
