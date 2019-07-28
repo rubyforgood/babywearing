@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
  def user_not_authorized(exception)
-   policy_name = exception.policy.class.to_s.underscore
-
    flash[:error] = "Sorry, you aren't allowed to do that. You've been redirected to your previous page instead."
    redirect_to(request.referrer || root_path)
  end
