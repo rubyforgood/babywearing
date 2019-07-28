@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @fee_type.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= number_to_currency(@fee_type.amount/100) %>
+</p>
+
+<%= link_to 'Edit', edit_fee_type_path(@fee_type) %> |
+<%= link_to 'Back', fee_types_path %>
