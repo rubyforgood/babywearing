@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <% if @signed_agreement %>
-  <p>Agreement signed at: <%= @signed_agreement.created_at %></p>
+  <p>Agreement signed by: <%= @signed_agreement.signature %> at: <%= @signed_agreement.created_at %></p>
 <% end %>
 
 <p>
