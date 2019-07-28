@@ -21,6 +21,23 @@
 # Then, remove all the *= require and *= require_tree statements from the Sass file. Instead, use @import to import Sass files.
 # Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
 */
+$bw-color-purple: #A36EB9;
+$bw-color-dark-purple: #7A7289;
+$bw-color-slate: #84A5C6;
+$bw-color-blue: #73C3FE;
+$bw-color-darkest-purple: #808808;
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
+$navbar-padding-y: 0;
+$navbar-brand-padding-y: 8px;
+
 @import "bootstrap";
+.navbar-brand img {height: 84px}
+.nav-icon img {width: 50px}
+.nav-icon {height: 100px; width: 100px; font-size: 12px}
+.nav-link {text-align: center}
+.background-purple {background-color: $bw-color-purple}
+.background-dark-purple {background-color: $bw-color-dark-purple}
+.background-slate {background-color: $bw-color-slate}
+.background-blue {background-color: $bw-color-blue}
+.background-darkest-purple {background-color: $bw-color-darkest-purple}
