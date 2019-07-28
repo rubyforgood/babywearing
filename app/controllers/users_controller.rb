@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  attr_reader :user
 
   def index
-    @users = User.all
-    authorize @users
+    @users = authorize User.all
   end
 end
