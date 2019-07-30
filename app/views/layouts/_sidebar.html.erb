@@ -1,0 +1,42 @@
+<% if signed_in? %>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Home</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <%= link_to 'Categories', categories_path %>
+            </li>
+            <li>
+                <%= link_to 'Locations', locations_path %>
+            </li>
+            <li>
+                <%= link_to 'Agreements', agreements_path %>
+            </li>
+            <li>
+                <%= link_to 'Fee Types', fee_types_path %>
+            </li>
+            <li>
+                <%= link_to 'Carriers', carriers_path %>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- Page Content -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+</div>
+<% end %>

@@ -13,7 +13,10 @@
 
     <div class="container">
   <!-- Content here -->
+      <%= yield :sidebar %>
       <%= yield %>
+
+    
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
 
