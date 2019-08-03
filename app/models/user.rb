@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :carts
 
   def self.to_csv
-    attributes = %w{full_name email	phone_number	created_at}
+    attributes = %w{full_name email	phone_number created_at}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
@@ -21,5 +21,4 @@ class User < ApplicationRecord
       end
     end
   end
-
 end
