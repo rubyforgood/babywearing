@@ -32,7 +32,7 @@ RSpec.describe "User" do
     visit "/users"
     click_on 'Export to CSV'
     header = page.response_headers['Content-Disposition']
-    expect(header).to match "attachment; filename=\"users-2019-08-03.csv\""
+    expect(header).to match "attachment; filename=\"users-#{Date.today}.csv\""
   end
 
   scenario "should allow user who is a volunteer to export list of users" do
@@ -41,6 +41,6 @@ RSpec.describe "User" do
     visit "/users"
     click_on 'Export to CSV'
     header = page.response_headers['Content-Disposition']
-    expect(header).to match "attachment; filename=\"users-2019-08-03.csv\""
+    expect(header).to match "attachment; filename=\"users-#{Date.today}.csv\""
   end
 end
