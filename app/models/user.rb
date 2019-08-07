@@ -7,5 +7,6 @@ class User < ApplicationRecord
   validates :full_name, :street_address, :city,
             :state, :postal_code, :phone_number, presence: true
 
+  has_many :signed_agreements
   has_many :carts
 end

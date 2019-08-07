@@ -10,26 +10,66 @@
   </head>
 
   <body>
-
     <div class="container">
-  <!-- Content here -->
-      <%= yield :sidebar %>
-      <%= yield %>
-
+      <!-- Content here -->
     
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand"> <a class="navbar-brand" href="/"><%= image_tag "Babywearing Logo.svg", alt:"Mid-Atlantic Babywearing Logo" %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <p class="navbar-text pull-right">
-        <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-        <% end %>
-      </p>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active background-blue">
+          <%= link_to new_user_registration_path, class: 'nav-link nav-icon' do %>
+          <%= image_tag "BW- CREATE USER ICON.svg", alt:"Create a User" %><p>CREATE USER</p>
+          <% end %>
+          </li>
+        <li class="nav-item active background-slate">
+        <a class="nav-link nav-icon" href="/"><%= image_tag "BW- ADD USER ICON.svg", alt:"Add an Item" %><p>ADD ITEM</p></a></li>
+        <li class="nav-item active background-dark-purple">
+        <a class="nav-link nav-icon" href="/"><%= image_tag "BW- CART ICON.svg", alt:"Cart" %><p>CHECK IN/OUT</p></a></li>
+        <li class="nav-item active background-purple">
+        <a class="nav-link nav-icon" href="/"><%= image_tag "BW - INVENTORY ICON.svg", alt:"View Inventory" %><p>INVENTORY</p></a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Quick Access
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: flash_class(name) %>
+    <% end -%>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield :sidebar %>
+
+    <%= yield %>
+      
     </div>
+    
+    <p class="navbar-text pull-right">
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+    </p>
+      
   </body>
 </html>

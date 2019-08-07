@@ -64,8 +64,9 @@ RSpec.describe Carrier do
     context "with parameters" do
       fixtures(:users)
 
-      let(:user) { User.first }
-      let(:cart) { Cart.new(user: user) }
+      let(:member)    { users(:user) }
+      let(:volunteer) { users(:volunteer) }
+      let(:cart)      { Cart.new(member: member, volunteer: volunteer) }
 
       subject { carrier.build_loan(cart: cart) }
 

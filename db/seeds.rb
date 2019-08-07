@@ -1,22 +1,12 @@
 require 'csv'
+require 'uri'
 
 include ActionView::Helpers::SanitizeHelper #included for strip_tags method to remove html from carrier descriptions
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 organization = Organization.create(name: 'MidAtlantic Babywearing')
 
-Location.create(name: 'Pittsburgh')
-Location.create(name: 'Erie')
-Location.create(name: 'Carnegie')
-Location.create(name: 'Heidelberg')
-
 #Agreement
+puts "Creating agreements..."
 Agreement.create(title: 'Membership Agreement', content: 'MidAtlantic Babywearing is the local babywearing education group for Pennsylvania, New Jersey, and
   Delaware, and is a non-profit group.
   To become a member of our chapter you must:
@@ -37,8 +27,10 @@ role_names_array = ['admin', 'volunteer', 'member', 'user']
 role_names_array.each do |role_name|
   Role.create(name: role_name)
 end
+puts "Done."
 
 # Categories
+puts "Creating categories..."
 asian_inspired_carriers = Category.create(name: 'Asian Inspired Carriers')
 asian_inspired_carriers.subcategories << Category.create([
   { name: 'Chuneis' }, { name: 'Hmongs' }, { name: 'Meh Dais / Bei Dais' },
@@ -72,6 +64,7 @@ Category.find_by_name('Woven Wrap Carriers').subcategories << Category.create([
   { name: 'Chitenges' }, { name: 'Khangas' }, { name: 'Lesos' },
   { name: 'Mantas' }, { name: 'Rebozos' }
 ])
+puts "Done."
 
 #FeeType
 
@@ -80,11 +73,13 @@ FeeType.create(name: 'Late Fee', amount: 100)
 FeeType.create(name: 'Membership Donation', amount: 3000)
 FeeType.create(name: 'Second Carrier Addition', amount: 500)
 FeeType.create(name: 'Trial Membership', amount: 1000)
+
 # Importing carriers
+puts "Importing carriers..."
 path = File.join Rails.root, 'db/data/inventory.csv'
 csv_text = File.read(path)
-
 csv = CSV.parse(csv_text, :headers => true)
+
 csv.each do |row|
   csv_carrier = row.to_hash
   carrier_params = {
@@ -95,12 +90,20 @@ csv.each do |row|
     size: csv_carrier['Size'],
     location_id: Location.find_or_create_by(name: csv_carrier['Home Location'], organization: organization).id,
     default_loan_length_days: csv_carrier['Default Loan Length'].to_i,
-    category: Category.find_by(name: csv_carrier['Item Type']),
-    # image_url: csv_carrier['Image'],
+    category: Category.find_by(name: csv_carrier['Item Type'])
     # description: strip_tags(csv_carrier['Description'])
   }
 
   Carrier.find_or_create_by(item_id: csv_carrier['Item ID']) do |carrier|
     carrier.update_attributes(carrier_params)
+
+    url = csv_carrier['Image']
+    if url.present?
+      filename = File.basename(URI.parse(url).path)
+      file = URI.open(url)
+
+      carrier.photos.attach(io: file, filename: filename)
+    end
   end
 end
+puts "Done."

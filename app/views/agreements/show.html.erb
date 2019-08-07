@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% if @signed_agreement %>
+  <p>Agreement signed by: <%= @signed_agreement.signature %> at: <%= @signed_agreement.created_at %></p>
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @agreement.title %>
@@ -10,5 +14,6 @@
   <%= @agreement.content %>
 </p>
 
+<%= link_to 'Sign', signed_agreement_path(@agreement) %> |
 <%= link_to 'Edit', edit_agreement_path(@agreement) %> |
 <%= link_to 'Back', agreements_path %>
