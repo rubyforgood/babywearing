@@ -10,10 +10,8 @@
   </head>
 
   <body>
-    <div class="container">
-      <!-- Content here -->
-    
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand"> <a class="navbar-brand" href="/"><%= image_tag "Babywearing Logo.svg", alt:"Mid-Atlantic Babywearing Logo" %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -47,17 +45,23 @@
       </div>
     </nav>
 
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: flash_class(name) %>
-    <% end -%>
+    <div id="outer-container">
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: flash_class(name) %>
+      <% end -%>
 
-    <%= yield :sidebar %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
       
+      <div class="content">
+        <%= yield %>
+      </div>
+
     </div>
     
     <p class="navbar-text pull-right">
