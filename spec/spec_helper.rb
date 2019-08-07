@@ -84,6 +84,15 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = :random
 
+  config.before(:each, webkit: true) do
+      Capybara.javascript_driver = :webkit
+  end
+
+  config.after(:each, webkit: true) do
+      Capybara.javascript_driver = :selenium 
+      # or whatever your preferred driver is
+  end
+
   # Seed global randomization in this process using the `--seed` CLI option.
   # Setting this allows you to use `--seed` to deterministically reproduce
   # test failures related to randomization by passing the same `--seed` value
