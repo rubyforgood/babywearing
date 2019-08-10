@@ -44,6 +44,8 @@ gem 'bootstrap', '~> 4.3.1'
 # Adding jQuery, using this walkthrough: https://github.com/twbs/bootstrap-rubygem#a-ruby-on-rails
 gem 'jquery-rails'
 
+gem 'aws-sdk-s3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug', platforms: [:mri, :mingw, :x64_mingw]
