@@ -1,3 +1,6 @@
+# README
+[![Build Status](https://travis-ci.org/rubyforgood/babywearing.svg?branch=master)](https://travis-ci.org/rubyforgood/babywearing)
+
 # Babywearing
 
 The [Mid-Atlantic Babywearing](https://midatlanticbabywearing.org) organization
@@ -72,6 +75,23 @@ process transactions. This project needs to consider a mobile-first design to
 continue to provide the users the flexibility of working remote without having
 to carry a laptop. Some events are also more of an ad-hoc popup so a phone could be the only
 device available in those moments.
+
+## Development
+
+### Ruby Version
+This app uses Ruby version 2.6.3 and Rails version 5.2.3
+
+### Setup
+* Clone the repo
+* run `bundle install`
+* run `rails db:setup`
+* set up the database with `rake:db:migrate`
+
+### Seed the database
+From the root of the app, run bundle exec rails `db:seed`. This will create some initial data to use while testing the app and developing new features.
+
+### Start the app
+Run `rails s` and browse to http://localhost:3000/
 
 ## How to Contribute
 
