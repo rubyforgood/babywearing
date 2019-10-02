@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'byebug'
 
 RSpec.describe "User" do
 
@@ -45,20 +46,23 @@ RSpec.describe "User" do
   end
 
   scenario "should send the user a welcome email" do
-    user = User.create(
-      email: "alicia@test.com",
-      password: "123abc",
-      full_name: "Alicia Barrett",
-      street_address: "123 street",
-      city: "Atlanta",
-      state: "GA",
-      postal_code: "30030",
-      phone_number: "909-851-9806")
+      Devise.mailer.deliveries = [] 
+      
+      user = User.create(
+        email: "alicia@test.com",
+        password: "123abc",
+        full_name: "Alicia Barrett",
+        street_address: "123 street",
+        city: "Atlanta",
+        state: "GA",
+        postal_code: "30030",
+        phone_number: "909-851-9806"
+      )
 
       aggregate_failures "testing welcome email" do
         expect(Devise.mailer.deliveries.count).to eq 1
         expect(Devise.mailer.deliveries.first.subject).to eq "Babywearing Account Registration"
-        expect(Devise.mailer.deliveries.first.to).to include("alicia@test.com")
+        expect(Devise.mailer.deliveries.first.to).to include(user.email)
       end
   end
 end
