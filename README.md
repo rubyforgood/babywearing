@@ -1,3 +1,6 @@
+# README
+[![Build Status](https://travis-ci.org/rubyforgood/babywearing.svg?branch=master)](https://travis-ci.org/rubyforgood/babywearing)
+
 # Babywearing
 
 The [Mid-Atlantic Babywearing](https://midatlanticbabywearing.org) organization
