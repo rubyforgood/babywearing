@@ -90,7 +90,7 @@ This app uses Ruby version 2.6.3 and Rails version 5.2.3
 ### Seed the database
 From the root of the app, run bundle exec rails `db:seed`. This will create some initial data to use while testing the app and developing new features.
 
-###Install ImageMagick
+### Install ImageMagick
 ImageMagick is needed for the pages with images of carriers
 run`brew install imagemagick`
 
