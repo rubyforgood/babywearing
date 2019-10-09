@@ -1,4 +1,5 @@
 # README
+
 [![Build Status](https://travis-ci.org/rubyforgood/babywearing.svg?branch=master)](https://travis-ci.org/rubyforgood/babywearing)
 
 # Babywearing
@@ -34,38 +35,38 @@ effective and provides the same capabilities as their existing system with an
 emphasis on tailoring the experience to better suit the needs of this
 organization. The primary set of features this project will focus on includes:
 
-* Managing inventory of hundreds of carriers across multiple locations
+- Managing inventory of hundreds of carriers across multiple locations
 
-* Allowing Members to create or update their account information
+- Allowing Members to create or update their account information
 
-* Using volunteers to check in and check out carriers from inventory
+- Using volunteers to check in and check out carriers from inventory
 
-* Recording (not processing) financial transactions such as late fees and
+- Recording (not processing) financial transactions such as late fees and
   membership dues
 
-  * Simplifying the process to waive late fees
+  - Simplifying the process to waive late fees
 
-* Improved notification of activities to members including:
+- Improved notification of activities to members including:
 
-  * Due date reminders for checked out items
+  - Due date reminders for checked out items
 
-  * Updates or changes to events and item due dates
+  - Updates or changes to events and item due dates
 
-* Signing agreements and waivers to participate in the organization
+- Signing agreements and waivers to participate in the organization
 
 Some additional stretch goals include:
 
-* Transferring inventory between locations (and tracking that history)
+- Transferring inventory between locations (and tracking that history)
 
-* Event attendance sign in
+- Event attendance sign in
 
-  * Fast sign in for existing Members
+  - Fast sign in for existing Members
 
-  * Easy transition to create new accounts for new Members
+  - Easy transition to create new accounts for new Members
 
-* Assign location preferences to Members
+- Assign location preferences to Members
 
-* Opt-in text message for meeting and check out reminders using Twilio
+- Opt-in text message for meeting and check out reminders using Twilio
 
 ### Technical considerations
 
@@ -79,22 +80,27 @@ device available in those moments.
 ## Development
 
 ### Ruby Version
+
 This app uses Ruby version 2.6.3 and Rails version 5.2.3
 
 ### Setup
-* Clone the repo
-* run `bundle install`
-* run `rails db:create`
-* run `rake:db:migrate`
+
+- Clone the repo
+- run `bundle install`
+- run `rails db:create`
+- run `rake db:migrate`
 
 ### Seed the database
-From the root of the app, run bundle exec rails `db:seed`. This will create some initial data to use while testing the app and developing new features.
+
+From the root of the app, run `bundle exec rails db:seed`. This will create some initial data to use while testing the app and developing new features.
 
 ### Install ImageMagick
+
 ImageMagick is needed for the pages with images of carriers
 run`brew install imagemagick`
 
 ### Start the app
+
 Run `rails s` and browse to http://localhost:3000/
 
 ## How to Contribute
