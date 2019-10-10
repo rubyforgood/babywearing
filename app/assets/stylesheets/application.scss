@@ -36,9 +36,6 @@ $navbar-brand-padding-y: 8px;
 .navbar-brand img {
   height: 84px;
 }
-// .nav-icon img {
-//   width: 5em;
-// }
 .nav-icon {
   height: 100px;
   width: 100px;
@@ -71,19 +68,19 @@ $navbar-brand-padding-y: 8px;
   align-items: center;
 }
 
-#nav-first img {
+.nav-first img {
   width: 6.4em;
 }
-#nav-second img {
+.nav-second img {
   width: 5.5em;
 }
-#nav-third {
+.nav-third {
   width: 9em;
   img {
     width: 5.1em;
   }
 }
-#nav-fourth img {
+.nav-fourth img {
   width: 6.2em;
 }
 #outer-container {
