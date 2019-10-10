@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Agreement < ApplicationRecord
   has_many :signed_agreements
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Agreement do
   fixtures :users, :agreements
   
