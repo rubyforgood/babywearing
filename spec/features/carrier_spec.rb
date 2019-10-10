@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe 'Carrier' do
   fixtures :categories
   let(:category) { categories(:category) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeeTypesController < ApplicationController
   before_action :set_fee_type, only: [:show, :edit, :update, :destroy]
 

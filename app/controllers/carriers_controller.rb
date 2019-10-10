@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update]
 

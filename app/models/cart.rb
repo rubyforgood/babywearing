@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Cart < ApplicationRecord
   belongs_to :member, class_name: "User"
   validates :member, presence: true

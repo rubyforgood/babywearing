@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Category, type: :model do
   fixtures :categories
   let!(:category) { categories(:category) }

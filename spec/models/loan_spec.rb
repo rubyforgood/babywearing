@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Loan do
   fixtures(:carriers, :users)
 

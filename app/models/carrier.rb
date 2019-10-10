@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Carrier < ApplicationRecord
   belongs_to :location
   has_many :loans
