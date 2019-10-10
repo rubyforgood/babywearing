@@ -86,8 +86,7 @@ This app uses Ruby version 2.6.3, Rails version 5.2.3, and PostgreSQL 11.4
 ### Setup
 
 - Clone the repo
-- run `bundle install`
-- run `rails db:setup`
+- run `bin/setup`
 
 ### Install ImageMagick
 
