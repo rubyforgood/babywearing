@@ -1,31 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Agreements</h1>
+<div class="card">
+  <header class="card-header d-flex align-items-center">
+    <h1 class="mr-auto">Agreements</h1>
+    <%= link_to '+ New', new_agreement_path, class: "btn btn-primary" %>
+  </header>
 
-<table>
-  <thead>
-    <tr>
-      <th>Signed</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <section>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Signed</th>
+          <th scope="col">Title</th>
+          <th scope="col">Content</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @agreements.each do |agreement| %>
-      <tr>
-        <td><%= check_box_tag 'signed', '', agreement.signed_by?(current_user), disabled: true %></td>
-        <td><%= agreement.title %></td>
-        
-        <td><%= link_to 'Show', agreement %></td>
-        <td><%= link_to 'Edit', edit_agreement_path(agreement) %></td>
-        <td><%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @agreements.each do |agreement| %>
+          <tr>
+            <td><%= check_box_tag 'signed', '', agreement.signed_by?(current_user), disabled: true %></td>
+            <td><%= link_to agreement.title, agreement %></td>
+            <td><%= truncate(agreement.content) %></td>
 
-<br>
-
-<%= link_to 'New Agreement', new_agreement_path %>
+            <td><%= link_to 'Edit', edit_agreement_path(agreement) %></td>
+            <td><%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

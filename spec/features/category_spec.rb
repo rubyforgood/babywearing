@@ -16,7 +16,7 @@ RSpec.feature "category" do
 
   scenario "should allow user to create a category" do
     visit "/categories"
-    find_link("New Category").click
+    find_link("+ New").click
     fill_in "Name", with: "pineapple"
     fill_in "Description", with: "sweet"
     fill_in "Parent", with: "1"
@@ -26,7 +26,7 @@ RSpec.feature "category" do
 
   scenario "should allow user to update a category" do
     visit "/categories"
-    find_link("Show").click
+    click_link category.name
     expect(page).to have_content category.name
     find_link("Edit").click
     fill_in "Name", with: "orange"
