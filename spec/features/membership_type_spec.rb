@@ -18,7 +18,7 @@ RSpec.describe 'MembershipType', type: :feature do
 
   scenario 'SHOW' do
     visit "/membership_types"
-    expect(page).to have_content('New Membership Type')
+    expect(page).to have_content('+ New')
   end
 
   scenario 'EDIT when name is NOT given' do
@@ -49,7 +49,7 @@ RSpec.describe 'MembershipType', type: :feature do
 
   scenario 'CREATE when name is NOT given' do
     visit membership_types_path
-    click_link('New Membership Type')
+    click_link('+ New')
     fill_in 'Name', with: ""
     click_on 'Create Membership type'
     expect(page).to have_content("Name can't be blank")
@@ -58,7 +58,7 @@ RSpec.describe 'MembershipType', type: :feature do
   scenario 'CREATE when all expected information is given' do
     visit membership_types_path
 
-    click_link('New Membership Type')
+    click_link('+ New')
     fill_in 'Name', with: 'Trial'
     fill_in 'Description', with: 'A text description goes here.'
     fill_in 'Duration', with: 2

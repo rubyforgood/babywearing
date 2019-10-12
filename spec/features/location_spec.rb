@@ -12,7 +12,7 @@ RSpec.feature 'create a location', type: :feature do
 
   scenario 'should allow admin to create a new location' do
     visit "/locations"
-    find_link("Add a new location", match: :first).click
+    find_link("+ New", match: :first).click
     fill_in "name", with: "Bellvue"
     select "Ruby For Good", from: "location_organization_id"
     click_button "Create Location"
@@ -21,7 +21,7 @@ RSpec.feature 'create a location', type: :feature do
 
   scenario 'should allow admin to create a new location' do
     visit "/locations"
-    find_link("Add a new location", match: :first).click
+    find_link("+ New", match: :first).click
     fill_in "name", with: "Robinson"
     click_button "Create Location"
     expect(page).to have_content "Robinson"
@@ -29,7 +29,7 @@ RSpec.feature 'create a location', type: :feature do
 
   scenario 'should allow admin to update a location' do
     visit "/locations"
-    find_link("Add a new location", match: :first).click
+    find_link("+ New", match: :first).click
     fill_in "name", with: "Robinson"
     click_button "Create Location"
     expect(page).to have_content "Robinson"
@@ -41,7 +41,7 @@ RSpec.feature 'create a location', type: :feature do
 
   scenario 'should allow adming to delete a location' do
     visit "/locations"
-    find_link("Add a new location", match: :first).click
+    find_link("+ New", match: :first).click
     fill_in "name", with: "Bridgeville"
     click_button "Create Location"
     expect(page).to have_content "Bridgeville"
