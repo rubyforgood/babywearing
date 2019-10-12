@@ -45,14 +45,9 @@
       </div>
     </nav>
 
-    <div id="outer-container">
+    <%= render "shared/flash" %>
+    <div id="outer-container" class="container">
 
-      <% flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, class: flash_class(name) %>
-      <% end -%>
-
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
 
       <div id="sidebar">
         <% if signed_in? %>
