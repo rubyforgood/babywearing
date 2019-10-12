@@ -11,6 +11,19 @@
 </p>
 
 <p>
+  <strong>Carriers:</strong>
+  <% if @category.carriers.blank? %>
+    <p>There are no carriers of this type in inventory at this time. Please check back later.</p>
+  <% else %>
+    <ul>
+      <% @category.carriers.each do |carrier| %>
+        <li><%= link_to carrier.name, carrier_path(carrier) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</p>
+
+<p>
   <strong>Parent:</strong>
   <%= @category.parent %>
 </p>
