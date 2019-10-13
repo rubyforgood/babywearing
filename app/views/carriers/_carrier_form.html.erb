@@ -1,64 +1,66 @@
-<%= form_for @carrier do |c| %>
-  <%= c.label :name %>
-  <%= c.text_field :name %>
+<%= form_for @carrier do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
 
-  <br><br>
+  <div class="form-group">
+    <%= form.label :item_id %>
+    <%= form.text_field :item_id, class: "form-control" %>
+  </div>
 
-  <%= c.label :item_id %>
-  <%= c.text_field :item_id %>
+  <div class="form-group">
+    <%= form.label :manufacturer %>
+    <%= form.text_field :manufacturer, class: "form-control" %>
+  </div>
 
-  <br><br>
+  <div class="form-group">
+    <%= form.label :model %>
+    <%= form.text_field :model, class: "form-control" %>
+  </div>
 
-  <%= c.label :manufacturer %>
-  <%= c.text_field :manufacturer %>
+  <div class="form-group">
+    <%= form.label :color %>
+    <%= form.text_field :color, class: "form-control" %>
+  </div>
 
-  <br><br>
+  <div class="form-group">
+    <%= form.label :size %>
+    <%= form.text_field :size, class: "form-control" %>
+  </div>
 
-  <%= c.label :model %>
-  <%= c.text_field :model %>
+  <div class="form-group">
+    <%= form.label :location_id %>
+    <%= form.collection_select :location_id, @locations, :id, :name, {}, class: "form-control" %>
+  </div>
 
-  <br><br>
+  <div class="form-group">
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, @categories, :id, :name, {}, class: "form-control" %>
+  </div>
 
-  <%= c.label :color %>
-  <%= c.text_field :color %>
+  <div class="form-group">
+    <%= form.label :default_loan_length_days, 'Default Loan Length' %>
+    <%= form.number_field :default_loan_length_days, class: "form-control" %> days
+  </div>
 
-  <br><br>
-
-  <%= c.label :size %>
-  <%= c.text_field :size %>
-
-  <br><br>
-
-  <%= c.label :location_id %>
-  <%= c.collection_select :location_id, @locations, :id, :name %>
-
-  <br><br>
-
-  <%= c.label :category_id %>
-  <%= c.collection_select :category_id, @categories, :id, :name %>
-
-  <br><br>
-
-  <%= c.label :default_loan_length_days, 'Default Loan Length' %>
-  <%= c.number_field :default_loan_length_days %> days
-
-  <br><br>
-
-  <% if @carrier.photos.attached? %>
-    <% @carrier.photos.each do |photo| %>
-      <div class="card col-3">
-        <%= image_tag(photo.variant(resize: "100x100").processed, class: "card-img-top") %>
-        <div class="card-body">
-          <%= link_to 'Remove', photo_path(photo.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <div class="form-group">
+    <% if @carrier.photos.attached? %>
+      <% @carrier.photos.each do |photo| %>
+        <div class="card col-3">
+          <%= image_tag(photo.variant(resize: "100x100").processed, class: "card-img-top") %>
+          <div class="card-body">
+            <%= link_to 'Remove', photo_path(photo.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  <% end%>
+      <% end %>
+    <% end%>
+  </div>
 
-  <%= c.label :photos %>
-  <%= c.file_field :photos, multiple: true %>
+  <div class="form-group">
+    <%= form.label :photos %>
+    <%= form.file_field :photos, multiple: true, class: "form-control" %>
+  </div>
 
-  <br></br>
-
-  <%= c.submit %>
+  <%= form.submit class: "btn btn-primary" %>
 <% end %>

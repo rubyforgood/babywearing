@@ -1,6 +1,13 @@
-<%= form_for @location do |f| %>
-  <%= f.text_field :name, placeholder: "name" %>
+<%= form_for @location do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
 
-  <%= f.collection_select(:organization_id, Organization.all, :id, :name) %>
-  <%= f.submit %>
+  <div class="form-group">
+    <%= form.label :organization %>
+    <%= form.collection_select(:organization_id, Organization.all, :id, :name, {}, class: "form-control") %>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
 <% end %>
