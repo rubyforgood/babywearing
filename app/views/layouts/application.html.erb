@@ -46,48 +46,17 @@
     </nav>
 
     <%= render "shared/flash" %>
-    <div id="outer-container" class="container">
 
+    <div class="container-fluid">
+      <div class="row flex-xl-nowrap">
+        <%= render "layouts/sidebar" if signed_in? %>
 
-      <div id="sidebar">
-        <% if signed_in? %>
-        <nav id="sidebar">
-          <div class="sidebar-header">
-              <%= link_to 'Home', root_path %>
-          </div>
-          <ul class="list-unstyled components">
-              <li>
-                  <%= link_to 'Categories', categories_path %>
-              </li>
-              <li>
-                  <%= link_to 'Locations', locations_path %>
-              </li>
-              <li>
-                  <%= link_to 'Agreements', agreements_path %>
-              </li>
-              <li>
-                  <%= link_to 'Fee Types', fee_types_path %>
-              </li>
-              <li>
-                  <%= link_to 'Carriers', carriers_path %>
-              </li>
-              <li>
-                  <%= link_to 'Membership Types', membership_types_path %>
-              </li>
-              <li>
-                  <%= link_to 'Organizations', organizations_path %>
-              </li>
-          </ul>
-        </nav>
-        <% end %>
+        <main class="col-12 col-md-10 mt-2">
+          <%= yield %>
+        </main>
       </div>
-      
-      <div class="content">
-        <%= yield %>
-      </div>
-
     </div>
-    
+
     <p class="navbar-text pull-right">
       <% if user_signed_in? %>
         Logged in as <strong><%= current_user.email %></strong>.

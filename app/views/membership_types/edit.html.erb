@@ -1,6 +1,8 @@
-<h1>Editing Membership Type</h1>
-
-<%= render 'form', membership_type: @membership_type %>
-
-<%= link_to 'Show', @membership_type %> |
-<%= link_to 'Back', membership_types_path %>
+<div class="col-md-6 card px-0">
+  <div class="card-header"><h3>Editing Membership Type</h3></div>
+  <div class="card-body">
+    <%= render 'form', membership_type: @membership_type %>
+    <%= link_to 'Show', @membership_type %> |
+    <%= link_to 'Back', membership_types_path %>
+  </div>
+</div>

@@ -1,6 +1,8 @@
-<h1>Editing Agreement</h1>
-
-<%= render 'form', agreement: @agreement %>
-
-<%= link_to 'Show', @agreement %> |
-<%= link_to 'Back', agreements_path %>
+<div class="col-md-6 card px-0">
+  <div class="card-header"><h3>Editing Agreement</h3></div>
+  <div class="card-body">
+    <%= render 'form', agreement: @agreement %>
+    <%= link_to 'Show', @agreement %> |
+    <%= link_to 'Back', agreements_path %>
+  </div>
+</div>
