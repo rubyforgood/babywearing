@@ -83,23 +83,17 @@ device available in those moments.
 
 ### Ruby Version
 
-This app uses Ruby version 2.6.3 and Rails version 5.2.3
+This app uses Ruby version 2.6.3, Rails version 5.2.3, and PostgreSQL 11.4
 
 ### Setup
 
 - Clone the repo
-- run `bundle install`
-- run `rails db:create`
-- run `rake:db:migrate`
-
-### Seed the database
-
-From the root of the app, run bundle exec rails `db:seed`. This will create some initial data to use while testing the app and developing new features.
+- run `bin/setup`
 
 ### Install ImageMagick
 
 ImageMagick is needed for the pages with images of carriers
-run`brew install imagemagick`
+run `brew install imagemagick`
 
 ### Start the app
 

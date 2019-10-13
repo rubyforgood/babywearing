@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.feature 'create an agreement', type: :feature do
   fixtures :users, :agreements
   let(:user) { users(:user) }
@@ -10,7 +12,7 @@ RSpec.feature 'create an agreement', type: :feature do
 
   scenario 'SHOW' do
     visit agreements_path
-    click_on 'Show'
+    click_on agreement.title
 
     expect(page).to have_content('Test Agreement')
     expect(page).to have_content('Content')
@@ -47,7 +49,7 @@ RSpec.feature 'create an agreement', type: :feature do
   scenario 'CREATE when title is NOT given' do
     visit agreements_path
 
-    click_link('New Agreement')
+    click_link('+ New')
     fill_in 'Title', with: nil
     fill_in 'Content', with: 'Content of Fake Agreement'
     click_on 'Create Agreement'
@@ -58,7 +60,7 @@ RSpec.feature 'create an agreement', type: :feature do
   scenario 'CREATE when all expected information is given' do
     visit agreements_path
 
-    click_link('New Agreement')
+    click_link('+ New')
     fill_in 'Title', with: 'Fake Agreement'
     fill_in 'Content', with: 'Content of Fake Agreement'
     click_on 'Create Agreement'

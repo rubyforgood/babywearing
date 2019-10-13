@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MembershipTypesController < ApplicationController
   before_action :set_membership_type, only: [:show, :edit, :update, :destroy]
 

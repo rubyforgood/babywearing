@@ -1,31 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <header class="card-header d-flex align-items-center">
+    <h3 class="mr-auto">Categories</h3>
+    <%= link_to '+ New', new_category_path, class: "btn btn-primary" %>
+  </header>
 
-<h1>Categories</h1>
+  <section>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Parent</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Parent</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.description %></td>
-        <td><%= category.parent&.name %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= link_to category.name, category %></td>
+            <td><%= category.description %></td>
+            <td><%= category.parent&.name %></td>
+            <td><%= link_to 'Edit', edit_category_path(category) %></td>
+            <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

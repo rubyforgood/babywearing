@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe 'Organization' do
   fixtures :users
   let(:user) { users(:user) }
@@ -12,8 +14,8 @@ RSpec.describe 'Organization' do
 
   scenario 'SHOW' do
     visit organizations_path
-    click_link 'Show'
-  
+    click_link @organization.name
+
     expect(page).to have_content('Henrys Baby Hammocks')
     expect(page).to have_content('Hammocks for the babies')
   end
@@ -49,7 +51,7 @@ RSpec.describe 'Organization' do
   scenario 'CREATE when name is NOT given' do
     visit organizations_path
 
-    click_link('New Organization')
+    click_link('+ New')
     fill_in 'Name', with: nil
     fill_in 'Description', with: 'Desciption of Fake Organization'
     click_on 'Create Organization'
@@ -60,7 +62,7 @@ RSpec.describe 'Organization' do
   scenario 'CREATE when all expected information is given' do
     visit organizations_path
 
-    click_link('New Organization')
+    click_link('+ New')
     fill_in 'Name', with: 'Fake Organization'
     fill_in 'Description', with: 'Desciption of Fake Organization'
     click_on 'Create Organization'

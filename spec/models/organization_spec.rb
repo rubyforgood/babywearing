@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Organization, :type => :model do
   subject { 
     described_class.new(name: 'name of organization', description: 'test description') 

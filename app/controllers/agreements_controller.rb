@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AgreementsController < ApplicationController
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
 
