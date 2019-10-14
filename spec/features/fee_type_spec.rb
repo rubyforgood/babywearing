@@ -14,7 +14,7 @@ RSpec.feature "fee_type" do
 
   scenario 'SHOW' do
     visit fee_types_path
-    click_link 'Show'
+    click_link @fee_type.name
 
     expect(page).to have_content('Upgrade Membership')
     expect(page).to have_content('20.00')
@@ -51,7 +51,7 @@ RSpec.feature "fee_type" do
   scenario 'CREATE when name is NOT given' do 
     visit fee_types_path
 
-    click_link('New Fee Type')
+    click_link('+ New')
     fill_in 'Name', with: nil
     fill_in 'Amount', with: '4000'
     click_on 'Create Fee type'
@@ -62,7 +62,7 @@ RSpec.feature "fee_type" do
   scenario 'CREATE when all expected information is given' do 
     visit fee_types_path
 
-    click_link('New Fee Type')
+    click_link('+ New')
     fill_in 'Name', with: 'Upgrade Membership'
     fill_in 'Amount', with: '3000'
     click_on 'Create Fee type'

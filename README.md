@@ -1,6 +1,8 @@
 # README
 
 [![Build Status](https://travis-ci.org/rubyforgood/babywearing.svg?branch=master)](https://travis-ci.org/rubyforgood/babywearing)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ac4e12c6fda4398c9dd2/maintainability)](https://codeclimate.com/github/rubyforgood/babywearing/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ac4e12c6fda4398c9dd2/test_coverage)](https://codeclimate.com/github/rubyforgood/babywearing/test_coverage)
 
 # Babywearing
 
@@ -91,7 +93,7 @@ This app uses Ruby version 2.6.3, Rails version 5.2.3, and PostgreSQL 11.4
 ### Install ImageMagick
 
 ImageMagick is needed for the pages with images of carriers
-run`brew install imagemagick`
+run `brew install imagemagick`
 
 ### Start the app
 

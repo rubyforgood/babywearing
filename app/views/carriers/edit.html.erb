@@ -1,13 +1,6 @@
-<% if flash[:errors] %>
-  <ul>
-    <% flash[:errors].each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% elsif flash[:success] %>
-  <div><%= flash[:success] %></div>
-<% end %>
-
-<h1>Edit Carrier</h1>
-
-<%= render 'carrier_form' %>
+<div class="col-md-6 card px-0">
+  <div class="card-header"><h3>Edit Carrier</h3></div>
+  <div class="card-body">
+    <%= render 'carrier_form' %>
+  </div>
+</div>
