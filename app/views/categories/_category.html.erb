@@ -1,0 +1,30 @@
+<tr>
+  <td>
+    <% unless category.subcategories.blank? %>
+      <%= link_to '+', '#', 
+        class: 'expander btn-circle btn btn-sm btn-outline-primary py-0',
+        data: { toggle: 'collapse', target: ".category_#{category.id}" } %>
+    <% else %>
+      <%= link_to '-', '#', class: 'disabled btn-circle btn btn-sm btn-outline-secondary py-0' %>
+    <% end %>
+
+    <%= link_to category.name, category %>
+  </td>
+  <td><%= category.description %></td>
+  <td class="table-actions">
+    <%= link_to 'Edit', edit_category_path(category) %> |
+    <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>
+
+<% unless category.subcategories.blank? %>
+  <tr class="<%= "collapse category_#{category.id}" %>">
+    <td style="padding: 0px" colspan="4">
+      <table class="table table-sm sub-table">
+        <% category.subcategories.each do |subcategory| %>
+          <%= render 'category', category: subcategory %>
+        <% end %>      
+      </table>
+    </td>
+  </tr>
+<% end %>

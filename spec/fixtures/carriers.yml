@@ -1,7 +1,7 @@
 carrier:
   name: "test carrier"
   item_id: "TEST1234"
-  category: category
+  category: category_parent
   manufacturer: "babywearing"
   model: "test model"
   color: "blue"

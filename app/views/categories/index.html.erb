@@ -10,21 +10,12 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
-          <th scope="col">Parent</th>
-          <th scope="col"></th>
           <th scope="col"></th>
         </tr>
       </thead>
-
       <tbody>
-        <% @categories.each do |category| %>
-          <tr>
-            <td><%= link_to category.name, category %></td>
-            <td><%= category.description %></td>
-            <td><%= category.parent&.name %></td>
-            <td><%= link_to 'Edit', edit_category_path(category) %></td>
-            <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
+        <% @categories.includes(:subcategories).each do |category| %>
+          <%= render 'category', category: category %>
         <% end %>
       </tbody>
     </table>

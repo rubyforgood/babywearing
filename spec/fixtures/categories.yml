@@ -1,4 +1,8 @@
 category:
-  name: 'new category'
+  name: 'New Category'
   description: 'new description'
   parent_id: 1
+
+category_parent:
+  name: 'category parent'
+  description: 'test description'
