@@ -4,7 +4,10 @@ class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update]
 
   def index
-    @carriers = Carrier.all.with_attached_photos
+    @carriers = Carrier
+                .with_attached_photos
+                .includes(:location)
+                .all
   end
 
   def show
