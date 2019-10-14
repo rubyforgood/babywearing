@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :agreements
   resources :locations
   resources :membership_types
-  resources :organizations
   resources :users, only: [:index]
   resources :carriers
   resources :photos, only: :destroy

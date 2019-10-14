@@ -3,7 +3,6 @@ require 'uri'
 
 include ActionView::Helpers::SanitizeHelper #included for strip_tags method to remove html from carrier descriptions
 
-organization = Organization.create(name: 'MidAtlantic Babywearing')
 
 #Agreement
 puts "Creating agreements..."
@@ -88,7 +87,7 @@ csv.each do |row|
     model: csv_carrier['Model'],
     color: csv_carrier['Color'],
     size: csv_carrier['Size'],
-    location_id: Location.find_or_create_by(name: csv_carrier['Home Location'], organization_id: organization.id).id,
+    location_id: Location.find_or_create_by(name: csv_carrier['Home Location']).id,
     default_loan_length_days: csv_carrier['Default Loan Length'].to_i,
     category: Category.find_by(name: csv_carrier['Item Type'])
     # description: strip_tags(csv_carrier['Description'])

@@ -1,5 +1,4 @@
 <h3><%= @location.name %></h3>
-<h4><%= @location.organization.name %></h4>
 
 <%=  link_to "Edit this location", edit_location_path %><br><br>
 <%=  link_to "Delete this location", @location, method: :delete, data: { confirm: "Really?" } %>
