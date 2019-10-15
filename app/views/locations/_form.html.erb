@@ -4,10 +4,5 @@
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :organization %>
-    <%= form.collection_select(:organization_id, Organization.all, :id, :name, {}, class: "form-control") %>
-  </div>
-
   <%= form.submit class: "btn btn-primary" %>
 <% end %>
