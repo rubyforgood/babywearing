@@ -31,7 +31,7 @@ $bw-color-darkest-purple: #808808;
 $navbar-padding-y: 0;
 $navbar-brand-padding-y: 8px;
 
-@import "bootstrap";
+@import "sb-admin-2";
 
 .navbar-brand img {
   height: 84px;
@@ -95,12 +95,12 @@ $navbar-brand-padding-y: 8px;
 }
 .btn-circle {
   margin-right: 10px;
-  width: 20px;
-  height: 20px;
+  width: 20px !important;
+  height: 20px !important;
   padding: 0;
   border-radius: 15px;
   text-align: center;
-  font-size: 16px;
+  font-size: 16px !important;
   font-weight: bold;
   line-height: 1.1;
 }

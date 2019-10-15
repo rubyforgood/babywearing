@@ -87,4 +87,17 @@ RSpec.describe 'Carrier' do
     expect(page).to have_content('Name can\'t be blank')
     expect(page).to have_content('Item can\'t be blank')
   end
+
+  scenario 'ADD new carrier' do
+    click_on 'ADD ITEM'
+
+    expect(page).to have_content('New Carrier')
+    expect(page).to have_content('Name')
+    expect(page).to have_content('Item')
+    expect(page).to have_content('Manufacturer')
+    expect(page).to have_content('Model')
+    expect(page).to have_content('Color')
+
+    expect(current_path).to eq '/carriers/new'
+  end
 end
