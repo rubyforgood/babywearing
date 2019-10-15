@@ -95,6 +95,12 @@ This app uses Ruby version 2.6.3, Rails version 5.2.3, and PostgreSQL 11.4
 ImageMagick is needed for the pages with images of carriers
 run `brew install imagemagick`
 
+### Run tests
+
+Run `rspec` to run all tests
+or
+Run `rspec path/to/spec.rb` to run a specific file
+
 ### Start the app
 
 Run `rails s` and browse to http://localhost:3000/
