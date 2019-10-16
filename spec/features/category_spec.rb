@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.feature "category" do
-  fixtures :categories
-  fixtures :carriers
-  fixtures :locations
-  fixtures :users
-
   let!(:category) { categories(:category_parent) }
   let!(:category_child) { categories(:category) }
   let!(:carrier) { carriers(:carrier) }

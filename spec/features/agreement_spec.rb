@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.feature 'create an agreement', type: :feature do
-  fixtures :users, :agreements
   let(:user) { users(:user) }
   let(:agreement) { agreements(:agreement) }
 
