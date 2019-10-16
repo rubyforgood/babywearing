@@ -46,8 +46,16 @@ RSpec.describe "User" do
     expect(header).to match "attachment; filename=\"users-#{Date.today}.csv\""
   end
 
+  scenario "user should be able to log out" do
+    sign_in user
+    visit root_url
+    find('.user-dropdown').click
+    click_on "Logout"
+    expect(page).to have_content "Log in"
+  end
+
   scenario "should send the user a welcome email" do
-    Devise.mailer.deliveries = [] 
+    Devise.mailer.deliveries = []
 
     user = User.create(
       email: "alicia@test.com",
