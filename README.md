@@ -95,6 +95,10 @@ This app uses Ruby version 2.6.3, Rails version 5.2.3, and PostgreSQL 11.4
 ImageMagick is needed for the pages with images of carriers
 run `brew install imagemagick`
 
+### Maintainability
+
+We're currently using Code Climate for code assessment. You can see the current settings in `.codeclimate.yml` and can read more about their Maintainability checks [here](https://docs.codeclimate.com/docs/maintainability).
+
 ### Run tests
 
 Run `rspec` to run all tests
