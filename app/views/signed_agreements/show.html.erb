@@ -10,13 +10,13 @@
   <%= @agreement.content %>
 </p>
 
-<%= form_for @signed_agreement, url: signed_agreements_path, method: 'post' do |form| %>
+<%= form_with model: @signed_agreement, url: signed_agreements_path, method: 'post', local: true do |form| %>
   <%= form.hidden_field :user_id %>
   <%= hidden_field_tag 'signed_agreement[user_id]', current_user.id %>
 
   <%= form.hidden_field :agreement_id %>
   <%= hidden_field_tag 'signed_agreement[agreement_id]', @agreement.id %>
-  
+
   <%= form.text_field :signature %>
 
   <%= form.submit 'I Agree' %>
