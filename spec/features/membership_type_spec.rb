@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe 'MembershipType', type: :feature do
-  fixtures :users
   let(:user) { users(:user) }
 
   before(:each) do

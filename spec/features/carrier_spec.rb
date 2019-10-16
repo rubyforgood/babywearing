@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Carrier' do
-  fixtures :categories
   let(:category) { categories(:category) }
-  fixtures :locations
   let(:location) { locations(:location) }
-  fixtures :carriers
   let(:carrier) { carriers(:carrier) }
-  fixtures :users
   let(:user) { users(:user) }
 
   before do

@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe "User" do
-
-  fixtures :users
   let(:user) { users(:user) }
 
   scenario "should allow user who is an admin to see list of users" do

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.feature "fee_type" do
-  fixtures :users
   let(:user) { users(:user) }
 
   before :each do
