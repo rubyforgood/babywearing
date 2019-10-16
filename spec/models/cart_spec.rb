@@ -18,6 +18,7 @@ RSpec.describe Cart do
 
   describe '#line_items' do
     fixtures(:carriers)
+    fixtures(:locations)
 
     let(:carrier)  { carriers(:carrier) }
     let(:due_date) { Date.today + 1.days }
