@@ -19,7 +19,7 @@
             <% end %>
           <% end %>
           <div class="card-body">
-            <p class="card-text"><%= link_to carrier.name, carrier %></p>
+            <p><%= link_to carrier.name, carrier, class: "card-text" %></p>
             <p class="card-text"><%= carrier.location.name %></p>
           </div>
         </div>

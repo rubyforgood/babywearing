@@ -83,6 +83,27 @@ $navbar-brand-padding-y: 8px;
 .nav-fourth img {
   width: 6.2em;
 }
+.sub-table td:first-child {
+  padding-left: 42px;
+}
+.sub-table tr:first-child td {
+  border: none;
+}
+.table-actions {
+  text-align: right;
+  padding-right: 10px !important;
+}
+.btn-circle {
+  margin-right: 10px;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 16px !important;
+  font-weight: bold;
+  line-height: 1.1;
+}
 #outer-container {
   display: table;
   width: 100%;

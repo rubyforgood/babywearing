@@ -13,10 +13,11 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 
 /* Adding Bootstrap dependencies using this walkthrough: https://github.com/twbs/bootstrap-rubygem#a-ruby-on-rails */
 
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+
+//= require_tree .

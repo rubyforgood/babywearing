@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.includes(:parent)
+    @categories = Category.where(parent_id: nil).includes(:subcategories).order(:name)
   end
 
   # GET /categories/1

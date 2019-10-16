@@ -5,7 +5,8 @@ RSpec.feature "category" do
   fixtures :carriers
   fixtures :users
   
-  let!(:category) { categories(:category) }
+  let!(:category) { categories(:category_parent) }
+  let!(:category_child) { categories(:category) }
   let!(:carrier) { carriers(:carrier) } 
   let(:user) { users(:user) }
 
@@ -58,5 +59,13 @@ RSpec.feature "category" do
       'There are no carriers of this type in ' +
       'inventory at this time. Please check back later.'
     )
+  end
+
+  scenario 'should expand the subcategories table' do
+    visit(categories_path)
+    expect(page).to have_content(category.name)
+    expect(page).not_to have_content(category_child.name)
+    find_link('+').click
+    expect(page).to have_content(category_child.name)
   end
 end
