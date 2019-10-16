@@ -20,17 +20,26 @@
           <a class="nav-link nav-icon nav-third" href="/"><%= image_tag "BW- CART ICON.svg", alt:"Cart" %><p>CHECK IN/OUT</p></a></li>
         <li class="nav-item active background-purple">
           <a class="nav-link nav-icon nav-fourth" href="/"><%= image_tag "BW - INVENTORY ICON.svg", alt:"View Inventory" %><p>CARRIERS</p></a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Quick Access
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center user-dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="bg-info text-white font-weight-bolder rounded-circle text-uppercase justify-content-center d-flex align-items-center" style="width: 40px; height: 40px"><%= user_initials(current_user) %></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <h6 class="dropdown-header"><div class="mb-1">Logged in as </div><strong><%= current_user.email %></strong></h6>
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'  %>
+            </div>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link'  %>
+            <%= link_to "Login", new_user_session_path, :class => 'nav-link'  %>
+          </li>
+        <% end %>
       </ul>
     </div>
 </nav>
