@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand"> <a class="navbar-brand" href="/"><%= image_tag "Babywearing Logo.svg", alt:"Mid-Atlantic Babywearing Logo" %></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <% if signed_in? %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <% end %>
 
     <% if signed_in? %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
