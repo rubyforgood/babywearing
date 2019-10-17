@@ -3,8 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-#add simpleCov for Code Climate test coverage visibility
-gem 'simplecov', require: false, group: :test
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
@@ -66,6 +64,8 @@ group :test do
   gem 'capybara'
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec-rails', '~> 3.8'
+  # add simpleCov for Code Climate test coverage visibility
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
