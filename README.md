@@ -116,6 +116,14 @@ _We ♥ contributors!_
 By participating in this project, you agree to abide by the
 Ruby for Good [Code of Conduct](code-of-conduct.md).
 
+Look for issues with `help wanted` label.  
+
+Please let us know you plan to work on an issue by commenting on the issue that you would like to work on it.  We will assign the issue to you and take off the `help wanted` label.  
+
+Please note if you submit a PR for an issue that someone else has already claimed we will not be able to merge your PR, even if you submit first.  
+
+Before you start working on an issue, please check that someone hasn't already claimed an issue.  We try to take the label off as soon as possible, but sometimes there's a delay.  This project and all Ruby For Good projects are all volunteer run, so we're sometimes not able to get to this immediately.   
+
 We welcome all types of contributions, but any pull requests that address open
 issues, have test coverage, or are tagged with the next milestone will be
 prioritized. Please read our [How to Contribute](CONTRIBUTING.md) guide for more
