@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Carrier < ApplicationRecord
-  belongs_to :location
+  belongs_to :home_location, class_name: 'Location'
+  belongs_to :current_location, class_name: 'Location'
   has_many :loans
   belongs_to :category
 
@@ -9,7 +10,8 @@ class Carrier < ApplicationRecord
   validates_presence_of [
     :name,
     :item_id,
-    :location_id,
+    :home_location_id,
+    :current_location_id,
     :default_loan_length_days,
     :category_id
   ]

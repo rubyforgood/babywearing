@@ -2,12 +2,15 @@
 
 RSpec.describe 'Carrier' do
   let(:category) { categories(:category) }
-  let(:location) { locations(:location) }
+  fixtures :locations
+  let(:washington) { locations(:washington) }
+  let(:lancaster) { locations(:lancaster) }
+  fixtures :carriers
   let(:carrier) { carriers(:carrier) }
   let(:user) { users(:user) }
 
   before do
-    carrier.update_attributes(location_id: location.id, category_id: category.id)
+    carrier.update_attributes(home_location: washington, current_location: washington, category_id: category.id)
 
     visit '/'
     sign_in user
@@ -27,10 +30,12 @@ RSpec.describe 'Carrier' do
 
     fill_in 'Name', with: 'Updated Name'
     fill_in 'Model', with: 'Updated Model'
+    find('#carrier_current_location_id').find(:option, lancaster.name).select_option
     click_on 'Update Carrier'
 
     expect(page).to have_content('Updated Name')
     expect(page).to have_content('Updated Model')
+    expect(page).to have_content('Lancaster')
   end
 
   scenario 'EDIT without any required fields' do

@@ -6,4 +6,5 @@ carrier:
   model: "test model"
   color: "blue"
   size: 5
-  location: location
+  home_location: washington
+  current_location: lancaster

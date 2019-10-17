@@ -81,13 +81,16 @@ csv = CSV.parse(csv_text, :headers => true)
 
 csv.each do |row|
   csv_carrier = row.to_hash
+  home_location = Location.find_or_create_by(name: csv_carrier['Home Location'])
+  current_location = Location.find_or_create_by(name: csv_carrier['Current Location'])
   carrier_params = {
     name: csv_carrier['Name'],
     manufacturer: csv_carrier['Manufacturer'],
     model: csv_carrier['Model'],
     color: csv_carrier['Color'],
     size: csv_carrier['Size'],
-    location_id: Location.find_or_create_by(name: csv_carrier['Home Location']).id,
+    home_location_id: home_location.id,
+    current_location_id: (current_location || home_location).id,
     default_loan_length_days: csv_carrier['Default Loan Length'].to_i,
     category: Category.find_by(name: csv_carrier['Item Type'])
     # description: strip_tags(csv_carrier['Description'])

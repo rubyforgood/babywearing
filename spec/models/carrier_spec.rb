@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Carrier do
-  let(:location) { locations(:location) }
+  fixtures :locations
+  let(:washington) { locations(:washington) }
+  let(:lancaster) { locations(:lancaster) }
+
+  fixtures :categories
   let(:category) { categories(:category) }
 
   it 'is valid with valid attributes' do
@@ -11,7 +15,8 @@ RSpec.describe Carrier do
       manufacturer: 'apple',
       model: 'iCarry',
       color: 'blue',
-      location_id: location.id,
+      home_location_id: washington.id,
+      current_location: lancaster,
       category_id: category.id
     )).to be_valid
   end
@@ -43,8 +48,12 @@ RSpec.describe Carrier do
     expect(described_class.new(color: nil)).to_not be_valid
   end
 
-  it 'is not valid without a location_id' do
-    expect(described_class.new(location_id: nil)).to_not be_valid
+  it 'is not valid without a home_location_id' do
+    expect(described_class.new(home_location_id: nil)).to_not be_valid
+  end
+
+  it 'is not valid without a current_location_id' do
+    expect(described_class.new(current_location_id: nil)).to_not be_valid
   end
 
   describe '#build_loan' do

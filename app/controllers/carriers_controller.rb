@@ -6,7 +6,7 @@ class CarriersController < ApplicationController
   def index
     @carriers = Carrier
                 .with_attached_photos
-                .includes(:location)
+                .includes(:home_location)
                 .all
   end
 
@@ -70,7 +70,8 @@ class CarriersController < ApplicationController
       :model,
       :color,
       :size,
-      :location_id,
+      :home_location_id,
+      :current_location_id,
       :category_id,
       :default_loan_length_days,
       photos: []
