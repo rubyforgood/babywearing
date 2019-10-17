@@ -3,52 +3,55 @@
 require 'rails_helper'
 
 RSpec.describe "User" do
-  let(:user) { users(:user) }
+  let(:admin) { users(:admin) }
+  let(:volunteer) { users(:volunteer) }
+  let(:member) { users(:member) }
 
   scenario "should allow user who is an admin to see list of users" do
-    user.add_role :admin
-    sign_in user
-    visit "/users"
+    sign_in admin
+    visit users_url
     expect(page).to have_content "User Listing"
   end
 
   scenario "should allow user who is a volunteer to see list of users" do
-    user.add_role :volunteer
-    sign_in user
-    visit "/users"
+    sign_in volunteer
+    visit users_url
     expect(page).to have_content "User Listing"
   end
 
   scenario "should not allow user who is not a volunteer or admin to see list of users" do
-    user.add_role :member
-    sign_in user
-    visit "/users"
+    sign_in member
+    visit users_url
     expect(page).to have_content "Sorry, you aren't allowed to do that."
   end
 
   scenario "should allow user who is an admin to export list of users" do
-    user.add_role :admin
-    sign_in user
-    visit "/users"
+    sign_in admin
+
+    visit users_url
     click_on 'Export to CSV'
+
     header = page.response_headers['Content-Disposition']
     expect(header).to match "attachment; filename=\"users-#{Date.today}.csv\""
   end
 
   scenario "should allow user who is a volunteer to export list of users" do
-    user.add_role :volunteer
-    sign_in user
-    visit "/users"
+    sign_in volunteer
+
+    visit users_url
     click_on 'Export to CSV'
+
     header = page.response_headers['Content-Disposition']
     expect(header).to match "attachment; filename=\"users-#{Date.today}.csv\""
   end
 
   scenario "user should be able to log out" do
-    sign_in user
+    sign_in member
+
     visit root_url
     find('.user-dropdown').click
     click_on "Logout"
+
     expect(page).to have_content "Log in"
   end
 

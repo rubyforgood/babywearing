@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Cart do
-  fixtures(:users)
-
   let(:member)    { users(:user) }
   let(:volunteer) { users(:volunteer) }
 
@@ -17,9 +15,6 @@ RSpec.describe Cart do
   end
 
   describe '#line_items' do
-    fixtures(:carriers)
-    fixtures(:locations)
-
     let(:carrier)  { carriers(:carrier) }
     let(:due_date) { Date.today + 1.days }
 

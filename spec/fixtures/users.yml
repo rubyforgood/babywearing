@@ -1,7 +1,7 @@
 user:
   email: 'hello@test.com'
   encrypted_password: 'password'
-  full_name: 'pineapple'
+  full_name: 'Pineapple'
   street_address: '123 main street'
   city: 'fairfax'
   state: 'VA'
@@ -11,10 +11,33 @@ user:
 volunteer:
   email: 'volunteer@test.com'
   encrypted_password: 'password'
-  full_name: 'volunteer'
+  full_name: 'Volunteer'
   street_address: '123 main street'
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
   phone_number: '18888888888'
+  roles: volunteer
+
+admin:
+  email: 'admin@test.com'
+  encrypted_password: 'password'
+  full_name: 'Admin User'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  roles: admin
+
+member:
+  email: 'member@test.com'
+  encrypted_password: 'password'
+  full_name: 'Memebr'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  roles: member
 

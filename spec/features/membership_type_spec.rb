@@ -2,17 +2,11 @@
 
 RSpec.describe 'MembershipType', type: :feature do
   let(:user) { users(:user) }
+  let(:membership_type) { membership_types(:annual) }
 
   before(:each) do
     visit "/"
     sign_in user
-    @membership_type = MembershipType.new(
-      name: 'Annual',
-      fee_cents: 30_00, 
-      duration_days: 3,
-      number_of_items: 3,
-      description: "A text description goes here.")
-    @membership_type.save!
   end
 
   scenario 'SHOW' do
@@ -21,7 +15,7 @@ RSpec.describe 'MembershipType', type: :feature do
   end
 
   scenario 'EDIT when name is NOT given' do
-    visit edit_membership_type_path(@membership_type.id)
+    visit edit_membership_type_path(membership_type)
 
     fill_in 'Name', with: ""
     click_on 'Update Membership type'
@@ -30,7 +24,7 @@ RSpec.describe 'MembershipType', type: :feature do
   end
 
   scenario 'EDIT when all expected information is given' do
-    visit edit_membership_type_path(@membership_type.id)
+    visit edit_membership_type_path(membership_type)
 
     fill_in 'Name', with: 'Trial'
     fill_in 'Description', with: 'This is a trial membership'
@@ -42,7 +36,7 @@ RSpec.describe 'MembershipType', type: :feature do
   scenario 'DESTROY when delete button is clicked' do
     visit membership_types_path
     click_link 'Destroy'
-  
+
     expect(page).to have_content('Membership type was successfully destroyed.')
   end
 
