@@ -10,12 +10,14 @@
       <div class="col-md-3">
         <div class="card">
           <% if carrier.photos.attached? %>
+          <div class="text-center">
             <%= link_to carrier do %>
               <%= image_tag(carrier.photos.first.variant(resize: "200x300").processed, class: "img-thumbnail img-fluid") %>
             <% end %>
+          </div>
           <% else %>
             <%= link_to carrier do %>
-              <%= image_tag("img_placeholder.svg", class: "img-thumbnail img-fluid h-100") %>
+              <%= image_tag("img_placeholder.svg", class: "img-thumbnail placeholder-img") %>
             <% end %>
           <% end %>
           <div class="card-body">
