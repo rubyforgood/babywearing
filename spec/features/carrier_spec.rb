@@ -12,7 +12,6 @@ RSpec.describe 'Carrier' do
   before do
     carrier.update_attributes(home_location: washington, current_location: washington, category_id: category.id)
 
-    visit '/'
     sign_in user
   end
 
@@ -90,6 +89,7 @@ RSpec.describe 'Carrier' do
   end
 
   scenario 'ADD new carrier' do
+    visit '/'
     click_on 'ADD ITEM'
 
     expect(page).to have_content('New Carrier')
