@@ -86,6 +86,7 @@ RSpec.describe 'Carrier' do
   end
 
   scenario 'ADD new carrier' do
+    visit '/'
     click_on 'ADD ITEM'
 
     expect(page).to have_content('New Carrier')
