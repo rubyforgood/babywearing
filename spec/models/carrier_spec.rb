@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe Carrier do
-  fixtures :locations
   let(:washington) { locations(:washington) }
   let(:lancaster) { locations(:lancaster) }
-
-  fixtures :categories
   let(:category) { categories(:category) }
 
   it 'is valid with valid attributes' do
@@ -57,8 +54,6 @@ RSpec.describe Carrier do
   end
 
   describe '#build_loan' do
-    fixtures(:carriers)
-
     let(:carrier) { described_class.first }
 
     context "without parameters" do
@@ -70,8 +65,6 @@ RSpec.describe Carrier do
     end
 
     context "with parameters" do
-      fixtures(:users)
-
       let(:member)    { users(:user) }
       let(:volunteer) { users(:volunteer) }
       let(:cart)      { Cart.new(member: member, volunteer: volunteer) }
