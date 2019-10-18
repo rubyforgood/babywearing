@@ -2,16 +2,12 @@
 
 RSpec.describe 'Carrier' do
   let(:category) { categories(:category) }
-  fixtures :locations
   let(:washington) { locations(:washington) }
   let(:lancaster) { locations(:lancaster) }
-  fixtures :carriers
   let(:carrier) { carriers(:carrier) }
   let(:user) { users(:user) }
 
   before do
-    carrier.update_attributes(home_location: washington, current_location: washington, category_id: category.id)
-
     visit '/'
     sign_in user
   end
