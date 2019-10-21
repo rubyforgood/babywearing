@@ -32,6 +32,7 @@ $navbar-padding-y: 0;
 $navbar-brand-padding-y: 8px;
 
 @import "sb-admin-2";
+@import "font-awesome";
 
 .navbar-brand img {
   height: 84px;
@@ -125,4 +126,16 @@ $navbar-brand-padding-y: 8px;
 .placeholder-img {
   height: 9.5em;
   width: 100%;
+}
+.nav-five img {
+  width: 5.6em;
+}
+.members-tile {
+  padding-right: 0.5em;
+  p {
+    width: 8em;
+  }
+}
+.members-icon {
+  font-size: 5.6em;
 }
