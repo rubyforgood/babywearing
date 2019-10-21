@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :carts
 
   after_create :send_welcome_email
+  after_create :assign_member_role
 
   def self.to_csv
     attributes = %w{full_name email	phone_number created_at}
@@ -32,4 +33,7 @@ class User < ApplicationRecord
     WelcomeMailer.welcome_email(self).deliver
   end
 
+  def assign_member_role
+    self.add_role(:member) if self.roles.blank?
+  end
 end
