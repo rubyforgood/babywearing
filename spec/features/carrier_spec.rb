@@ -1,11 +1,43 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Carrier' do
+RSpec.describe 'Carrier USER role' do
+  let(:carrier) { carriers(:carrier) }
+  let(:user) { users(:user) }
+
+  before do
+    visit '/'
+    sign_in user
+  end
+
+  scenario 'SHOW' do
+    visit carriers_path
+    click_link carrier.name
+
+    expect(page).to have_content('test carrier')
+    expect(page).to have_content('babywearing')
+    expect(page).to have_content('test model')
+  end
+
+  scenario 'CREATE' do
+    visit new_carrier_path
+
+    expect(page).to have_content "Sorry, you aren't allowed to do that."
+  end
+
+  scenario 'EDIT' do
+    visit edit_carrier_path(carrier.id)
+
+    expect(page).to have_content "Sorry, you aren't allowed to do that."
+  end
+
+end
+
+RSpec.describe 'Carrier ADMIN role' do
   let(:category) { categories(:category) }
   let(:washington) { locations(:washington) }
   let(:lancaster) { locations(:lancaster) }
   let(:carrier) { carriers(:carrier) }
-  let(:user) { users(:user) }
+  let(:user) { users(:admin) }
 
   before do
     visit '/'
@@ -49,7 +81,6 @@ RSpec.describe 'Carrier' do
     visit carrier_path(carrier.id)
 
     click_on 'Delete'
-
     expect(page).to have_content('Carrier successfully destroyed')
   end
 
