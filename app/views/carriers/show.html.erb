@@ -23,5 +23,10 @@
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_carrier_path %>
-<%= link_to 'Delete', @carrier, method: :delete  %>
+<% if policy(@carrier).update? %>
+  <%= link_to 'Edit', edit_carrier_path %>
+<% end %>
+
+<% if policy(@carrier).destroy? %>
+  <%= link_to 'Delete', @carrier, method: :delete  %>
+<% end %>
