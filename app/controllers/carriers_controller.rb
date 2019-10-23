@@ -17,10 +17,12 @@ class CarriersController < ApplicationController
     @carrier = Carrier.new
     @locations = Location.all
     @categories = Category.all
+    authorize @carrier
   end
 
   def create
     @carrier = Carrier.new(carrier_params)
+    authorize @carrier
     @carrier.save
 
     if @carrier.errors.any?
@@ -35,11 +37,12 @@ class CarriersController < ApplicationController
   def edit
     @locations = Location.all
     @categories = Category.all
+    authorize @carrier
   end
 
   def update
     @carrier.update(carrier_params)
-
+    authorize @carrier
     if @carrier.errors.any?
       flash[:errors] = @carrier.errors.full_messages
       redirect_to edit_carrier_path(@carrier)
@@ -51,7 +54,9 @@ class CarriersController < ApplicationController
 
   def destroy
     @carrier = Carrier.find(params[:id])
+    authorize @carrier
     @carrier.destroy
+
     flash[:success] = 'Carrier successfully destroyed'
     redirect_to carriers_path
   end
