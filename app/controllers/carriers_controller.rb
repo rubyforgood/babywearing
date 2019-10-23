@@ -41,8 +41,8 @@ class CarriersController < ApplicationController
   end
 
   def update
-    @carrier.update(carrier_params)
     authorize @carrier
+    @carrier.update(carrier_params)
     if @carrier.errors.any?
       flash[:errors] = @carrier.errors.full_messages
       redirect_to edit_carrier_path(@carrier)
