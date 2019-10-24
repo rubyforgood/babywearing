@@ -8,30 +8,26 @@
           </div>
 
           <%= form_with model: resource, as: resource_name, url: session_path(resource_name), html: { class: "user" }, local: true do |f| %>
-          <div class="form-group">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-user', aria: { label: 'email'}, placeholder: 'Enter email address' %>
-          </div>
-
-          <div class="form-group">
-            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control form-control-user', aria: { label: 'password'}, placeholder: 'Password' %>
-          </div>
+            <div class="form-group">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-user', aria: { label: 'email'}, placeholder: 'Enter email address' %>
+            </div>
 
             <div class="form-group">
               <%= f.password_field :password, autocomplete: "current-password", class: 'form-control form-control-user', aria: { label: 'password'}, placeholder: 'Password' %>
             </div>
 
-            <% if devise_mapping.rememberable? %>
-              <div class="form-group">
-                <div class="custom-control custom-checkbox small">
-                  <%= f.check_box :remember_me, id: 'customCheck', class: 'custom-control-input', aria: { label: 'remember me'} %>
-                  <%= f.label 'Remember Me', for: 'customCheck', class: 'custom-control-label' %>
+              <% if devise_mapping.rememberable? %>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox small">
+                    <%= f.check_box :remember_me, id: 'customCheck', class: 'custom-control-input', aria: { label: 'remember me'} %>
+                    <%= f.label 'Remember Me', for: 'customCheck', class: 'custom-control-label' %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
 
-            <div class="actions">
-              <%= f.submit "Log In", class: "btn btn-primary btn-user btn-block" %>
-            </div>
+              <div class="actions">
+                <%= f.submit "Log In", class: "btn btn-primary btn-user btn-block" %>
+              </div>
           <% end %>
 
           <hr />

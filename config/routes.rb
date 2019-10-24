@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { registrations: "users/registrations" }
+
   resources :signed_agreements, only: [:show, :create]
   resources :fee_types
   resources :agreements
@@ -7,7 +9,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
   resources :carriers
   resources :photos, only: :destroy
-  devise_for :users, controllers: { registrations: "users/registrations" }
   get 'home/index'
 
   resources :categories
