@@ -13,12 +13,12 @@ RSpec.describe 'Visitor signs in', type: :feature do
   scenario "with invalid email" do
     sign_in_with email: "invalid.email@exmaple.org", password: VALID_PASSWORD
     user_should_be_signed_out
-    expect(page).to have_content "Invalid Email or password."
+    expect(page).to have_content "Invalid Email/Password."
   end
 
   scenario "with invalid password" do
     sign_in_with email: user.email, password: "invalid_password"
     user_should_be_signed_out
-    expect(page).to have_content "Invalid Email or password."
+    expect(page).to have_content "Invalid Email/Password."
   end
 end
