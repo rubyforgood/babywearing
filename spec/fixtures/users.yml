@@ -1,6 +1,6 @@
 user:
   email: 'hello@test.com'
-  encrypted_password: 'password'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   full_name: 'Pineapple'
   street_address: '123 main street'
   city: 'fairfax'
@@ -10,7 +10,7 @@ user:
 
 volunteer:
   email: 'volunteer@test.com'
-  encrypted_password: 'password'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   full_name: 'Volunteer'
   street_address: '123 main street'
   city: 'fairfax'
@@ -21,7 +21,7 @@ volunteer:
 
 admin:
   email: 'admin@test.com'
-  encrypted_password: 'password'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   full_name: 'Admin User'
   street_address: '123 main street'
   city: 'fairfax'
@@ -32,7 +32,7 @@ admin:
 
 member:
   email: 'member@test.com'
-  encrypted_password: 'password'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   full_name: 'Memebr'
   street_address: '123 main street'
   city: 'fairfax'
