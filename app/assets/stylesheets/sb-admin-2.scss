@@ -4951,6 +4951,7 @@ a.badge-dark:focus, a.badge-dark.focus {
   color: #78261f;
   background-color: #fadbd8;
   border-color: #f8ccc8;
+  text-align: center;
 }
 
 .alert-danger hr {
@@ -4958,6 +4959,21 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-danger .alert-link {
+  color: #4f1915;
+}
+
+.alert-error {
+  color: #78261f;
+  background-color: #fadbd8;
+  border-color: #f8ccc8;
+  text-align: center;
+}
+
+.alert-error hr {
+  border-top-color: #f5b7b1;
+}
+
+.alert-error .alert-link {
   color: #4f1915;
 }
 
