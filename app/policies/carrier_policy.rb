@@ -1,12 +1,22 @@
 class CarrierPolicy < ApplicationPolicy
-  attr_reader :user, :members
+  attr_reader :user, :carrier
 
-  def initialize(user, members)
+  def initialize(user, carrier)
     @user = user
-    @members = members
+    @carrier = carrier
+  end
+
+  def new?
+    roles = [:admin, :volunteer]
+    authorized?(roles)
   end
 
   def create?
+    roles = [:admin, :volunteer]
+    authorized?(roles)
+  end
+
+  def edit?
     roles = [:admin, :volunteer]
     authorized?(roles)
   end
@@ -23,11 +33,6 @@ class CarrierPolicy < ApplicationPolicy
 
   private
     def authorized?(roles)
-      for role in roles
-        if user.has_role?(role)
-          return true
-        end
-      end
-      return false
+      @user.has_any_role?(*roles)
     end
 end
