@@ -61,6 +61,7 @@ RSpec.describe 'Carrier ADMIN role' do
     expect(page).to have_content('Manufacturer')
     expect(page).to have_content('Model')
     expect(page).to have_content('Color')
+    expect(page).to have_content('Safety Link')
 
     expect(current_path).to eq '/carriers/new'
   end

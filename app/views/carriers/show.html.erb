@@ -10,6 +10,7 @@
   <li>Model: <%= @carrier.model %></li>
   <li>Color: <%= @carrier.color %></li>
   <li>Size: <%= @carrier.size %></li>
+  <li>Safety Link: <%=link_to "Safety Information",  @carrier.safety_link %></li>
   <li>Category: <%= @carrier.category.name %></li>
   <li>Home Location: <%= @carrier.home_location.name %></li>
   <li>Current Location: <%= @carrier.current_location.name %></li>

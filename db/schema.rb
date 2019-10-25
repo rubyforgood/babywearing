@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_053330) do
+ActiveRecord::Schema.define(version: 2019_10_24_165716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_053330) do
     t.integer "category_id"
     t.bigint "home_location_id", null: false
     t.bigint "current_location_id", null: false
+    t.string "safety_link"
     t.index ["current_location_id"], name: "index_carriers_on_current_location_id"
     t.index ["home_location_id"], name: "index_carriers_on_home_location_id"
   end
