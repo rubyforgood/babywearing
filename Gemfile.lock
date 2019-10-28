@@ -45,6 +45,7 @@ GEM
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
+    ast (2.4.0)
     autoprefixer-rails (9.6.1)
       execjs
     aws-eventstream (1.0.3)
@@ -113,6 +114,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     jmespath (1.4.0)
@@ -143,6 +145,9 @@ GEM
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    parallel (1.18.0)
+    parser (2.6.5.0)
+      ast (~> 2.4.0)
     pg (1.1.4)
     popper_js (1.14.5)
     pry (0.12.2)
@@ -183,6 +188,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.3)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -209,6 +215,16 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
+    rubocop (0.75.1)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.6)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rspec (1.36.0)
+      rubocop (>= 0.68.1)
+    ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     sassc (2.0.1)
       ffi (~> 1.9)
@@ -245,6 +261,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.6.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -281,6 +298,8 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rolify
   rspec-rails (~> 3.8)
+  rubocop
+  rubocop-rspec
   sassc-rails (~> 2.1)
   simplecov
   spring

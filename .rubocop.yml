@@ -1,0 +1,42 @@
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'config/**/*.rb'
+    - 'bin/**'
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Capybara/FeatureMethods:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
