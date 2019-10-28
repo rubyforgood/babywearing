@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class CategoryPolicy < ApplicationPolicy
-  attr_reader :user, :category
+class FeeTypePolicy < ApplicationPolicy
+  attr_reader :user, :fee_type
 
   ROLES = [:admin, :volunteer]
 
-  def initialize(user, category)
+  def initialize(user, fee_type)
     @user = user
-    @category = category
+    @fee_type = fee_type
   end
 
   def new?

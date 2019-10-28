@@ -30,7 +30,7 @@ class MembershipTypePolicy < ApplicationPolicy
     authorized?(ROLES)
   end
 
-private
+  private
 
   def authorized?(roles)
     @user.has_any_role?(*roles)
