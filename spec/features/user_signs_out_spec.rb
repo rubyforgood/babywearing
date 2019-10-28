@@ -6,7 +6,7 @@ RSpec.describe 'User signs out', type: :feature do
     sign_in user
     visit root_url
 
-    sign_out
+    user_sign_out
 
     user_should_be_signed_out
   end

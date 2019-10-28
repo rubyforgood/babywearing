@@ -8,7 +8,6 @@ class ApplicationPolicy
     @members = members
   end
 
-
   def index?
     false
   end
