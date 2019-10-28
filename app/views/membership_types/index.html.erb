@@ -1,7 +1,9 @@
 <div class="card">
   <header class="card-header d-flex align-items-center">
     <h3 class="mr-auto">Membership Types</h3>
-    <%= link_to '+ New', new_membership_type_path, class: "btn btn-primary" %>
+    <% if policy(:membership_type).new? %>
+      <%= link_to '+ New', new_membership_type_path, class: "btn btn-primary" %>
+    <% end %>
   </header>
 
   <section>
