@@ -2,7 +2,7 @@
 
 class LocationsController < ApplicationController
 
-  before_action :set_location, only: [:show, :edit, :update]
+  before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index
     @locations = Location.all
@@ -13,11 +13,11 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @location = Location.new
+    @location = authorize Location.new
   end
   
   def create
-    @location = Location.new(location_params)
+    @location = authorize Location.new(location_params)
     @location.save
     redirect_to location_path(@location)
   end
@@ -27,11 +27,15 @@ class LocationsController < ApplicationController
   end
 
   def update
+    authorize @location
+
     @location.update(location_params) 
     redirect_to location_path(@location)
   end
 
   def destroy
+    authorize @location
+
     Location.find(params[:id]).destroy
     redirect_to locations_path
   end
