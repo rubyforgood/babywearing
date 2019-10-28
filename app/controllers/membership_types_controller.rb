@@ -26,10 +26,8 @@ class MembershipTypesController < ApplicationController
   # POST /membership_types
   # POST /membership_types.json
   def create
-    @membership_type = MembershipType.new(membership_type_params)
-    
-    authorize @membership_type
-    
+    @membership_type = authorize MembershipType.new(membership_type_params)
+
     respond_to do |format|
       if @membership_type.save
         format.html { redirect_to @membership_type, notice: 'Membership type was successfully created.' }

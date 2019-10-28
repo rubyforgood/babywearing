@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature "fee_type" do
-  let(:user) { users(:user) }
+  let(:user) { users(:admin) }
   let(:fee_type) { fee_types(:upgrade) }
 
   before :each do
