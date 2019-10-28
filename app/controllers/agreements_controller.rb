@@ -13,11 +13,11 @@ class AgreementsController < ApplicationController
   end
 
   def new
-    @agreement = Agreement.new
+    @agreement = authorize Agreement.new
   end
 
   def create
-    @agreement = Agreement.new(agreement_params)
+    @agreement = authorize Agreement.new(agreement_params)
 
     respond_to do |format|
       if @agreement.save
@@ -35,6 +35,8 @@ class AgreementsController < ApplicationController
   end
 
   def update
+    authorize @agreement
+
     respond_to do |format|
       if @agreement.update(agreement_params)
         format.html { redirect_to @agreement, notice: 'agreement was successfully updated.' }
@@ -47,6 +49,8 @@ class AgreementsController < ApplicationController
   end
 
   def destroy
+    authorize @agreement
+    
     @agreement.destroy
     respond_to do |format|
       format.html { redirect_to agreements_url, notice: 'agreement was successfully destroyed.' }
