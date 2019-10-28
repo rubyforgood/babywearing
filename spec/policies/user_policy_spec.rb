@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UserPolicy do
+RSpec.describe UserPolicy do
 
   let(:admin_user) {
     user = User.new()

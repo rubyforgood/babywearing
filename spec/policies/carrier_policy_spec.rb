@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe CarrierPolicy do
+RSpec.describe CarrierPolicy do
 
   let(:admin) { users(:admin) }
   let(:volunteer) { users(:volunteer) }
