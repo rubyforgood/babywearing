@@ -5,17 +5,11 @@ RSpec.describe Carrier do
   let(:lancaster) { locations(:lancaster) }
   let(:category) { categories(:category) }
 
-  it 'is valid with valid attributes' do
-    expect(described_class.new(
-      item_id: 1,
-      name: 'test name',
-      manufacturer: 'apple',
-      model: 'iCarry',
-      color: 'blue',
-      home_location_id: washington.id,
-      current_location: lancaster,
-      category_id: category.id
-    )).to be_valid
+  it 'has a valid fixture' do
+    expect(carriers(:carrier)).to be_valid
+    expect(carriers(:unavailable)).to be_valid
+    expect(carriers(:disabled)).to be_valid
+    expect(carriers(:sold)).to be_valid
   end
 
   it "should have a photo attached" do
@@ -51,6 +45,14 @@ RSpec.describe Carrier do
 
   it 'is not valid without a current_location_id' do
     expect(described_class.new(current_location_id: nil)).to_not be_valid
+  end
+
+  describe '#available_for_checkout?' do
+    let(:carrier) { carriers(:carrier) }
+
+    it 'is an alias for available?' do
+      expect(carrier.available_for_checkout?).to eq carrier.available?
+    end
   end
 
   describe '#build_loan' do

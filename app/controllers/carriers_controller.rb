@@ -80,6 +80,7 @@ class CarriersController < ApplicationController
       :current_location_id,
       :category_id,
       :default_loan_length_days,
+      :status,
       photos: []
     )
   end

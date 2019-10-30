@@ -14,6 +14,7 @@
   <li>Category: <%= @carrier.category.name %></li>
   <li>Home Location: <%= @carrier.home_location.name %></li>
   <li>Current Location: <%= @carrier.current_location.name %></li>
+  <li>Status: <%= @carrier.status.titleize %>
   <li>Default Loan Length: <%= @carrier.default_loan_length_days %> days</li>
   <% if @carrier.photos.attached? %>
     <li>Photos:

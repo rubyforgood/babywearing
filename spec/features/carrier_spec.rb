@@ -72,11 +72,13 @@ RSpec.describe 'Carrier ADMIN role' do
     fill_in 'Name', with: 'Updated Name'
     fill_in 'Model', with: 'Updated Model'
     find('#carrier_current_location_id').find(:option, lancaster.name).select_option
+    select 'Sold', from: 'Status'
     click_on 'Update Carrier'
 
     expect(page).to have_content('Updated Name')
     expect(page).to have_content('Updated Model')
     expect(page).to have_content('Lancaster')
+    expect(page).to have_content('Sold')
   end
 
   scenario 'EDIT without any required fields' do
@@ -104,6 +106,7 @@ RSpec.describe 'Carrier ADMIN role' do
     fill_in 'Manufacturer', with: 'Test Manufacturer'
     fill_in 'Model', with: 'Test Model'
     fill_in 'Color', with: 'White'
+    select 'Unavailable', from: 'Status'
     find('#carrier_category_id').find(:option, category.name).select_option
 
     click_on 'Create Carrier'
@@ -139,6 +142,7 @@ RSpec.describe 'Carrier ADMIN role' do
     expect(page).to have_content('Manufacturer')
     expect(page).to have_content('Model')
     expect(page).to have_content('Color')
+    expect(page).to have_content('Status')
 
     expect(current_path).to eq '/carriers/new'
   end
@@ -176,6 +180,7 @@ RSpec.describe 'Carrier VOLUNTEER role' do
     expect(page).to have_content('test carrier')
     expect(page).to have_content('babywearing')
     expect(page).to have_content('test model')
+    expect(page).to have_content('Available')
   end
 
   scenario 'EDIT with all required fields' do

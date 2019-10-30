@@ -18,6 +18,15 @@ class Carrier < ApplicationRecord
 
   has_many_attached :photos
 
+  enum status: {
+    available: 0,
+    unavailable: 1,
+    disabled: 2,
+    sold: 3
+  }
+
+  alias_method :available_for_checkout?, :available?
+
   def build_loan(attributes = {})
     loans.create({
       due_date: Date.today + default_loan_length_days.days,

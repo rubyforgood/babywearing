@@ -8,3 +8,40 @@ carrier:
   size: 5
   home_location: washington
   current_location: lancaster
+  status: 'available'
+
+unavailable:
+  name: "unavailable carrier"
+  item_id: "TEST1235"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "red"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  status: 'unavailable'
+
+sold:
+  name: "sold carrier"
+  item_id: "TEST1236"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "spec model"
+  color: "crimson"
+  size: 6
+  home_location: washington
+  current_location: lancaster
+  status: 'sold'
+
+disabled:
+  name: "disabled carrier"
+  item_id: "TEST1237"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "purple"
+  size: 4
+  home_location: washington
+  current_location: lancaster
+  status: 'disabled'

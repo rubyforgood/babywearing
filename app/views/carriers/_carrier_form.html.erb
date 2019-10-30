@@ -50,6 +50,11 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :status %>
+    <%= form.select :status, Carrier.statuses.keys.map { |key| [key.titleize, key] }, {}, { class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :default_loan_length_days, 'Default Loan Length' %>
     <%= form.number_field :default_loan_length_days, class: "form-control" %> days
   </div>
