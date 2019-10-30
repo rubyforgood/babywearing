@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature 'create a location', type: :feature do
-  let(:user) { users(:user) }
+  let(:user) { users(:admin) }
 
   before :each do
     visit "/"

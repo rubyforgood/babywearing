@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'MembershipType', type: :feature do
-  let(:user) { users(:user) }
+  let(:user) { users(:admin) }
   let(:membership_type) { membership_types(:annual) }
 
   before(:each) do

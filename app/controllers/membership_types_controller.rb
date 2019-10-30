@@ -16,7 +16,7 @@ class MembershipTypesController < ApplicationController
 
   # GET /membership_types/new
   def new
-    @membership_type = MembershipType.new
+    @membership_type = authorize MembershipType.new
   end
 
   # GET /membership_types/1/edit
@@ -26,7 +26,7 @@ class MembershipTypesController < ApplicationController
   # POST /membership_types
   # POST /membership_types.json
   def create
-    @membership_type = MembershipType.new(membership_type_params)
+    @membership_type = authorize MembershipType.new(membership_type_params)
 
     respond_to do |format|
       if @membership_type.save
@@ -56,6 +56,8 @@ class MembershipTypesController < ApplicationController
   # DELETE /membership_types/1
   # DELETE /membership_types/1.json
   def destroy
+    authorize @membership_type
+   
     @membership_type.destroy
     respond_to do |format|
       format.html { redirect_to membership_types_url, notice: 'Membership type was successfully destroyed.' }

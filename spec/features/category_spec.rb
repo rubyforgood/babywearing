@@ -4,7 +4,7 @@ RSpec.feature "category" do
   let!(:category) { categories(:category_parent) }
   let!(:category_child) { categories(:category) }
   let!(:carrier) { carriers(:carrier) }
-  let(:user) { users(:user) }
+  let(:user) { users(:admin) }
 
   before :each do
     visit "/"

@@ -8,7 +8,7 @@ module Features
     click_button "Log In"
   end
 
-  def sign_out
+  def user_sign_out
     click_link "Logout"
   end
 

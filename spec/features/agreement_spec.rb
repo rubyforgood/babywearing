@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature 'create an agreement', type: :feature do
-  let(:user) { users(:user) }
+  let(:user) { users(:admin) }
   let(:agreement) { agreements(:agreement) }
 
   before :each do
