@@ -17,9 +17,14 @@ class LocationsController < ApplicationController
   end
   
   def create
-    @location = authorize Location.new(location_params)
-    @location.save
-    redirect_to location_path(@location)
+    @location = Location.new(location_params)
+    authorize @location
+
+    if @location.save
+      redirect_to location_path(@location), notice: 'Location was successfully created.'
+      else
+        render 'new'
+    end
   end
 
   def edit 
@@ -29,15 +34,19 @@ class LocationsController < ApplicationController
   def update
     authorize @location
 
-    @location.update(location_params) 
-    redirect_to location_path(@location)
+    if @location.update(location_params) 
+      redirect_to location_path(@location), notice: 'Location was successfully updated.'
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     authorize @location
 
-    Location.find(params[:id]).destroy
-    redirect_to locations_path
+    if @location.destroy
+      redirect_to locations_path, alert: 'Location was successfully destroyed.'
+    end
   end
 
   private

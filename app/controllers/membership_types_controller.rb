@@ -42,6 +42,8 @@ class MembershipTypesController < ApplicationController
   # PATCH/PUT /membership_types/1
   # PATCH/PUT /membership_types/1.json
   def update
+    authorize @membership_type
+
     respond_to do |format|
       if @membership_type.update(membership_type_params)
         format.html { redirect_to @membership_type, notice: 'Membership type was successfully updated.' }
@@ -58,10 +60,11 @@ class MembershipTypesController < ApplicationController
   def destroy
     authorize @membership_type
    
-    @membership_type.destroy
-    respond_to do |format|
-      format.html { redirect_to membership_types_url, notice: 'Membership type was successfully destroyed.' }
-      format.json { head :no_content }
+    if @membership_type.destroy
+      respond_to do |format|
+        format.html { redirect_to membership_types_url, alert: 'Membership type was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -61,10 +61,11 @@ class FeeTypesController < ApplicationController
   def destroy
     authorize @fee_type
     
-    @fee_type.destroy
-    respond_to do |format|
-      format.html { redirect_to fee_types_url, notice: 'Fee type was successfully destroyed.' }
-      format.json { head :no_content }
+    if @fee_type.destroy
+      respond_to do |format|
+        format.html { redirect_to fee_types_url, alert: 'Fee type was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

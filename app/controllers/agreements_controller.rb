@@ -39,7 +39,7 @@ class AgreementsController < ApplicationController
 
     respond_to do |format|
       if @agreement.update(agreement_params)
-        format.html { redirect_to @agreement, notice: 'agreement was successfully updated.' }
+        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
         format.json { render :show, status: :ok, location: @agreement }
       else
         format.html { render :edit }
@@ -51,10 +51,11 @@ class AgreementsController < ApplicationController
   def destroy
     authorize @agreement
     
-    @agreement.destroy
-    respond_to do |format|
-      format.html { redirect_to agreements_url, notice: 'agreement was successfully destroyed.' }
-      format.json { head :no_content }
+    if @agreement.destroy
+      respond_to do |format|
+        format.html { redirect_to agreements_url, alert: 'Agreement was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

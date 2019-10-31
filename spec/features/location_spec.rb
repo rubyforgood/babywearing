@@ -43,6 +43,6 @@ RSpec.feature 'create a location', type: :feature do
     click_button "Create Location"
     expect(page).to have_content "Bridgeville"
     find_link("Delete this location").click
-    expect(page).not_to have_content "New location"
+    expect(page).not_to have_content "Location was successfully deleted."
   end
 end
