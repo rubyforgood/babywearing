@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
@@ -8,7 +10,7 @@ RSpec.describe "Categories", type: :request do
       sign_in users(:member)
       send :get, categories_path
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response.body).to match(/category parent/)
     end
   end
@@ -16,7 +18,7 @@ RSpec.describe "Categories", type: :request do
   describe "GET /categories/new" do
     it_behaves_like 'admin authorized-only resource', :get do
       let(:endpoint) { new_category_path }
-    end 
+    end
   end
 
   describe 'POST /categories' do
@@ -24,10 +26,10 @@ RSpec.describe "Categories", type: :request do
       let(:endpoint) { categories_path }
       let(:params) { { category: { name: 'Test', description: 'Test content' } } }
     end
-    
+
     let(:valid_attr) { { name: 'Test', description: 'Test content' } }
     let(:invalid_attr) { { name: '' } }
-    
+
     context 'with valid attributes' do
       it 'creates a category' do
         sign_in users(:admin)
@@ -53,9 +55,9 @@ RSpec.describe "Categories", type: :request do
       sign_in users(:member)
       send :get, categories_path(category)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response.body).to match(/category parent/)
-    end      
+    end
   end
 
   describe 'PUT /category/:id' do
@@ -67,10 +69,10 @@ RSpec.describe "Categories", type: :request do
 
     let(:valid_attr) { { name: 'New agreement', description: 'New content' } }
     let(:invalid_attr) { { name: '' } }
-    
+
     context 'with valid attributes' do
       it 'updates the category' do
-        sign_in users(:admin) 
+        sign_in users(:admin)
         send :put, category_path(category), params: { category: valid_attr }
 
         expect(flash[:notice]).to eq('Category was successfully updated.')
@@ -79,17 +81,17 @@ RSpec.describe "Categories", type: :request do
 
     context 'with invalid attributes' do
       it "doesn't update the category" do
-        sign_in users(:admin) 
+        sign_in users(:admin)
         send :put, category_path(category), params: { category: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
-      end      
-    end    
+      end
+    end
   end
 
   describe 'DELETE /category/:id' do
     let(:category) { Category.create(name: 'Test', description: 'Test') }
-    
+
     it_behaves_like "admin authorized-only resource", :delete do
       let(:category) { Category.create(name: 'Test', description: 'Test') }
       let(:endpoint) { category_path(category) }
@@ -99,7 +101,7 @@ RSpec.describe "Categories", type: :request do
       sign_in users(:admin)
       send :delete, category_path(category)
 
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:found)
       expect(flash[:alert]).to eq('Category was successfully destroyed.')
     end
   end

@@ -60,7 +60,7 @@ class FeeTypesController < ApplicationController
   # DELETE /fee_types/1.json
   def destroy
     authorize @fee_type
-    
+
     if @fee_type.destroy
       respond_to do |format|
         format.html { redirect_to fee_types_url, alert: 'Fee type was successfully destroyed.' }
@@ -70,14 +70,13 @@ class FeeTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_fee_type
-      @fee_type = FeeType.find(params[:id])
-    end
 
-    def fee_type_params
-      params.require(:fee_type).permit(:name, :amount)
-    end
-   
+  # Use callbacks to share common setup or constraints between actions.
+  def set_fee_type
+    @fee_type = FeeType.find(params[:id])
+  end
+
+  def fee_type_params
+    params.require(:fee_type).permit(:name, :amount)
+  end
 end
-

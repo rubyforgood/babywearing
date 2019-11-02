@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "User" do
+RSpec.describe User do
   let(:admin) { users(:admin) }
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
@@ -76,7 +76,7 @@ RSpec.describe "User" do
   scenario "should send the user a welcome email" do
     Devise.mailer.deliveries = []
 
-    user = User.create(
+    user = described_class.create(
       email: "alicia@test.com",
       password: "123abc",
       full_name: "Alicia Barrett",
@@ -94,7 +94,7 @@ RSpec.describe "User" do
     end
   end
 
-  scenario 'should allow an admin to activate and deactivate a user'do
+  scenario 'should allow an admin to activate and deactivate a user' do
     sign_in admin
     visit users_url
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "Locations", type: :request do
@@ -8,7 +10,7 @@ RSpec.describe "Locations", type: :request do
       sign_in users(:member)
       send :get, locations_path
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response.body).to match(/Lancaster/)
     end
   end
@@ -16,7 +18,7 @@ RSpec.describe "Locations", type: :request do
   describe "GET /locations/new" do
     it_behaves_like 'admin authorized-only resource', :get do
       let(:endpoint) { new_location_path }
-    end 
+    end
   end
 
   describe 'POST /locations' do
@@ -24,10 +26,10 @@ RSpec.describe "Locations", type: :request do
       let(:endpoint) { locations_path }
       let(:params) { { location: { name: 'Test' } } }
     end
-    
+
     let(:valid_attr) { { name: 'Some location' } }
     let(:invalid_attr) { { name: '' } }
-    
+
     context 'with valid attributes' do
       it 'creates a location' do
         sign_in users(:admin)
@@ -53,9 +55,9 @@ RSpec.describe "Locations", type: :request do
       sign_in users(:member)
       send :get, locations_path(location)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response.body).to match(/Lancaster/)
-    end      
+    end
   end
 
   describe 'PUT /location/:id' do
@@ -67,10 +69,10 @@ RSpec.describe "Locations", type: :request do
 
     let(:valid_attr) { { name: 'New location' } }
     let(:invalid_attr) { { name: '' } }
-    
+
     context 'with valid attributes' do
       it 'updates the location' do
-        sign_in users(:admin) 
+        sign_in users(:admin)
         send :put, location_path(location), params: { location: valid_attr }
 
         expect(flash[:notice]).to eq('Location was successfully updated.')
@@ -79,17 +81,17 @@ RSpec.describe "Locations", type: :request do
 
     context 'with invalid attributes' do
       it "doesn't update the location" do
-        sign_in users(:admin) 
+        sign_in users(:admin)
         send :put, location_path(location), params: { location: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
-      end      
-    end    
+      end
+    end
   end
 
   describe 'DELETE /location/:id' do
     let(:location) { Location.create(name: 'Test') }
-    
+
     it_behaves_like "admin authorized-only resource", :delete do
       let(:location) { Location.create(name: 'Test') }
       let(:endpoint) { location_path(location) }
@@ -99,7 +101,7 @@ RSpec.describe "Locations", type: :request do
       sign_in users(:admin)
       send :delete, location_path(location)
 
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:found)
       expect(flash[:alert]).to eq('Location was successfully destroyed.')
     end
   end

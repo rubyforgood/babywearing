@@ -19,6 +19,6 @@ class Loan < ApplicationRecord
 
   # public instance methods
   def checkin(volunteer)
-    self.update(checkin_volunteer: volunteer, returned_at: Time.now.utc)
+    update(checkin_volunteer: volunteer, returned_at: Time.now.utc)
   end
 end

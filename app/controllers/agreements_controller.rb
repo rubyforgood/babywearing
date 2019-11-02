@@ -3,7 +3,6 @@
 class AgreementsController < ApplicationController
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @agreements = Agreement.all
   end
@@ -30,8 +29,7 @@ class AgreementsController < ApplicationController
     end
   end
 
-  def edit 
-
+  def edit
   end
 
   def update
@@ -50,7 +48,7 @@ class AgreementsController < ApplicationController
 
   def destroy
     authorize @agreement
-    
+
     if @agreement.destroy
       respond_to do |format|
         format.html { redirect_to agreements_url, alert: 'Agreement was successfully destroyed.' }
@@ -59,7 +57,7 @@ class AgreementsController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def set_agreement
     @agreement = Agreement.find(params[:id])

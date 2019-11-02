@@ -59,7 +59,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.json
   def destroy
     authorize @category
-    
+
     @category.destroy
     respond_to do |format|
       format.html { redirect_to categories_url, alert: 'Category was successfully destroyed.' }
@@ -68,13 +68,14 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name, :description, :parent_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name, :description, :parent_id)
+  end
 end

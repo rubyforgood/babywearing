@@ -3,7 +3,7 @@
 class CategoryPolicy < ApplicationPolicy
   attr_reader :user, :category
 
-  ROLES = [:admin, :volunteer]
+  ROLES = [:admin, :volunteer].freeze
 
   def initialize(user, category)
     @user = user

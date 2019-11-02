@@ -3,7 +3,7 @@
 class MembershipTypePolicy < ApplicationPolicy
   attr_reader :user, :membership_type
 
-  ROLES = [:admin, :volunteer]
+  ROLES = [:admin, :volunteer].freeze
 
   def initialize(user, membership_type)
     @user = user

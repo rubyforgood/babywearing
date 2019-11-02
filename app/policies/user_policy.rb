@@ -9,6 +9,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    user.has_role?(:admin) or user.has_role?(:volunteer)
+    user.has_role?(:admin) || user.has_role?(:volunteer)
   end
 end

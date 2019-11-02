@@ -3,7 +3,7 @@
 class LocationPolicy < ApplicationPolicy
   attr_reader :user, :location
 
-  ROLES = [:admin, :volunteer]
+  ROLES = [:admin, :volunteer].freeze
 
   def initialize(user, location)
     @user = user

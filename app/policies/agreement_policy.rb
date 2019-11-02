@@ -3,7 +3,7 @@
 class AgreementPolicy < ApplicationPolicy
   attr_reader :user, :agreement
 
-  ROLES = [:admin, :volunteer]
+  ROLES = [:admin, :volunteer].freeze
 
   def initialize(user, agreement)
     @user = user

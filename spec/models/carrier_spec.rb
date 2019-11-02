@@ -12,39 +12,39 @@ RSpec.describe Carrier do
     expect(carriers(:sold)).to be_valid
   end
 
-  it "should have a photo attached" do
-    carrier = Carrier.new
+  it "has a photo attached" do
+    carrier = described_class.new
     file = Rails.root.join('public', 'apple-touch-icon.png')
     carrier.photos.attach(io: File.open(file), filename: 'apple-touch-icon.png')
     assert carrier.photos.attached?
   end
 
   it 'is not valid without an item_id' do
-    expect(described_class.new(item_id: nil)).to_not be_valid
+    expect(described_class.new(item_id: nil)).not_to be_valid
   end
 
   it 'is not valid without a name' do
-    expect(described_class.new(name: nil)).to_not be_valid
+    expect(described_class.new(name: nil)).not_to be_valid
   end
 
   it 'is not valid without a manufacturer' do
-    expect(described_class.new(manufacturer: nil)).to_not be_valid
+    expect(described_class.new(manufacturer: nil)).not_to be_valid
   end
 
   it 'is not valid without an model' do
-    expect(described_class.new(model: nil)).to_not be_valid
+    expect(described_class.new(model: nil)).not_to be_valid
   end
 
   it 'is not valid without a color' do
-    expect(described_class.new(color: nil)).to_not be_valid
+    expect(described_class.new(color: nil)).not_to be_valid
   end
 
   it 'is not valid without a home_location_id' do
-    expect(described_class.new(home_location_id: nil)).to_not be_valid
+    expect(described_class.new(home_location_id: nil)).not_to be_valid
   end
 
   it 'is not valid without a current_location_id' do
-    expect(described_class.new(current_location_id: nil)).to_not be_valid
+    expect(described_class.new(current_location_id: nil)).not_to be_valid
   end
 
   describe '#available_for_checkout?' do

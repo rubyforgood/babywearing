@@ -3,31 +3,31 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  let(:member) {users(:member)}
-  let(:admin) {users(:admin)}
+  let(:member) { users(:member) }
+  let(:admin) { users(:admin) }
 
   context 'Associations' do
-    it 'should be a member' do
-      expect(member.has_role?(:member)).to be_truthy
+    it 'is a member' do
+      expect(member).to have_role(:member)
     end
   end
 
   context 'Users can be activated and deactivated' do
     it 'defaults to activated' do
-      expect(member.deactivated?).to be_falsey
-      expect(member.activated?).to be_truthy
+      expect(member).not_to be_deactivated
+      expect(member).to be_activated
     end
 
     it 'can be deactivated' do
       member.deactivate
-      expect(member.deactivated?).to be_truthy
-      expect(member.activated?).to be_falsey
+      expect(member).to be_deactivated
+      expect(member).not_to be_activated
     end
 
     it 'can be reactivated' do
       member.activate
-      expect(member.deactivated?).to be_falsey
-      expect(member.activated?).to be_truthy
+      expect(member).not_to be_deactivated
+      expect(member).to be_activated
     end
   end
 end

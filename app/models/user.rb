@@ -17,7 +17,7 @@ class User < ApplicationRecord
   after_create :assign_member_role
 
   def self.to_csv
-    attributes = %w{full_name email	phone_number created_at}
+    attributes = %w[full_name email phone_number created_at]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
@@ -35,6 +35,6 @@ class User < ApplicationRecord
   end
 
   def assign_member_role
-    self.add_role(:member) if self.roles.blank?
+    add_role(:member) if roles.blank?
   end
 end

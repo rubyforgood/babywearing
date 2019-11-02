@@ -59,7 +59,7 @@ class MembershipTypesController < ApplicationController
   # DELETE /membership_types/1.json
   def destroy
     authorize @membership_type
-   
+
     if @membership_type.destroy
       respond_to do |format|
         format.html { redirect_to membership_types_url, alert: 'Membership type was successfully destroyed.' }
@@ -69,13 +69,14 @@ class MembershipTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership_type
-      @membership_type = MembershipType.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def membership_type_params
-      params.require(:membership_type).permit(:name, :fee_cents, :duration_days, :number_of_items, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership_type
+    @membership_type = MembershipType.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def membership_type_params
+    params.require(:membership_type).permit(:name, :fee_cents, :duration_days, :number_of_items, :description)
+  end
 end

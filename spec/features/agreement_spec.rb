@@ -4,7 +4,7 @@ RSpec.feature 'create an agreement', type: :feature do
   let(:user) { users(:admin) }
   let(:agreement) { agreements(:agreement) }
 
-  before :each do
+  before do
     visit "/"
     sign_in user
   end
@@ -41,7 +41,7 @@ RSpec.feature 'create an agreement', type: :feature do
   scenario 'DESTROY when delete button is clicked' do
     visit agreements_path
     click_link 'Destroy'
-  
+
     expect(page).to have_content('Agreement was successfully destroyed.')
   end
 
@@ -66,5 +66,4 @@ RSpec.feature 'create an agreement', type: :feature do
 
     expect(page).to have_content('Agreement was successfully created.')
   end
-
 end

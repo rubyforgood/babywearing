@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'simplecov'
 SimpleCov.start do
   SimpleCov.add_filter '/spec'
@@ -90,12 +91,12 @@ RSpec.configure do |config|
   config.order = :random
 
   config.before(:each, webkit: true) do
-      Capybara.javascript_driver = :webkit
+    Capybara.javascript_driver = :webkit
   end
 
   config.after(:each, webkit: true) do
-      Capybara.javascript_driver = :selenium 
-      # or whatever your preferred driver is
+    Capybara.javascript_driver = :selenium
+    # or whatever your preferred driver is
   end
 
   # Seed global randomization in this process using the `--seed` CLI option.

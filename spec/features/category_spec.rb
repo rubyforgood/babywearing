@@ -6,7 +6,7 @@ RSpec.feature "category" do
   let!(:carrier) { carriers(:carrier) }
   let(:user) { users(:admin) }
 
-  before :each do
+  before do
     visit "/"
     sign_in user
   end
@@ -52,7 +52,7 @@ RSpec.feature "category" do
     visit category_path(category)
 
     expect(page).to have_content(
-      'There are no carriers of this type in ' +
+      'There are no carriers of this type in ' \
       'inventory at this time. Please check back later.'
     )
   end

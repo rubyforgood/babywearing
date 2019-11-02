@@ -8,16 +8,16 @@ RSpec.describe Loan do
 
   describe '#valid?' do
     context "with a member, a checkout volunteer, a carrier, and a due date" do
-      let(:due_date) { DateTime.now + 1.days }
-
-      subject {
+      subject do
         described_class.new(
           carrier: carrier,
           due_date: due_date,
           member: member,
-          checkout_volunteer: volunteer,
+          checkout_volunteer: volunteer
         )
-      }
+      end
+
+      let(:due_date) { DateTime.now + 1.days }
 
       it "returns true" do
         expect(subject).to be_valid
@@ -28,38 +28,38 @@ RSpec.describe Loan do
   describe 'create' do
     it "sets the due date to the date specified" do
       due_date = 20.days.from_now.utc.to_date
-      loan = Loan.create(
+      loan = described_class.create(
         carrier: carrier,
         member: member,
         checkout_volunteer: volunteer,
-        due_date: due_date,
+        due_date: due_date
       )
 
       expect(loan.due_date).to eq(due_date)
     end
   end
 
-    context "without due date" do
-      it "sets the due date to be the default number of days away" do
-        freeze_time do
-          loan = Loan.create(
-            carrier: carrier,
-            member: member,
-            checkout_volunteer: volunteer,
-          )
+  context "without due date" do
+    it "sets the due date to be the default number of days away" do
+      freeze_time do
+        loan = described_class.create(
+          carrier: carrier,
+          member: member,
+          checkout_volunteer: volunteer
+        )
 
-          expect(loan.due_date).to eq(carrier.default_loan_length_days.days.from_now.utc.to_date)
-        end
+        expect(loan.due_date).to eq(carrier.default_loan_length_days.days.from_now.utc.to_date)
+      end
     end
   end
 
   describe '#checkin' do
     it "sets the returned_at and the checkin_volunteer" do
       freeze_time do
-        loan = Loan.create(
+        loan = described_class.create(
           carrier: carrier,
           member: member,
-          checkout_volunteer: volunteer,
+          checkout_volunteer: volunteer
         )
 
         loan.checkin(volunteer)

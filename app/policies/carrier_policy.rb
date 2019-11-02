@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CarrierPolicy < ApplicationPolicy
   attr_reader :user, :carrier
 
@@ -32,7 +34,8 @@ class CarrierPolicy < ApplicationPolicy
   end
 
   private
-    def authorized?(roles)
-      @user.has_any_role?(*roles)
-    end
+
+  def authorized?(roles)
+    @user.has_any_role?(*roles)
+  end
 end

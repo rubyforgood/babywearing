@@ -1,22 +1,23 @@
 # frozen_string_literal: true
 
-RSpec.feature 'create a location', type: :feature do
+RSpec.describe Location, type: :feature do
   let(:user) { users(:admin) }
 
-  before :each do
+  # TODO: add tests to make sure if you're not logged in as an admin,
+  # you can't do these things to a location
+
+  before do
     visit "/"
     sign_in user
   end
 
-  scenario 'should allow admin to create a new location' do
+  scenario 'should allow admin to CREATE new locations' do
     visit "/locations"
     find_link("+ New", match: :first).click
     fill_in "Name", with: "Bellvue"
     click_button "Create Location"
     expect(page).to have_content "Bellvue"
-  end
 
-  scenario 'should allow admin to create a new location' do
     visit "/locations"
     find_link("+ New", match: :first).click
     fill_in "Name", with: "Robinson"
@@ -24,7 +25,7 @@ RSpec.feature 'create a location', type: :feature do
     expect(page).to have_content "Robinson"
   end
 
-  scenario 'should allow admin to update a location' do
+  scenario 'should allow admin to UPDATE a location' do
     visit "/locations"
     find_link("+ New", match: :first).click
     fill_in "Name", with: "Robinson"
@@ -36,7 +37,7 @@ RSpec.feature 'create a location', type: :feature do
     expect(page).to have_content "New location"
   end
 
-  scenario 'should allow adming to delete a location' do
+  scenario 'should allow admin to DELETE a location' do
     visit "/locations"
     find_link("+ New", match: :first).click
     fill_in "Name", with: "Bridgeville"
