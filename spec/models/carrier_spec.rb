@@ -65,21 +65,5 @@ RSpec.describe Carrier do
         expect(subject.due_date).to eq Date.today + carrier.default_loan_length_days.days
       end
     end
-
-    context "with parameters" do
-      let(:member)    { users(:user) }
-      let(:volunteer) { users(:volunteer) }
-      let(:cart)      { Cart.new(member: member, volunteer: volunteer) }
-
-      subject { carrier.build_loan(cart: cart) }
-
-      it 'creates a loan with the default due date set' do
-        expect(subject.due_date).to eq Date.today + carrier.default_loan_length_days.days
-      end
-
-      it 'honors the additional parameters' do
-        expect(subject.cart).to eq cart
-      end
-    end
   end
 end

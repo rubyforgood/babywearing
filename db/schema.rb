@@ -62,13 +62,6 @@ ActiveRecord::Schema.define(version: 2019_10_26_135203) do
     t.index ["home_location_id"], name: "index_carriers_on_home_location_id"
   end
 
-  create_table "carts", force: :cascade do |t|
-    t.integer "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "volunteer_id"
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -86,11 +79,17 @@ ActiveRecord::Schema.define(version: 2019_10_26_135203) do
   end
 
   create_table "loans", force: :cascade do |t|
-    t.integer "cart_id"
     t.integer "carrier_id"
     t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "checkin_volunteer_id"
+    t.bigint "checkout_volunteer_id"
+    t.bigint "member_id", null: false
+    t.datetime "returned_at"
+    t.index ["checkin_volunteer_id"], name: "index_loans_on_checkin_volunteer_id"
+    t.index ["checkout_volunteer_id"], name: "index_loans_on_checkout_volunteer_id"
+    t.index ["member_id"], name: "index_loans_on_member_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -161,4 +160,7 @@ ActiveRecord::Schema.define(version: 2019_10_26_135203) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carriers", "locations", column: "current_location_id"
   add_foreign_key "carriers", "locations", column: "home_location_id"
+  add_foreign_key "loans", "users", column: "checkin_volunteer_id"
+  add_foreign_key "loans", "users", column: "checkout_volunteer_id"
+  add_foreign_key "loans", "users", column: "member_id"
 end
