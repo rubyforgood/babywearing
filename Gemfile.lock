@@ -301,6 +301,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.2.3)
   rails-controller-testing
+  responders
   rolify
   rspec-rails (~> 3.8)
   rubocop
