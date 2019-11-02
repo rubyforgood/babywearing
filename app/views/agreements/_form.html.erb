@@ -1,15 +1,5 @@
 <%= form_with(model: agreement, local: true) do |form| %>
-  <% if agreement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(agreement.errors.count, "error") %> prohibited this agreement from being saved:</h2>
-
-      <ul>
-      <% agreement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form_errors agreement %>
 
   <div class="form-group">
     <%= form.label :title %>

@@ -1,15 +1,5 @@
 <%= form_with(model: fee_type, local: true) do |form| %>
-  <% if fee_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(fee_type.errors.count, "error") %> prohibited this fee_type from being saved:</h2>
-
-      <ul>
-      <% fee_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form_errors fee_type %>
 
   <div class="form-group">
     <%= form.label :name %>
