@@ -1,4 +1,3 @@
-
 <h1>User Listing</h1>
 
 <table>
@@ -7,16 +6,25 @@
     <th>Email Address</th>
     <th>Phone Number</th>
     <th>Join Date</th>
+    <th>Status</th>
+    <th colspan="1"></th>
   </tr>
 
-  <% @users.each do |user| %>                    
+  <% @users.each do |user| %>
     <tr>
       <td><%= user.full_name %></td>
       <td><%= user.email %></td>
       <td><%= user.phone_number %></td>
       <td><%= user.created_at %></td>
-    </tr>
-  <% end %>
 
-  <%= button_to "Export to CSV", "/users.csv", :method => :get%>
+      <% if user.deactivated? %>
+        <td> Inactive</td>
+        <td> <%= link_to "Activate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to Activate this user?"} %> </td>
+      <% else %>
+        <td> Active</td>
+        <td><%= link_to "Deactivate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to change this user to Inactive?"} %></td>
+      <% end %>
+  <% end %>
+  </tr>
+  <%= button_to "Export to CSV", "/users.csv", :method => :get %>
 </table>
