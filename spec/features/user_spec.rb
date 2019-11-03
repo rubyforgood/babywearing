@@ -79,7 +79,8 @@ RSpec.describe User do
     user = described_class.create(
       email: "alicia@test.com",
       password: "123abc",
-      full_name: "Alicia Barrett",
+      first_name: "Alicia",
+      last_name: "Barrett",
       street_address: "123 street",
       city: "Atlanta",
       state: "GA",
