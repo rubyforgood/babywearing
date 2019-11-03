@@ -32,3 +32,7 @@
 <% if policy(@carrier).destroy? %>
   <%= link_to 'Delete', @carrier, method: :delete  %>
 <% end %>
+
+<% if policy(@carrier).destroy? %>
+  <%= link_to 'Checkout', new_carrier_loans_url(@carrier), class: "btn btn-primary", data: { modal: true } %>
+<% end %>
