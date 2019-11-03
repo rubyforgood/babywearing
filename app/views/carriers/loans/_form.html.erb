@@ -25,7 +25,7 @@
     <div style="margin-top: 10px; background: #fbf6f4;border: 1px solid #d0cfcf;padding: 10px;">
       <%= tag.h5 "2. Who do you want to lend it?", style: "color: #283c46" %>
       <div class="form-group">
-        <%= form.collection_select(:member_id, User.with_role(:member), :id, :full_name, { :prompt => 'Choose member' }, { class: "form-control" } ) %>
+        <%= form.collection_select(:member_id, User.with_role(:member), :id, :name, { :prompt => 'Choose member' }, { class: "form-control" } ) %>
       </div>
 
       <div class="form-group">

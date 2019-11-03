@@ -17,7 +17,7 @@ RSpec.feature 'Loan spec', type: :feature do
     visit carrier_url(carrier)
 
     click_link "Checkout"
-    select member.full_name, from: "loan_member_id"
+    select member.name, from: "loan_member_id"
     click_on "Checkout"
 
     expect(page).to have_current_path(carrier_path(carrier))
@@ -28,7 +28,7 @@ RSpec.feature 'Loan spec', type: :feature do
     visit carrier_url(carrier)
 
     click_link "Checkout"
-    select member.full_name, from: "loan_member_id"
+    select member.name, from: "loan_member_id"
     click_on "Checkout"
 
     expect(page).to have_current_path(carrier_path(carrier))
