@@ -4,7 +4,7 @@ class Loan < ApplicationRecord
   # relationships
   belongs_to :carrier
   belongs_to :member, class_name: "User"
-  belongs_to :checkout_volunteer, class_name: 'User'
+  belongs_to :checkout_volunteer, class_name: 'User', default: -> { Current.user }
   belongs_to :checkin_volunteer, class_name: 'User', optional: true
 
   # validations
