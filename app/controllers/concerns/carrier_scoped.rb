@@ -8,6 +8,6 @@ module CarrierScoped
   end
 
   def set_carrier
-    @carrier ||= Carrier.find(params[:carrier_id])
+    @carrier = Carrier.find(params[:carrier_id])
   end
 end

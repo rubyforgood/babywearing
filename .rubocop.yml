@@ -3,12 +3,16 @@ require: rubocop-rspec
 AllCops:
   Exclude:
     - 'db/schema.rb'
+    - 'db/seeds.rb'
     - 'db/migrate/*.rb'
     - 'config/**/*.rb'
     - 'bin/**'
 
 Rails:
   Enabled: true
+
+Style/GuardClause:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
@@ -21,6 +25,9 @@ Style/SymbolArray:
 
 Style/EmptyMethod:
   Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
 
 Metrics/LineLength:
   Max: 120
