@@ -14,7 +14,7 @@ class SignedAgreementsController < ApplicationController
       redirect_to agreements_path, notice: 'Agreement was successfully signed.'
     else
       redirect_to signed_agreement_path(@signed_agreement.agreement_id),
-        notice: @signed_agreement.errors.full_messages
+                  notice: @signed_agreement.errors.full_messages
     end
   end
 

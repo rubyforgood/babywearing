@@ -11,6 +11,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Style/IfUnlessModifier:
+  Enabled: false
+
 Style/GuardClause:
   Enabled: false
 
