@@ -18,14 +18,10 @@ class AgreementsController < ApplicationController
   def create
     @agreement = authorize Agreement.new(agreement_params)
 
-    respond_to do |format|
-      if @agreement.save
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
-        format.json { render :show, status: :created, location: @agreement }
-      else
-        format.html { render :new }
-        format.json { render json: @agreement.errors, status: :unprocessable_entity }
-      end
+    if @agreement.save
+      redirect_to @agreement, notice: 'Agreement was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -35,14 +31,10 @@ class AgreementsController < ApplicationController
   def update
     authorize @agreement
 
-    respond_to do |format|
-      if @agreement.update(agreement_params)
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agreement }
-      else
-        format.html { render :edit }
-        format.json { render json: @agreement.errors, status: :unprocessable_entity }
-      end
+    if @agreement.update(agreement_params)
+      redirect_to @agreement, notice: 'Agreement was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -50,10 +42,7 @@ class AgreementsController < ApplicationController
     authorize @agreement
 
     if @agreement.destroy
-      respond_to do |format|
-        format.html { redirect_to agreements_url, alert: 'Agreement was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to agreements_url, alert: 'Agreement was successfully destroyed.'
     end
   end
 

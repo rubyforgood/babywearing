@@ -10,15 +10,11 @@ class SignedAgreementsController < ApplicationController
   def create
     @signed_agreement = SignedAgreement.new(signed_agreement_params)
 
-    respond_to do |format|
-      if @signed_agreement.save
-        format.html { redirect_to agreements_path, notice: 'Agreement was successfully signed.' }
-      else
-        format.html do
-          redirect_to signed_agreement_path(@signed_agreement.agreement_id),
-                      notice: @signed_agreement.errors.full_messages
-        end
-      end
+    if @signed_agreement.save
+      redirect_to agreements_path, notice: 'Agreement was successfully signed.'
+    else
+      redirect_to signed_agreement_path(@signed_agreement.agreement_id),
+                  notice: @signed_agreement.errors.full_messages
     end
   end
 
