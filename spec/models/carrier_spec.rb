@@ -59,10 +59,10 @@ RSpec.describe Carrier do
     let(:carrier) { described_class.first }
 
     context "without parameters" do
-      subject { carrier.build_loan }
+      subject(:loan) { carrier.build_loan }
 
       it 'creates a loan with the default due date set' do
-        expect(subject.due_date).to eq Date.today + carrier.default_loan_length_days.days
+        expect(loan.due_date).to eq Date.today + carrier.default_loan_length_days.days
       end
     end
   end

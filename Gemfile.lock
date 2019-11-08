@@ -108,6 +108,7 @@ GEM
       factory_bot (~> 5.0.2)
       railties (>= 4.2.0)
     ffi (1.11.1)
+    filterrific (5.2.1)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     globalid (0.4.2)
@@ -292,6 +293,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise (>= 4.7.1)
   factory_bot_rails (~> 5.0)
+  filterrific
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails

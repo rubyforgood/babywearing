@@ -32,8 +32,8 @@ RSpec.describe 'User update information', type: :feature do
     visit(edit_user_registration_path)
     expect(page).to have_content('Edit User')
     fill_in('Current password', with: '')
-    fill_in('First name', with: 'New first name' )
-    fill_in('Last name', with: 'New last name' )
+    fill_in('First name', with: 'New first name')
+    fill_in('Last name', with: 'New last name')
     click_button("Update")
     expect(page).to have_content("Current password can't be blank")
   end

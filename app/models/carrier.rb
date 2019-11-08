@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Carrier < ApplicationRecord
+  include Carrier::FilterImpl
+
   belongs_to :home_location, class_name: 'Location'
   belongs_to :current_location, class_name: 'Location'
   has_many :loans
@@ -18,12 +20,7 @@ class Carrier < ApplicationRecord
 
   has_many_attached :photos
 
-  enum status: {
-    available: 0,
-    unavailable: 1,
-    disabled: 2,
-    sold: 3
-  }
+  enum status: %i[available unavailable disabled sold]
 
   alias available_for_checkout? available?
 

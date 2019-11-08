@@ -3,30 +3,13 @@
 <% end %>
 
 <h1>Carriers</h1>
-
-<% @carriers.each_slice(4) do |carriers| %>
-  <div class="row mb-2">
-    <% carriers.each do |carrier| %>
-      <div class="col-md-3">
-        <div class="card">
-          <% if carrier.photos.attached? %>
-          <div class="text-center">
-            <%= link_to carrier do %>
-              <%= image_tag(carrier.photos.first.variant(resize: "200x300").processed, class: "img-thumbnail img-fluid") %>
-            <% end %>
-          </div>
-          <% else %>
-            <%= link_to carrier do %>
-              <%= image_tag("img_placeholder.svg", class: "img-thumbnail placeholder-img") %>
-            <% end %>
-          <% end %>
-          <div class="card-body">
-            <p><%= link_to carrier.name, carrier, class: "card-text" %></p>
-            <p class="card-text"><%= carrier.home_location.name %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<div class="card filter-card">
+  <div class="card-header">Filters</div>
+  <div class="card-body">
+    <%= render partial: 'filter_form', locals: { filterrific: @filterrific } %>
   </div>
-<% end %>
-
+</div>
+<%= render(
+        partial: 'list',
+        locals: { carriers: @carriers }
+) %>
