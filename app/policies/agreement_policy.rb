@@ -3,36 +3,34 @@
 class AgreementPolicy < ApplicationPolicy
   attr_reader :user, :agreement
 
-  ROLES = [:admin, :volunteer].freeze
-
   def initialize(user, agreement)
     @user = user
     @agreement = agreement
   end
 
   def new?
-    authorized?(ROLES)
+    authorized?
   end
 
   def create?
-    authorized?(ROLES)
+    authorized?
   end
 
   def edit?
-    authorized?(ROLES)
+    authorized?
   end
 
   def update?
-    authorized?(ROLES)
+    authorized?
   end
 
   def destroy?
-    authorized?(ROLES)
+    authorized?
   end
 
   private
 
-  def authorized?(roles)
-    @user.has_any_role?(*roles)
+  def authorized?
+    user.admin? || user.volunteer?
   end
 end

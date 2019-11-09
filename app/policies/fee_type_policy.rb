@@ -3,36 +3,34 @@
 class FeeTypePolicy < ApplicationPolicy
   attr_reader :user, :fee_type
 
-  ROLES = [:admin, :volunteer].freeze
-
   def initialize(user, fee_type)
     @user = user
     @fee_type = fee_type
   end
 
   def new?
-    authorized?(ROLES)
+    authorized?
   end
 
   def create?
-    authorized?(ROLES)
+    authorized?
   end
 
   def edit?
-    authorized?(ROLES)
+    authorized?
   end
 
   def update?
-    authorized?(ROLES)
+    authorized?
   end
 
   def destroy?
-    authorized?(ROLES)
+    authorized?
   end
 
   private
 
-  def authorized?(roles)
-    @user.has_any_role?(*roles)
+  def authorized?
+    user.admin? || user.volunteer?
   end
 end

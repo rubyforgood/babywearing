@@ -204,7 +204,6 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rolify (5.2.0)
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.4)
@@ -307,7 +306,6 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rails-controller-testing
   responders
-  rolify
   rspec-rails (~> 3.8)
   rubocop
   rubocop-rspec

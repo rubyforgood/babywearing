@@ -3,36 +3,34 @@
 class LocationPolicy < ApplicationPolicy
   attr_reader :user, :location
 
-  ROLES = [:admin, :volunteer].freeze
-
   def initialize(user, location)
     @user = user
     @location = location
   end
 
   def new?
-    authorized?(ROLES)
+    authorized?
   end
 
   def create?
-    authorized?(ROLES)
+    authorized?
   end
 
   def edit?
-    authorized?(ROLES)
+    authorized?
   end
 
   def update?
-    authorized?(ROLES)
+    authorized?
   end
 
   def destroy?
-    authorized?(ROLES)
+    authorized?
   end
 
   private
 
-  def authorized?(roles)
-    @user.has_any_role?(*roles)
+  def authorized?
+    user.admin? || user.volunteer?
   end
 end

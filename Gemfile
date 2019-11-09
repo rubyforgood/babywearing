@@ -29,7 +29,6 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'name_of_person'
-gem 'rolify'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'

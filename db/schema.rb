@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_03_121749) do
+ActiveRecord::Schema.define(version: 2019_11_09_162417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 2019_11_03_121749) do
     t.integer "category_id"
     t.bigint "home_location_id", null: false
     t.bigint "current_location_id", null: false
-    t.string "safety_link"
     t.integer "status", default: 0, null: false
+    t.string "safety_link"
     t.index ["current_location_id"], name: "index_carriers_on_current_location_id"
     t.index ["home_location_id"], name: "index_carriers_on_home_location_id"
   end
@@ -108,16 +108,6 @@ ActiveRecord::Schema.define(version: 2019_11_03_121749) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
-  end
-
   create_table "signed_agreements", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "agreement_id"
@@ -145,17 +135,10 @@ ActiveRecord::Schema.define(version: 2019_11_03_121749) do
     t.datetime "deactivated_at"
     t.string "first_name"
     t.string "last_name"
+    t.integer "role", default: 2, null: false
     t.index ["deactivated_at"], name: "index_users_on_deactivated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "users_roles", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
-    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

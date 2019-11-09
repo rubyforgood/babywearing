@@ -2,9 +2,9 @@
 
 class User < ApplicationRecord
   include Deactivable
+
   has_person_name
 
-  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,8 +15,9 @@ class User < ApplicationRecord
   has_many :signed_agreements
   has_many :carts
 
+  enum role: [:admin, :volunteer, :member]
+
   after_create :send_welcome_email
-  after_create :assign_member_role
 
   def self.to_csv
     attributes = %w[first_name last_name email phone_number created_at]
@@ -34,9 +35,5 @@ class User < ApplicationRecord
 
   def send_welcome_email
     WelcomeMailer.welcome_email(self).deliver
-  end
-
-  def assign_member_role
-    add_role(:member) if roles.blank?
   end
 end
