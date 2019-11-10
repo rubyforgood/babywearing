@@ -1,32 +1,41 @@
 <h1>User Listing</h1>
 
-<table>
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email Address</th>
-    <th>Phone Number</th>
-    <th>Join Date</th>
-    <th>Status</th>
-    <th colspan="1"></th>
-  </tr>
-
-  <% @users.each do |user| %>
+<table data-toggle="table">
+  <thead class="thead-light">
     <tr>
-      <td><%= user.first_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.phone_number %></td>
-      <td><%= user.created_at %></td>
+      <th data-sortable="true">Name</th>
+      <th data-sortable="true">Email</th>
+      <th>Phone</th>
+      <th>Join Date</th>
+      <th data-sortable="true">Role</th>
+      <th data-sortable="true">Status</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-      <% if user.deactivated? %>
-        <td> Inactive</td>
-        <td> <%= link_to "Activate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to Activate this user?"} %> </td>
-      <% else %>
-        <td> Active</td>
-        <td><%= link_to "Deactivate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to change this user to Inactive?"} %></td>
-      <% end %>
-  <% end %>
-  </tr>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_number %></td>
+        <td><%= user.created_at %></td>
+        <td><%= user.role.humanize %></td>
+        <% if user.deactivated? %>
+          <td> Inactive</td>
+          <td>
+            <%= link_to "Activate", deactivate_index_path(id: user.id), method: :post,
+              data: {confirm: "Are you sure you want to Activate this user?"} %>
+          </td>
+        <% else %>
+          <td> Active</td>
+          <td><%= link_to "Deactivate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to change this user to Inactive?"} %></td>
+        <% end %>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
   <%= button_to "Export to CSV", "/users.csv", :method => :get %>
 </table>

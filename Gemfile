@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Adding bootstrap, using this walkthrough: https://github.com/twbs/bootstrap-rubygem#a-ruby-on-rails
 gem 'bootstrap', '~> 4.3.1'
+gem "bootstrap-table-rails"
 
 # Adding jQuery, using this walkthrough: https://github.com/twbs/bootstrap-rubygem#a-ruby-on-rails
 gem 'jquery-rails'

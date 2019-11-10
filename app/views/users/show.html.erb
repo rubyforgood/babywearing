@@ -1,0 +1,24 @@
+
+<h1>User Listing</h1>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Email Address</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Role</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+         
+    <tr>
+        <td class="p-2"><%= @user.email %></td>
+        <td class="p-2"><%= @user.first_name %></td>
+        <td class="p-2"><%= @user.last_name %></td>
+        <td class="p-2"><%= @user.roles.pluck(:name) %></td>
+        <td class="p-2"><a><%= link_to edit_user_path(id: @user.id) %></a></td>
+    </tr>
+
+  <%= button_to "Export to CSV", "/users.csv", :method => :get%>
+</table>

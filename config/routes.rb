@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
-  resources :users, only: [:index]
+  resources :users, except: [:destory, :show, :new]
   scope module: :users do
     resources :deactivate, only: :create
   end
@@ -22,6 +22,5 @@ Rails.application.routes.draw do
   end
 
   resources :photos, only: :destroy
-
   resources :categories
 end

@@ -1,0 +1,42 @@
+<h1>User Listing</h1>
+
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="sort-header"><%= link_to "Email Address", :sort => "email" %></th>
+      <th scope="col" class="sort-header"><%= link_to "First Name", :sort => "first_name" %></th>
+      <th scope="col" class="sort-header"><%= link_to "Last Name", :sort => "last_name" %></th>
+      <th scope="col">Role</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Active</th>
+      <th scope="col">Deactivate</th>
+
+    </tr>
+  </thead>
+
+  <% @users.each do |user| %>              
+    <tr>
+        <td class="p-2"><%= user.email %></td>
+        <td class="p-2"><%= user.first_name %></td>
+        <td class="p-2"><%= user.last_name %></td>
+        <% if user_is_admin(current_user) %>
+        <td class="p-2">
+          <%= form_with model: user, local: true, name: "switch_car" do |form| %>
+            <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] }, {}, onchange: "this.form.submit()" %>          
+          <% end %>
+        </td>
+        <% else %>
+          <td class="p-2"><%= user.roles.first.name %></td>   
+        <% end %>    
+        <td class="p-2"><%= link_to 'Edit', edit_user_path(user.id) %></td>
+      <% if user.deactivated? %>
+        <td> Inactive</td>
+        <td> <%= link_to "Activate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to Activate this user?"} %> </td>
+      <% else %>
+        <td> Active</td>
+        <td><%= link_to "Deactivate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to change this user to Inactive?"} %></td>
+      <% end %>
+  </tr>
+  <% end %>
+  <%= button_to "Export to CSV", "/users.csv", :method => :get %>
+</table>

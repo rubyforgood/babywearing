@@ -1,0 +1,54 @@
+<%= form_with model: user, local: true do |form| %>
+  <%= form_errors @user %>
+
+  <div class="form-group">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :role %>
+    <%= form.select :role, user_roles_select, {}, { class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :street_address %>
+    <%= form.text_field :street_address, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :street_address_second %>
+    <%= form.text_field :street_address_second , class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :city %>
+    <%= form.text_field :city, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :state %>
+    <%= form.text_field :state, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :postal_code %>
+    <%= form.text_field :postal_code, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, class: "form-control" %>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
