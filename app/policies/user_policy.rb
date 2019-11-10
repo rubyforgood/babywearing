@@ -9,6 +9,12 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    user.has_role?(:admin) || user.has_role?(:volunteer)
+    authorized?
+  end
+
+  private
+
+  def authorized?
+    user.admin? || user.volunteer?
   end
 end

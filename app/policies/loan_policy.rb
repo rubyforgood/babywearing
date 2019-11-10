@@ -9,18 +9,16 @@ class LoanPolicy < ApplicationPolicy
   end
 
   def new?
-    roles = [:admin, :volunteer]
-    authorized?(roles)
+    authorized?
   end
 
   def create?
-    roles = [:admin, :volunteer]
-    authorized?(roles)
+    authorized?
   end
 
   private
 
-  def authorized?(roles)
-    @user.has_any_role?(*roles)
+  def authorized?
+    user.admin? || user.volunteer?
   end
 end

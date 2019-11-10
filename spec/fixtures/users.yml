@@ -19,7 +19,7 @@ volunteer:
   state: 'VA'
   postal_code: '22032'
   phone_number: '18888888888'
-  roles: volunteer
+  role: volunteer
 
 admin:
   email: 'admin@test.com'
@@ -31,7 +31,7 @@ admin:
   state: 'VA'
   postal_code: '22032'
   phone_number: '18888888888'
-  roles: admin
+  role: admin
 
 member:
   email: 'member@test.com'
@@ -43,5 +43,5 @@ member:
   state: 'VA'
   postal_code: '22032'
   phone_number: '18888888888'
-  roles: member
+  role: member
 

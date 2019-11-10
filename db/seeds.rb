@@ -25,11 +25,6 @@ Agreement.create(title: 'Lending Library Use Agreement',
   for any harm that may result to you or your child from using the carrier, including any harm
   allegedly resulting from the Releasees’ instruction or alleged failure to instruct.')
 
-role_names_array = ['admin', 'volunteer', 'member', 'user']
-role_names_array.each do |role_name|
-  Role.create(name: role_name)
-end
-puts "Done."
 
 # Categories
 puts "Creating categories..."
