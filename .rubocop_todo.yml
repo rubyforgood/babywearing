@@ -9,9 +9,6 @@
 # Offense count: 1
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without
-RSpec/ContextWording:
-  Exclude:
-    - 'spec/models/user_spec.rb'
 
 # Offense count: 1
 RSpec/LeakyConstantDeclaration:
