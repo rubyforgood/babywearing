@@ -19,9 +19,7 @@ RSpec.describe Loan do
 
       let(:due_date) { DateTime.now + 1.days }
 
-      it "returns true" do
-        expect(subject).to be_valid
-      end
+      it { is_expected.to be_valid }
     end
   end
 

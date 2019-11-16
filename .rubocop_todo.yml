@@ -19,7 +19,6 @@ RSpec/LeakyConstantDeclaration:
 # Configuration parameters: IgnoreSharedExamples.
 RSpec/NamedSubject:
   Exclude:
-    - 'spec/models/loan_spec.rb'
     - 'spec/policies/agreement_policy_spec.rb'
     - 'spec/policies/carrier_policy_spec.rb'
     - 'spec/policies/category_policy_spec.rb'
