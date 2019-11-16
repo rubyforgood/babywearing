@@ -50,4 +50,14 @@ RSpec.describe CarrierPolicy do
       expect(subject).to permit(volunteer)
     end
   end
+
+  permissions :checkout? do
+    it "denies access if carrier is not in available state" do
+      expect(subject).not_to permit(member, carriers(:unavailable))
+    end
+
+    it "grants access if carrier is available" do
+      expect(subject).to permit(admin, carriers(:carrier))
+    end
+  end
 end

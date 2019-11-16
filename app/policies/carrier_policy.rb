@@ -28,6 +28,10 @@ class CarrierPolicy < ApplicationPolicy
     authorized?
   end
 
+  def checkout?
+    authorized? && carrier.available?
+  end
+
   private
 
   def authorized?

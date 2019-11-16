@@ -33,4 +33,10 @@ RSpec.feature 'Loan spec', type: :feature do
 
     expect(page).to have_current_path(carrier_path(carrier))
   end
+
+  scenario 'User is not able to perform checkout if carrier is not available' do
+    sign_in admin
+    visit carrier_url(carriers(:unavailable))
+    expect(page).not_to have_selector(:link_or_button, "Checkout")
+  end
 end

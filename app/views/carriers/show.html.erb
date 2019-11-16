@@ -2,37 +2,106 @@
   <div><%= flash[:success] %></div>
 <% end %>
 
-<h1><%= @carrier.name %></h1>
+<header>
+  <%= tag.span @carrier.item_id, class: "text-sm" %>
+  <%= tag.h1 @carrier.name %>
 
-<ul>
-  <li>Item Id: <%= @carrier.item_id %></li>
-  <li>Manufacturer: <%= @carrier.manufacturer %></li>
-  <li>Model: <%= @carrier.model %></li>
-  <li>Color: <%= @carrier.color %></li>
-  <li>Size: <%= @carrier.size %></li>
-  <li>Safety Link: <%=link_to "Safety Information",  @carrier.safety_link %></li>
-  <li>Category: <%= @carrier.category.name %></li>
-  <li>Home Location: <%= @carrier.home_location.name %></li>
-  <li>Current Location: <%= @carrier.current_location.name %></li>
-  <li>Status: <%= @carrier.status.titleize %>
-  <li>Default Loan Length: <%= @carrier.default_loan_length_days %> days</li>
-  <% if @carrier.photos.attached? %>
-    <li>Photos:
-      <% @carrier.photos.each do |photo| %>
-        <%= image_tag(photo.variant(resize: "100x100").processed, class: "img-thumbnail img-fluid") %>
-      <% end %>
-    </li>
+  <% if policy(@carrier).edit? %>
+    <%= link_to 'Edit', edit_carrier_path %>
   <% end %>
-</ul>
 
-<% if policy(@carrier).edit? %>
-  <%= link_to 'Edit', edit_carrier_path %>
-<% end %>
+  <% if policy(@carrier).destroy? %>
+    <%= link_to 'Delete', @carrier, method: :delete  %>
+  <% end %>
+</header>
 
-<% if policy(@carrier).destroy? %>
-  <%= link_to 'Delete', @carrier, method: :delete  %>
-<% end %>
+<div class="row mt-2">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <%= tag.label "Saftey link" %>
+          <%=link_to "Safety Information",  @carrier.safety_link %>
+        </div>
 
-<% if policy(@carrier).destroy? %>
-  <%= link_to 'Checkout', new_carrier_loans_url(@carrier), class: "btn btn-primary", data: { modal: true } %>
-<% end %>
+        <div class="form-group">
+          <%= tag.label "Category" %>
+          <%= tag.p @carrier.category.name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= tag.label "Home Location" %>
+          <%= tag.p @carrier.home_location.name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= tag.label "Current Location" %>
+          <%= tag.p @carrier.current_location.name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= tag.label "Defautl Loan Length" %>
+          <%= tag.p @carrier.default_loan_length_days, class: "form-control" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Carrier Availibility</h5>	
+        <h6 class="card-subtitle mb-2 text-muted">
+          <%= tag.span @carrier.status.titleize, class: carrier_badge_class(@carrier) %>
+        </h6>
+
+        <% if policy(@carrier).checkout? %>
+          <%= link_to 'Checkout', new_carrier_loans_url(@carrier), class: "btn btn-primary", data: { modal: true } %>
+        <% else %>
+          <div class="bg-warning text-dark p-1">
+            You either don't have right permissions to perform a checkout or carrier is
+            not available for loan.
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card mt-3">
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <% if @carrier.photos.attached? %>
+            <li>
+              <% @carrier.photos.each do |photo| %>
+                <%= image_tag(photo.variant(resize: "100x100").processed, class: "img-thumbnail img-fluid") %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="form-group">
+          <%= tag.label "Manufacturer" %>
+          <%= tag.p @carrier.manufacturer, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= tag.label "Model" %>
+          <%= tag.p @carrier.model, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= tag.label "Color" %>
+          <%= tag.p @carrier.color, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= tag.label "Size" %>
+          <%= tag.p @carrier.size, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
