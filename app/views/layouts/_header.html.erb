@@ -9,8 +9,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active background-blue">
-          <%= link_to new_user_registration_path, class: 'nav-link nav-icon nav-first' do %>
-            <%= image_tag "BW- CREATE USER ICON.svg", alt:"Create a User" %><p>CREATE USER</p>
+          <% if user_can_add_new_member(current_user) %>
+            <%= link_to new_user_registration_path, class: 'nav-link nav-icon nav-first' do %>
+              <%= image_tag "BW- CREATE USER ICON.svg", alt:"Create a User" %><p>CREATE USER</p>
+            <% end %>
           <% end %>
         </li>
         <li class="nav-item active background-slate">

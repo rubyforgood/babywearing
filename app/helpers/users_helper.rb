@@ -6,7 +6,7 @@ module UsersHelper
   end
 
   def user_can_add_new_member(user)
-    user.admin? || user.volunteer?
+    user&.admin? || user&.volunteer?
   end
 
   def user_roles_select
