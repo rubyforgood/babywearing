@@ -20,7 +20,6 @@ RSpec/LeakyConstantDeclaration:
 RSpec/NamedSubject:
   Exclude:
     - 'spec/policies/agreement_policy_spec.rb'
-    - 'spec/policies/carrier_policy_spec.rb'
     - 'spec/policies/category_policy_spec.rb'
     - 'spec/policies/fee_type_policy_spec.rb'
     - 'spec/policies/loan_policy_spec.rb'
@@ -32,7 +31,6 @@ RSpec/NamedSubject:
 RSpec/RepeatedDescription:
   Exclude:
     - 'spec/policies/agreement_policy_spec.rb'
-    - 'spec/policies/carrier_policy_spec.rb'
     - 'spec/policies/category_policy_spec.rb'
     - 'spec/policies/fee_type_policy_spec.rb'
     - 'spec/policies/location_policy_spec.rb'
