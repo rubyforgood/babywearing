@@ -14,7 +14,6 @@
 # Configuration parameters: IgnoreSharedExamples.
 RSpec/NamedSubject:
   Exclude:
-    - 'spec/policies/category_policy_spec.rb'
     - 'spec/policies/fee_type_policy_spec.rb'
     - 'spec/policies/loan_policy_spec.rb'
     - 'spec/policies/location_policy_spec.rb'
@@ -24,7 +23,6 @@ RSpec/NamedSubject:
 # Offense count: 64
 RSpec/RepeatedDescription:
   Exclude:
-    - 'spec/policies/category_policy_spec.rb'
     - 'spec/policies/fee_type_policy_spec.rb'
     - 'spec/policies/location_policy_spec.rb'
     - 'spec/policies/membership_type_policy_spec.rb'
