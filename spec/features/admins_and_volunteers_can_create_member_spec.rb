@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'only admins and volunteers can see the create user' do
+RSpec.feature 'only admins and volunteers can see the create user' do
   let(:admin) { users(:admin) }
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }

@@ -10,11 +10,6 @@
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without
 
-# Offense count: 1
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - 'spec/features/visitor_signs_in_spec.rb'
-
 # Offense count: 70
 # Configuration parameters: IgnoreSharedExamples.
 RSpec/NamedSubject:
