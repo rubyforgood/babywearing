@@ -16,7 +16,6 @@
           <th scope="col">Number of items</th>
           <th scope="col">Description</th>
           <th scope="col"></th>
-          <th scope="col"></th>
         </tr>
       </thead>
 
@@ -28,8 +27,10 @@
             <td><%= membership_type.duration_days %></td>
             <td><%= membership_type.number_of_items %></td>
             <td><%= membership_type.description %></td>
-            <td><%= link_to 'Edit', edit_membership_type_path(membership_type) %></td>
-            <td><%= link_to 'Destroy', membership_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td align="right">
+                <%= link_to 'Edit', edit_membership_type_path(membership_type), class: 'btn btn-primary btn-sm' %> |
+                <%= link_to 'Destroy', membership_type, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            </td>
           </tr>
         <% end %>
       </tbody>

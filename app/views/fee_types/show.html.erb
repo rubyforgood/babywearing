@@ -10,5 +10,5 @@
   <%= number_to_currency(@fee_type.amount/100) %>
 </p>
 
-<%= link_to 'Edit', edit_fee_type_path(@fee_type) %> |
-<%= link_to 'Back', fee_types_path %>
+<%= link_to 'Edit', edit_fee_type_path(@fee_type), class: 'btn btn-primary btn-sm' %> |
+<%= link_to 'Back', fee_types_path, class: 'btn btn-primary btn-sm' %>

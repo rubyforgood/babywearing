@@ -3,15 +3,15 @@
 <% end %>
 
 <header>
-  <%= tag.span @carrier.item_id, class: "text-sm" %>
+  <%= tag.span @carrier.item_id, class: 'text-sm' %>
   <%= tag.h1 @carrier.name %>
 
   <% if policy(@carrier).edit? %>
-    <%= link_to 'Edit', edit_carrier_path %>
+    <%= link_to 'Edit', edit_carrier_path, class: 'btn btn-primary btn-sm' %>
   <% end %>
 
   <% if policy(@carrier).destroy? %>
-    <%= link_to 'Delete', @carrier, method: :delete  %>
+    <%= link_to 'Delete', @carrier, method: :delete, class: 'btn btn-danger btn-sm' %>
   <% end %>
 </header>
 
@@ -57,7 +57,7 @@
         </h6>
 
         <% if policy(@carrier).checkout? %>
-          <%= link_to 'Checkout', new_carrier_loans_url(@carrier), class: "btn btn-primary", data: { modal: true } %>
+          <%= link_to 'Checkout', new_carrier_loans_url(@carrier), class: 'btn btn-primary', data: { modal: true } %>
         <% else %>
           <div class="bg-warning text-dark p-1">
             You either don't have right permissions to perform a checkout or carrier is

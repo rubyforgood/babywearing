@@ -2,7 +2,7 @@
   <header class="card-header d-flex align-items-center">
     <h3 class="mr-auto">Fee Types</h3>
     <% if policy(:fee_type).new? %>
-      <%= link_to '+ New', new_fee_type_path, class: "btn btn-primary" %>
+      <%= link_to '+ New', new_fee_type_path, class: 'btn btn-primary' %>
     <% end %>
   </header>
 
@@ -13,7 +13,6 @@
           <th scope="col">Name</th>
           <th scope="col">Amount</th>
           <th scope="col"></th>
-          <th scope="col"></th>
         </tr>
       </thead>
 
@@ -22,8 +21,10 @@
           <tr>
             <td><%= link_to fee_type.name, fee_type %></td>
             <td><%= number_to_currency(fee_type.amount/100) %></td>
-            <td><%= link_to 'Edit', edit_fee_type_path(fee_type) %></td>
-            <td><%= link_to 'Destroy', fee_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td align="right">
+                <%= link_to 'Edit', edit_fee_type_path(fee_type), class: 'btn btn-primary btn-sm' %> |
+                <%= link_to 'Destroy', fee_type, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            </td>
           </tr>
         <% end %>
       </tbody>

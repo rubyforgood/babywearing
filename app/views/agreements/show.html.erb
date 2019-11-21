@@ -14,6 +14,6 @@
   <%= @agreement.content %>
 </p>
 
-<%= link_to 'Sign', signed_agreement_path(@agreement) %> |
-<%= link_to 'Edit', edit_agreement_path(@agreement) %> |
-<%= link_to 'Back', agreements_path %>
+<%= link_to 'Sign', signed_agreement_path(@agreement), class: 'btn btn-primary btn-sm' %> |
+<%= link_to 'Edit', edit_agreement_path(@agreement), class: 'btn btn-primary btn-sm' %> |
+<%= link_to 'Back', agreements_path, class: 'btn btn-primary btn-sm' %>
