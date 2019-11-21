@@ -8,16 +8,10 @@ RSpec.describe LoanPolicy do
   let(:member) { users(:member) }
 
   permissions :create? do
-    it "denies access if user is not an admin or volunteer" do
-      expect(subject).not_to permit(member)
-    end
+    it { is_expected.not_to permit(member) }
 
-    it "grants access if the user is an admin" do
-      expect(subject).to permit(admin)
-    end
+    it { is_expected.to permit(admin) }
 
-    it "grants access if the user is a volunteer" do
-      expect(subject).to permit(volunteer)
-    end
+    it { is_expected.to permit(volunteer) }
   end
 end
