@@ -16,7 +16,6 @@ RSpec/NamedSubject:
   Exclude:
     - 'spec/policies/fee_type_policy_spec.rb'
     - 'spec/policies/location_policy_spec.rb'
-    - 'spec/policies/membership_type_policy_spec.rb'
     - 'spec/policies/user_policy_spec.rb'
 
 # Offense count: 64
@@ -24,7 +23,6 @@ RSpec/RepeatedDescription:
   Exclude:
     - 'spec/policies/fee_type_policy_spec.rb'
     - 'spec/policies/location_policy_spec.rb'
-    - 'spec/policies/membership_type_policy_spec.rb'
     - 'spec/policies/user_policy_spec.rb'
 
 # Offense count: 66
