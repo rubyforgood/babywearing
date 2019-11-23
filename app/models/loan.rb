@@ -8,6 +8,9 @@ class Loan < ApplicationRecord
   belongs_to :checkin_volunteer, class_name: 'User', optional: true
 
   scope :outstanding, -> { where(checkin_volunteer_id: nil) }
+  scope :overdue, -> { where(checkin_volunteer_id: nil).where(due_date.lt(Time.zone.today)) }
+  scope :due_today, -> { where(due_date: Time.zone.today) }
+  scope :due_in_one_week, -> { where(due_date: (Time.zone.today + 1.week)) }
 
   # validations
   validates :carrier, :due_date, presence: true

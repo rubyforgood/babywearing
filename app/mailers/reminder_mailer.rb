@@ -1,36 +1,27 @@
 # frozen_string_literal: true
 
 class ReminderMailer < ApplicationMailer
-  def overdue_email(user, carrier_name, current_location, due_date)
-    @user = user.name.first
-    @carrier_name = carrier_name
-    @current_location = current_location
-    @due_date = due_date
-    mail(to: @user.email, subject: 'Baby Carrier Overdue For Return')
+  before_action do
+    @user_name = params[:user_name]
+    @user_email = params[:user_email]
+    @carrier_name = params[:carrier_name]
+    @location = params[:location]
+    @due_date = params[:due_date]
   end
 
-  def due_today_email(user, carrier_name, current_location)
-    @user = user.name.first
-    @carrier_name = carrier_name
-    @current_location = current_location
-    mail(to: @user.email, subject: 'Carrier Return Is Now Due')
+  def overdue_email
+    mail(to: @user_email, subject: 'Baby Carrier Overdue For Return')
   end
 
-  def week_advance_notice_email(user, carrier_name, current_location, due_date)
-    @user = user.name.first
-    @carrier_name = carrier_name
-    @current_location = current_location
-    @due_date = due_date
-    mail(to: @user.email, subject: 'Baby Carrier Due For Return')
+  def due_today_email
+    mail(to: @user_email, subject: 'Baby Carrier Due For Return')
   end
 
-  def successful_checkout_email(user, carrier, due_date)
-    @user = user.name.first
-    @carrier_name = carrier.name
-    @category = carrier.category.name
-    @color = carrier.color
-    @item_id = carrier.item_id
-    @due_date = due_date
-    mail(to: @user.email, subject: "You've Successfully Checked Out #{@carrier_name}")
+  def week_advance_notice_email
+    mail(to: @user_email, subject: 'Baby Carrier Due For Return in One Week')
+  end
+
+  def successful_checkout_email
+    mail(to: @user_email, subject: "You've Successfully Checked Out #{@carrier_name}")
   end
 end

@@ -34,7 +34,7 @@ RSpec.describe "Loans", type: :request do
     end
 
     context 'with invalid attributes' do
-      it "can't create a lone wihtout the member" do
+      it "can't create a loan without the member" do
         sign_in volunteer
 
         post carrier_loans_path(carrier), params: { loan: valid_params.except(:member_id) }

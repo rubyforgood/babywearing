@@ -1,6 +1,6 @@
-<p>Dear <%= user %>,</p>
+<p>Dear <%= @user_name %>,</p>
 
-<p>This is a reminder that your <%= @carrier_name %> is due back to <%= @current_location %> today.</p>
+<p><%= "This is a reminder that the #{@carrier_name} is due back to #{@location} today." %></p>
 
 <p>Thanks,
   <br />

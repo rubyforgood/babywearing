@@ -33,4 +33,8 @@ class Carrier < ApplicationRecord
   def checked_out
     loans.outstanding.exists?
   end
+
+  def display_name
+    [manufacturer, model].reject(&:blank?).join(' ')
+  end
 end
