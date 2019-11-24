@@ -4,21 +4,15 @@ class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update]
 
   def index
-    @carriers = Carrier
-                .with_attached_photos
-                .includes(:home_location)
-                .all
-
+    @carriers = Carrier.with_attached_photos.includes(:home_location)
     init_filters || return
     @carriers = @filterrific.find
+    extract_view_mode
 
     respond_to do |format|
       format.html
       format.js
     end
-  end
-
-  def show
   end
 
   def new
@@ -71,6 +65,21 @@ class CarriersController < ApplicationController
 
   private
 
+  def verify_view_mode
+    view_modes = %w[icon list]
+    @view_mode = view_modes.first unless @view_mode && view_modes.include?(@view_mode)
+  end
+
+  def extract_view_mode
+    if params[:view].present?
+      @view_mode = params[:view]
+      cookies[:carrier_view] = @view_mode
+    elsif cookies[:carrier_view].present?
+      @view_mode = cookies[:carrier_view]
+    end
+    verify_view_mode
+  end
+
   def init_filters
     @filterrific = initialize_filterrific(
       Carrier.includes(:current_location, :category).with_attached_photos,
@@ -78,7 +87,8 @@ class CarriersController < ApplicationController
       select_options: {
         with_category_id: Carrier::FilterImpl.options_for_category_filter,
         with_current_location_id: Carrier::FilterImpl.options_for_current_location_filter,
-        with_status: Carrier::FilterImpl.options_for_status_filter
+        with_status: Carrier::FilterImpl.options_for_status_filter,
+        with_checked_out: Carrier::FilterImpl.options_for_yes_no_filter
       }
     )
   end

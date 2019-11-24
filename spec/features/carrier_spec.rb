@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Carrier do
-  describe 'USER role' do
-    let(:carrier) { carriers(:carrier) }
-    let(:user) { users(:user) }
+  let(:carrier) { carriers(:carrier) }
+  let(:user) { users(:user) }
 
+  describe 'USER role' do
     before do
       visit '/'
       sign_in user
@@ -289,6 +289,33 @@ RSpec.describe Carrier do
       visit edit_carrier_path(carrier.id)
 
       expect(page).to have_content "Sorry, you aren't allowed to do that."
+    end
+  end
+
+  describe "view mode" do
+    before do
+      sign_in user
+      visit carriers_path
+    end
+
+    it "can set the view mode to list" do
+      click_on(class: "carrier-list-link")
+
+      expect(page).to have_current_path(carriers_path(view: "list"))
+      expect(page).to have_css('table')
+    end
+
+    it "can set the view mode to icon" do
+      click_on(class: "carrier-icon-link")
+
+      expect(page).to have_current_path(carriers_path(view: "icon"))
+      expect(page).not_to have_css('table')
+    end
+
+    it "uses view mode from cookie" do
+      Capybara.current_session.driver.browser.set_cookie("carrier_view=list")
+      visit carriers_path
+      expect(page).to have_css('table')
     end
   end
 end

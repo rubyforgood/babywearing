@@ -1,33 +1,57 @@
-<div id="filterrific_results">
-  <% @carriers.each_slice(4) do |carriers| %>
-    <div class="row mb-2">
-      <% carriers.each do |carrier| %>
-        <div class="col-md-3">
-          <div class="card carrier-card">
-            <% if carrier.photos.attached? %>
-              <div class="text-center">
-                <%= link_to carrier do %>
-                  <%= image_tag(carrier.photos.first.variant(resize: "200x300").processed, class: "img-thumbnail img-fluid") %>
-                <% end %>
-              </div>
-            <% else %>
-              <%= link_to carrier do %>
-                <%= image_tag("img_placeholder.svg", class: "img-thumbnail placeholder-img") %>
+<div class="card">
+  <header class="card-header d-flex align-items-center">
+    <h3 class="mr-auto">Carriers</h3>
+    <% if policy(:carrier).new? %>
+      <%= link_to '+ New', new_carrier_path, class: "btn btn-primary" %>
+    <% end %>
+  </header>
+  <section>
+    <table class="table">
+      <thead>
+        <tr class="super-header">
+          <th scope="colgroup" colspan="5"></th>
+          <th scope="colgroup" colspan="2" class="with-content">Location</th>
+          <th scope="colgroup" colspan="100%"></th>
+        </tr>
+        <tr class="main-header">
+          <th scope="col">Name</th>
+          <th scope="col">Item ID</th>
+          <th scope="col" title="Checked-out">C/O</th>
+          <th scope="col">Manufacturer</th>
+          <th scope="col">Model</th>
+          <th scope="col">Current</th>
+          <th scope="col">Home</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @carriers.each do |carrier| %>
+          <tr>
+            <td><%= link_to carrier.name, carrier_path(carrier)  %>
+            <td><%= carrier.item_id %></td>
+            <td><%= carrier.checked_out ? fa_icon('check') : "" %></td>
+            <td><%= carrier.manufacturer %></td>
+            <td><%= carrier.model %></td>
+            <td><%= carrier.current_location.name %></td>
+            <td><%= carrier.home_location.name %></td>
+            <td><%= carrier.category.name %></td>
+            <td><%= carrier.status.titleize %></td>
+            <td>
+              <% can_destroy =  policy(carrier).destroy? %>
+              <% can_edit =  policy(carrier).edit? %>
+              <% if can_destroy || can_edit %>
+                <div class="actions">
+                  <%= link_to 'Edit', edit_carrier_path(carrier), class: 'btn btn-primary btn-sm' if policy(carrier).edit? %>
+                  <%= link_to 'Destroy', carrier, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+                </div>
               <% end %>
-            <% end %>
-            <div class="card-body">
-              <div class="row"><div class="carrier-name"><%= link_to carrier.name, carrier %></div></div>
-              <div class="row"><div class="col">Manufacturer:</div><div class="col"><%= carrier.manufacturer %></div></div>
-              <div class="row"><div class="col">Model:</div><div class="col"><%= carrier.model %></div></div>
-              <div class="row"><div class="col">Current Location:</div><div class="col"><%= carrier.current_location.name %></div></div>
-              <div class="row"><div class="col">Home Location:</div><div class="col"><%= carrier.home_location.name %></div></div>
-              <div class="row"><div class="col">Category:</div><div class="col"><%= carrier.category.name %></div></div>
-              <div class="row"><div class="col">Status:</div><div class="col"><%= carrier.status.titleize %></div></div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
 </div>
 

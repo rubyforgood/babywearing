@@ -29,4 +29,8 @@ class Carrier < ApplicationRecord
       due_date: Date.today + default_loan_length_days.days
     }.merge(attributes))
   end
+
+  def checked_out
+    loans.outstanding.exists?
+  end
 end

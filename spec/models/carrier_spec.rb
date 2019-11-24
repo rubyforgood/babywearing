@@ -66,4 +66,37 @@ RSpec.describe Carrier do
       end
     end
   end
+
+  describe '#checked_out' do
+    let(:carrier) { described_class.first }
+
+    before do
+      carrier.loans.delete_all
+    end
+
+    context 'when there is no loan at all' do
+      it 'returns false' do
+        expect(carrier.checked_out).to be false
+      end
+    end
+
+    context 'when there is a loan' do
+      it 'returns true if not yet checked in by volunteer' do
+        Loan.create(carrier: carrier,
+                    member: users(:member),
+                    checkout_volunteer: users(:volunteer),
+                    due_date: Time.zone.today + 10.days)
+        expect(carrier.checked_out).to be true
+      end
+
+      it 'returns false if checked in by volunteer' do
+        Loan.create(carrier: carrier,
+                    member: users(:member),
+                    checkout_volunteer: users(:volunteer),
+                    checkin_volunteer: users(:volunteer),
+                    due_date: Time.zone.today + 10.days)
+        expect(carrier.checked_out).to be false
+      end
+    end
+  end
 end

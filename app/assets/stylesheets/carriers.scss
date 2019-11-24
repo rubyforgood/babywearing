@@ -36,3 +36,29 @@
     }
   }
 }
+
+.view-mode-menu {
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  margin-right: 3em;
+}
+
+.actions {
+  min-width: 10em;
+}
+
+thead tr.main-header th {
+  border-top: none;
+}
+
+thead tr.super-header th {
+  text-align: center;
+  line-height: 0.2em;
+}
+
+thead tr.super-header th:not(.with-content) {
+  border-bottom: none;
+  text-align: center;
+}
+
