@@ -9,7 +9,7 @@ RSpec.describe CategoryPolicy do
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
 
-  %i[create? update? destroy?].each do |activity|
+  %i[create? edit? update? destroy?].each do |activity|
     permissions activity do
       it { is_expected.not_to permit(member) }
       it { is_expected.to permit(admin, volunteer) }
