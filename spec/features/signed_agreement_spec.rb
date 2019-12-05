@@ -17,7 +17,7 @@ RSpec.describe SignedAgreement do
     expect(page).to have_content(agreement.content)
   end
 
-  scenario 'CREATE' do
+  scenario 'CREATE with valid signature' do
     visit signed_agreement_path(agreement.id)
 
     fill_in 'signed_agreement_signature', with: 'RFG'
@@ -25,5 +25,15 @@ RSpec.describe SignedAgreement do
     click_on 'I Agree'
 
     expect(page).to have_content('Agreement was successfully signed.')
+  end
+
+  scenario 'CREATE with invalid signature' do
+    visit signed_agreement_path(agreement.id)
+
+    fill_in 'signed_agreement_signature', with: ''
+
+    click_on 'I Agree'
+
+    expect(page).to have_content('Signature can\'t be blank')
   end
 end
