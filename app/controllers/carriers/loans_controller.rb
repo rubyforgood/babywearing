@@ -9,8 +9,6 @@ module Carriers
     def new
       @loan = authorize @carrier.loans.new
       respond_modal_with @loan
-    rescue Pundit::NotAuthorizedError
-      render_not_found
     end
 
     def create
