@@ -99,4 +99,46 @@ RSpec.describe Carrier do
       end
     end
   end
+
+  describe '#display_name' do
+    let(:carrier) { carriers(:carrier) }
+    let(:manufacturer) { 'manny' }
+    let(:model) { 'my model' }
+
+    context 'with no manufacturer or model' do
+      it 'returns the empty string' do
+        carrier.manufacturer = ''
+        carrier.model = ''
+
+        expect(carrier.display_name).to eq('')
+      end
+    end
+
+    context 'with manufacturer only' do
+      it 'contains the manufacturer' do
+        carrier.manufacturer = manufacturer
+        carrier.model = ''
+
+        expect(carrier.display_name).to eq(manufacturer)
+      end
+    end
+
+    context 'with model only' do
+      it 'contains the model' do
+        carrier.manufacturer = ''
+        carrier.model = model
+
+        expect(carrier.display_name).to eq(model)
+      end
+    end
+
+    context 'with both manufacturer and model' do
+      it 'contains them both' do
+        carrier.manufacturer = manufacturer
+        carrier.model = model
+
+        expect(carrier.display_name).to eq("#{manufacturer} #{model}")
+      end
+    end
+  end
 end

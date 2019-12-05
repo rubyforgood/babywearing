@@ -1,16 +1,14 @@
+<p>Dear <%= @user_name %></p>
 
-<p>Dear <%= @user %></p>
+<p><%=
+  "You have successfully checked out the #{@carrier_name} from Patuxent Babywearing today.
+  It is due back on  #{@due_date} to the #{@location} location."
+%></p>
 
-<p>You have successfully checked out <%= @carrier_name %>. Details regarding this carrier are as follows:</p>
-<ul>  
-  <li><%= @category %> </li>
- <li> <%= @color %> </li>
- <li> <%= @item_id %> </li>
-</ul>
-<p>and it is due back on <%= @due_date %>.</p>
+<p></p>
 
 <p>Please keep this email for your records.</p>
 
 <p>Thanks,
-  <br />
-MidAtlantic Babywearing</p>
+  <br/>
+  MidAtlantic Babywearing</p>

@@ -10,7 +10,6 @@ class FeeTypesController < ApplicationController
 
   # GET /fee_types/1
   def show
-    # binding.pry
   end
 
   # GET /fee_types/new

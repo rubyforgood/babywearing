@@ -36,7 +36,7 @@ admin:
 member:
   email: 'member@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
-  first_name: 'Memebr'
+  first_name: 'Member'
   last_name: 'Bember'
   street_address: '123 main street'
   city: 'fairfax'
