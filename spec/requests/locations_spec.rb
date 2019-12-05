@@ -10,7 +10,7 @@ RSpec.describe "Locations", type: :request do
       sign_in users(:member)
       send :get, locations_path
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
       expect(response.body).to match(/Lancaster/)
     end
   end
@@ -41,22 +41,34 @@ RSpec.describe "Locations", type: :request do
     end
 
     context 'with invalid attributes' do
-      it "doen't create a location" do
+      it "does not create a location" do
         sign_in users(:admin)
         send :post, locations_path, params: { location: invalid_attr }
 
+        expect(response).to be_unprocessable
         expect(response.body).to match(/prohibited this/)
       end
     end
   end
 
   describe 'GET /location/:id' do
-    it 'has have_http_status 200' do
-      sign_in users(:member)
-      send :get, locations_path(location)
+    context 'with a valid location' do
+      it 'returns the location' do
+        sign_in users(:member)
+        send :get, location_path(location)
 
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to match(/Lancaster/)
+        expect(response).to be_successful
+        expect(response.body).to match(/Lancaster/)
+      end
+    end
+
+    context 'with an invalid location' do
+      it 'returns a 404' do
+        sign_in users(:member)
+        send :get, location_path(123_456_789)
+
+        expect(response).to be_not_found
+      end
     end
   end
 
@@ -75,6 +87,7 @@ RSpec.describe "Locations", type: :request do
         sign_in users(:admin)
         send :put, location_path(location), params: { location: valid_attr }
 
+        expect(response).to redirect_to(location_path(location))
         expect(flash[:notice]).to eq('Location was successfully updated.')
       end
     end
@@ -84,6 +97,7 @@ RSpec.describe "Locations", type: :request do
         sign_in users(:admin)
         send :put, location_path(location), params: { location: invalid_attr }
 
+        expect(response).to be_unprocessable
         expect(response.body).to match(/prohibited this/)
       end
     end
@@ -101,7 +115,7 @@ RSpec.describe "Locations", type: :request do
       sign_in users(:admin)
       send :delete, location_path(location)
 
-      expect(response).to have_http_status(:found)
+      expect(response).to redirect_to(locations_path)
       expect(flash[:alert]).to eq('Location was successfully destroyed.')
     end
   end

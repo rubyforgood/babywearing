@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include Authentication
   include Pundit
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # See `lib/modal_responder.rb` for deatils.
