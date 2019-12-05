@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Carrier < ApplicationRecord
+  include AASM
   include Carrier::FilterImpl
 
   belongs_to :home_location, class_name: 'Location'
@@ -20,9 +21,32 @@ class Carrier < ApplicationRecord
 
   has_many_attached :photos
 
-  enum status: %i[available unavailable disabled sold]
+  aasm column: 'state' do
+    state :available, initial: true
+    state :out_of_service
+    state :sold
+    state :checked_out
 
-  alias available_for_checkout? available?
+    event :take_out_of_service do
+      transitions from: [:available], to: :out_of_service
+    end
+
+    event :make_available do
+      transitions from: [:out_of_service], to: :available
+    end
+
+    event :sell do
+      transitions from: [:available, :out_of_service], to: :sold
+    end
+
+    event :checkout do
+      transitions from: [:available], to: :checked_out
+    end
+
+    event :checkin do
+      transitions from: [:checked_out], to: :available
+    end
+  end
 
   def build_loan(attributes = {})
     loans.create({
@@ -30,11 +54,11 @@ class Carrier < ApplicationRecord
     }.merge(attributes))
   end
 
-  def checked_out
-    loans.outstanding.exists?
-  end
-
   def display_name
     [manufacturer, model].reject(&:blank?).join(' ')
+  end
+
+  def outstanding_loan
+    loans.outstanding.last
   end
 end

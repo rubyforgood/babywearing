@@ -8,4 +8,8 @@ module CarriersHelper
       "badge badge-danger"
     end
   end
+
+  def carrier_editable_states_for_select
+    Carrier.aasm.states_for_select.reject { |s| s.first == "Checked out" }
+  end
 end

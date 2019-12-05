@@ -1,5 +1,4 @@
 <% js = escape_javascript(
   render(partial: @view_mode, locals: { carriers: @carriers })
 ) %>
-
 $("#filterrific_results").html("<%= js %>");

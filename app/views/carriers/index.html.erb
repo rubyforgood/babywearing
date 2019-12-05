@@ -1,21 +1,27 @@
 <% if flash[:success] %>
   <div><%= flash[:success] %></div>
 <% end %>
-
-<h1>Carriers</h1>
-<div class="view-mode-menu">
-  View: <%= link_to fa_icon('th-list'), carriers_path(view: 'list'), title: "List", class: "carrier-list-link" %> |
-        <%= link_to fa_icon('th'), carriers_path(view: 'icon'), title: "Icons", class: "carrier-icon-link" %>
-</div>
-<div class="card filter-card">
-  <div class="card-header">Filters</div>
-  <div class="card-body">
-    <%= render partial: 'filter_form', locals: { filterrific: @filterrific } %>
+<div class="card">
+  <header class="card-header d-flex align-items-center">
+    <% if policy(:carrier).new? %>
+      <%= link_to '+ New', new_carrier_path, class: "btn btn-primary" %>
+    <% end %>
+    <h3 class="carrier-index-title">Carriers</h3>
+    <div class="view-mode-menu">
+      View: <%= link_to fa_icon('th-list'), carriers_path(view: 'list'), title: "List", class: "carrier-list-link" %> |
+      <%= link_to fa_icon('th'), carriers_path(view: 'icon'), title: "Icons", class: "carrier-icon-link" %>
+    </div>
+  </header>
+  <div class="card filter-card">
+    <div class="card-header">Filters</div>
+    <div class="card-body">
+      <%= render partial: 'filter_form', locals: { filterrific: @filterrific } %>
+    </div>
   </div>
-</div>
-<div id="filterrific_results">
-  <%= render(
-          partial: @view_mode,
-          locals: { carriers: @carriers }
-  ) %>
+  <div id="filterrific_results">
+    <%= render(
+            partial: @view_mode,
+            locals: { carriers: @carriers }
+    ) %>
+  </div>
 </div>

@@ -8,11 +8,19 @@ class LoanPolicy < ApplicationPolicy
     @loan = loan
   end
 
+  def create?
+    authorized?
+  end
+
+  def edit?
+    authorized?
+  end
+
   def new?
     authorized?
   end
 
-  def create?
+  def update?
     authorized?
   end
 

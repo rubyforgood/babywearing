@@ -29,7 +29,7 @@ class CarrierPolicy < ApplicationPolicy
   end
 
   def checkout?
-    authorized? && carrier.available?
+    authorized?
   end
 
   private

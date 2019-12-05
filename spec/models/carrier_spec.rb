@@ -47,14 +47,6 @@ RSpec.describe Carrier do
     expect(described_class.new(current_location_id: nil)).not_to be_valid
   end
 
-  describe '#available_for_checkout?' do
-    let(:carrier) { carriers(:carrier) }
-
-    it 'is an alias for available?' do
-      expect(carrier.available_for_checkout?).to eq carrier.available?
-    end
-  end
-
   describe '#build_loan' do
     let(:carrier) { described_class.first }
 
@@ -63,39 +55,6 @@ RSpec.describe Carrier do
 
       it 'creates a loan with the default due date set' do
         expect(loan.due_date).to eq Date.today + carrier.default_loan_length_days.days
-      end
-    end
-  end
-
-  describe '#checked_out' do
-    let(:carrier) { described_class.first }
-
-    before do
-      carrier.loans.delete_all
-    end
-
-    context 'when there is no loan at all' do
-      it 'returns false' do
-        expect(carrier.checked_out).to be false
-      end
-    end
-
-    context 'when there is a loan' do
-      it 'returns true if not yet checked in by volunteer' do
-        Loan.create(carrier: carrier,
-                    member: users(:member),
-                    checkout_volunteer: users(:volunteer),
-                    due_date: Time.zone.today + 10.days)
-        expect(carrier.checked_out).to be true
-      end
-
-      it 'returns false if checked in by volunteer' do
-        Loan.create(carrier: carrier,
-                    member: users(:member),
-                    checkout_volunteer: users(:volunteer),
-                    checkin_volunteer: users(:volunteer),
-                    due_date: Time.zone.today + 10.days)
-        expect(carrier.checked_out).to be false
       end
     end
   end

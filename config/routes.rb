@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :membership_types
 
   resources :carriers do
-    resource :loans, only: [:new, :create], module: :carriers
+    resources :loans, only: [:create, :edit, :new, :update], module: :carriers
   end
 
   resources :photos, only: :destroy

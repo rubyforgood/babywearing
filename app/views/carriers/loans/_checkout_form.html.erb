@@ -1,0 +1,41 @@
+<%= form_with(model: [@carrier, @loan], remote: request.xhr?, html: { data: { modal: true } }) do |form| %>
+  <div class="modal-body">
+    <%= form_errors @loan %>
+
+    <div style="background: #fbf6f4;border: 1px solid #d0cfcf;padding: 10px;">
+      <%= tag.h5 "1. You are lending", style: "color: #283c46" %>
+      <p><em><%= @carrier.name %></em></p>
+      <details>
+        <summary>Details</summary>
+        <ul>
+          <li>Item Id: <%= @carrier.item_id %></li>
+          <li>Manufacturer: <%= @carrier.manufacturer %></li>
+          <li>Model: <%= @carrier.model %></li>
+          <li>Color: <%= @carrier.color %></li>
+          <li>Size: <%= @carrier.size %></li>
+          <li>Safety Link: <%=link_to "Safety Information",  @carrier.safety_link %></li>
+          <li>Category: <%= @carrier.category.name %></li>
+          <li>Home Location: <%= @carrier.home_location.name %></li>
+          <li>Current Location: <%= @carrier.current_location.name %></li>
+          <li>Default Loan Length: <%= @carrier.default_loan_length_days %> days</li>
+        </ul>
+      </details>
+    </div>
+
+    <div style="margin-top: 10px; background: #fbf6f4;border: 1px solid #d0cfcf;padding: 10px;">
+      <%= tag.h5 "2. Who do you want to lend it?", style: "color: #283c46" %>
+      <div class="form-group">
+        <%= form.collection_select(:member_id, User.all, :id, :name, { :prompt => 'Choose member' }, { class: "form-control" } ) %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :due_date %>
+        <%= form.date_select :due_date, class: "form-control", selected: loans_default_selected_date_for(@carrier) %>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= form.submit "Checkout", class: "btn btn-primary" %>
+  </div>
+<% end %>

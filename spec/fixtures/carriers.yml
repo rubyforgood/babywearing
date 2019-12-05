@@ -8,7 +8,6 @@ carrier:
   size: 5
   home_location: washington
   current_location: lancaster
-  status: 'available'
 
 unavailable:
   name: "unavailable carrier"
@@ -20,7 +19,7 @@ unavailable:
   size: 5
   home_location: washington
   current_location: lancaster
-  status: 'unavailable'
+  state: 'out_of_service'
 
 sold:
   name: "sold carrier"
@@ -32,7 +31,7 @@ sold:
   size: 6
   home_location: washington
   current_location: lancaster
-  status: 'sold'
+  state: 'sold'
 
 disabled:
   name: "disabled carrier"
@@ -44,4 +43,27 @@ disabled:
   size: 4
   home_location: washington
   current_location: lancaster
-  status: 'disabled'
+  state: 'out_of_service'
+
+checked_out:
+  name: "checked out carrier"
+  item_id: "TEST1238"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  state: 'checked_out'
+
+available:
+  name: "available carrier"
+  item_id: "TEST1239"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
