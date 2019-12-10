@@ -34,26 +34,30 @@
       <%= f.select(
               :with_current_location_id,
               filterrific.select_options[:with_current_location_id],
-              { include_blank: 'Location' },
+              { include_blank: 'Any Location' },
 
       ) %>
       <%= f.select(
               :with_category_id,
               filterrific.select_options[:with_category_id],
-              { include_blank: 'Category' },
+              { include_blank: 'Any Category' },
 
       ) %>
-      <%= f.select(
-              :with_status,
-              filterrific.select_options[:with_status],
-              { include_blank: 'Status' },
-
-      ) %>
-      <%= f.select(
-              :with_checked_out,
-              filterrific.select_options[:with_checked_out],
-              { include_blank: 'Checked-Out' },
-      ) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <% Carrier.aasm.states.each do |s| %>
+            <label><%= f.check_box(:with_state_in, {multiple: true}, s.name.to_s, false) %><%= s.display_name %></label>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
       <%= link_to "Reset Filters", reset_filterrific_url, class: 'btn btn-secondary btn-sm' %>
     </div>
   </div>

@@ -11,14 +11,7 @@ class Carrier
       scope :search_name, ->(query) { where("name ilike ?", "%#{query}%") }
       scope :with_category_id, ->(category_id) { where("category_id = ?", category_id) }
       scope :with_current_location_id, ->(current_location_id) { where("current_location_id = ?", current_location_id) }
-      scope :with_status, ->(status) { where("status = ?", statuses[status.downcase]) }
-      scope :with_checked_out, lambda { |checked_out|
-        if checked_out == 'Yes'
-          joins(:loans).where('loans.checkin_volunteer_id IS NULL')
-        elsif checked_out == 'No'
-          left_outer_joins(:loans).where('loans.carrier_id IS NULL or loans.checkin_volunteer_id IS NOT NULL')
-        end
-      }
+      scope :with_state_in, ->(state) { where(state: state) }
 
       filterrific(available_filters: [
                     :search_manufacturer,
@@ -27,8 +20,7 @@ class Carrier
                     :search_name,
                     :with_category_id,
                     :with_current_location_id,
-                    :with_status,
-                    :with_checked_out
+                    :with_state_in
                   ])
     end
 
@@ -38,14 +30,6 @@ class Carrier
 
     def self.options_for_current_location_filter
       Location.order(:name).map { |l| [l.name, l.id] }
-    end
-
-    def self.options_for_status_filter
-      Carrier.statuses.keys.sort.map(&:titleize)
-    end
-
-    def self.options_for_yes_no_filter
-      ['Yes', 'No']
     end
   end
 end

@@ -22,8 +22,17 @@
             <div class="row"><div class="col">Current Location:</div><div class="col"><%= carrier.current_location.name %></div></div>
             <div class="row"><div class="col">Home Location:</div><div class="col"><%= carrier.home_location.name %></div></div>
             <div class="row"><div class="col">Category:</div><div class="col"><%= carrier.category.name %></div></div>
-            <div class="row"><div class="col">Status:</div><div class="col"><%= carrier.status.titleize %></div></div>
-            <div class="row"><div class="col">Checked Out:</div><div class="col"><%= (carrier.checked_out) ? 'Yes' : 'No' %></div></div>
+            <div class="row"><div class="col">State:</div><div class="col"><%= carrier.state.titleize %></div></div>
+            <% if loan = carrier.outstanding_loan %>
+              <div class="row" title="Due: <%= loan.due_date %>">
+                <div class="col">
+                  Due:
+                </div>
+                <div class="col" >
+                  <div><%= distance_of_time_in_words(Time.zone.now, loan.due_date) %></div>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

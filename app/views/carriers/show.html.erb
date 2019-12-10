@@ -5,13 +5,22 @@
 <header>
   <%= tag.span @carrier.item_id, class: 'text-sm' %>
   <%= tag.h1 @carrier.name %>
+  <%= tag.span @carrier.state.titleize, class: carrier_badge_class(@carrier) %>
+
+  <% if @carrier.may_checkout? && policy(@carrier).checkout? %>
+    <%= link_to 'Checkout', new_carrier_loan_url(@carrier), class: 'btn-primary btn-sm', data: { modal: true } %>
+  <% end %>
+
+  <% if @current_loan && @carrier.may_checkin? && policy(@carrier).checkout? %>
+    <%= link_to 'Checkin', edit_carrier_loan_url(@carrier, @current_loan), class: 'btn-primary btn-sm', data: { modal: true } %>
+  <% end %>
 
   <% if policy(@carrier).edit? %>
-    <%= link_to 'Edit', edit_carrier_path, class: 'btn btn-primary btn-sm' %>
+    <%= link_to 'Edit', edit_carrier_path, class: 'btn-primary btn-sm' %>
   <% end %>
 
   <% if policy(@carrier).destroy? %>
-    <%= link_to 'Delete', @carrier, method: :delete, class: 'btn btn-danger btn-sm' %>
+    <%= link_to 'Delete', @carrier, method: :delete, class: 'btn-danger btn-sm' %>
   <% end %>
 </header>
 
@@ -47,27 +56,8 @@
       </div>
     </div>
   </div>
-
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Carrier Availibility</h5>	
-        <h6 class="card-subtitle mb-2 text-muted">
-          <%= tag.span @carrier.status.titleize, class: carrier_badge_class(@carrier) %>
-        </h6>
-
-        <% if policy(@carrier).checkout? %>
-          <%= link_to 'Checkout', new_carrier_loans_url(@carrier), class: 'btn btn-primary', data: { modal: true } %>
-        <% else %>
-          <div class="bg-warning text-dark p-1">
-            You either don't have right permissions to perform a checkout or carrier is
-            not available for loan.
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
+</div>
+<div class="row mt-1">
   <div class="col-6">
     <div class="card mt-3">
       <div class="card-body">
@@ -103,5 +93,4 @@
       </div>
     </div>
   </div>
-
 </div>

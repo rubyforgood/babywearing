@@ -72,7 +72,7 @@ RSpec.describe Carrier do
       fill_in 'Name', with: 'Updated Name'
       fill_in 'Model', with: 'Updated Model'
       find('#carrier_current_location_id').find(:option, lancaster.name).select_option
-      select 'Sold', from: 'Status'
+      select 'Sold', from: 'State'
       click_on 'Update Carrier'
 
       expect(page).to have_content('Updated Name')
@@ -106,7 +106,6 @@ RSpec.describe Carrier do
       fill_in 'Manufacturer', with: 'Test Manufacturer'
       fill_in 'Model', with: 'Test Model'
       fill_in 'Color', with: 'White'
-      select 'Unavailable', from: 'Status'
       find('#carrier_category_id').find(:option, category.name).select_option
 
       click_on 'Create Carrier'
@@ -142,7 +141,7 @@ RSpec.describe Carrier do
       expect(page).to have_content('Manufacturer')
       expect(page).to have_content('Model')
       expect(page).to have_content('Color')
-      expect(page).to have_content('Status')
+      expect(page).to have_content('State')
 
       expect(page).to have_current_path '/carriers/new'
     end

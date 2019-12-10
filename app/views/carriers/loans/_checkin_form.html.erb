@@ -1,0 +1,34 @@
+<%= form_with model: @loan, url: carrier_loan_path(@carrier, @loan), method: :put, remote: request.xhr?, html: { data: { modal: true } } do |form| %>
+  <div class="modal-body">
+    <%= form_errors @loan %>
+
+    <div style="background: #fbf6f4;border: 1px solid #d0cfcf;padding: 10px;">
+      <%= tag.h5 "1. You are checking in", style: "color: #283c46" %>
+      <p><em><%= @carrier.name %></em></p>
+      <details>
+        <summary>Details</summary>
+        <ul>
+          <li>Item Id: <%= @carrier.item_id %></li>
+          <li>Manufacturer: <%= @carrier.manufacturer %></li>
+          <li>Model: <%= @carrier.model %></li>
+          <li>Color: <%= @carrier.color %></li>
+          <li>Size: <%= @carrier.size %></li>
+          <li>Safety Link: <%=link_to "Safety Information",  @carrier.safety_link %></li>
+          <li>Category: <%= @carrier.category.name %></li>
+          <li>Home Location: <%= @carrier.home_location.name %></li>
+          <li>Current Location: <%= @carrier.current_location.name %></li>
+          <li>Default Loan Length: <%= @carrier.default_loan_length_days %> days</li>
+        </ul>
+      </details>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :returned_on %>
+      <%= form.date_select :returned_on, class: "form-control", selected: Time.zone.today %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= form.submit "Checkin", class: "btn btn-primary" %>
+  </div>
+<% end %>

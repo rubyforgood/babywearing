@@ -52,8 +52,12 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :status %>
-    <%= form.select :status, Carrier.statuses.keys.map { |key| [key.titleize, key] }, {}, { class: "form-control" } %>
+    <%= form.label :state %>
+    <% if @carrier.checked_out? %>
+      <div><%= link_to "Checked Out", carrier_path(@carrier) %></div>
+    <% else %>
+      <%= form.select :state, carrier_editable_states_for_select, {}, { class: "form-control" } %>
+    <% end %>
   </div>
 
   <div class="form-group">

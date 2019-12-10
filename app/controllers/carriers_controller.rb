@@ -2,6 +2,7 @@
 
 class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update]
+  before_action :set_loan, only: [:show]
 
   def index
     @carriers = Carrier.with_attached_photos.includes(:home_location)
@@ -86,15 +87,17 @@ class CarriersController < ApplicationController
       params[:filterrific],
       select_options: {
         with_category_id: Carrier::FilterImpl.options_for_category_filter,
-        with_current_location_id: Carrier::FilterImpl.options_for_current_location_filter,
-        with_status: Carrier::FilterImpl.options_for_status_filter,
-        with_checked_out: Carrier::FilterImpl.options_for_yes_no_filter
+        with_current_location_id: Carrier::FilterImpl.options_for_current_location_filter
       }
     )
   end
 
   def set_carrier
     @carrier = Carrier.find(params[:id])
+  end
+
+  def set_loan
+    @current_loan = @carrier.loans.outstanding.first
   end
 
   def carrier_params
@@ -110,7 +113,7 @@ class CarriersController < ApplicationController
       :current_location_id,
       :category_id,
       :default_loan_length_days,
-      :status,
+      :state,
       photos: []
     )
   end

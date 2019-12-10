@@ -1,0 +1,5 @@
+outstanding:
+  carrier: checked_out
+  due_date: <%= Time.zone.now %>
+  checkout_volunteer: volunteer
+  member: member
