@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_053357) do
+ActiveRecord::Schema.define(version: 2019_12_11_033905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_053357) do
     t.bigint "current_location_id", null: false
     t.string "safety_link"
     t.string "state", default: "available", null: false
+    t.text "notes"
     t.index ["current_location_id"], name: "index_carriers_on_current_location_id"
     t.index ["home_location_id"], name: "index_carriers_on_home_location_id"
     t.index ["state"], name: "index_carriers_on_state"
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_053357) do
     t.bigint "checkout_volunteer_id"
     t.bigint "member_id", null: false
     t.date "returned_on"
+    t.text "notes"
     t.index ["checkin_volunteer_id"], name: "index_loans_on_checkin_volunteer_id"
     t.index ["checkout_volunteer_id"], name: "index_loans_on_checkout_volunteer_id"
     t.index ["member_id"], name: "index_loans_on_member_id"
