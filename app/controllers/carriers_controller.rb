@@ -83,8 +83,7 @@ class CarriersController < ApplicationController
 
   def init_filters
     @filterrific = initialize_filterrific(
-      Carrier.includes(:current_location, :category).with_attached_photos,
-      params[:filterrific],
+      Carrier.includes(:current_location, :category).with_attached_photos, params[:filterrific],
       select_options: {
         with_category_id: Carrier::FilterImpl.options_for_category_filter,
         with_current_location_id: Carrier::FilterImpl.options_for_current_location_filter
@@ -102,18 +101,15 @@ class CarriersController < ApplicationController
 
   def carrier_params
     params.require(:carrier).permit(
-      :name,
-      :item_id,
-      :manufacturer,
-      :model,
-      :color,
-      :size,
+      :name, :item_id, :manufacturer,
+      :model, :color, :size,
       :safety_link,
       :home_location_id,
       :current_location_id,
       :category_id,
       :default_loan_length_days,
       :state,
+      :notes,
       photos: []
     )
   end

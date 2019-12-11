@@ -1,0 +1,16 @@
+<details>
+  <summary>Details</summary>
+  <ul>
+    <li>Item Id: <%= carrier.item_id %></li>
+    <li>Manufacturer: <%= carrier.manufacturer %></li>
+    <li>Model: <%= carrier.model %></li>
+    <li>Color: <%= carrier.color %></li>
+    <li>Size: <%= carrier.size %></li>
+    <li>Safety Link: <%=link_to "Safety Information",  carrier.safety_link %></li>
+    <li>Category: <%= carrier.category.name %></li>
+    <li>Home Location: <%= carrier.home_location.name %></li>
+    <li>Current Location: <%= carrier.current_location.name %></li>
+    <li>Default Loan Length: <%= carrier.default_loan_length_days %> days</li>
+    <li>Notes: <%= carrier.notes %></li>
+  </ul>
+</details>

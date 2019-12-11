@@ -8,6 +8,7 @@ carrier:
   size: 5
   home_location: washington
   current_location: lancaster
+  notes: 'yes I carry babies'
 
 unavailable:
   name: "unavailable carrier"
@@ -32,6 +33,7 @@ sold:
   home_location: washington
   current_location: lancaster
   state: 'sold'
+  notes: 'sold to a competing charity'
 
 disabled:
   name: "disabled carrier"

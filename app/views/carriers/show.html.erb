@@ -1,7 +1,7 @@
 <% if flash[:success] %>
   <div><%= flash[:success] %></div>
 <% end %>
-
+<div class="container ml-2 mt-4 p-4">
 <header>
   <%= tag.span @carrier.item_id, class: 'text-sm' %>
   <%= tag.h1 @carrier.name %>
@@ -23,74 +23,40 @@
     <%= link_to 'Delete', @carrier, method: :delete, class: 'btn-danger btn-sm' %>
   <% end %>
 </header>
-
-<div class="row mt-2">
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <div class="form-group">
-          <%= tag.label "Saftey link" %>
-          <%=link_to "Safety Information",  @carrier.safety_link %>
-        </div>
-
-        <div class="form-group">
-          <%= tag.label "Category" %>
-          <%= tag.p @carrier.category.name, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= tag.label "Home Location" %>
-          <%= tag.p @carrier.home_location.name, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= tag.label "Current Location" %>
-          <%= tag.p @carrier.current_location.name, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= tag.label "Defautl Loan Length" %>
-          <%= tag.p @carrier.default_loan_length_days, class: "form-control" %>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row mt-1">
-  <div class="col-6">
-    <div class="card mt-3">
-      <div class="card-body">
-        <ul class="list-unstyled">
-          <% if @carrier.photos.attached? %>
-            <li>
-              <% @carrier.photos.each do |photo| %>
-                <%= image_tag(photo.variant(resize: "100x100").processed, class: "img-thumbnail img-fluid") %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-
-        <div class="form-group">
-          <%= tag.label "Manufacturer" %>
-          <%= tag.p @carrier.manufacturer, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= tag.label "Model" %>
-          <%= tag.p @carrier.model, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= tag.label "Color" %>
-          <%= tag.p @carrier.color, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= tag.label "Size" %>
-          <%= tag.p @carrier.size, class: "form-control" %>
-        </div>
-      </div>
-    </div>
-  </div>
+<dl class="row mt-5">
+  <dt class="col-sm-2 text-md-right">Safety link:</dt>
+  <dd class="col-sm-10"><%=link_to "Safety Information",  @carrier.safety_link %></dd>
+  <dt class="col-sm-2 text-md-right">Category:</dt>
+  <dd class="col-sm-10"><%= @carrier.category.name %></dd>
+  <dt class="col-sm-2 text-md-right">Home Location:</dt>
+  <dd class="col-sm-10"><%= @carrier.home_location.name %></dd>
+  <dt class="col-sm-2 text-md-right">Current Location:</dt>
+  <dd class="col-sm-10"><%= @carrier.current_location.name %></dd>
+  <dt class="col-sm-2 text-md-right">Default loan length:</dt>
+  <dd class="col-sm-10"><%= @carrier.default_loan_length_days %> days</dd>
+  <% if @carrier.photos.attached? %>
+    <dt class="col-sm-2 text-md-right">Photos:</dt>
+    <dd class="col-sm-10">
+      <ul class="list-unstyled">
+        <% if @carrier.photos.attached? %>
+          <li>
+            <% @carrier.photos.each do |photo| %>
+              <%= image_tag(photo.variant(resize: "100x100").processed, class: "img-thumbnail img-fluid") %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </dd>
+  <% end %>
+  <dt class="col-sm-2 text-md-right">Manufacturer:</dt>
+  <dd class="col-sm-10"><%= @carrier.manufacturer %></dd>
+  <dt class="col-sm-2 text-md-right">Model:</dt>
+  <dd class="col-sm-10"><%= @carrier.model %></dd>
+  <dt class="col-sm-2 text-md-right">Color:</dt>
+  <dd class="col-sm-10"><%= @carrier.color %></dd>
+  <dt class="col-sm-2 text-md-right">Size:</dt>
+  <dd class="col-sm-10"><%= @carrier.size %></dd>
+  <dt class="col-sm-2 text-md-right">Notes:</dt>
+  <dd class="col-sm-10"><%= @carrier.notes %></dd>
+</dl>
 </div>
