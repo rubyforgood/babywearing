@@ -16,6 +16,10 @@ class LoanPolicy < ApplicationPolicy
     authorized?
   end
 
+  def index?
+    user.admin?
+  end
+
   def new?
     authorized?
   end
