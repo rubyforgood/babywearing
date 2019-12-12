@@ -1,0 +1,21 @@
+<div class="card">
+  <header class="card-header d-flex align-items-center">
+    <h3 class="mr-auto">Loan</h3>
+  </header>
+  <section>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Carrier</th>
+        <th scope="col">Due</th>
+        <th scope="col">Returned</th>
+        <th scope="col">Notes</th>
+      </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'list', locals: { loans: @loans } %>
+      </tbody>
+    </table>
+  </section>
+</div>

@@ -3,3 +3,10 @@ outstanding:
   due_date: <%= Time.zone.now %>
   checkout_volunteer: volunteer
   member: member
+
+returned:
+  carrier: carrier
+  due_date: <%= Time.zone.now - 2.months %>
+  checkout_volunteer: volunteer
+  member: member
+  returned_on: <%= Time.zone.now - 2.months %>
