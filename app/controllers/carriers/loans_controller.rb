@@ -18,6 +18,7 @@ module Carriers
 
     def edit
       @loan = authorize @carrier.loans.find(params[:id])
+      @checkin = params[:checkin].present?
       respond_modal_with @loan
     end
 

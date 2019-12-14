@@ -10,6 +10,7 @@
       <td><%= loan.due_date %></td>
       <td><%= loan.returned_on %></td>
       <td><%= truncate(loan.notes) %></td>
+      <td><%= link_to "Edit", edit_carrier_loan_path(loan.carrier, loan), class: 'btn btn-primary btn-sm', data: { modal: true } %></td>
     </tr>
   <% end %>
 <% end %>
