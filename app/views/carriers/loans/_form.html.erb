@@ -3,14 +3,18 @@
     <%= form_errors @loan %>
 
     <div style="background: #fbf6f4;border: 1px solid #d0cfcf;padding: 10px;">
-      <%= tag.h5 "1. You are checking in", style: "color: #283c46" %>
+      <%= tag.h5 "Loan for...", style: "color: #283c46" %>
       <p><em><%= @carrier.name %></em></p>
       <%= render partial: "carriers/details", locals: { carrier: @carrier } %>
     </div>
 
     <div class="form-group">
-      <%= form.label :returned_on %>
-      <%= form.date_select :returned_on, class: "form-control", selected: Time.zone.today %>
+      <%= form.label :due_date %>
+      <%= form.date_field :due_date, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :returned_on  %>
+      <%= form.date_field :returned_on, class: "form-control", include_blank: true %>
     </div>
     <div class="form-group">
       <%= form.label :notes %>
@@ -19,6 +23,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <%= form.submit "Checkin", class: "btn btn-primary" %>
+    <%= form.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
