@@ -4,7 +4,7 @@ env:
     - CC_TEST_REPORTER_ID=b80cc9abeed21ed522cf2d3831da7ed52dfd6e18bdce2ade4125fd033e96a951
 language: ruby
 rvm:
-  - 2.6.3
+  - 2.6.5
 before_install: gem install bundler
 services:
   - postgresql
