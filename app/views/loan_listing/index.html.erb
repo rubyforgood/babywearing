@@ -2,6 +2,12 @@
   <header class="card-header d-flex align-items-center">
     <h3 class="mr-auto">Loan</h3>
   </header>
+  <div class="card filter-card">
+    <div class="card-header">Filters</div>
+    <div class="card-body">
+      <%= render partial: 'filter_form', locals: { filterrific: @filterrific } %>
+    </div>
+  </div>
   <section>
     <table class="table">
       <thead>
@@ -14,7 +20,7 @@
         <th scope="col">Actions</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody id="filterrific_results">
         <%= render partial: 'list', locals: { loans: @loans } %>
       </tbody>
     </table>
