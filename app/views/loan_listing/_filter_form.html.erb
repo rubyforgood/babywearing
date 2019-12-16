@@ -1,0 +1,60 @@
+<%= form_for_filterrific filterrific do |f| %>
+  <div class="row">
+    <div class="col">
+      <%= f.label "Carrier model:" %>
+      <%= f.text_field(
+              :search_carrier,
+              class: 'filterrific-periodically-observed form-control',
+              placeholder: "Any"
+      ) %>
+    </div>
+    <div class="col">
+      <%= f.label "Due date before:" %>
+      <%= f.date_field(
+              :with_due_date_before,
+              value: "hi",
+              class: 'filterrific-periodically-observed form-control'
+          ) %>
+    </div>
+    <div class="col">
+      <%= f.label "Due date after:" %>
+      <%= f.date_field(
+              :with_due_date_after,
+              class: 'filterrific-periodically-observed form-control'
+          ) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.select(
+              :with_member_id,
+              filterrific.select_options[:with_member_id],
+              { include_blank: 'Loaned to' },
+
+      ) %>
+      <%= f.select(
+              :with_checkout_volunteer_id,
+              filterrific.select_options[:with_checkout_volunteer_id],
+              { include_blank: 'Checkout Volunteer' },
+
+      ) %>
+      <%= f.select(
+                :with_checkin_volunteer_id,
+                filterrific.select_options[:with_checkin_volunteer_id],
+                { include_blank: 'Checkin Volunteer' },
+
+      ) %>
+      <%= f.select(
+              :with_outstanding,
+              filterrific.select_options[:with_outstanding],
+              { include_blank: 'Outstanding' },
+
+      ) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= link_to "Reset Filters", reset_filterrific_url, class: 'btn btn-secondary btn-sm' %>
+    </div>
+  </div>
+<% end %>

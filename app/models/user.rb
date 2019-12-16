@@ -17,6 +17,9 @@ class User < ApplicationRecord
 
   enum role: [:admin, :volunteer, :member]
 
+  scope :admins, -> { where(role: admin) }
+  scope :volunteers, -> { where(role: :volunteer) }
+
   after_create :send_welcome_email
 
   def self.to_csv

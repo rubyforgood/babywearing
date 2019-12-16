@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Loan < ApplicationRecord
+  include Loan::FilterImpl
+
   belongs_to :carrier
   belongs_to :member, class_name: "User", optional: true # see presence validation below
   belongs_to :checkout_volunteer, class_name: 'User', default: -> { Current.user }
