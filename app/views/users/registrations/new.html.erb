@@ -1,31 +1,54 @@
-<h2>Sign up</h2>
+<%= devise_error_messages! %>
+<div class="card o-hidden border-0 shadow-lg my-5">
+  <div class="card-body p-0">
+    <div class="row">
+      <div class="col-lg-4 mx-auto">
+        <div class="p-5">
+          <div class="text-center mb-4">
+            <h5>Sign Up</h5>
+          </div>
+          <%= form_with model: resource, as: resource_name, url: registration_path(resource_name), local: true do |f| %>
+            <div class="form-group">
+              <%= f.email_field :email,
+                                autofocus: true,
+                                autocomplete: "email",
+                                aria: { label: 'email'},
+                                placeholder: 'Enter email address',
+                                class: 'form-control form-control-user',
+                                required: true %>
+            </div>
 
-<%= form_with model: resource, as: resource_name, url: registration_path(resource_name), local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="form-group">
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password,
+                  autocomplete: "new-password",
+                  class: 'form-control form-control-user',
+                  aria: { label: 'password' },
+                  placeholder: 'Password',
+                  required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.password_field :password_confirmation,
+                                   autocomplete: "new-password",
+                                   class: 'form-control form-control-user',
+                                   aria: { label: 'password' },
+                                   placeholder: 'Confirm Password',
+                                   required: true %>
+            </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+
+            <%= render "form_fields", f: f %>
+
+            <div class="actions">
+              <%= f.submit "Sign up", class: "btn btn-primary btn-user btn-block"  %>
+            </div>
+          <% end %>
+
+          <%= render "users/shared/links" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
-  </div>
-
-  <%= render "form_fields", f: f %>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

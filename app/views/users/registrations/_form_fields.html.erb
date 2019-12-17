@@ -1,38 +1,69 @@
-<div class="field">
-  <%= f.label :first_name %><br />
-  <%= f.text_field :first_name, required: true %>
-
-</div><div class="field">
-  <%= f.label :last_name %><br />
-  <%= f.text_field :last_name, required: true %>
+<div class="form-group">
+  <%= f.text_field :first_name,
+                   required: true,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'first_name' },
+                   placeholder: 'First name'
+  %>
 </div>
 
-<div class="field">
-  <%= f.label :street_address %><br />
-  <%= f.text_field :street_address, required: true %>
+<div class="form-group">
+  <%= f.text_field :last_name,
+                   required: true,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'last_name' },
+                   placeholder: 'Last name'
+  %>
+</div>
+<div class="form-group">
+  <%= f.text_field :street_address,
+                   required: true,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'street_address' },
+                   placeholder: 'Street address'
+  %>
 </div>
 
-<div class="field">
-  <%= f.label "Apt, Suite, Floor, etc" %><br />
-  <%= f.text_field :street_address_second %>
+<div class="form-group">
+  <%= f.text_field :street_address_second,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'Apt, Suite, Floor, etc.' },
+                   placeholder: 'Apt, Suite, Floor, etc.'
+  %>
 </div>
 
-<div class="field">
-  <%= f.label :city %><br />
-  <%= f.text_field :city, required: true %>
+<div class="form-group">
+  <%= f.text_field :city,
+                   required: true,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'City' },
+                   placeholder: 'City'
+  %>
 </div>
 
-<div class="field">
-  <%= f.label :state %><br />
-  <%= f.text_field :state, required: true %>
+<div class="form-group">
+  <%= f.text_field :state,
+                   required: true,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'State' },
+                   placeholder: 'State'
+  %>
 </div>
 
-<div class="field">
-  <%= f.label :postal_code %><br />
-  <%= f.text_field :postal_code, required: true %>
+<div class="form-group">
+  <%= f.text_field :postal_code,
+                   required: true,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'Postal code' },
+                   placeholder: 'Postal code'
+  %>
 </div>
 
-<div class="field">
-  <%= f.label :phone_number %><br />
-  <%= f.text_field :phone_number, required: true %>
+<div class="form-group">
+  <%= f.text_field :phone_number,
+                   required: true,
+                   class: 'form-control form-control-user',
+                   aria: { 'label': 'Phone' },
+                   placeholder: 'Phone'
+  %>
 </div>
