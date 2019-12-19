@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'only admins and volunteers can see the create user' do
+RSpec.feature 'create user links' do
   let(:admin) { users(:admin) }
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
@@ -18,6 +18,12 @@ RSpec.feature 'only admins and volunteers can see the create user' do
 
   scenario 'when user is a member' do
     sign_in member
+    visit(root_path)
+
+    expect(page).not_to have_link('CREATE USER')
+  end
+
+  scenario 'when user is not logged in' do
     visit(root_path)
 
     expect(page).not_to have_link('CREATE USER')
