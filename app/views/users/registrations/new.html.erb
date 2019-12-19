@@ -1,11 +1,12 @@
 <%= devise_error_messages! %>
+<% action_text = current_user ? "Create New Member" : "Sign Up" %>
 <div class="card o-hidden border-0 shadow-lg my-5">
   <div class="card-body p-0">
     <div class="row">
       <div class="col-lg-4 mx-auto">
         <div class="p-5">
           <div class="text-center mb-4">
-            <h5>Sign Up</h5>
+            <h5><%= action_text %></h5>
           </div>
           <%= form_with model: resource, as: resource_name, url: registration_path(resource_name), local: true do |f| %>
             <div class="form-group">
@@ -42,7 +43,7 @@
             <%= render "form_fields", f: f %>
 
             <div class="actions">
-              <%= f.submit "Sign up", class: "btn btn-primary btn-user btn-block"  %>
+              <%= f.submit action_text, class: "btn btn-primary btn-user btn-block"  %>
             </div>
           <% end %>
 

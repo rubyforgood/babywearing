@@ -7,6 +7,27 @@ RSpec.describe User do
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
 
+  scenario "should allow a volunteer user to create another user" do
+    sign_in volunteer
+
+    visit new_user_registration_path
+    expect(page).to have_content 'Create New Member'
+
+    fill_in "Enter email address", with: "alicia@gmail.com"
+    fill_in "Password", with: "just4now"
+    fill_in "Confirm Password", with: "just4now"
+    fill_in "First name", with: "me"
+    fill_in "Last name", with: "last"
+    fill_in "Street address", with: "123 main street"
+    fill_in "City", with: "fairfax"
+    fill_in "State", with: "VA"
+    fill_in "Postal code", with: "22032"
+    fill_in "Phone", with: "8008885555"
+    click_button "Create New Member"
+    expect(page).to have_content("New member created successfully.", count: 1)
+    expect(page).to have_content("Logged in as #{volunteer.email}")
+  end
+
   scenario "should allow user who is an admin to see list of users" do
     sign_in admin
     visit root_url

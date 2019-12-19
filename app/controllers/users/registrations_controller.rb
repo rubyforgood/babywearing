@@ -2,7 +2,19 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
+    skip_before_action :require_no_authentication, only: [:new, :create]
+
+    def create
+      super
+      set_flash_message!(:notice, current_user == resource ? :signed_up : :signed_up_by_user)
+    end
+
     private
+
+    # so as not to sign in new user when user created by volunteer
+    def sign_up(resource_name, resource)
+      super unless current_user
+    end
 
     def sign_up_params
       params.require(:user).permit(:email, :password, :password_confirmation,

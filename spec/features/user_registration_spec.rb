@@ -14,7 +14,7 @@ RSpec.feature "user registration" do
     fill_in "State", with: "VA"
     fill_in "Postal code", with: "22032"
     fill_in "Phone", with: "8008885555"
-    click_button "Sign up"
+    click_button "Sign Up"
     expect(page).to have_content("Welcome! You have signed up successfully.", count: 1)
   end
 
@@ -25,7 +25,7 @@ RSpec.feature "user registration" do
       fill_in "Enter email address", with: "alicia.email.com"
       fill_in "Password", with: "just4now"
       fill_in "Confirm Password", with: "just4now"
-      click_button "Sign up"
+      click_button "Sign Up"
       expect(page).to have_content "Email is invalid"
     end
   end
