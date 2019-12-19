@@ -133,7 +133,7 @@ RSpec.describe Carrier do
 
     scenario 'ADD new carrier' do
       visit '/'
-      click_on 'ADD ITEM'
+      click_on 'ADD CARRIER'
 
       expect(page).to have_content('New Carrier')
       expect(page).to have_content('Name')
@@ -247,7 +247,7 @@ RSpec.describe Carrier do
 
     scenario 'ADD new carrier' do
       visit '/'
-      click_on 'ADD ITEM'
+      click_on 'ADD CARRIER'
 
       expect(page).to have_content('New Carrier')
       expect(page).to have_content('Name')

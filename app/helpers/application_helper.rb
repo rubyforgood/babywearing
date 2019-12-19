@@ -9,4 +9,8 @@ module ApplicationHelper
     when :alert then "alert alert-error"
     end
   end
+
+  def show_membership_links?
+    !request.path.match(%r{/users/})
+  end
 end

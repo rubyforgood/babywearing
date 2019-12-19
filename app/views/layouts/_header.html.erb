@@ -8,30 +8,29 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active background-blue">
-          <% if user_can_add_new_member(current_user) %>
-            <%= link_to new_user_registration_path, class: 'nav-link nav-icon nav-first' do %>
-              <%= image_tag "BW- CREATE USER ICON.svg", alt:"Create a User" %><p>CREATE USER</p>
-            <% end %>
-          <% end %>
-        </li>
-        <li class="nav-item active background-slate">
-          <%= link_to new_carrier_path, class: 'nav-link nav-icon nav-second' do %>
-            <%= image_tag "BW- ADD USER ICON.svg", alt:"Add an Item" %><p>ADD ITEM</p>
-          <% end %>
-        </li>
-        <li class="nav-item active background-dark-purple">
-          <a class="nav-link nav-icon nav-third" href="/"><%= image_tag "BW- CART ICON.svg", alt:"Cart" %><p>CHECK IN/OUT</p></a></li>
-        <li class="nav-item active background-purple">
-          <a class="nav-link nav-icon nav-fourth" href="/"><%= image_tag "BW - INVENTORY ICON.svg", alt:"View Inventory" %><p>CARRIERS</p></a></li>
-        <% if user_signed_in? %>
-          <% if user_can_add_new_member(current_user) %>
-            <li class="nav-item active background-blue members-tile">
-              <%= link_to users_path, class: 'nav-link nav-icon nav-five' do %>
-               <%= fa_icon "users", class: "members-icon"%><p>VIEW MEMBERS</p>
+        <% if policy(User).new? %>
+          <li class="nav-item active background-blue">
+              <%= link_to new_user_registration_path, class: 'nav-link nav-icon nav-first' do %>
+                <%= image_tag "BW- CREATE USER ICON.svg", alt:"Create a User" %><p>CREATE USER</p>
               <% end %>
-            </li>
-          <% end %>
+          </li>
+        <% end %>
+        <li class="nav-item active background-purple">
+          <a class="nav-link nav-icon nav-fourth" href="<%= carriers_path %>"><%= image_tag "BW - INVENTORY ICON.svg", alt:"View Inventory" %><p>CARRIERS</p></a></li>
+        </li>
+        <% if policy(Carrier).new? %>
+          <li class="nav-item active background-slate">
+            <%= link_to new_carrier_path, class: 'nav-link nav-icon nav-second' do %>
+              <%= image_tag "BW- ADD USER ICON.svg", alt:"Add a Carrier" %><p>ADD CARRIER</p>
+            <% end %>
+          </li>
+        <% end %>
+        <% if policy(User).new? %>
+          <li class="nav-item active background-blue members-tile">
+            <%= link_to users_path, class: 'nav-link nav-icon nav-five' do %>
+             <%= fa_icon "users", class: "members-icon"%><p>VIEW MEMBERS</p>
+            <% end %>
+          </li>
         <% end %>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -47,10 +46,10 @@
               <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'  %>
             </div>
           </li>
-        <% else %>
+        <% elsif show_membership_links? %>
           <li>
-            <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link'  %>
-            <%= link_to "Log in", new_user_session_path, :class => 'nav-link'  %>
+            <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-link'  %>
+            <%= link_to "Log In", new_user_session_path, :class => 'nav-link'  %>
           </li>
         <% end %>
       </ul>
