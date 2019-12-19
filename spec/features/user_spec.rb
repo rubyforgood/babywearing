@@ -25,7 +25,7 @@ RSpec.describe User do
     fill_in "Phone", with: "8008885555"
     click_button "Create New Member"
     expect(page).to have_content("New member created successfully.", count: 1)
-    expect(page).to have_content("Logged in as #{volunteer.email.upcase}")
+    expect(page).to have_content("Logged in as #{volunteer.email}")
   end
 
   scenario "should allow user who is an admin to see list of users" do

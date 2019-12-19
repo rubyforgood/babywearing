@@ -6,7 +6,7 @@ module Users
 
     def create
       super
-      set_flash_message!(:notice,:signed_up_by_user)
+      set_flash_message!(:notice, current_user == resource ? :signed_up : :signed_up_by_user)
     end
 
     private
