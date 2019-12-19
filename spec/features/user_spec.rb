@@ -54,7 +54,7 @@ RSpec.describe User do
     find('.user-dropdown').click
     click_on "Logout"
 
-    expect(page).to have_content "Log in"
+    expect(page).to have_content "Log In"
   end
 
   scenario 'should allow user who is an admin to see members tile on header' do

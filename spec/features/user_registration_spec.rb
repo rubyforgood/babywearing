@@ -3,7 +3,7 @@
 RSpec.feature "user registration" do
   scenario "should allow user to create a user account" do
     visit "/"
-    find_link("Sign up", match: :first).click
+    find_link("Sign Up", match: :first).click
     fill_in "Enter email address", with: "alicia@gmail.com"
     fill_in "Password", with: "just4now"
     fill_in "Confirm Password", with: "just4now"
@@ -21,7 +21,7 @@ RSpec.feature "user registration" do
   context "when the email is invalid" do
     scenario "should NOT allow user to create a user account" do
       visit "/"
-      find_link("Sign up", match: :first).click
+      find_link("Sign Up", match: :first).click
       fill_in "Enter email address", with: "alicia.email.com"
       fill_in "Password", with: "just4now"
       fill_in "Confirm Password", with: "just4now"

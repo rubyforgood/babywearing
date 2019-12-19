@@ -35,6 +35,6 @@ class UserPolicy < ApplicationPolicy
   private
 
   def authorized?
-    user.admin? || user.volunteer?
+    user && (user.admin? || user.volunteer?)
   end
 end

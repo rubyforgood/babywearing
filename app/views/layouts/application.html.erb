@@ -16,7 +16,7 @@
 
     <div class="container-fluid">
       <div class="row flex-xl-nowrap">
-        <%= render "layouts/sidebar" if signed_in? %>
+        <%= render "layouts/sidebar" if policy(:sidebar).show? %>
 
         <main class="col-12 col-md-10 mt-2 mx-auto">
           <%= yield %>
