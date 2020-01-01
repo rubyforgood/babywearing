@@ -1,0 +1,15 @@
+.git
+.gitignore
+
+log/*
+
+tmp/*
+
+.DS_Store
+.github
+
+.ruby-version
+
+.idea
+
+
