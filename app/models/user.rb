@@ -20,8 +20,6 @@ class User < ApplicationRecord
   scope :admins, -> { where(role: admin) }
   scope :volunteers, -> { where(role: :volunteer) }
 
-  after_create :send_welcome_email
-
   def self.to_csv
     attributes = %w[first_name last_name email phone_number created_at]
 
@@ -33,8 +31,6 @@ class User < ApplicationRecord
       end
     end
   end
-
-  private
 
   def send_welcome_email
     WelcomeMailer.welcome_email(self).deliver
