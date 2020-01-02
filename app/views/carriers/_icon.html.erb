@@ -1,3 +1,4 @@
+<%= render 'shared/pagination', items: carriers %>
 <% @carriers.each_slice(4) do |carriers| %>
   <div class="row mb-2">
     <% carriers.each do |carrier| %>

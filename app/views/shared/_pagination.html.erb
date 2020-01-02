@@ -1,0 +1,8 @@
+<% unless items.empty? %>
+  <div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info items, model: items.first.class.name.pluralize %>
+    </div>
+    <%= will_paginate items, container: false %>
+  </div>
+<% end %>

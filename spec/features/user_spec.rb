@@ -32,20 +32,20 @@ RSpec.describe User do
     sign_in admin
     visit root_url
     click_on 'VIEW MEMBERS'
-    expect(page).to have_content 'User Listing'
+    expect(page).to have_content 'Members'
   end
 
   scenario "should allow user who is a volunteer to see list of users" do
     sign_in volunteer
     visit root_url
     click_on 'VIEW MEMBERS'
-    expect(page).to have_content "User Listing"
+    expect(page).to have_content "Members"
   end
 
   scenario "should not allow a member to see a list of users" do
     sign_in member
     visit users_url
-    expect(page).not_to have_content 'User Listing'
+    expect(page).not_to have_content 'Members'
   end
 
   scenario "should allow user who is an admin to export list of users" do

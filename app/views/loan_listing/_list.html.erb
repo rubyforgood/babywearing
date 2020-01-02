@@ -1,16 +1,31 @@
-<% if loans.empty? %>
-  <tr>
-    <td colspan="100%">No loans to show</td>
-  </tr>
-<% else %>
-  <% loans.each do |loan| %>
+<%= render 'shared/pagination', items: loans %>
+<table class="table">
+  <thead>
     <tr>
-      <td><%= link_to loan.member.name, user_path(loan.member) %></td>
-      <td><%= link_to loan.carrier.display_name, carrier_path(loan.carrier) %></td>
-      <td><%= loan.due_date %></td>
-      <td><%= loan.returned_on %></td>
-      <td><%= truncate(loan.notes) %></td>
-      <td><%= link_to "Edit", edit_carrier_loan_path(loan.carrier, loan), class: 'btn btn-primary btn-sm', data: { modal: true } %></td>
+      <th scope="col">Member</th>
+      <th scope="col">Carrier</th>
+      <th scope="col">Due</th>
+      <th scope="col">Returned</th>
+      <th scope="col">Notes</th>
+      <th scope="col">Actions</th>
     </tr>
-  <% end %>
-<% end %>
+  </thead>
+  <tbody>
+    <% if loans.empty? %>
+      <tr>
+        <td colspan="100%">No loans to show</td>
+      </tr>
+    <% else %>
+      <% loans.each do |loan| %>
+        <tr>
+          <td><%= link_to loan.member.name, user_path(loan.member) %></td>
+          <td><%= link_to loan.carrier.display_name, carrier_path(loan.carrier) %></td>
+          <td><%= loan.due_date %></td>
+          <td><%= loan.returned_on %></td>
+          <td><%= truncate(loan.notes) %></td>
+          <td><%= link_to "Edit", edit_carrier_loan_path(loan.carrier, loan), class: 'btn btn-primary btn-sm', data: { modal: true } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

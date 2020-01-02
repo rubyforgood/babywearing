@@ -8,7 +8,7 @@ class CarriersController < ApplicationController
   def index
     @carriers = Carrier.with_attached_photos.includes(:home_location)
     init_filters || return
-    @carriers = @filterrific.find
+    @carriers = @filterrific.find.page(params[:page])
     extract_view_mode
 
     respond_to do |format|

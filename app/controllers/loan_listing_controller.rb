@@ -3,7 +3,7 @@
 class LoanListingController < ApplicationController
   def index
     init_filters || return
-    @loans = @filterrific.find
+    @loans = @filterrific.find.page(params[:page])
     authorize @loans
 
     respond_to do |format|
