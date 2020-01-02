@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page])
     authorize @users
 
     respond_to do |format|

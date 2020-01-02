@@ -1,5 +1,5 @@
-<h1>User Listing</h1>
-
+<h1>Members</h1>
+<%= render 'shared/pagination', items: @users %>
 <table data-toggle="table">
   <thead class="thead-light">
     <tr>
@@ -36,6 +36,9 @@
       </tr>
     <% end %>
   </tbody>
-
-  <%= button_to "Export to CSV", "/users.csv", :method => :get %>
 </table>
+<% unless @users.empty? %>
+  <div class="mt-4">
+    <%= button_to "Export to CSV", "/users.csv", :method => :get %>
+  </div>
+<% end %>

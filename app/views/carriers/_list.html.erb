@@ -1,3 +1,4 @@
+<%= render 'shared/pagination', items: carriers %>
 <table class="table">
   <thead>
     <tr class="super-header">
@@ -19,28 +20,34 @@
     </tr>
   </thead>
   <tbody>
-    <% @carriers.each do |carrier| %>
+    <% if carriers.empty? %>
       <tr>
-        <td><%= link_to carrier.name, carrier_path(carrier)  %>
-        <td><%= carrier.item_id %></td>
-        <td><%= carrier.available? ? fa_icon('check-circle') : fa_icon('stop-circle') %></td>
-        <td><%= carrier.manufacturer %></td>
-        <td><%= carrier.model %></td>
-        <td><%= carrier.current_location.name %></td>
-        <td><%= carrier.home_location.name %></td>
-        <td><%= carrier.category.name %></td>
-        <td><%= carrier.state.titleize %></td>
-        <td>
-          <% can_destroy =  policy(carrier).destroy? %>
-          <% can_edit =  policy(carrier).edit? %>
-          <% if can_destroy || can_edit %>
-            <div class="actions">
-              <%= link_to 'Edit', edit_carrier_path(carrier), class: 'btn btn-primary btn-sm' if policy(carrier).edit? %>
-              <%= link_to 'Destroy', carrier, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-            </div>
-          <% end %>
-        </td>
+        <td colspan="100%">No carriers to show</td>
       </tr>
+    <% else %>
+      <% carriers.each do |carrier| %>
+        <tr>
+          <td><%= link_to carrier.name, carrier_path(carrier)  %>
+          <td><%= carrier.item_id %></td>
+          <td><%= carrier.available? ? fa_icon('check-circle') : fa_icon('stop-circle') %></td>
+          <td><%= carrier.manufacturer %></td>
+          <td><%= carrier.model %></td>
+          <td><%= carrier.current_location.name %></td>
+          <td><%= carrier.home_location.name %></td>
+          <td><%= carrier.category.name %></td>
+          <td><%= carrier.state.titleize %></td>
+          <td>
+            <% can_destroy =  policy(carrier).destroy? %>
+            <% can_edit =  policy(carrier).edit? %>
+            <% if can_destroy || can_edit %>
+              <div class="actions">
+                <%= link_to 'Edit', edit_carrier_path(carrier), class: 'btn btn-primary btn-sm' if policy(carrier).edit? %>
+                <%= link_to 'Destroy', carrier, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

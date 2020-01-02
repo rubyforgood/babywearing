@@ -8,21 +8,7 @@
       <%= render partial: 'filter_form', locals: { filterrific: @filterrific } %>
     </div>
   </div>
-  <section>
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">Member</th>
-        <th scope="col">Carrier</th>
-        <th scope="col">Due</th>
-        <th scope="col">Returned</th>
-        <th scope="col">Notes</th>
-        <th scope="col">Actions</th>
-      </tr>
-      </thead>
-      <tbody id="filterrific_results">
-        <%= render partial: 'list', locals: { loans: @loans } %>
-      </tbody>
-    </table>
+  <section id="filterrific_results">
+    <%= render 'list', loans: @loans %>
   </section>
 </div>
