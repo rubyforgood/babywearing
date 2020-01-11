@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  web:
+    image: babywearing.azurecr.io/babywearing:prod
+    ports:
+      - "80:3000"
+    env_file:
+      - .env/production/database
+      - .env/production/web
+
+  database:
+    image: postgres:11.6
+    env_file:
+      - .env/production/database
+    volumes:
+      - babywearing_pg:/var/lib/postgresql/data
+
+  db-migrator:
+    image: babywearing.azurecr.io/babywearing:prod
+    command: >
+      sh -c "./wait-for --timeout=300 database:5432 -- bin/rails db:migrate &&
+              bin/rails db:seed"
+    env_file:
+      - .env/production/database
+      - .env/production/web
+    deploy:
+      restart_policy:
+        condition: none
+
+
+volumes:
+  babywearing_pg:

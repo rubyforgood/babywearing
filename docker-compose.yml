@@ -1,8 +1,29 @@
-version: '2'
+version: '3'
 services:
-  db:
-    image: postgres:11.4
+
+  web:
+    build: .
     ports:
-      - "127.0.0.1:5432:5432"
-    environment:
-      - POSTGRES_USER=${USER}
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env/development/database
+      - .env/development/web
+    links:
+      - mailcatcher
+
+  database:
+    image: postgres:11.6
+    env_file:
+      - .env/development/database
+    volumes:
+      - babywearing_pg:/var/lib/postgresql/data
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+
+volumes:
+  babywearing_pg:

@@ -20,11 +20,15 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV['POSTGRES_IP'] || 'localhost' %>
+  host: <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  username: <%= ENV.fetch('POSTGRES_USER', '') %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD', '') %>
+  database: <%= ENV.fetch('POSTGRES_DB', "babywearing_#{Rails.env}") %>
+  variables:
+    statement_timeout: 5000
 
 development:
   <<: *default
-  database: babywearing_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -53,6 +57,9 @@ development:
   # Defaults to warning.
   #min_messages: notice
 
+production:
+  <<: *default
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -60,27 +67,3 @@ test:
   <<: *default
   database: babywearing_test
 
-# As with config/secrets.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
-#
-# Instead, provide the password as a unix environment variable when you boot
-# the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full rundown on how to provide these environment variables in a
-# production deployment.
-#
-# On Heroku and other platform providers, you may have a full connection URL
-# available as an environment variable. For example:
-#
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
-# You can use this database configuration with:
-#
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
-production:
-  <<: *default
-  database: babywearing_production
-  username: babywearing
-  password: <%= ENV['BABYWEARING_DATABASE_PASSWORD'] %>

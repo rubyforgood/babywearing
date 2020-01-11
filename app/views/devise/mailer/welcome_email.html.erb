@@ -4,10 +4,19 @@
 
 <p>Please keep this email for your records. Your account information is as follows:</p>
 
-<%= @user.first_name %>
-<%= @user.phone_number %>
-<%= @user.email %>
-<%= @user.street_address %>
-<%= @user.city %>
-<%= @user.state %>
-<%= @user.postal_code %>
+<dl>
+  <dt>Name:</dt>
+  <dd><%= @user.name %></dd>
+  <dt>Phone:</dt>
+  <dd><%= @user.phone_number %></dd>
+  <dt>Email:</dt>
+  <dd><%= @user.email %></dd>
+  <dt>Address:</dt>
+  <dd><%= @user.street_address %></dd>
+  <dt>City:</dt>
+  <dd><%= @user.city %></dd>
+  <dt>State:</dt>
+  <dd><%= @user.state %></dd>
+  <dt>Postal Code:</dt>
+  <dd><%= @user.postal_code %></dd>
+</dl>

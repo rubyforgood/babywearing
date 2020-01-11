@@ -1,0 +1,22 @@
+FROM ruby:2.6.5
+
+RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
+ netcat \
+ nodejs
+
+COPY Gemfile* /usr/src/app/
+WORKDIR /usr/src/app
+
+RUN bundle install --without development test
+
+COPY . /usr/src/app/
+
+RUN ["chmod", "+x", "/usr/src/app/wait-for"]
+
+RUN ["chmod", "+x", "/usr/src/app/wait-for"]
+
+RUN RAILS_ENV=production bin/rails assets:precompile
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
+
+CMD ["bin/rails", "s", "-b", "0.0.0.0"]
