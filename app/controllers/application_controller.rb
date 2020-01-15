@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action :set_version
+
   # See `lib/modal_responder.rb` for deatils.
   def respond_modal_with(*args, &blk)
     options = args.extract_options!
@@ -22,6 +24,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_version
+    @version = ""
+    fn = File.join(Rails.root, "deploy", "deploy_hash")
+    return unless File.exist?(fn)
+
+    @version = File.open(fn, &:gets).strip[0..5]
+  end
 
   def user_not_authorized(_exception)
     flash[:error] = "Sorry, you aren't allowed to do that. You've been redirected to your previous page instead."

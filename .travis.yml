@@ -3,13 +3,24 @@ env:
   global:
     - CC_TEST_REPORTER_ID=b80cc9abeed21ed522cf2d3831da7ed52dfd6e18bdce2ade4125fd033e96a951
 language: ruby
+
+cache:
+  bundler: true
+  directories:
+    - $HOME/docker_images
+
 rvm:
   - 2.6.5
-before_install: gem install bundler
+
+before_install:
+  - gem install bundler
+
 services:
+  - docker
   - postgresql
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml config/database.yml.bak
   - cp config/database.yml.travis config/database.yml
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -18,3 +29,19 @@ script:
   - bundle exec rspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+before_deploy:
+  - cp config/database.yml.bak config/database.yml
+  - openssl aes-256-cbc -K $encrypted_6d1250a3dbca_key -iv $encrypted_6d1250a3dbca_iv
+    -in deploy/machines/babywearing-stage/certs.tar.enc -out deploy/machines/babywearing-stage/certs.tar
+    -d
+  - mkdir deploy/machines/babywearing-stage/certs
+  - tar xvf deploy/machines/babywearing-stage/certs.tar -C deploy/machines/babywearing-stage/certs
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: ./deploy/deploy.sh
+  on:
+    all_branches: true
+    condition: branch IN (staging, master) AND push = type

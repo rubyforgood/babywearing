@@ -59,6 +59,8 @@ development:
 
 production:
   <<: *default
+  database: babywearing_production
+  password: <%= Rails.application.credentials&.fetch(:database, nil)&.fetch(:password, nil) || "" %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
