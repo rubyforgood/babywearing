@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe ReminderMailer, type: :mailer do
-  let(:user) { users(:member) }
+  let(:user) { users(:borrower) }
   let(:carrier) { carriers(:carrier) }
   let(:location) { locations(:washington) }
 

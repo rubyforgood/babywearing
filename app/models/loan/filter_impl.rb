@@ -8,7 +8,7 @@ class Loan
       scope :search_carrier, ->(query) { joins(:carrier).where("carriers.model ilike ?", "%#{query}%") }
       scope :with_due_date_before, ->(date) { where("due_date <= ?", "%#{date}%") }
       scope :with_due_date_after, ->(date) { where("due_date >= ?", "%#{date}%") }
-      scope :with_member_id, ->(user_id) { where(member_id: user_id) }
+      scope :with_borrower_id, ->(user_id) { where(borrower_id: user_id) }
       scope :with_checkout_volunteer_id, ->(user_id) { where(checkout_volunteer_id: user_id) }
       scope :with_checkin_volunteer_id, ->(user_id) { where(checkin_volunteer_id: user_id) }
 
@@ -24,14 +24,14 @@ class Loan
                     :search_carrier,
                     :with_due_date_before,
                     :with_due_date_after,
-                    :with_member_id,
+                    :with_borrower_id,
                     :with_checkout_volunteer_id,
                     :with_checkin_volunteer_id,
                     :with_outstanding
                   ])
     end
 
-    def self.options_for_member_filter
+    def self.options_for_borrower_filter
       User.order(:last_name, :first_name).map { |m| [m.name, m.id] }
     end
 

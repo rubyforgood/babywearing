@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_033905) do
+ActiveRecord::Schema.define(version: 2020_01_28_155257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,12 +87,14 @@ ActiveRecord::Schema.define(version: 2019_12_11_033905) do
     t.datetime "updated_at", null: false
     t.bigint "checkin_volunteer_id"
     t.bigint "checkout_volunteer_id"
-    t.bigint "member_id", null: false
+    t.bigint "borrower_id", null: false
     t.date "returned_on"
     t.text "notes"
+    t.bigint "user_id"
+    t.index ["borrower_id"], name: "index_loans_on_borrower_id"
     t.index ["checkin_volunteer_id"], name: "index_loans_on_checkin_volunteer_id"
     t.index ["checkout_volunteer_id"], name: "index_loans_on_checkout_volunteer_id"
-    t.index ["member_id"], name: "index_loans_on_member_id"
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -147,7 +149,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_033905) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carriers", "locations", column: "current_location_id"
   add_foreign_key "carriers", "locations", column: "home_location_id"
+  add_foreign_key "loans", "users"
+  add_foreign_key "loans", "users", column: "borrower_id"
   add_foreign_key "loans", "users", column: "checkin_volunteer_id"
   add_foreign_key "loans", "users", column: "checkout_volunteer_id"
-  add_foreign_key "loans", "users", column: "member_id"
 end

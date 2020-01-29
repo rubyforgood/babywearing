@@ -6,7 +6,7 @@ RSpec.describe "Loans", type: :request do
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
   let(:carrier) { carriers(:carrier) }
-  let(:valid_params) { { member_id: users(:member).id, due_date: Date.current + 5.days } }
+  let(:valid_params) { { borrower_id: users(:member).id, due_date: Date.current + 5.days } }
   let(:checked_out_carrier) { carriers(:checked_out) }
 
   describe '#create' do
@@ -34,18 +34,18 @@ RSpec.describe "Loans", type: :request do
     end
 
     context 'with invalid attributes' do
-      it "can't create a loan without the member" do
+      it "can't create a loan without the borrower" do
         sign_in volunteer
 
-        expect { post carrier_loans_path(carrier), params: { loan: valid_params.except(:member_id) } }
+        expect { post carrier_loans_path(carrier), params: { loan: valid_params.except(:borrower_id) } }
           .not_to change(Loan, :count)
-        expect(response.body).to match(/Member must be selected/)
+        expect(response.body).to match(/Borrower must be selected/)
       end
     end
   end
 
   describe '#edit' do
-    let(:loan) { carriers(:available).loans.create(member: member, checkout_volunteer: volunteer) }
+    let(:loan) { carriers(:available).loans.create(borrower: member, checkout_volunteer: volunteer) }
 
     it_behaves_like 'admin and volunteer authorized-only resource', :get do
       let(:endpoint) { edit_carrier_loan_path(loan.carrier, loan) }

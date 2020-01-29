@@ -2,8 +2,8 @@
 
 def mailer_parameters(loan)
   {
-    user_name: loan.member.first_name,
-    user_email: loan.member.email,
+    user_name: loan.borrower.first_name,
+    user_email: loan.borrower.email,
     carrier_name: carrier.display_name,
     location: loan.location.name,
     due_date: loan.due_date

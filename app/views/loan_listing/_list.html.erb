@@ -2,7 +2,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Member</th>
+      <th scope="col">Borrower</th>
       <th scope="col">Carrier</th>
       <th scope="col">Due</th>
       <th scope="col">Returned</th>
@@ -18,7 +18,7 @@
     <% else %>
       <% loans.each do |loan| %>
         <tr>
-          <td><%= link_to loan.member.name, user_path(loan.member) %></td>
+          <td><%= link_to loan.borrower.name, user_path(loan.borrower) %></td>
           <td><%= link_to loan.carrier.display_name, carrier_path(loan.carrier) %></td>
           <td><%= loan.due_date %></td>
           <td><%= loan.returned_on %></td>

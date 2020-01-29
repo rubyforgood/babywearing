@@ -5,11 +5,11 @@ RSpec.describe UserPolicy do
 
   let(:admin) { users(:admin) }
   let(:volunteer) { users(:volunteer) }
-  let(:member) { users(:member) }
+  let(:borrower) { users(:borrower) }
 
   %i[new? create? edit? update? destroy?].each do |activity|
     permissions activity do
-      it { is_expected.not_to permit(member) }
+      it { is_expected.not_to permit(borrower) }
       it { is_expected.to permit(admin, volunteer) }
     end
   end

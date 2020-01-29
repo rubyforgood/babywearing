@@ -6,6 +6,7 @@ RSpec.describe User do
   let(:admin) { users(:admin) }
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
+  let(:borrower) { users(:borrower) }
 
   scenario "should allow a volunteer user to create another user" do
     sign_in volunteer
@@ -102,19 +103,36 @@ RSpec.describe User do
 
     deactive_links  = all('a').select { |l| l.text == "Deactivate" }
     activated_links = all('a').select { |l| l.text == "Activate" }
-    expect(deactive_links.count).to eq(4)
+    expect(deactive_links.count).to eq(5)
     expect(activated_links.count).to eq(0)
 
     all('a').select { |l| l.text == "Deactivate" }.last.click
     deactive_links   = all('a').select { |l| l.text == "Deactivate" }
     activated_links  = all('a').select { |l| l.text == "Activate" }
-    expect(deactive_links.count).to eq(3)
+    expect(deactive_links.count).to eq(4)
     expect(activated_links.count).to eq(1)
 
     all('a').select { |l| l.text == "Activate" }.last.click
     deactive_links  = all('a').select { |l| l.text == "Deactivate" }
     activated_links = all('a').select { |l| l.text == "Activate" }
-    expect(deactive_links.count).to eq(4)
+    expect(deactive_links.count).to eq(5)
     expect(activated_links.count).to eq(0)
+  end
+
+  scenario 'should allow an admin to see User information page with loan history' do
+    sign_in admin
+    visit loan_listing_url
+    loan = loans(:outstanding)
+    loan.borrower = borrower
+    loan.save!
+
+    click_link "#{borrower.first_name} #{borrower.last_name}", match: :first
+
+    # expect(page).to have_content(borrower.email)
+    # expect(page).to have_content(borrower.phone_number)
+    # expect(page).to have_content(borrower.created_at)
+    # expect(page).to have_content(borrower.role)
+    # expect(page).to have_content("Active")
+    # expect(page).to have_content(loan.carrier.name)
   end
 end

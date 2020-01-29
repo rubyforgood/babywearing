@@ -33,7 +33,7 @@ Style/EmptyMethod:
 Metrics/MethodLength:
   Max: 15
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 Style/StringLiterals:

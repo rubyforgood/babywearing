@@ -7,11 +7,11 @@ RSpec.describe MembershipTypePolicy do
 
   let(:admin) { users(:admin) }
   let(:volunteer) { users(:volunteer) }
-  let(:member) { users(:member) }
+  let(:borrower) { users(:borrower) }
 
   %i[create? update? edit? destroy?].each do |activity|
     permissions activity do
-      it { is_expected.not_to permit(member, volunteer) }
+      it { is_expected.not_to permit(borrower, volunteer) }
       it { is_expected.to permit(admin, volunteer) }
     end
   end

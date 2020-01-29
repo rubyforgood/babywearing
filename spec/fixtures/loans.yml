@@ -2,11 +2,11 @@ outstanding:
   carrier: checked_out
   due_date: <%= Time.zone.now %>
   checkout_volunteer: volunteer
-  member: member
+  borrower: borrower
 
 returned:
   carrier: carrier
   due_date: <%= Time.zone.now - 2.months %>
   checkout_volunteer: volunteer
-  member: member
+  borrower: borrower
   returned_on: <%= Time.zone.now - 2.months %>

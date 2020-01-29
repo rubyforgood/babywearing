@@ -26,6 +26,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @loans = @user.loans
+  end
+
   private
 
   def set_user

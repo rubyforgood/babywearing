@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 RSpec.describe Loan do
-  let(:member)    { users(:user) }
+  let(:borrower)    { users(:user) }
   let(:volunteer) { users(:volunteer) }
 
   let(:carrier) { carriers(:carrier) }
 
   describe '#valid?' do
-    context "with a member, a checkout volunteer, a carrier, and a due date" do
+    context "with a borrower, a checkout volunteer, a carrier, and a due date" do
       subject do
         described_class.new(
           carrier: carrier,
           due_date: due_date,
-          member: member,
+          borrower: borrower,
           checkout_volunteer: volunteer
         )
       end
@@ -28,7 +28,7 @@ RSpec.describe Loan do
       due_date = 20.days.from_now.utc.to_date
       loan = described_class.create(
         carrier: carrier,
-        member: member,
+        borrower: borrower,
         checkout_volunteer: volunteer,
         due_date: due_date
       )
@@ -42,7 +42,7 @@ RSpec.describe Loan do
       freeze_time do
         loan = described_class.create(
           carrier: carrier,
-          member: member,
+          borrower: borrower,
           checkout_volunteer: volunteer
         )
 
@@ -55,7 +55,7 @@ RSpec.describe Loan do
     it 'returns all outstanding loans' do
       described_class.delete_all
       loan_os1 = described_class.create(carrier: carrier,
-                                        member: member,
+                                        borrower: borrower,
                                         checkout_volunteer: volunteer,
                                         due_date: Time.zone.today + 10.days)
       outstanding_loans = carrier.loans.outstanding

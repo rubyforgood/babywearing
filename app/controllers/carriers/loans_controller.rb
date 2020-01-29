@@ -45,12 +45,12 @@ module Carriers
     end
 
     def loan_params
-      params.require(:loan).permit(:member_id, :due_date, :returned_on)
+      params.require(:loan).permit(:borrower_id, :due_date, :returned_on)
     end
 
     def send_success_email
-      ReminderMailer.with(user_name: @loan.member.first_name,
-                          user_email: @loan.member.email,
+      ReminderMailer.with(user_name: @loan.borrower.first_name,
+                          user_email: @loan.borrower.email,
                           carrier_name: @carrier.display_name,
                           location: @carrier.current_location.name,
                           due_date: @loan.due_date.to_s).successful_checkout_email.deliver_later
