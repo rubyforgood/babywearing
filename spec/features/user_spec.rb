@@ -97,28 +97,6 @@ RSpec.describe User do
     expect(page).not_to have_content "VIEW MEMBERS"
   end
 
-  scenario 'should allow an admin to activate and deactivate a user' do
-    sign_in admin
-    visit users_url
-
-    deactive_links  = all('a').select { |l| l.text == "Deactivate" }
-    activated_links = all('a').select { |l| l.text == "Activate" }
-    expect(deactive_links.count).to eq(5)
-    expect(activated_links.count).to eq(0)
-
-    all('a').select { |l| l.text == "Deactivate" }.last.click
-    deactive_links   = all('a').select { |l| l.text == "Deactivate" }
-    activated_links  = all('a').select { |l| l.text == "Activate" }
-    expect(deactive_links.count).to eq(4)
-    expect(activated_links.count).to eq(1)
-
-    all('a').select { |l| l.text == "Activate" }.last.click
-    deactive_links  = all('a').select { |l| l.text == "Deactivate" }
-    activated_links = all('a').select { |l| l.text == "Activate" }
-    expect(deactive_links.count).to eq(5)
-    expect(activated_links.count).to eq(0)
-  end
-
   scenario 'should allow an admin to see User information page with loan history' do
     sign_in admin
     visit loan_listing_url

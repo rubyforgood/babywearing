@@ -45,6 +45,30 @@ member:
   phone_number: '18888888888'
   role: member
 
+nonmember:
+  email: 'nonmember@test.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Nonmember'
+  last_name: 'Bember'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  role: member
+
+expired:
+  email: 'expired@test.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Expired'
+  last_name: 'Bember'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  role: member
+
 borrower:
   email: 'borrower@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>

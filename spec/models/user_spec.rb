@@ -28,4 +28,26 @@ RSpec.describe User do
       expect(member).not_to be_activated
     end
   end
+
+  describe "#name_with_membership type" do
+    context "with no membership" do
+      it "just returns the name" do
+        nonmember = users(:nonmember)
+        expect(nonmember.name_with_membership).to eq(nonmember.name.full)
+      end
+    end
+
+    context "with current membership" do
+      it "returns the full name with the membership type short name" do
+        expect(member.name_with_membership).to eq("Member Bember - AN")
+      end
+    end
+
+    context "with expired membership" do
+      it "returns the full name with the membership type short name indicating expired" do
+        expired = users(:expired)
+        expect(expired.name_with_membership).to eq("Expired Bember - AN (Expired)")
+      end
+    end
+  end
 end

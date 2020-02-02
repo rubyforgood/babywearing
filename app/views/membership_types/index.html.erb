@@ -7,10 +7,11 @@
   </header>
 
   <section>
-    <table class="table">
+    <table class="table text-center">
       <thead>
         <tr>
           <th scope="col">Name</th>
+          <th scope="col">Short Name</th>
           <th scope="col">Fee</th>
           <th scope="col">Duration</th>
           <th scope="col">Number of items</th>
@@ -22,7 +23,8 @@
       <tbody>
         <% @membership_types.each do |membership_type| %>
           <tr>
-            <td><%= link_to membership_type.name, membership_type %></td>
+            <td><%= membership_type.name %></td>
+            <td><%= membership_type.short_name %></td>
             <td><%= number_to_currency(membership_type.fee) %></td>
             <td><%= membership_type.duration_days %></td>
             <td><%= membership_type.number_of_items %></td>

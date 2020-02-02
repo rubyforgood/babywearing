@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :signed_agreements
   has_many :carts
   has_many :loans, foreign_key: "borrower_id"
+  has_many :memberships
 
   enum role: %i[admin volunteer member]
 
@@ -35,5 +36,16 @@ class User < ApplicationRecord
 
   def send_welcome_email
     WelcomeMailer.welcome_email(self).deliver
+  end
+
+  def name_with_membership
+    membership = memberships.last
+    return name.full if membership.nil?
+
+    s = "#{name.full} - #{membership.membership_type.short_name}"
+    if membership.expired?
+      s += " (Expired)"
+    end
+    s
   end
 end

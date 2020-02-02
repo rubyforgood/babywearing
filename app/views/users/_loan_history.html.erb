@@ -1,0 +1,36 @@
+<header class="card-header d-flex align-items-center">
+  <h3>Loan History</h3>
+</header>
+<% if loans.empty? %>
+  <div class="p-3">No loans found for this user.</div>
+<% else %>
+  <table data-toggle="table">
+    <thead class="thead-light">
+    <tr>
+      <th>Loan</th>
+      <th>Carrier</th>
+      <th>Checked Out Date</th>
+      <th>Checkout Volunteer</th>
+      <th>Due Date</th>
+      <th>Returned Date</th>
+      <th>Checkin Volunter</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% loans.each do |loan| %>
+      <tr>
+        <td><%= link_to 'Edit', edit_carrier_loan_path(loan.carrier, loan), class: 'btn btn-primary btn-sm', data: {modal: true} %></td>
+        <td><%= link_to loan.carrier.name, carrier_path(loan.carrier.id) %></td>
+        <td><%= loan.created_at.to_date %></td>
+        <% volunteer = loan.checkout_volunteer %>
+        <td><%= volunteer.first_name + " " + volunteer.last_name %></td>
+        <td><%= loan.due_date %></td>
+        <td><%= loan.returned_on %></td>
+        <% volunteer = loan.checkin_volunteer %>
+        <td><%= volunteer.first_name + " " + volunteer.last_name if volunteer %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

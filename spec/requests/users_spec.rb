@@ -6,7 +6,7 @@ RSpec.describe "Users", type: :request do
   let(:admin)  { users(:admin) }
   let(:member) { users(:member) }
 
-  describe 'GET /users' do
+  describe '#index' do
     it_behaves_like 'admin authorized-only resource', :get do
       let(:endpoint) { users_path }
     end
@@ -19,7 +19,36 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe 'PUT /users/:id' do
+  describe '#show' do
+    it_behaves_like 'admin authorized-only resource', :get do
+      let(:endpoint) { user_path(member) }
+    end
+
+    it 'has http status 200' do
+      sign_in users(:admin)
+      get user_path(member)
+
+      expect(response).to be_successful
+    end
+
+    it 'includes user loans' do
+      sign_in users(:admin)
+      get user_path(users(:borrower))
+
+      expect(response).to be_successful
+      expect(response.body).to match(/checked out carrier/)
+    end
+
+    it 'includes user memberships' do
+      sign_in users(:admin)
+      get user_path(member)
+
+      expect(response).to be_successful
+      expect(response.body).to match(/#{member.memberships.first.expiration}/)
+    end
+  end
+
+  describe '#update' do
     it_behaves_like 'admin authorized-only resource', :put do
       let(:endpoint) { user_path(member) }
       let(:params) { { user: { first_name: 'Test' } } }

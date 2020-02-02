@@ -1,0 +1,30 @@
+<%= form_with model: [user, membership],
+              method: (membership.persisted?) ? :patch : :post,
+              remote: request.xhr?,
+              html: { data: { modal: true } } do |form| %>
+  <div class="modal-body">
+
+    <%= form_errors membership %>
+
+    <div class="form-group">
+      <%= form.label :type %>
+      <%= form.collection_select :membership_type_id, MembershipType.all, :id, :name, {}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :effective %>
+      <%= form.date_field :effective, class: "form-control" %>
+    </div>
+    <% if form.object.persisted? %>
+      <div class="form-group">
+        <%= form.label :expiration %>
+        <%= form.date_field :expiration, class: "form-control" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

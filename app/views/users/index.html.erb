@@ -8,6 +8,7 @@
       <th>Phone</th>
       <th>Join Date</th>
       <th data-sortable="true">Role</th>
+      <th data-sortable="true">Membership Info</th>
       <th data-sortable="true">Status</th>
       <th></th>
       <th></th>
@@ -22,6 +23,7 @@
         <td><%= user.phone_number %></td>
         <td><%= user.created_at %></td>
         <td><%= user.role.humanize %></td>
+        <td>Membership Info</td>
         <% if user.deactivated? %>
           <td> Inactive</td>
           <td>
