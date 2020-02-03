@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"><%= image_tag "Babywearing Logo.svg", alt: "Mid-Atlantic Babywearing Logo" %></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if policy(User).new? %>
+        <li class="nav-item active background-blue">
+          <%= link_to new_user_registration_path, class: 'nav-link nav-icon nav-first' do %>
+            <%= image_tag "BW- CREATE USER ICON.svg", alt: "Create a User" %><p>CREATE USER</p>
+          <% end %>
+        </li>
+      <% end %>
+      <% if policy(Carrier).new? %>
+        <li class="nav-item active background-slate">
+          <%= link_to new_carrier_path, class: 'nav-link nav-icon nav-second' do %>
+            <%= image_tag "BW- ADD USER ICON.svg", alt: "Add a Carrier" %><p>ADD CARRIER</p>
+          <% end %>
+        </li>
+      <% end %>
+      <% if policy(User).new? %>
+        <li class="nav-item active background-blue members-tile">
+          <%= link_to users_path, class: 'nav-link nav-icon nav-five' do %>
+            <%= fa_icon "users", class: "members-icon" %><p>VIEW MEMBERS</p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-flex align-items-center user-dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="bg-info text-white font-weight-bolder rounded-circle text-uppercase justify-content-center d-flex align-items-center" style="width: 40px; height: 40px"><%= user_initials(current_user) %></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <h6 class="dropdown-header">Logged in as <strong><%= current_user.email %></strong></h6>
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

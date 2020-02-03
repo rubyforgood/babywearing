@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/"><%= image_tag "Babywearing Logo.svg", alt: "Mid-Atlantic Babywearing Logo" %></a>
+    <ul class="navbar-nav mr-auto">
+      <% if policy(User).new? %>
+        <li class="nav-item active background-blue">
+            <%= link_to new_user_registration_path, class: 'nav-link nav-icon nav-first' do %>
+            <%= image_tag "BW- CREATE USER ICON.svg", alt: "Create a User" %><p>CREATE USER</p>
+            <% end %>
+        </li>
+      <% end %>
+      <% if policy(Carrier).new? %>
+        <li class="nav-item active background-slate">
+            <%= link_to new_carrier_path, class: 'nav-link nav-icon nav-second' do %>
+            <%= image_tag "BW- ADD USER ICON.svg", alt: "Add a Carrier" %><p>ADD CARRIER</p>
+            <% end %>
+        </li>
+      <% end %>
+      <% if policy(User).new? %>
+        <li class="nav-item active background-blue members-tile">
+            <%= link_to users_path, class: 'nav-link nav-icon nav-five' do %>
+            <%= fa_icon "users", class: "members-icon" %><p>VIEW MEMBERS</p>
+            <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <% if show_membership_links? %>
+        <li>
+            <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-link login-links' %>
+        </li>
+        <li>
+            <%= link_to "Log In", new_user_session_path, :class => 'nav-link login-links' %>
+        </li>
+      <% end %>
+    </ul>
+</nav>
