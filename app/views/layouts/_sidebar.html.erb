@@ -26,3 +26,8 @@
     </li>
   </ul>
 </nav>
+<% if @version.present? %>
+  <div class="version">
+    <%= @version %>
+  </div>
+<% end %>

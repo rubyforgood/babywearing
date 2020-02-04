@@ -95,6 +95,10 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => "https://mab-babywearing.herokuapp.com" }
   config.action_mailer.default_options = { from: 'stephanie.funk@midatlanticbabywearing.org' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
+
   config.read_encrypted_secrets = true
 
 end

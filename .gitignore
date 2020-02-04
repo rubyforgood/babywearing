@@ -35,3 +35,5 @@ db/.DS_Store
 
 # Ignore coverage files from simplecov
 /coverage
+
+/deploy/deploy_hash
