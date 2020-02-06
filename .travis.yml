@@ -1,4 +1,3 @@
-sudo: false
 env:
   global:
     - CC_TEST_REPORTER_ID=b80cc9abeed21ed522cf2d3831da7ed52dfd6e18bdce2ade4125fd033e96a951
@@ -42,6 +41,4 @@ deploy:
   skip_cleanup: true
   provider: script
   script: ./deploy/deploy.sh
-  on:
-    all_branches: true
-    condition: branch IN (staging, master) AND push = type
+  if: branch IN (staging, master) && push = type
