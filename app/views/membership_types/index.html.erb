@@ -23,7 +23,7 @@
         <% @membership_types.each do |membership_type| %>
           <tr>
             <td><%= link_to membership_type.name, membership_type %></td>
-            <td><%= membership_type.fee_cents %></td>
+            <td><%= number_to_currency(membership_type.fee) %></td>
             <td><%= membership_type.duration_days %></td>
             <td><%= membership_type.number_of_items %></td>
             <td><%= membership_type.description %></td>

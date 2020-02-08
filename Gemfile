@@ -25,6 +25,7 @@ gem "font-awesome-rails"
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.8'
+gem 'money-rails', '~>1.12'
 gem 'name_of_person'
 gem "responders"
 gem 'turbolinks', '~> 5'

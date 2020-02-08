@@ -7,7 +7,7 @@
 
 <p>
   <strong>Fee:</strong>
-  <%= @membership_type.fee_cents %>
+  <%= number_to_currency(@membership_type.fee) %>
 </p>
 
 <p>
