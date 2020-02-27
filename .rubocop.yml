@@ -41,7 +41,7 @@ Style/EmptyMethod:
 Metrics/MethodLength:
   Max: 15
 
-Layout/LineLength:
+Metrics/LineLength:
   Max: 120
 
 # TBR

@@ -1,29 +1,42 @@
 version: '3'
 services:
 
-  web:
-    build: .
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/src/app
+      - .:/usr/src/app:delegated
     env_file:
-      - .env/development/database
-      - .env/development/web
+      - ./docker/env/development/database
+      - ./docker/env/development/app
     links:
       - mailcatcher
 
   database:
     image: postgres:11.6
     env_file:
-      - .env/development/database
+      - ./docker/env/development/database
     volumes:
-      - babywearing_pg:/var/lib/postgresql/data
+      - babywearing_pg:/var/lib/postgresql/data:delegated
 
   mailcatcher:
     image: schickling/mailcatcher
     ports:
       - "1080:1080"
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    env_file:
+      - ./docker/env/development/web
+    ports:
+      - "8080:8080"
+    links:
+      - app
 
 volumes:
   babywearing_pg:

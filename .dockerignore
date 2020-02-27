@@ -11,3 +11,5 @@ tmp/*
 .ruby-version
 
 .idea
+
+storage/*

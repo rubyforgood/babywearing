@@ -2,8 +2,8 @@
 **doc is WIP (i.e. NOT COMPLETE YET)**
 
 The below manual process has been integrated with Travis CI with the exception of the "Create the VM" and related steps.
-Currently the `babywearing-stage` VM has been created and setup. When a push is made to the `master` or `staging` branch,
-that branch is deployed to the VM.
+Currently the `babywearing-stage` VM has been created and setup. When a push is made to the `staging` branch,
+that branch is deployed to the VM. Other branches can be added in the `deploy` section of `travis.yml`.
 
 ----------------------
 Required:
