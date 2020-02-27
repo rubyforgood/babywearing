@@ -42,13 +42,16 @@
                 :with_checkin_volunteer_id,
                 filterrific.select_options[:with_checkin_volunteer_id],
                 { include_blank: 'Checkin Volunteer' },
-
       ) %>
       <%= f.select(
               :with_outstanding,
               filterrific.select_options[:with_outstanding],
               { include_blank: 'Outstanding' },
-
+      ) %>
+      <%= f.select(
+              :with_overdue,
+              filterrific.select_options[:with_overdue],
+              { include_blank: 'Overdue' }
       ) %>
     </div>
   </div>

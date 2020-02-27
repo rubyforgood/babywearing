@@ -10,13 +10,13 @@ class Carrier < ApplicationRecord
   belongs_to :category
 
   validates :item_id, uniqueness: { message: 'Item ID has already been taken' }
-  validates_presence_of [
-    :name,
-    :item_id,
-    :home_location_id,
-    :current_location_id,
-    :default_loan_length_days,
-    :category_id
+  validates_presence_of %i[
+    name
+    item_id
+    home_location_id
+    current_location_id
+    default_loan_length_days
+    category_id
   ]
 
   has_many_attached :photos
@@ -36,7 +36,7 @@ class Carrier < ApplicationRecord
     end
 
     event :sell do
-      transitions from: [:available, :out_of_service], to: :sold
+      transitions from: %i[available out_of_service], to: :sold
     end
 
     event :checkout do

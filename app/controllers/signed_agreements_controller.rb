@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SignedAgreementsController < ApplicationController
-  before_action :set_agreement, only: [:new, :show]
+  before_action :set_agreement, only: %i[new show]
 
   def show
     @signed_agreement = SignedAgreement.new

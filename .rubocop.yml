@@ -26,17 +26,9 @@ Style/GuardClause:
 Style/Documentation:
   Enabled: false
 
-# TBR
-Style/WordArray:
-  Enabled: false
-
-# TBR
-Style/SymbolArray:
-  Enabled: false
 
 Style/EmptyMethod:
   Enabled: false
-
 
 Metrics/MethodLength:
   Max: 15

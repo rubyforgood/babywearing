@@ -3,7 +3,7 @@
 module Carriers
   class LoansController < ApplicationController
     include CarrierScoped
-    before_action :verify_state, except: [:edit, :update]
+    before_action :verify_state, except: %i[edit update]
 
     respond_to :html, :json
 

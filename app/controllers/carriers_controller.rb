@@ -2,7 +2,7 @@
 
 class CarriersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_carrier, only: [:show, :edit, :update]
+  before_action :set_carrier, only: %i[show edit update]
   before_action :set_loan, only: [:show]
 
   def index

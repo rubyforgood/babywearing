@@ -13,14 +13,14 @@ class Carrier
       scope :with_current_location_id, ->(current_location_id) { where("current_location_id = ?", current_location_id) }
       scope :with_state_in, ->(state) { where(state: state) }
 
-      filterrific(available_filters: [
-                    :search_manufacturer,
-                    :search_item_id,
-                    :search_model,
-                    :search_name,
-                    :with_category_id,
-                    :with_current_location_id,
-                    :with_state_in
+      filterrific(available_filters: %i[
+                    search_manufacturer
+                    search_item_id
+                    search_model
+                    search_name
+                    with_category_id
+                    with_current_location_id
+                    with_state_in
                   ])
     end
 

@@ -2,7 +2,7 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    skip_before_action :require_no_authentication, only: [:new, :create]
+    skip_before_action :require_no_authentication, only: %i[new create]
 
     def create
       super

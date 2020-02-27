@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :carts
   has_many :loans, foreign_key: "borrower_id"
 
-  enum role: [:admin, :volunteer, :member]
+  enum role: %i[admin volunteer member]
 
   scope :admins, -> { where(role: admin) }
   scope :volunteers, -> { where(role: :volunteer) }

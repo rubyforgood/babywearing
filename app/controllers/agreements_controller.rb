@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AgreementsController < ApplicationController
-  before_action :set_agreement, only: [:show, :edit, :update, :destroy]
+  before_action :set_agreement, only: %i[show edit update destroy]
 
   def index
     @agreements = Agreement.all

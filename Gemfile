@@ -34,7 +34,7 @@ gem 'will_paginate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -61,4 +61,4 @@ gem 'devise', '>= 4.7.1'
 gem 'pundit'
 gem 'rubocop'
 gem 'rubocop-rspec'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

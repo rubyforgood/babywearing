@@ -59,6 +59,30 @@ checked_out:
   current_location: lancaster
   state: 'checked_out'
 
+checked_out_overdue_1:
+  name: "checked out carrier"
+  item_id: "TEST1239"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  state: 'checked_out'
+
+checked_out_overdue_2:
+  name: "checked out carrier"
+  item_id: "TEST1240"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  state: 'checked_out'
+
 available:
   name: "available carrier"
   item_id: "TEST1239"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FeeTypesController < ApplicationController
-  before_action :set_fee_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_fee_type, only: %i[show edit update destroy]
 
   # GET /fee_types
   def index

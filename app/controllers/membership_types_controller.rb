@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MembershipTypesController < ApplicationController
-  before_action :set_membership_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_membership_type, only: %i[show edit update destroy]
 
   # GET /membership_types
   def index

@@ -1,6 +1,6 @@
 outstanding:
   carrier: checked_out
-  due_date: <%= Time.zone.now %>
+  due_date: <%= Time.zone.today + 2.days %>
   checkout_volunteer: volunteer
   borrower: borrower
 
@@ -10,3 +10,15 @@ returned:
   checkout_volunteer: volunteer
   borrower: borrower
   returned_on: <%= Time.zone.now - 2.months %>
+
+overdue_1:
+  carrier: checked_out_overdue_1
+  due_date: <%= Time.zone.now - 1.week %>
+  checkout_volunteer: volunteer
+  borrower: borrower
+
+overdue_2:
+  carrier: checked_out_overdue_2
+  due_date: <%= Time.zone.now - 2.weeks %>
+  checkout_volunteer: volunteer
+  borrower: borrower
