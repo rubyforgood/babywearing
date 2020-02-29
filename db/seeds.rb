@@ -83,11 +83,11 @@ end
 
 if FeeType.count.zero?
   puts "Creating fee types..."
-  FeeType.create(name: 'Cleaning Fee', amount: 1500)
-  FeeType.create(name: 'Late Fee', amount: 100)
-  FeeType.create(name: 'Membership Donation', amount: 3000)
-  FeeType.create(name: 'Second Carrier Addition', amount: 500)
-  FeeType.create(name: 'Trial Membership', amount: 1000)
+  FeeType.create(name: 'Cleaning Fee', fee_cents: 1500)
+  FeeType.create(name: 'Late Fee', fee_cents: 100)
+  FeeType.create(name: 'Membership Donation', fee_cents: 3000)
+  FeeType.create(name: 'Second Carrier Addition', fee_cents: 500)
+  FeeType.create(name: 'Trial Membership', fee_cents: 1000)
   puts "Done."
 end
 

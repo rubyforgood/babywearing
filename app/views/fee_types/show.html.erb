@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Amount:</strong>
-  <%= number_to_currency(@fee_type.amount/100) %>
+  <strong>Fee:</strong>
+  <%= number_to_currency(@fee_type.fee) %>
 </p>
 
 <%= link_to 'Edit', edit_fee_type_path(@fee_type), class: 'btn btn-primary btn-sm' %> |

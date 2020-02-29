@@ -1,3 +1,3 @@
 upgrade:
   name: "Upgrade Membership"
-  amount: "2000"
+  fee_cents: "2000"

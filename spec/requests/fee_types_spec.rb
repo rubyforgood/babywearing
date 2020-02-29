@@ -24,10 +24,10 @@ RSpec.describe "FeeTypes", type: :request do
   describe 'POST /fee_types' do
     it_behaves_like 'admin authorized-only resource', :post do
       let(:endpoint) { fee_types_path }
-      let(:params) { { fee_type: { name: 'Test', amount: 100 } } }
+      let(:params) { { fee_type: { name: 'Test', fee_cents: 100 } } }
     end
 
-    let(:valid_attr) { { name: 'Test', amount: 10 } }
+    let(:valid_attr) { { name: 'Test', fee_cents: 10 } }
     let(:invalid_attr) { { name: '' } }
 
     context 'with valid attributes' do
@@ -64,10 +64,10 @@ RSpec.describe "FeeTypes", type: :request do
     it_behaves_like 'admin authorized-only resource', :put do
       let(:fee_type) { fee_types(:upgrade) }
       let(:endpoint) { fee_type_path(fee_type) }
-      let(:params) { { fee_type: { name: 'Test', amount: 10 } } }
+      let(:params) { { fee_type: { name: 'Test', fee_cents: 10 } } }
     end
 
-    let(:valid_attr) { { name: 'Test', amount: 10 } }
+    let(:valid_attr) { { name: 'Test', fee_cents: 10 } }
     let(:invalid_attr) { { name: '' } }
 
     context 'with valid attributes' do
@@ -90,10 +90,10 @@ RSpec.describe "FeeTypes", type: :request do
   end
 
   describe 'DELETE /fee_type/:id' do
-    let(:fee_type) { FeeType.create(name: 'Test', amount: 10) }
+    let(:fee_type) { FeeType.create(name: 'Test', fee_cents: 10) }
 
     it_behaves_like "admin authorized-only resource", :delete do
-      let(:fee_type) { FeeType.create(name: 'Test', amount: 10) }
+      let(:fee_type) { FeeType.create(name: 'Test', fee_cents: 10) }
       let(:endpoint) { fee_type_path(fee_type) }
     end
 

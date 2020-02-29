@@ -60,6 +60,6 @@ class FeeTypesController < ApplicationController
   end
 
   def fee_type_params
-    params.require(:fee_type).permit(:name, :amount)
+    params.require(:fee_type).permit(:name, :fee_cents)
   end
 end

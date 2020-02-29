@@ -30,7 +30,7 @@ RSpec.feature "fee_type" do
     visit edit_fee_type_path(fee_type)
 
     fill_in 'Name', with: 'Updated Membership'
-    fill_in 'Amount', with: '3000'
+    fill_in 'Fee cents', with: '3000'
     click_on 'Update Fee type'
 
     expect(page).to have_content('Fee type was successfully updated.')
@@ -50,7 +50,7 @@ RSpec.feature "fee_type" do
 
     click_link('+ New')
     fill_in 'Name', with: nil
-    fill_in 'Amount', with: '4000'
+    fill_in 'Fee cents', with: '4000'
     click_on 'Create Fee type'
 
     expect(page).to have_content("Name can't be blank")
@@ -61,7 +61,7 @@ RSpec.feature "fee_type" do
 
     click_link('+ New')
     fill_in 'Name', with: 'Upgrade Membership'
-    fill_in 'Amount', with: '3000'
+    fill_in 'Fee cents', with: '3000'
     click_on 'Create Fee type'
 
     expect(page).to have_content('Fee type was successfully created.')
