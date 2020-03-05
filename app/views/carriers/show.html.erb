@@ -3,33 +3,33 @@
 <% end %>
 <div class="container ml-2 mt-4 p-4">
   <div class="ml-3">
-  <%= tag.span @carrier.state.titleize, class: carrier_badge_class(@carrier) %>
-  <header class="mt-4">
-    <div>
-      <%= tag.span @carrier.item_id, class: 'text-sm' %>
-      <%= tag.h1 @carrier.name %>
+    <%= tag.span @carrier.state.titleize, class: carrier_badge_class(@carrier) %>
+    <header class="mt-4">
+      <div>
+        <%= tag.span @carrier.item_id, class: 'text-sm' %>
+        <%= tag.h1 @carrier.name %>
 
-      <% if @carrier.may_checkout? && policy(@carrier).checkout? %>
-        <%= link_to 'Checkout', new_carrier_loan_url(@carrier), class: 'btn-primary btn-sm', data: { modal: true } %>
-      <% end %>
+        <% if @carrier.may_checkout? && policy(@carrier).checkout? %>
+          <%= link_to 'Checkout', new_carrier_loan_url(@carrier), class: 'btn-primary btn-sm', data: {modal: true} %>
+        <% end %>
 
-      <% if @current_loan && @carrier.may_checkin? && policy(@carrier).checkout? %>
-        <%= link_to 'Checkin', edit_carrier_loan_url(@carrier, @current_loan), class: 'btn-primary btn-sm', data: { modal: true } %>
-      <% end %>
+        <% if @current_loan && @carrier.may_checkin? && policy(@carrier).checkout? %>
+          <%= link_to 'Checkin', edit_carrier_loan_url(@carrier, @current_loan), class: 'btn-primary btn-sm', data: {modal: true} %>
+        <% end %>
 
-      <% if policy(@carrier).edit? %>
-        <%= link_to 'Edit', edit_carrier_path, class: 'btn-primary btn-sm' %>
-      <% end %>
+        <% if policy(@carrier).edit? %>
+          <%= link_to 'Edit', edit_carrier_path, class: 'btn-primary btn-sm' %>
+        <% end %>
 
-      <% if policy(@carrier).destroy? %>
-        <%= link_to 'Delete', @carrier, method: :delete, class: 'btn-danger btn-sm' %>
-      <% end %>
-    </div>
-  </header>
+        <% if policy(@carrier).destroy? %>
+          <%= link_to 'Delete', @carrier, method: :delete, class: 'btn-danger btn-sm' %>
+        <% end %>
+      </div>
+    </header>
   </div>
   <dl class="row mt-5">
     <dt class="col-sm-2 text-md-right">Safety link:</dt>
-    <dd class="col-sm-10"><%=link_to "Safety Information",  @carrier.safety_link %></dd>
+    <dd class="col-sm-10"><%= link_to "Safety Information", @carrier.safety_link %></dd>
     <dt class="col-sm-2 text-md-right">Category:</dt>
     <dd class="col-sm-10"><%= @carrier.category.name %></dd>
     <dt class="col-sm-2 text-md-right">Home Location:</dt>
@@ -60,7 +60,11 @@
     <dd class="col-sm-10"><%= @carrier.color %></dd>
     <dt class="col-sm-2 text-md-right">Size:</dt>
     <dd class="col-sm-10"><%= @carrier.size %></dd>
-    <dt class="col-sm-2 text-md-right">Notes:</dt>
-    <dd class="col-sm-10"><%= @carrier.notes %></dd>
+    <dt class="col-sm-2 text-md-right">Weight Limit(in lbs):</dt>
+    <dd class="col-sm-10"><%= @carrier.weight_limit %></dd>
+    <% if policy(@carrier).edit? %>
+      <dt class="col-sm-2 text-md-right">Notes:</dt>
+      <dd class="col-sm-10"><%= @carrier.notes %></dd>
+    <% end %>
   </dl>
 </div>

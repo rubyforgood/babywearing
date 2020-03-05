@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_163928) do
+ActiveRecord::Schema.define(version: 2020_03_05_175156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_163928) do
     t.string "safety_link"
     t.string "state", default: "available", null: false
     t.text "notes"
+    t.integer "weight_limit"
     t.index ["current_location_id"], name: "index_carriers_on_current_location_id"
     t.index ["home_location_id"], name: "index_carriers_on_home_location_id"
     t.index ["state"], name: "index_carriers_on_state"

@@ -32,6 +32,11 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :weight_limit, "Weight Limit(in lbs)" %>
+    <%= form.number_field :weight_limit, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :safety_link, 'Safety Link' %>
     <%= form.text_field :safety_link, class: "form-control" %>
   </div>

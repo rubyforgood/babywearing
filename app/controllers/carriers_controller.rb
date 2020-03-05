@@ -9,6 +9,7 @@ class CarriersController < ApplicationController
     @carriers = Carrier.with_attached_photos.includes(:home_location)
     init_filters || return
     @carriers = @filterrific.find.page(params[:page])
+
     extract_view_mode
 
     respond_to do |format|
@@ -103,7 +104,7 @@ class CarriersController < ApplicationController
   def carrier_params
     params.require(:carrier).permit(
       :name, :item_id, :manufacturer,
-      :model, :color, :size,
+      :model, :color, :size, :weight_limit,
       :safety_link,
       :home_location_id,
       :current_location_id,
