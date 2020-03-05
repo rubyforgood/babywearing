@@ -90,11 +90,9 @@ ActiveRecord::Schema.define(version: 2020_02_28_163928) do
     t.bigint "borrower_id", null: false
     t.date "returned_on"
     t.text "notes"
-    t.bigint "user_id"
     t.index ["borrower_id"], name: "index_loans_on_borrower_id"
     t.index ["checkin_volunteer_id"], name: "index_loans_on_checkin_volunteer_id"
     t.index ["checkout_volunteer_id"], name: "index_loans_on_checkout_volunteer_id"
-    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -111,6 +109,17 @@ ActiveRecord::Schema.define(version: 2020_02_28_163928) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "short_name"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "membership_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "expiration"
+    t.index ["membership_type_id"], name: "index_memberships_on_membership_type_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "signed_agreements", force: :cascade do |t|
@@ -141,6 +150,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_163928) do
     t.string "first_name"
     t.string "last_name"
     t.integer "role", default: 2, null: false
+    t.text "notes"
     t.index ["deactivated_at"], name: "index_users_on_deactivated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -149,8 +159,9 @@ ActiveRecord::Schema.define(version: 2020_02_28_163928) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carriers", "locations", column: "current_location_id"
   add_foreign_key "carriers", "locations", column: "home_location_id"
-  add_foreign_key "loans", "users"
   add_foreign_key "loans", "users", column: "borrower_id"
   add_foreign_key "loans", "users", column: "checkin_volunteer_id"
   add_foreign_key "loans", "users", column: "checkout_volunteer_id"
+  add_foreign_key "memberships", "membership_types"
+  add_foreign_key "memberships", "users"
 end

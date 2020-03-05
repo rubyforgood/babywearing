@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.3.1'
+gem 'puma', '~> 4.3.3'
 gem 'rails', '~> 5.2.4'
 gem 'sassc', '2.1.0'
 gem 'sassc-rails', '~> 2.1' # Use Uglifier as compressor for JavaScript assets
