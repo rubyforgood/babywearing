@@ -1,0 +1,27 @@
+<header class="card-header d-flex align-items-center">
+  <h3>Memberships</h3>
+</header>
+<% if memberships[:history].empty? %>
+  <div class="p-3">No memberships found for this user.</div>
+<% else %>
+  <div class="container memberships-list">
+    <ul class="nav nav-tabs" id="membership-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="current-membership-tab" data-toggle="tab" href="#current-membership-content" role="tab" aria-controls="current"
+           aria-selected="true">Current</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="membership-history-tab" data-toggle="tab" href="#membership-history-content" role="tab" aria-controls="history"
+           aria-selected="false">History</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="membership-content">
+      <div class="tab-pane fade show active" id="current-membership-content" role="tabpanel" aria-labelledby="home-tab">
+        <%= render partial: "memberships_table", locals: { memberships: memberships[:current] } %>
+      </div>
+      <div class="tab-pane fade" id="membership-history-content" role="tabpanel" aria-labelledby="profile-tab">
+        <%= render partial: "memberships_table", locals: { memberships: memberships[:history] } %>
+      </div>
+    </div>
+  </div>
+<% end %>

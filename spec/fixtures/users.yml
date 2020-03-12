@@ -69,6 +69,18 @@ expired:
   phone_number: '18888888888'
   role: member
 
+upcoming:
+  email: 'upcoming@test.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Upcoming'
+  last_name: 'Bember'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  role: member
+
 borrower:
   email: 'borrower@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>

@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     authorize @user
 
     @loans = @user.loans
-    @memberships = @user.memberships
+    @memberships = { history: @user.memberships.order(expiration: :desc), current: [@user.current_membership].compact }
   end
 
   private

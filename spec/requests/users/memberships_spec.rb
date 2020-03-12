@@ -101,6 +101,7 @@ RSpec.describe "Users::Memberships", type: :request do
         expect(membership.reload.expiration).to eq(original_expiration)
       end
     end
+
     context 'with valid attributes' do
       it 'updates the membership' do
         sign_in volunteer

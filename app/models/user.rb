@@ -34,6 +34,14 @@ class User < ApplicationRecord
     end
   end
 
+  def current_membership
+    today = Time.zone.today
+    membership = memberships.where("expiration > ? AND effective <= ?", today, today).order(expiration: :desc).first
+    return if membership.nil?
+
+    membership
+  end
+
   def send_welcome_email
     WelcomeMailer.welcome_email(self).deliver
   end
