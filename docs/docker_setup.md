@@ -1,5 +1,5 @@
-# If you would like to develop and run the application locally under docker (the advantage being that
-# all related services will start automatically), follow these steps:
+If you would like to develop and run the application locally under docker (the advantage being that
+all related services will start automatically), follow these steps:
 
 1. These instructions assume you are on MacOS
 2. Download and install Docker Desktop for Mac: https://hub.docker.com/editions/community/docker-ce-desktop-mac 

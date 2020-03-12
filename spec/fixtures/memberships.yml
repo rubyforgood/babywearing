@@ -9,3 +9,9 @@ expired:
   membership_type: annual
   effective: <%= Time.zone.today - 53.weeks %>
   expiration: <%= Time.zone.today - 1.week %>
+
+upcoming:
+  user: upcoming
+  membership_type: annual
+  effective: <%= Time.zone.today + 1.week %>
+  expiration: <%= Time.zone.today + 53.weeks %>

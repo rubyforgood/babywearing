@@ -1,0 +1,25 @@
+<table data-toggle="table">
+  <thead class="thead-light">
+  <tr>
+    <th>Type</th>
+    <th>Effective</th>
+    <th>Expiration</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% if memberships.empty? %>
+      <tr><td colspan="100%">No memberships</td></tr>
+    <% else %>
+      <% memberships.each do |membership| %>
+        <tr>
+          <td><%= membership.membership_type.name %></td>
+          <td><%= membership.effective %></td>
+          <td><%= membership.expiration %></td>
+          <td><%= link_to 'Edit', edit_user_membership_path(membership.user, membership), class: 'btn btn-primary btn-sm', data: {modal: true} %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
