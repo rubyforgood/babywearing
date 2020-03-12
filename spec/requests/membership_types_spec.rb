@@ -27,6 +27,7 @@ RSpec.describe "MembershipTypes", type: :request do
       let(:params) do
         { membership_type: {
           name: 'Annual',
+          short_name: 'year',
           fee_cents: 30_00,
           duration_days: 3,
           number_of_items: 3,
@@ -38,6 +39,7 @@ RSpec.describe "MembershipTypes", type: :request do
     let(:valid_attr) do
       {
         name: 'Annual',
+        short_name: 'year',
         fee_cents: 30_00,
         duration_days: 3,
         number_of_items: 3,
@@ -51,7 +53,7 @@ RSpec.describe "MembershipTypes", type: :request do
         sign_in users(:admin)
         send :post, membership_types_path, params: { membership_type: valid_attr }
 
-        expect(response).to redirect_to(membership_type_path(assigns(:membership_type)))
+        expect(response).to redirect_to(membership_types_path)
         expect(flash[:notice]).to eq('Membership type was successfully created.')
       end
     end
@@ -83,6 +85,7 @@ RSpec.describe "MembershipTypes", type: :request do
       let(:params) do
         { membership_type: {
           name: 'Annual',
+          short_name: 'year',
           fee_cents: 30_00,
           duration_days: 3,
           number_of_items: 3,
@@ -94,6 +97,7 @@ RSpec.describe "MembershipTypes", type: :request do
     let(:valid_attr) do
       {
         name: 'Annual',
+        short_name: 'year',
         fee_cents: 30_00,
         duration_days: 3,
         number_of_items: 3,
@@ -125,6 +129,7 @@ RSpec.describe "MembershipTypes", type: :request do
     let(:membership_type) do
       MembershipType.create(
         name: 'Annual',
+        short_name: 'year',
         fee_cents: 30_00,
         duration_days: 3,
         number_of_items: 3,
@@ -136,6 +141,7 @@ RSpec.describe "MembershipTypes", type: :request do
       let(:membership_type) do
         MembershipType.create(
           name: 'Annual',
+          short_name: 'year',
           fee_cents: 30_00,
           duration_days: 3,
           number_of_items: 3,

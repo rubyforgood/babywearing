@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
-class UserPolicy < ApplicationPolicy
-  attr_reader :user, :members
+class MembershipPolicy < ApplicationPolicy
+  attr_reader :user, :membership
 
-  def initialize(user, members)
+  def initialize(user, membership)
     @user = user
-    @members = members
-  end
-
-  def index?
-    authorized?
+    @membership = membership
   end
 
   def new?
@@ -32,13 +28,9 @@ class UserPolicy < ApplicationPolicy
     authorized?
   end
 
-  def show?
-    authorized?
-  end
-
   private
 
   def authorized?
-    user && (user.admin? || user.volunteer?)
+    user.admin? || user.volunteer?
   end
 end

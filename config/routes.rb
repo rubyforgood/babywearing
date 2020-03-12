@@ -6,7 +6,12 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
-  resources :users, except: [:destroy, :new]
+  resources :users, except: [:destroy, :new] do
+    resources :memberships, except: :index, controller: 'users/memberships'
+  end
+
+  # TODO: this should go away, we don't need a whole resource, module and controller just to modify a field on a record
+  # of a type that already has those things
   scope module: :users do
     resources :deactivate, only: :create
   end
@@ -15,7 +20,7 @@ Rails.application.routes.draw do
   resources :fee_types
   resources :agreements
   resources :locations
-  resources :membership_types
+  resources :membership_types, except: :show
 
   resources :carriers do
     resources :loans, only: [:create, :edit, :new, :update], module: :carriers

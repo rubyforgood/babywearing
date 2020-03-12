@@ -1,0 +1,11 @@
+member:
+  user: member
+  membership_type: annual
+  effective: <%= Time.zone.today - 1.week %>
+  expiration: <%= Time.zone.today + 358.days %>
+
+expired:
+  user: expired
+  membership_type: annual
+  effective: <%= Time.zone.today - 53.weeks %>
+  expiration: <%= Time.zone.today - 1.week %>

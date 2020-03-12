@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-
     if @user.update(user_params)
       redirect_to users_url, notice: 'User was successfully updated.'
     else
@@ -27,7 +26,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    authorize @user
+
     @loans = @user.loans
+    @memberships = @user.memberships
   end
 
   private

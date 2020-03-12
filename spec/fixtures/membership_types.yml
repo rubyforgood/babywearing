@@ -1,7 +1,8 @@
 annual:
   name: 'Annual'
-  fee_cents: 30_00,
-  duration_days: 3
+  short_name: 'AN'
+  fee_cents: 30_00
+  duration_days: 365
   number_of_items: 3
   description: "A text description goes here."
 

@@ -26,7 +26,7 @@ class MembershipTypesController < ApplicationController
     @membership_type = authorize MembershipType.new(membership_type_params)
 
     if @membership_type.save
-      redirect_to @membership_type, notice: 'Membership type was successfully created.'
+      redirect_to membership_types_path, notice: 'Membership type was successfully created.'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class MembershipTypesController < ApplicationController
     authorize @membership_type
 
     if @membership_type.update(membership_type_params)
-      redirect_to @membership_type, notice: 'Membership type was successfully updated.'
+      redirect_to membership_types_path, notice: 'Membership type was successfully updated.'
     else
       render :edit
     end
@@ -61,6 +61,7 @@ class MembershipTypesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def membership_type_params
-    params.require(:membership_type).permit(:name, :fee_cents, :duration_days, :number_of_items, :description)
+    params.require(:membership_type).permit(:name, :short_name, :fee_cents, :duration_days, :number_of_items,
+                                            :description)
   end
 end

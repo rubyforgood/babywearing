@@ -53,6 +53,7 @@ group :test do
   gem 'rspec-rails', '~> 3.8'
   # add simpleCov for Code Climate test coverage visibility
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
 

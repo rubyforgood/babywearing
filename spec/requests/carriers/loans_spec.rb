@@ -56,7 +56,6 @@ RSpec.describe "Loans", type: :request do
   describe '#new' do
     it_behaves_like 'admin and volunteer authorized-only resource', :get do
       let(:endpoint) { new_carrier_loan_path(carrier) }
-      let(:params) { { loan: valid_params } }
     end
     context 'when carrier not available' do
       it 'returns a 404' do

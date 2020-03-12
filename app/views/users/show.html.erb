@@ -1,4 +1,4 @@
-<h1> <%= @user.name %> </h1>
+<h1> <%= @user.name %></h1>
 
 <dl class="row mt-5">
   <dt class="col-sm-2 text-md-right">Email address:</dt>
@@ -9,6 +9,8 @@
   <dd class="col-sm-10"><%= @user.created_at %><br></dd>
   <dt class="col-sm-2 text-md-right">Role:</dt>
   <dd class="col-sm-10"><%= @user.role.humanize %><br></dd>
+  <dt class="col-sm-2 text-md-right">Membership:</dt>
+  <dd class="col-sm-10">Membership info</dd>
   <dt class="col-sm-2 text-md-right">Status:</dt>
   <dd class="col-sm-10">
     <% if @user.deactivated? %>
@@ -18,43 +20,15 @@
     <% end %></dd>
 </dl>
 
-<dt class="col-sm-2 text-md-right"><%= link_to 'Edit User Details', edit_user_path(@user) %></dt>
-<br><br>
+<div><%= link_to 'Edit User', edit_user_path(@user), class: "btn btn-primary btn-sm" %>
+  <% link_text = (@memberships.size > 0) ? "Renew Membership" : "Add Membership" %>
+  <%= link_to link_text, new_user_membership_path(@user), class: "btn btn-primary btn-sm", data: { modal: true } %>
+</div>
 
-<div class="card">
-  <header class="card-header d-flex align-items-center">
-    <h3>Loan History</h3>
-  </header>
-  <% if @loans.empty? %>
-    <div class="p-3">No Loans found for this user.</div>
-  <% else %>
-    <table data-toggle="table">
-      <thead class="thead-light">
-      <tr>
-        <th>Loan</th>
-        <th>Carrier</th>
-        <th>Checked Out Date</th>
-        <th>Checkout Volunteer</th>
-        <th>Due Date</th>
-        <th>Returned Date</th>
-        <th>Checkin Volunter</th>
-      </tr>
-      </thead>
+<div class="card mt-2">
+  <%= render partial: 'membership_history', locals: { memberships: @memberships} %>
+</div>
 
-      <tbody>
-      <% @loans.each do |loan| %>
-        <tr>
-          <td><%= link_to 'Edit', edit_carrier_loan_path(loan.carrier, loan), class: 'btn btn-primary btn-sm', data: {modal: true} %></td>
-          <td><%= link_to loan.carrier.name, carrier_path(loan.carrier.id) %></td>
-          <td><%= loan.created_at.to_date %></td>
-          <% volunteer = loan.checkout_volunteer %>
-          <td><%= volunteer.first_name + " " + volunteer.last_name %></td>
-          <td><%= loan.due_date %></td>
-          <td><%= loan.returned_on %></td>
-          <% volunteer = loan.checkin_volunteer %>
-          <td><%= volunteer.first_name + " " + volunteer.last_name if volunteer %></td>
-      <% end %>
-      </tbody>
-    </table>
-  <% end %>
+<div class="card mt-4">
+  <%= render partial: 'loan_history', locals: { loans: @loans} %>
 </div>

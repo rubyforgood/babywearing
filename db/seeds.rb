@@ -129,6 +129,13 @@ if Carrier.count.zero?
   puts "Done."
 end
 
+if MembershipType.count.zero?
+  puts "Creating default membership types..."
+
+  MembershipType.create(name: "Annual", fee_cents: 5000, duration_days: 365, number_of_items: 3, short_name: "AN")
+  MembershipType.create(name: "Monthly", fee_cents: 500, duration_days: 31, number_of_items: 1, short_name: "MO")
+end
+
 if User.count.zero?
   puts "Creating default admin user..."
   User.create(email: "admin@example.com", password: "deleteme123_immediately", first_name: "Delete", last_name: "Me",
