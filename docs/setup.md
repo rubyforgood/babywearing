@@ -7,5 +7,3 @@
 3. Install dependencies by running `bundle install`
 
 4. Configure your remote so that it points to the upstream repository in Git with `git remote add upstream https://github.com/rubyforgood/babywearing.git`
-
-5. Create your database with `docker-compose up`
