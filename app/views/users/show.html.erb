@@ -21,7 +21,7 @@
 </dl>
 
 <div><%= link_to 'Edit User', edit_user_path(@user), class: "btn btn-primary btn-sm" %>
-  <% link_text = (@memberships.size > 0) ? "Renew Membership" : "Add Membership" %>
+  <% link_text = (@memberships[:history].size > 0) ? "Renew Membership" : "Add Membership" %>
   <%= link_to link_text, new_user_membership_path(@user), class: "btn btn-primary btn-sm", data: { modal: true } %>
 </div>
 
