@@ -13,7 +13,8 @@
       <tr><td colspan="100%">No memberships</td></tr>
     <% else %>
       <% memberships.each do |membership| %>
-        <tr>
+        <% class_name = (membership == current) ? "current-membership" : "" %>
+        <tr class='<%= class_name %>'>
           <td><%= membership.membership_type.name %></td>
           <td><%= membership.effective %></td>
           <td><%= membership.expiration %></td>

@@ -17,10 +17,10 @@
     </ul>
     <div class="tab-content" id="membership-content">
       <div class="tab-pane fade show active" id="current-membership-content" role="tabpanel" aria-labelledby="home-tab">
-        <%= render partial: "memberships_table", locals: { memberships: memberships[:current] } %>
+        <%= render partial: "memberships_table", locals: { memberships: memberships[:current], current: nil } %>
       </div>
       <div class="tab-pane fade" id="membership-history-content" role="tabpanel" aria-labelledby="profile-tab">
-        <%= render partial: "memberships_table", locals: { memberships: memberships[:history] } %>
+        <%= render partial: "memberships_table", locals: { memberships: memberships[:history], current: memberships[:current].first } %>
       </div>
     </div>
   </div>
