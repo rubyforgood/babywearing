@@ -20,6 +20,10 @@
         <%= form.date_field :expiration, class: "form-control" %>
       </div>
     <% end %>
+    <div class="form-check">
+      <%= form.check_box :blocked, class: "form-check-input" %>
+      <%= form.label :blocked, class: "form-check-label" %>
+    </div>
   </div>
 
   <div class="modal-footer">

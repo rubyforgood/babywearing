@@ -46,7 +46,7 @@ module Users
     private
 
     def membership_params
-      params.require(:membership).permit(:id, :membership_type_id, :effective, :expiration)
+      params.require(:membership).permit(:id, :membership_type_id, :blocked, :effective, :expiration)
     end
 
     def set_user

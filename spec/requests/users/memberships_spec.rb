@@ -23,11 +23,10 @@ RSpec.describe "Users::Memberships", type: :request do
     context 'with valid attributes' do
       it 'creates the membership' do
         sign_in volunteer
-
         expect { post user_memberships_path(nonmember), params: { membership: valid_params } }
           .to change(Membership, :count).by(1)
         expect(response).to redirect_to(user_path(nonmember))
-        expect(Membership.last.user_id).to eq(nonmember.id)
+        expect(Membership.all.map(&:user_id)).to include(nonmember.id)
       end
     end
 

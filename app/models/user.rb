@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  include Deactivable
-
   has_person_name
 
   # Include default devise modules. Others available are:

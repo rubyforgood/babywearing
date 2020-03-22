@@ -8,9 +8,7 @@
       <th>Phone</th>
       <th>Join Date</th>
       <th data-sortable="true">Role</th>
-      <th data-sortable="true">Membership Info</th>
       <th data-sortable="true">Status</th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -23,17 +21,7 @@
         <td><%= user.phone_number %></td>
         <td><%= user.created_at %></td>
         <td><%= user.role.humanize %></td>
-        <td>Membership Info</td>
-        <% if user.deactivated? %>
-          <td> Inactive</td>
-          <td>
-            <%= link_to "Activate", deactivate_index_path(id: user.id), method: :post,
-              data: {confirm: "Are you sure you want to Activate this user?"} %>
-          </td>
-        <% else %>
-          <td> Active</td>
-          <td><%= link_to "Deactivate", deactivate_index_path(id: user.id), method: :post, data: {confirm: "Are you sure you want to change this user to Inactive?"} %></td>
-        <% end %>
+        <td><%= membership_status(user) %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
       </tr>
     <% end %>

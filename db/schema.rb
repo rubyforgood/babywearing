@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_175156) do
+ActiveRecord::Schema.define(version: 2020_03_22_214338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(version: 2020_03_05_175156) do
     t.date "expiration", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "blocked", default: false
+    t.text "notes"
     t.index ["effective"], name: "index_memberships_on_effective"
     t.index ["expiration"], name: "index_memberships_on_expiration"
     t.index ["membership_type_id"], name: "index_memberships_on_membership_type_id"
@@ -150,12 +152,10 @@ ActiveRecord::Schema.define(version: 2020_03_05_175156) do
     t.string "state", null: false
     t.string "postal_code", null: false
     t.string "phone_number", null: false
-    t.datetime "deactivated_at"
     t.string "first_name"
     t.string "last_name"
     t.integer "role", default: 2, null: false
     t.text "notes"
-    t.index ["deactivated_at"], name: "index_users_on_deactivated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -9,15 +9,8 @@
   <dd class="col-sm-10"><%= @user.created_at %><br></dd>
   <dt class="col-sm-2 text-md-right">Role:</dt>
   <dd class="col-sm-10"><%= @user.role.humanize %><br></dd>
-  <dt class="col-sm-2 text-md-right">Membership:</dt>
-  <dd class="col-sm-10">Membership info</dd>
-  <dt class="col-sm-2 text-md-right">Status:</dt>
-  <dd class="col-sm-10">
-    <% if @user.deactivated? %>
-      Inactive
-    <% else %>
-      Active
-    <% end %></dd>
+  <dt class="col-sm-2 text-md-right">Membership Status:</dt>
+  <dd class="col-sm-10"><%= membership_status(@user) %></dd>
 </dl>
 
 <div><%= link_to 'Edit User', edit_user_path(@user), class: "btn btn-primary btn-sm" %>
