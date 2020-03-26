@@ -8,11 +8,11 @@ class FeeTypePolicy < ApplicationPolicy
     @fee_type = fee_type
   end
 
-  def new?
+  def create?
     authorized?
   end
 
-  def create?
+  def destroy?
     authorized?
   end
 
@@ -20,11 +20,15 @@ class FeeTypePolicy < ApplicationPolicy
     authorized?
   end
 
-  def update?
+  def new?
     authorized?
   end
 
-  def destroy?
+  def show?
+    authorized?
+  end
+
+  def update?
     authorized?
   end
 

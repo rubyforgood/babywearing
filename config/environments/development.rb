@@ -62,4 +62,6 @@ Rails.application.configure do
   config.action_mailer.default_options = { from: 'noreply@example.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
+
+  config.hosts << "midatlantic.lvh.me" << "acme.lvh.me" << "admin.lvh.me" << "lvh.me"
 end

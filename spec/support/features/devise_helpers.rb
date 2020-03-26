@@ -2,7 +2,7 @@
 
 module Features
   def sign_in_with(email:, password:)
-    visit new_user_session_path
+    visit new_user_session_url
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
     click_button "Log In"
@@ -13,7 +13,7 @@ module Features
   end
 
   def user_should_be_signed_in
-    visit root_path
+    visit root_url
     expect(page).to have_content "Logout"
   end
 

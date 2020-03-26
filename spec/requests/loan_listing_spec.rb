@@ -8,7 +8,7 @@ RSpec.describe "LoanListing", type: :request do
 
     describe 'permissions' do
       it_behaves_like 'admin authorized-only resource', :get do
-        let(:endpoint) { loan_listing_path }
+        let(:endpoint) { loan_listing_url }
       end
     end
 
@@ -19,14 +19,14 @@ RSpec.describe "LoanListing", type: :request do
 
       it 'shows empty table' do
         Loan.destroy_all
-        get loan_listing_path
+        get loan_listing_url
 
         expect(response).to be_successful
         expect(response.body).to match(/No loans to show/)
       end
 
       it 'shows the items' do
-        get loan_listing_path
+        get loan_listing_url
 
         expect(response).to be_successful
       end

@@ -10,7 +10,7 @@ RSpec.describe SignedAgreement do
   end
 
   scenario 'SHOW' do
-    visit agreement_path(agreement.id)
+    visit agreement_url(agreement.id)
     click_link 'Sign'
 
     expect(page).to have_content(agreement.title)
@@ -18,7 +18,7 @@ RSpec.describe SignedAgreement do
   end
 
   scenario 'CREATE with valid signature' do
-    visit signed_agreement_path(agreement.id)
+    visit signed_agreement_url(agreement.id)
 
     fill_in 'signed_agreement_signature', with: 'RFG'
 
@@ -28,7 +28,7 @@ RSpec.describe SignedAgreement do
   end
 
   scenario 'CREATE with invalid signature' do
-    visit signed_agreement_path(agreement.id)
+    visit signed_agreement_url(agreement.id)
 
     fill_in 'signed_agreement_signature', with: ''
 

@@ -6,12 +6,12 @@ RSpec.describe Carrier do
 
   describe 'USER role' do
     before do
-      visit '/'
+      visit root_url
       sign_in user
     end
 
     scenario 'SHOW' do
-      visit carriers_path
+      visit carriers_url
       click_link carrier.name
 
       expect(page).to have_content('test carrier')
@@ -20,13 +20,13 @@ RSpec.describe Carrier do
     end
 
     scenario 'NEW' do
-      visit new_carrier_path
+      visit new_carrier_url
 
       expect(page).to have_content "Sorry, you aren't allowed to do that."
     end
 
     scenario 'EDIT' do
-      visit edit_carrier_path(carrier.id)
+      visit edit_carrier_url(carrier.id)
 
       expect(page).to have_content "Sorry, you aren't allowed to do that."
     end
@@ -41,12 +41,12 @@ RSpec.describe Carrier do
     let(:loan) { loans(:outstanding) }
 
     before do
-      visit '/'
+      visit root_url
       sign_in user
     end
 
     scenario 'SHOW' do
-      visit carriers_path
+      visit carriers_url
       click_link carrier.name
 
       expect(page).to have_content('test carrier')
@@ -56,7 +56,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'NEW' do
-      visit new_carrier_path
+      visit new_carrier_url
       expect(page).to have_content('New Carrier')
       expect(page).to have_content('Name')
       expect(page).to have_content('Item')
@@ -69,7 +69,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'EDIT with all required fields' do
-      visit edit_carrier_path(carrier.id)
+      visit edit_carrier_url(carrier.id)
 
       fill_in 'Name', with: 'Updated Name'
       fill_in 'Model', with: 'Updated Model'
@@ -84,7 +84,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'EDIT without any required fields' do
-      visit edit_carrier_path(carrier.id)
+      visit edit_carrier_url(carrier.id)
 
       fill_in 'Name', with: nil
       fill_in 'Item', with: nil
@@ -95,14 +95,14 @@ RSpec.describe Carrier do
     end
 
     scenario 'DESTROY' do
-      visit carrier_path(carrier.id)
+      visit carrier_url(carrier.id)
 
       click_on 'Delete'
       expect(page).to have_content('Carrier successfully destroyed')
     end
 
     scenario 'CREATE with all required fields' do
-      visit new_carrier_path
+      visit new_carrier_url
       fill_in 'Name', with: 'Test Name'
       fill_in 'Item', with: 9
       fill_in 'Manufacturer', with: 'Test Manufacturer'
@@ -116,7 +116,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'CREATE with duplicated item_id' do
-      visit new_carrier_path
+      visit new_carrier_url
       fill_in 'Item', with: carrier.item_id
 
       click_on 'Create Carrier'
@@ -125,7 +125,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'CREATE without required fields' do
-      visit new_carrier_path(carrier.id)
+      visit new_carrier_url(carrier.id)
 
       click_on 'Create Carrier'
 
@@ -134,7 +134,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'ADD new carrier' do
-      visit '/'
+      visit root_url
       click_on 'ADD CARRIER'
 
       expect(page).to have_content('New Carrier')
@@ -157,12 +157,12 @@ RSpec.describe Carrier do
     let(:user) { users(:volunteer) }
 
     before do
-      visit '/'
+      visit root_url
       sign_in user
     end
 
     scenario 'NEW' do
-      visit new_carrier_path
+      visit new_carrier_url
 
       expect(page).to have_content('New Carrier')
       expect(page).to have_content('Name')
@@ -175,7 +175,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'SHOW' do
-      visit carriers_path
+      visit carriers_url
       click_link carrier.name
 
       expect(page).to have_content('test carrier')
@@ -185,7 +185,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'EDIT with all required fields' do
-      visit edit_carrier_path(carrier.id)
+      visit edit_carrier_url(carrier.id)
 
       fill_in 'Name', with: 'Updated Name'
       fill_in 'Model', with: 'Updated Model'
@@ -198,7 +198,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'EDIT without any required fields' do
-      visit edit_carrier_path(carrier.id)
+      visit edit_carrier_url(carrier.id)
 
       fill_in 'Name', with: nil
       fill_in 'Item', with: nil
@@ -209,14 +209,14 @@ RSpec.describe Carrier do
     end
 
     scenario 'DESTROY' do
-      visit carrier_path(carrier.id)
+      visit carrier_url(carrier.id)
 
       click_on 'Delete'
       expect(page).to have_content('Carrier successfully destroyed')
     end
 
     scenario 'CREATE with all required fields' do
-      visit new_carrier_path
+      visit new_carrier_url
       fill_in 'Name', with: 'Test Name'
       fill_in 'Item', with: 9
       fill_in 'Manufacturer', with: 'Test Manufacturer'
@@ -230,7 +230,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'CREATE with duplicated item_id' do
-      visit new_carrier_path
+      visit new_carrier_url
       fill_in 'Item', with: carrier.item_id
 
       click_on 'Create Carrier'
@@ -239,7 +239,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'CREATE without required fields' do
-      visit new_carrier_path(carrier.id)
+      visit new_carrier_url(carrier.id)
 
       click_on 'Create Carrier'
 
@@ -248,7 +248,7 @@ RSpec.describe Carrier do
     end
 
     scenario 'ADD new carrier' do
-      visit '/'
+      visit root_url
       click_on 'ADD CARRIER'
 
       expect(page).to have_content('New Carrier')
@@ -267,12 +267,12 @@ RSpec.describe Carrier do
     let(:user) { users(:member) }
 
     before do
-      visit '/'
+      visit root_url
       sign_in user
     end
 
     scenario 'SHOW' do
-      visit carriers_path
+      visit carriers_url
       click_link carrier.name
 
       expect(page).to have_content('test carrier')
@@ -281,13 +281,13 @@ RSpec.describe Carrier do
     end
 
     scenario 'NEW' do
-      visit new_carrier_path
+      visit new_carrier_url
 
       expect(page).to have_content "Sorry, you aren't allowed to do that."
     end
 
     scenario 'EDIT' do
-      visit edit_carrier_path(carrier.id)
+      visit edit_carrier_url(carrier.id)
 
       expect(page).to have_content "Sorry, you aren't allowed to do that."
     end
@@ -296,26 +296,26 @@ RSpec.describe Carrier do
   describe "view mode" do
     before do
       sign_in user
-      visit carriers_path
+      visit carriers_url
     end
 
     it "can set the view mode to list" do
       click_on(class: "carrier-list-link")
 
-      expect(page).to have_current_path(carriers_path(view: "list"))
+      expect(page).to have_current_path(carriers_url(view: "list"))
       expect(page).to have_css('table')
     end
 
     it "can set the view mode to icon" do
       click_on(class: "carrier-icon-link")
 
-      expect(page).to have_current_path(carriers_path(view: "icon"))
+      expect(page).to have_current_path(carriers_url(view: "icon"))
       expect(page).not_to have_css('table')
     end
 
     it "uses view mode from cookie" do
       Capybara.current_session.driver.browser.set_cookie("carrier_view=list")
-      visit carriers_path
+      visit carriers_url
       expect(page).to have_css('table')
     end
   end

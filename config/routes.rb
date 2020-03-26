@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "users/registrations"}
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'carriers#index'
 
   get 'home/index'
 
@@ -29,5 +27,12 @@ Rails.application.routes.draw do
   get '/loan_listing', to: 'loan_listing#index', as: :loan_listing
 
   resources :photos, only: :destroy
-  resources :categories
+
+  constraints subdomain: "admin" do
+    root :to => "categories#index", :as=> :subdomain_root
+    resources :categories
+  end
+
+  root 'carriers#index'
+
 end

@@ -1,14 +1,26 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  acts_as_tenant(:organization)
+
   has_person_name
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable
   validates :first_name, :last_name, :street_address, :city,
             :state, :postal_code, :phone_number, presence: true
+
+  # we can remove these below and reimplement :validateable
+  # if they ever merge: https://github.com/heartcombo/devise/pull/5094
+  validates_presence_of :email
+  validates_uniqueness_of :email, scope: :organization_id
+  validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, allow_blank: true,
+                              if: :email_changed?
+  validates_presence_of :password, if: :password_required?
+  validates_confirmation_of :password, if: :password_required?
+  validates_length_of :password, within: 8..100, allow_blank: true
 
   has_many :signed_agreements
   has_many :carts
@@ -19,6 +31,11 @@ class User < ApplicationRecord
 
   scope :admins, -> { where(role: admin) }
   scope :volunteers, -> { where(role: :volunteer) }
+
+  # see https://github.com/heartcombo/devise/wiki/How-to:-Scope-login-to-subdomain
+  def self.find_for_authentication(warden_conditions)
+    where(email: warden_conditions[:email], organization_id: warden_conditions[:organization_id]).first
+  end
 
   def self.to_csv
     attributes = %w[first_name last_name email phone_number created_at]
@@ -53,5 +70,11 @@ class User < ApplicationRecord
       s += " (Expired)"
     end
     s
+  end
+
+  private
+
+  def password_required?
+    !persisted? || !password.nil? || !password_confirmation.nil?
   end
 end

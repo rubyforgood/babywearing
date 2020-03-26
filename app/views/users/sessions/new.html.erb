@@ -8,6 +8,7 @@
           </div>
 
           <%= form_with model: resource, as: resource_name, url: session_path(resource_name), html: { class: "user" }, local: true do |f| %>
+            <%= f.hidden_field :organization_id, value: ActsAsTenant.current_tenant.id %>
             <div class="form-group">
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-user', aria: { label: 'email'}, placeholder: 'Enter email address' %>
             </div>

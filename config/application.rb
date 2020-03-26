@@ -33,5 +33,6 @@ module Babywearing
     config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
     config.action_mailer.delivery_job = "ActionMailer::MailDeliveryJob"
 
+    config.autoload_paths += Dir[Rails.root.join("app", "validators")]
   end
 end

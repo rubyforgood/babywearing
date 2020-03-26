@@ -5,9 +5,49 @@ require 'uri'
 
 include ActionView::Helpers::SanitizeHelper # included for strip_tags method to remove html from carrier descriptions
 
+
+if Organization.count.zero?
+  puts "Creating organizations..."
+  Organization.create!(name: "Babywearing Admin", subdomain: "admin",
+                      address: "update me", city: "Reston", state: "VA", zip: "20190",
+                      email: "admin@example.com" )
+  Organization.create!(name: "Mid-Atlantic Babywearing", subdomain: "midatlantic",
+                      address: "update me", city: "Reston", state: "VA", zip: "20190",
+                      email: "updateme@example.com" )
+  Organization.create!(name: "Acme Babywearing", subdomain: "acme",
+                      address: "123 Reve Street", city: "Dreamland", state: "MI", zip: "48080",
+                      email: "dreamland@example.com" )
+  puts "Done"
+end
+
+organization = Organization.find_by(subdomain: "midatlantic")
+
+if User.count.zero?
+  puts "Creating default admin users..."
+  User.create(email: "admin@example.com", password: "deleteme123_immediately",
+              organization: Organization.find_by(subdomain: "admin"),
+              first_name: "Delete", last_name: "Me",
+              street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
+              phone_number: "555-5555", role: 0)
+  User.create(email: "admin@example.com", password: "deleteme123_immediately",
+              organization: organization,
+              first_name: "Delete", last_name: "Me",
+              street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
+              phone_number: "555-5555", role: 0)
+  User.create(email: "admin@example.com", password: "deleteme123_immediately",
+              organization: Organization.find_by(subdomain: "acme"),
+              first_name: "Delete", last_name: "Me",
+              street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
+              phone_number: "555-5555", role: 0)
+  puts "Done."
+end
+
+ActsAsTenant.current_tenant = organization
+
 if Agreement.count.zero?
   puts "Creating agreements..."
   Agreement.create(title: 'Membership Agreement',
+                   organization: organization,
                    content: 'MidAtlantic Babywearing is the local babywearing education group for Pennsylvania,
     New Jersey, and Delaware, and is a non-profit group.
     To become a member of our chapter you must:
@@ -16,6 +56,7 @@ if Agreement.count.zero?
     Membership Donation becomes active when application AND payment have been received.')
 
   Agreement.create(title: 'Lending Library Use Agreement',
+                   organization: organization,
                    content: 'MAB has a library of baby carriers and babywearing educational materials for members to borrow.
     The following policies apply:
     1. Your Responsibility. You assume the responsibility for safely using all carriers and for inspecting
@@ -83,11 +124,11 @@ end
 
 if FeeType.count.zero?
   puts "Creating fee types..."
-  FeeType.create(name: 'Cleaning Fee', fee_cents: 1500)
-  FeeType.create(name: 'Late Fee', fee_cents: 100)
-  FeeType.create(name: 'Membership Donation', fee_cents: 3000)
-  FeeType.create(name: 'Second Carrier Addition', fee_cents: 500)
-  FeeType.create(name: 'Trial Membership', fee_cents: 1000)
+  FeeType.create(name: 'Cleaning Fee', organization: organization, fee_cents: 1500)
+  FeeType.create(name: 'Late Fee', organization: organization, fee_cents: 100)
+  FeeType.create(name: 'Membership Donation', organization: organization, fee_cents: 3000)
+  FeeType.create(name: 'Second Carrier Addition',organization: organization, fee_cents: 500)
+  FeeType.create(name: 'Trial Membership', organization: organization, fee_cents: 1000)
   puts "Done."
 end
 
@@ -99,8 +140,8 @@ if Carrier.count.zero?
 
   csv.each do |row|
     csv_carrier = row.to_hash
-    home_location = Location.find_or_create_by(name: csv_carrier['Home Location'])
-    current_location = Location.find_or_create_by(name: csv_carrier['Current Location'])
+    home_location = Location.find_or_create_by(name: csv_carrier['Home Location'], organization: organization)
+    current_location = Location.find_or_create_by(name: csv_carrier['Current Location'], organization: organization)
     carrier_params = {
       name: csv_carrier['Name'],
       manufacturer: csv_carrier['Manufacturer'],
@@ -114,7 +155,7 @@ if Carrier.count.zero?
       # description: strip_tags(csv_carrier['Description'])
     }
 
-    Carrier.find_or_create_by(item_id: csv_carrier['Item ID']) do |carrier|
+    Carrier.find_or_create_by(item_id: csv_carrier['Item ID'], organization: organization) do |carrier|
       carrier.update_attributes(carrier_params)
 
       url = csv_carrier['Image']
@@ -132,16 +173,8 @@ end
 if MembershipType.count.zero?
   puts "Creating default membership types..."
 
-  MembershipType.create(name: "Annual", fee_cents: 5000, duration_days: 365, number_of_items: 3, short_name: "AN")
-  MembershipType.create(name: "Monthly", fee_cents: 500, duration_days: 31, number_of_items: 1, short_name: "MO")
+  MembershipType.create(name: "Annual", organization: organization, fee_cents: 5000, duration_days: 365, number_of_items: 3, short_name: "AN")
+  MembershipType.create(name: "Monthly", organization: organization, fee_cents: 500, duration_days: 31, number_of_items: 1, short_name: "MO")
 end
 
-if User.count.zero?
-  puts "Creating default admin user..."
-  User.create(email: "admin@example.com", password: "deleteme123_immediately", first_name: "Delete", last_name: "Me",
-              street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
-              phone_number: "555-5555", role: 0)
-  puts "Done."
-end
-
-puts "Done."
+puts "Done with seeds."

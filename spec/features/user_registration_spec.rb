@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.feature "user registration" do
-  scenario "should allow user to create a user account" do
-    visit "/"
+  it "allows user to create a user account" do
+    visit root_url
     find_link("Sign Up", match: :first).click
     fill_in "Enter email address", with: "alicia@gmail.com"
     fill_in "Password", with: "just4now"
@@ -19,8 +19,8 @@ RSpec.feature "user registration" do
   end
 
   context "when the email is invalid" do
-    scenario "should NOT allow user to create a user account" do
-      visit "/"
+    it "does not allow user to create a user account" do
+      visit root_url
       find_link("Sign Up", match: :first).click
       fill_in "Enter email address", with: "alicia.email.com"
       fill_in "Password", with: "just4now"

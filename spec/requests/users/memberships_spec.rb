@@ -17,15 +17,15 @@ RSpec.describe "Users::Memberships", type: :request do
 
   describe '#create' do
     it_behaves_like 'admin and volunteer authorized-only resource', :post do
-      let(:endpoint) { user_memberships_path(nonmember) }
+      let(:endpoint) { user_memberships_url(nonmember) }
       let(:params) { { membership: valid_params } }
     end
     context 'with valid attributes' do
       it 'creates the membership' do
         sign_in volunteer
-        expect { post user_memberships_path(nonmember), params: { membership: valid_params } }
+        expect { post user_memberships_url(nonmember), params: { membership: valid_params } }
           .to change(Membership, :count).by(1)
-        expect(response).to redirect_to(user_path(nonmember))
+        expect(response).to redirect_to(user_url(nonmember))
         expect(Membership.all.map(&:user_id)).to include(nonmember.id)
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe "Users::Memberships", type: :request do
       it 'creates the membership' do
         sign_in volunteer
 
-        expect { post user_memberships_path(nonmember), params: { membership: valid_params.merge(effective: "") } }
+        expect { post user_memberships_url(nonmember), params: { membership: valid_params.merge(effective: "") } }
           .not_to change(Membership, :count)
         expect(response.body).to match(/form data-modal=\"true\"/)
         expect(response.body).to match(/Create Membership/)
@@ -45,24 +45,24 @@ RSpec.describe "Users::Memberships", type: :request do
 
   describe '#destroy' do
     it_behaves_like 'admin and volunteer authorized-only resource', :delete do
-      let(:endpoint) { user_membership_path(member, membership) }
+      let(:endpoint) { user_membership_url(member, membership) }
     end
     it 'destroys the membership' do
       sign_in volunteer
 
-      expect { delete user_membership_path(member, membership) }.to change(Membership, :count).by(-1)
-      expect(response).to redirect_to(user_path(member))
+      expect { delete user_membership_url(member, membership) }.to change(Membership, :count).by(-1)
+      expect(response).to redirect_to(user_url(member))
     end
   end
 
   describe '#edit' do
     it_behaves_like 'admin and volunteer authorized-only resource', :get do
-      let(:endpoint) { edit_user_membership_path(member, membership) }
+      let(:endpoint) { edit_user_membership_url(member, membership) }
       let(:params) { { membership: valid_params.merge(id: membership.id) } }
     end
     it 'brings up the edit form modally' do
       sign_in volunteer
-      get edit_user_membership_path(member, membership)
+      get edit_user_membership_url(member, membership)
 
       expect(response).to be_successful
     end
@@ -70,11 +70,11 @@ RSpec.describe "Users::Memberships", type: :request do
 
   describe '#new' do
     it_behaves_like 'admin and volunteer authorized-only resource', :get do
-      let(:endpoint) { new_user_membership_path(nonmember) }
+      let(:endpoint) { new_user_membership_url(nonmember) }
     end
     it 'loads the modal form' do
       sign_in volunteer
-      get new_user_membership_path(nonmember)
+      get new_user_membership_url(nonmember)
 
       expect(response).to be_successful
       expect(response.body).to match(/form data-modal=\"true\"/)
@@ -84,7 +84,7 @@ RSpec.describe "Users::Memberships", type: :request do
 
   describe '#update' do
     it_behaves_like 'admin and volunteer authorized-only resource', :put do
-      let(:endpoint) { user_membership_path(member, membership) }
+      let(:endpoint) { user_membership_url(member, membership) }
       let(:params) { { membership: valid_params } }
     end
     context 'with invalid attributes' do
@@ -93,7 +93,7 @@ RSpec.describe "Users::Memberships", type: :request do
 
         original_expiration = membership.expiration
         new_expiration = membership.effective - 1.day
-        put user_membership_path(member, membership),
+        put user_membership_url(member, membership),
             params: { membership: valid_params.merge(expiration: new_expiration) }
 
         expect(response.body).to match(/Expiration cannot be before effective date/)
@@ -106,10 +106,10 @@ RSpec.describe "Users::Memberships", type: :request do
         sign_in volunteer
 
         new_expiration = Time.zone.today + 1.month
-        put user_membership_path(member, membership),
+        put user_membership_url(member, membership),
             params: { membership: valid_params.merge(expiration: new_expiration) }
 
-        expect(response).to redirect_to(user_path(member))
+        expect(response).to redirect_to(user_url(member))
         expect(membership.reload.expiration).to eq(new_expiration)
       end
     end

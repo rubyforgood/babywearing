@@ -30,6 +30,9 @@ Style/Documentation:
 Style/EmptyMethod:
   Enabled: false
 
+Metrics/ClassLength:
+  Max: 120
+
 Metrics/MethodLength:
   Max: 15
 

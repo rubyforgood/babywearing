@@ -9,6 +9,7 @@ carrier:
   home_location: washington
   current_location: lancaster
   notes: 'yes I carry babies'
+  organization: midatlantic
 
 unavailable:
   name: "unavailable carrier"
@@ -21,6 +22,7 @@ unavailable:
   home_location: washington
   current_location: lancaster
   state: 'out_of_service'
+  organization: midatlantic
 
 sold:
   name: "sold carrier"
@@ -34,6 +36,7 @@ sold:
   current_location: lancaster
   state: 'sold'
   notes: 'sold to a competing charity'
+  organization: midatlantic
 
 disabled:
   name: "disabled carrier"
@@ -46,6 +49,7 @@ disabled:
   home_location: washington
   current_location: lancaster
   state: 'out_of_service'
+  organization: midatlantic
 
 checked_out:
   name: "checked out carrier"
@@ -58,6 +62,7 @@ checked_out:
   home_location: washington
   current_location: lancaster
   state: 'checked_out'
+  organization: midatlantic
 
 checked_out_overdue_1:
   name: "checked out carrier"
@@ -70,6 +75,7 @@ checked_out_overdue_1:
   home_location: washington
   current_location: lancaster
   state: 'checked_out'
+  organization: midatlantic
 
 checked_out_overdue_2:
   name: "checked out carrier"
@@ -82,6 +88,7 @@ checked_out_overdue_2:
   home_location: washington
   current_location: lancaster
   state: 'checked_out'
+  organization: midatlantic
 
 available:
   name: "available carrier"
@@ -93,3 +100,4 @@ available:
   size: 5
   home_location: washington
   current_location: lancaster
+  organization: midatlantic

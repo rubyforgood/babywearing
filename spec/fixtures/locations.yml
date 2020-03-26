@@ -1,4 +1,7 @@
 washington:
   name: "Washington DC"
+  organization: midatlantic
+
 lancaster:
   name: "Lancaster"
+  organization: midatlantic

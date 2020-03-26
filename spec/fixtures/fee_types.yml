@@ -1,3 +1,4 @@
 upgrade:
   name: "Upgrade Membership"
   fee_cents: "2000"
+  organization: midatlantic

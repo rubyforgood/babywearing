@@ -3,26 +3,26 @@
 RSpec.feature "category" do
   let!(:category) { categories(:category_parent) }
   let!(:category_child) { categories(:category) }
-  let!(:carrier) { carriers(:carrier) }
-  let(:user) { users(:admin) }
+  let(:user) { users(:admin_org) }
 
   before do
-    visit "/"
+    visit subdomain_root_url
     sign_in user
   end
 
-  scenario "should allow user to create a category" do
-    visit "/categories"
+  it "allows user to create a category" do
+    visit categories_url
     find_link("+ New").click
     fill_in "Name", with: "pineapple"
     fill_in "Description", with: "sweet"
     fill_in "Parent", with: "1"
     click_button "Create Category"
+
     expect(page).to have_content "Category was successfully created."
   end
 
-  scenario "should allow user to update a category" do
-    visit "/categories"
+  it "allows user to update a category" do
+    visit categories_url
     click_link category.name
     expect(page).to have_content category.name
     find_link("Edit").click
@@ -32,33 +32,15 @@ RSpec.feature "category" do
     expect(page).to have_content "orange"
   end
 
-  scenario "should allow user to delete a category" do
-    visit "/categories"
+  it "allows user to delete a category" do
+    visit categories_url
     expect(page).to have_content category.name
     find_link("Destroy").click
     expect(page).to have_content "Category was successfully destroyed."
   end
 
-  scenario 'should show carriers for category as a link' do
-    visit category_path(category)
-    expect(page).to have_content(category.name)
-    find_link(carrier.name).click
-    expect(page).to have_current_path(carrier_path(carrier))
-  end
-
-  scenario 'should show a empty message if category has no carriers' do
-    category.carriers = []
-
-    visit category_path(category)
-
-    expect(page).to have_content(
-      'There are no carriers of this type in ' \
-      'inventory at this time. Please check back later.'
-    )
-  end
-
-  scenario 'should expand the subcategories table' do
-    visit(categories_path)
+  it 'expands the subcategories table' do
+    visit(categories_url)
     expect(page).to have_content(category.name)
     expect(page).not_to have_content(category_child.name)
     find_link('+').click

@@ -5,4 +5,5 @@ annual:
   duration_days: 365
   number_of_items: 3
   description: "A text description goes here."
+  organization: midatlantic
 
