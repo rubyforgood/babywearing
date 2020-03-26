@@ -40,7 +40,7 @@ class CarriersController < ApplicationController
   end
 
   def show
-    @loans = Loan.where(carrier: @carrier)
+    @loans = @carrier.loans
   end
 
   def edit

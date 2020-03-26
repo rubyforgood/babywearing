@@ -101,8 +101,7 @@ RSpec.describe User do
     sign_in admin
     visit loan_listing_url
     loan = loans(:outstanding)
-    loan.borrower = borrower
-    loan.save!
+    borrower = loan.borrower
 
     click_link "#{borrower.first_name} #{borrower.last_name}", match: :first
 
@@ -110,7 +109,6 @@ RSpec.describe User do
     expect(page).to have_content(borrower.phone_number)
     expect(page).to have_content(borrower.created_at)
     expect(page).to have_content(borrower.role)
-    expect(page).to have_content("Active")
     expect(page).to have_content(loan.carrier.name)
   end
 end

@@ -38,7 +38,7 @@ RSpec.describe Carrier do
     let(:lancaster) { locations(:lancaster) }
     let(:carrier) { carriers(:carrier) }
     let(:user) { users(:admin) }
-    let(:loan) { carriers(:carrier).loans.create }
+    let(:loan) { loans(:outstanding) }
 
     before do
       visit '/'
@@ -52,7 +52,7 @@ RSpec.describe Carrier do
       expect(page).to have_content('test carrier')
       expect(page).to have_content('babywearing')
       expect(page).to have_content('test model')
-      expect(page).to have_content(loan.checkout_volunteer)
+      expect(page).to have_content(loan.checkout_volunteer.name)
     end
 
     scenario 'NEW' do
