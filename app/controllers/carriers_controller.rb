@@ -39,6 +39,10 @@ class CarriersController < ApplicationController
     end
   end
 
+  def show
+    @loans = Loan.where(carrier: @carrier)
+  end
+
   def edit
     @locations = Location.all
     @categories = Category.all
