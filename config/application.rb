@@ -31,5 +31,7 @@ module Babywearing
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
+    config.action_mailer.delivery_job = "ActionMailer::MailDeliveryJob"
+
   end
 end

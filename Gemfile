@@ -7,7 +7,7 @@ ruby '2.6.5'
 
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3.3'
-gem 'rails', '~> 5.2.4'
+gem 'rails', '~> 6.0.2.2'
 gem 'sassc', '2.1.0'
 gem 'sassc-rails', '~> 2.1' # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -19,10 +19,9 @@ gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem "bootstrap-table-rails"
-gem 'coffee-rails', '~> 4.2'
 gem 'filterrific'
 gem "font-awesome-rails"
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.10.0'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.8'
 gem 'money-rails', '~>1.12'
@@ -41,6 +40,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pivotal_git_scripts'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

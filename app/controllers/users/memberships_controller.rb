@@ -36,7 +36,7 @@ module Users
 
     def update
       @membership = authorize @user.memberships.find(params[:id])
-      if @membership.update_attributes(membership_params)
+      if @membership.update(membership_params)
         redirect_to user_path(@user), notice: "Membership successfully updated."
       else
         respond_modal_with @membership

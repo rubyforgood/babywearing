@@ -1,0 +1,8 @@
+# .pairs - configuration for 'git pair'
+pairs:
+  # <initials>: <Firstname> <Lastname>[; <email-id>]
+  yc: Yungchih Chen; yungchih_chen@yahoo.com
+  ps: Polly Schandorf;
+  mf: Mark Fraser; mark@pokervane.com
+
+global: false  # Set to true for git-pair to change git configuration for all your projects

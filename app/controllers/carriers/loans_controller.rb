@@ -41,7 +41,7 @@ module Carriers
       if @loan.outstanding? && loan_params[:returned_on].present?
         merging = { checkin_volunteer_id: current_user.id }
       end
-      @loan.update_attributes(loan_params.merge(merging))
+      @loan.update(loan_params.merge(merging))
     end
 
     def loan_params
