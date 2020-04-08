@@ -25,7 +25,7 @@ $bw-color-purple: #a36eb9;
 $bw-color-dark-purple: #7a7289;
 $bw-color-slate: #84a5c6;
 $bw-color-blue: #73c3fe;
-$bw-color-darkest-purple: #808808;
+$bw-color-darkest-purple: #8950a3;
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 $navbar-padding-y: 0;
@@ -64,6 +64,16 @@ $navbar-brand-padding-y: 8px;
   position: fixed;
 }
 
+.dropdown-toggle {
+  font-size: 1.7rem;
+  color: #fff
+}
+
+.dropdown .dropdown-menu{
+  font-size: 1.1rem;
+  color: #fff;
+}
+
 .nav-item {
   display: flex;
   align-items: center;
@@ -81,8 +91,15 @@ $navbar-brand-padding-y: 8px;
     width: 5.1em;
   }
 }
-.nav-fourth img {
+.nav-fourth {
+  width: 9em;
+  img {
+    width: 5.1em;
+  }
+}
+.nav-fifth img {
   width: 6.2em;
+  height: 4.4em;
 }
 .sub-table td:first-child {
   padding-left: 42px;
