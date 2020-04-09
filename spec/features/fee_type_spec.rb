@@ -10,7 +10,7 @@ RSpec.feature "fee_type" do
   end
 
   scenario 'SHOW' do
-    visit fee_types_path
+    visit fee_types_url
     click_link fee_type.name
 
     expect(page).to have_content(fee_type.name)
@@ -18,7 +18,7 @@ RSpec.feature "fee_type" do
   end
 
   scenario 'EDIT when name is NOT given' do
-    visit edit_fee_type_path(fee_type)
+    visit edit_fee_type_url(fee_type)
 
     fill_in 'Name', with: nil
     click_on 'Update Fee type'
@@ -27,7 +27,7 @@ RSpec.feature "fee_type" do
   end
 
   scenario 'EDIT when all expected information is given' do
-    visit edit_fee_type_path(fee_type)
+    visit edit_fee_type_url(fee_type)
 
     fill_in 'Name', with: 'Updated Membership'
     fill_in 'Fee cents', with: '3000'
@@ -39,14 +39,14 @@ RSpec.feature "fee_type" do
   end
 
   scenario 'DESTROY when delete button is clicked' do
-    visit fee_types_path
+    visit fee_types_url
     click_link 'Destroy'
 
     expect(page).to have_content('Fee type was successfully destroyed.')
   end
 
   scenario 'CREATE when name is NOT given' do
-    visit fee_types_path
+    visit fee_types_url
 
     click_link('+ New')
     fill_in 'Name', with: nil
@@ -57,7 +57,7 @@ RSpec.feature "fee_type" do
   end
 
   scenario 'CREATE when all expected information is given' do
-    visit fee_types_path
+    visit fee_types_url
 
     click_link('+ New')
     fill_in 'Name', with: 'Upgrade Membership'

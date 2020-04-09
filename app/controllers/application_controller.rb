@@ -3,13 +3,15 @@
 require "modal_responder"
 
 class ApplicationController < ActionController::Base
+  set_current_tenant_by_subdomain(:organization, :subdomain)
+
   include Authentication
   include Pundit
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  before_action :set_version
+  before_action :redirect_wrong_tenant, :redirect_notenant, :set_version, :set_admin_org
 
   # See `lib/modal_responder.rb` for deatils.
   def respond_modal_with(*args, &blk)
@@ -24,6 +26,20 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def redirect_notenant
+    redirect_to home_index_path if ActsAsTenant.current_tenant.nil?
+  end
+
+  def redirect_wrong_tenant
+    return unless current_user && current_tenant
+
+    redirect_to new_user_session_url if current_user.organization != current_tenant
+  end
+
+  def set_admin_org
+    @admin_org = ActsAsTenant.current_tenant&.admin?
+  end
 
   def set_version
     @version = ""

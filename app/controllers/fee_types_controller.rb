@@ -10,6 +10,7 @@ class FeeTypesController < ApplicationController
 
   # GET /fee_types/1
   def show
+    authorize @fee_type
   end
 
   # GET /fee_types/new

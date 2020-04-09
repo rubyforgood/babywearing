@@ -5,6 +5,10 @@ RSpec.describe Carrier do
   let(:lancaster) { locations(:lancaster) }
   let(:category) { categories(:category) }
 
+  describe "associations" do
+    it { is_expected.to belong_to(:organization) }
+  end
+
   it 'has a valid fixture' do
     expect(carriers(:carrier)).to be_valid
     expect(carriers(:unavailable)).to be_valid

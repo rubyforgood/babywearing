@@ -67,6 +67,9 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include Capybara::DSL
 
+  config.extend FeatureSubdomainHelpers, type: :feature
+  config.extend RequestSubdomainHelpers, type: :request
+
   Shoulda::Matchers.configure do |mconfig|
     mconfig.integrate do |with|
       with.test_framework :rspec

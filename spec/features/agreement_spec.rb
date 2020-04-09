@@ -10,7 +10,7 @@ RSpec.feature 'create an agreement', type: :feature do
   end
 
   scenario 'SHOW' do
-    visit agreements_path
+    visit agreements_url
     click_on agreement.title
 
     expect(page).to have_content('Test Agreement')
@@ -18,7 +18,7 @@ RSpec.feature 'create an agreement', type: :feature do
   end
 
   scenario 'EDIT when name is NOT given' do
-    visit edit_agreement_path(agreement.id)
+    visit edit_agreement_url(agreement.id)
 
     fill_in 'Title', with: nil
     click_on 'Update Agreement'
@@ -27,7 +27,7 @@ RSpec.feature 'create an agreement', type: :feature do
   end
 
   scenario 'EDIT when all expected information is given' do
-    visit edit_agreement_path(agreement.id)
+    visit edit_agreement_url(agreement.id)
 
     fill_in 'Title', with: 'Fake agreement'
     fill_in 'Content', with: 'Content of Fake agreement'
@@ -39,14 +39,14 @@ RSpec.feature 'create an agreement', type: :feature do
   end
 
   scenario 'DESTROY when delete button is clicked' do
-    visit agreements_path
+    visit agreements_url
     click_link 'Destroy'
 
     expect(page).to have_content('Agreement was successfully destroyed.')
   end
 
   scenario 'CREATE when title is NOT given' do
-    visit agreements_path
+    visit agreements_url
 
     click_link('+ New')
     fill_in 'Title', with: nil
@@ -57,7 +57,7 @@ RSpec.feature 'create an agreement', type: :feature do
   end
 
   scenario 'CREATE when all expected information is given' do
-    visit agreements_path
+    visit agreements_url
 
     click_link('+ New')
     fill_in 'Title', with: 'Fake Agreement'

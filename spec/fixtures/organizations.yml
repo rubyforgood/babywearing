@@ -1,0 +1,8 @@
+admin:
+  name: "Site Administration"
+  subdomain: "admin"
+
+midatlantic:
+  name: "Midatlantic Babywearing"
+  subdomain: "midatlantic"
+

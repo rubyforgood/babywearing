@@ -8,6 +8,7 @@ user:
   state: 'VA'
   postal_code: '22032'
   phone_number: '18888888888'
+  organization: midatlantic
 
 volunteer:
   email: 'volunteer@test.com'
@@ -20,6 +21,7 @@ volunteer:
   postal_code: '22032'
   phone_number: '18888888888'
   role: volunteer
+  organization: midatlantic
 
 admin:
   email: 'admin@test.com'
@@ -32,6 +34,7 @@ admin:
   postal_code: '22032'
   phone_number: '18888888888'
   role: admin
+  organization: midatlantic
 
 member:
   email: 'member@test.com'
@@ -44,6 +47,7 @@ member:
   postal_code: '22032'
   phone_number: '18888888888'
   role: member
+  organization: midatlantic
 
 nonmember:
   email: 'nonmember@test.com'
@@ -56,6 +60,7 @@ nonmember:
   postal_code: '22032'
   phone_number: '18888888888'
   role: member
+  organization: midatlantic
 
 expired:
   email: 'expired@test.com'
@@ -68,6 +73,7 @@ expired:
   postal_code: '22032'
   phone_number: '18888888888'
   role: member
+  organization: midatlantic
 
 blocked:
   email: 'blocked@test.com'
@@ -80,6 +86,7 @@ blocked:
   postal_code: '22032'
   phone_number: '18888888888'
   role: member
+  organization: midatlantic
 
 upcoming:
   email: 'upcoming@test.com'
@@ -92,6 +99,7 @@ upcoming:
   postal_code: '22032'
   phone_number: '18888888888'
   role: member
+  organization: midatlantic
 
 borrower:
   email: 'borrower@test.com'
@@ -104,3 +112,17 @@ borrower:
   postal_code: '22032'
   phone_number: '18888888888'
   role: member
+  organization: midatlantic
+
+admin_org:
+  email: 'admin@test.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Admin'
+  last_name: 'User'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  role: admin
+  organization: admin

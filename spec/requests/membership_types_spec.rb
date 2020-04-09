@@ -4,11 +4,12 @@ require 'rails_helper'
 
 RSpec.describe "MembershipTypes", type: :request do
   let!(:membership_type) { membership_types(:annual) }
+  let(:organization) { organizations(:midatlantic) }
 
   describe 'GET /membership_types' do
     it 'has http status 200' do
       sign_in users(:member)
-      send :get, membership_types_path
+      send :get, membership_types_url
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to match(/Annual/)
@@ -17,13 +18,13 @@ RSpec.describe "MembershipTypes", type: :request do
 
   describe "GET /membership_types/new" do
     it_behaves_like 'admin authorized-only resource', :get do
-      let(:endpoint) { new_membership_type_path }
+      let(:endpoint) { new_membership_type_url }
     end
   end
 
   describe 'POST /membership_types' do
     it_behaves_like 'admin authorized-only resource', :post do
-      let(:endpoint) { membership_types_path }
+      let(:endpoint) { membership_types_url }
       let(:params) do
         { membership_type: {
           name: 'Annual',
@@ -51,9 +52,9 @@ RSpec.describe "MembershipTypes", type: :request do
     context 'with valid attributes' do
       it 'creates a membership_type' do
         sign_in users(:admin)
-        send :post, membership_types_path, params: { membership_type: valid_attr }
+        send :post, membership_types_url, params: { membership_type: valid_attr }
 
-        expect(response).to redirect_to(membership_types_path)
+        expect(response).to redirect_to(membership_types_url)
         expect(flash[:notice]).to eq('Membership type was successfully created.')
       end
     end
@@ -61,7 +62,7 @@ RSpec.describe "MembershipTypes", type: :request do
     context 'with invalid attributes' do
       it "doen't create a membership_type" do
         sign_in users(:admin)
-        send :post, membership_types_path, params: { membership_type: invalid_attr }
+        send :post, membership_types_url, params: { membership_type: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
       end
@@ -71,7 +72,7 @@ RSpec.describe "MembershipTypes", type: :request do
   describe 'GET /membership_type/:id' do
     it 'has have_http_status 200' do
       sign_in users(:member)
-      send :get, membership_types_path(membership_type)
+      send :get, membership_types_url(membership_type)
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to match(/Annual/)
@@ -81,7 +82,7 @@ RSpec.describe "MembershipTypes", type: :request do
   describe 'PUT /membership_type/:id' do
     it_behaves_like 'admin authorized-only resource', :put do
       let(:membership_type) { membership_types(:annual) }
-      let(:endpoint) { membership_type_path(membership_type) }
+      let(:endpoint) { membership_type_url(membership_type) }
       let(:params) do
         { membership_type: {
           name: 'Annual',
@@ -109,7 +110,7 @@ RSpec.describe "MembershipTypes", type: :request do
     context 'with valid attributes' do
       it 'updates the membership_type' do
         sign_in users(:admin)
-        send :put, membership_type_path(membership_type), params: { membership_type: valid_attr }
+        send :put, membership_type_url(membership_type), params: { membership_type: valid_attr }
 
         expect(flash[:notice]).to eq('Membership type was successfully updated.')
       end
@@ -118,7 +119,7 @@ RSpec.describe "MembershipTypes", type: :request do
     context 'with invalid attributes' do
       it "doesn't update the membership_type" do
         sign_in users(:admin)
-        send :put, membership_type_path(membership_type), params: { membership_type: invalid_attr }
+        send :put, membership_type_url(membership_type), params: { membership_type: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
       end
@@ -128,6 +129,7 @@ RSpec.describe "MembershipTypes", type: :request do
   describe 'DELETE /membership_type/:id' do
     let(:membership_type) do
       MembershipType.create(
+        organization: organization,
         name: 'Annual',
         short_name: 'year',
         fee_cents: 30_00,
@@ -140,6 +142,7 @@ RSpec.describe "MembershipTypes", type: :request do
     it_behaves_like "admin authorized-only resource", :delete do
       let(:membership_type) do
         MembershipType.create(
+          organization: organization,
           name: 'Annual',
           short_name: 'year',
           fee_cents: 30_00,
@@ -148,12 +151,12 @@ RSpec.describe "MembershipTypes", type: :request do
           description: "A text description goes here."
         )
       end
-      let(:endpoint) { membership_type_path(membership_type) }
+      let(:endpoint) { membership_type_url(membership_type) }
     end
 
-    it 'destroys the fee_type' do
+    it 'destroys the membership type' do
       sign_in users(:admin)
-      send :delete, membership_type_path(membership_type)
+      send :delete, membership_type_url(membership_type)
 
       expect(response).to have_http_status(:found)
       expect(flash[:alert]).to eq('Membership type was successfully destroyed.')

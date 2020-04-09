@@ -9,6 +9,10 @@ RSpec.describe User do
   let(:expired) { users(:expired) }
   let(:admin) { users(:admin) }
 
+  describe "associations" do
+    it { is_expected.to belong_to(:organization) }
+  end
+
   describe "#name_with_membership type" do
     context "with no membership" do
       it "just returns the name" do

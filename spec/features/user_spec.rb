@@ -11,7 +11,7 @@ RSpec.describe User do
   scenario "should allow a volunteer user to create another user" do
     sign_in volunteer
 
-    visit new_user_registration_path
+    visit new_user_registration_url
     expect(page).to have_content 'Create New Member'
 
     fill_in "Enter email address", with: "alicia@gmail.com"

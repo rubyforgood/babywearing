@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_214338) do
+ActiveRecord::Schema.define(version: 2020_03_28_044747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_214338) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organization_id"
   end
 
   create_table "carriers", force: :cascade do |t|
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_214338) do
     t.string "state", default: "available", null: false
     t.text "notes"
     t.integer "weight_limit"
+    t.integer "organization_id"
     t.index ["current_location_id"], name: "index_carriers_on_current_location_id"
     t.index ["home_location_id"], name: "index_carriers_on_home_location_id"
     t.index ["state"], name: "index_carriers_on_state"
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_214338) do
     t.integer "fee_cents"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organization_id"
   end
 
   create_table "loans", force: :cascade do |t|
@@ -91,15 +94,18 @@ ActiveRecord::Schema.define(version: 2020_03_22_214338) do
     t.bigint "borrower_id", null: false
     t.date "returned_on"
     t.text "notes"
+    t.bigint "user_id"
     t.index ["borrower_id"], name: "index_loans_on_borrower_id"
     t.index ["checkin_volunteer_id"], name: "index_loans_on_checkin_volunteer_id"
     t.index ["checkout_volunteer_id"], name: "index_loans_on_checkout_volunteer_id"
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organization_id"
   end
 
   create_table "membership_types", force: :cascade do |t|
@@ -111,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_214338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "short_name", null: false
+    t.integer "organization_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -126,6 +133,21 @@ ActiveRecord::Schema.define(version: 2020_03_22_214338) do
     t.index ["expiration"], name: "index_memberships_on_expiration"
     t.index ["membership_type_id"], name: "index_memberships_on_membership_type_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "subdomain", null: false
+    t.string "email"
+    t.string "phone"
+    t.text "notes"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subdomain"], name: "index_organizations_on_subdomain"
   end
 
   create_table "signed_agreements", force: :cascade do |t|
@@ -156,13 +178,15 @@ ActiveRecord::Schema.define(version: 2020_03_22_214338) do
     t.string "last_name"
     t.integer "role", default: 2, null: false
     t.text "notes"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.integer "organization_id"
+    t.index ["organization_id", "email"], name: "index_users_on_organization_id_and_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carriers", "locations", column: "current_location_id"
   add_foreign_key "carriers", "locations", column: "home_location_id"
+  add_foreign_key "loans", "users"
   add_foreign_key "loans", "users", column: "borrower_id"
   add_foreign_key "loans", "users", column: "checkin_volunteer_id"
   add_foreign_key "loans", "users", column: "checkout_volunteer_id"

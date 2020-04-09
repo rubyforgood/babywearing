@@ -4,11 +4,12 @@ require 'rails_helper'
 
 RSpec.describe "Agreements", type: :request do
   let!(:agreement) { agreements(:agreement) }
+  let(:organization) { organizations(:midatlantic) }
 
   describe 'GET /agreements' do
     it 'has http status 200' do
       sign_in users(:member)
-      send :get, agreements_path
+      send :get, agreements_url
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to match(/Test Agreement/)
@@ -17,13 +18,13 @@ RSpec.describe "Agreements", type: :request do
 
   describe "GET /agreements/new" do
     it_behaves_like 'admin authorized-only resource', :get do
-      let(:endpoint) { new_agreement_path }
+      let(:endpoint) { new_agreement_url }
     end
   end
 
   describe 'POST /agreements' do
     it_behaves_like 'admin authorized-only resource', :post do
-      let(:endpoint) { agreements_path }
+      let(:endpoint) { agreements_url }
       let(:params) { { agreement: { title: 'Test', content: 'Test content' } } }
     end
 
@@ -33,9 +34,9 @@ RSpec.describe "Agreements", type: :request do
     context 'with valid attributes' do
       it 'creates a agreement' do
         sign_in users(:admin)
-        send :post, agreements_path, params: { agreement: valid_attr }
+        send :post, agreements_url, params: { agreement: valid_attr }
 
-        expect(response).to redirect_to(agreement_path(assigns(:agreement)))
+        expect(response).to redirect_to(agreement_url(assigns(:agreement)))
         expect(flash[:notice]).to eq('Agreement was successfully created.')
       end
     end
@@ -43,7 +44,7 @@ RSpec.describe "Agreements", type: :request do
     context 'with invalid attributes' do
       it "doen't create a agreement" do
         sign_in users(:admin)
-        send :post, agreements_path, params: { agreement: invalid_attr }
+        send :post, agreements_url, params: { agreement: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
       end
@@ -53,7 +54,7 @@ RSpec.describe "Agreements", type: :request do
   describe 'GET /agreements/:id' do
     it 'has have_http_status 200' do
       sign_in users(:member)
-      send :get, agreements_path(agreement)
+      send :get, agreements_url(agreement)
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to match(/Test Agreemen/)
@@ -63,7 +64,7 @@ RSpec.describe "Agreements", type: :request do
   describe 'PUT /agreement/:id' do
     it_behaves_like 'admin authorized-only resource', :put do
       let(:agreement) { agreements(:agreement) }
-      let(:endpoint) { agreement_path(agreement) }
+      let(:endpoint) { agreement_url(agreement) }
       let(:params) { { agreement: { title: 'Test', content: 'Test' } } }
     end
 
@@ -73,7 +74,7 @@ RSpec.describe "Agreements", type: :request do
     context 'with valid attributes' do
       it 'updates the agreement' do
         sign_in users(:admin)
-        send :put, agreement_path(agreement), params: { agreement: valid_attr }
+        send :put, agreement_url(agreement), params: { agreement: valid_attr }
 
         expect(flash[:notice]).to eq('Agreement was successfully updated.')
       end
@@ -82,7 +83,7 @@ RSpec.describe "Agreements", type: :request do
     context 'with invalid attributes' do
       it "doesn't update the agreement" do
         sign_in users(:admin)
-        send :put, agreement_path(agreement), params: { agreement: invalid_attr }
+        send :put, agreement_url(agreement), params: { agreement: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
       end
@@ -90,16 +91,16 @@ RSpec.describe "Agreements", type: :request do
   end
 
   describe 'DELETE /location/:id' do
-    let(:agreement) { Agreement.create(title: 'Test', content: 'Test') }
+    let(:agreement) { Agreement.create(title: 'Test', content: 'Test', organization: organization) }
 
     it_behaves_like "admin authorized-only resource", :delete do
-      let(:agreement) { Agreement.create(title: 'Test', content: 'Test') }
-      let(:endpoint) { agreement_path(agreement) }
+      let(:agreement) { Agreement.create(title: 'Test', content: 'Test', organization: organization) }
+      let(:endpoint) { agreement_url(agreement) }
     end
 
     it 'destroys the agreement' do
       sign_in users(:admin)
-      send :delete, agreement_path(agreement)
+      send :delete, agreement_url(agreement)
 
       expect(response).to have_http_status(:found)
       expect(flash[:alert]).to eq('Agreement was successfully destroyed.')

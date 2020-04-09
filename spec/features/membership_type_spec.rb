@@ -10,7 +10,7 @@ RSpec.describe 'MembershipType', type: :feature do
   end
 
   scenario 'EDIT when name is NOT given' do
-    visit edit_membership_type_path(membership_type)
+    visit edit_membership_type_url(membership_type)
 
     fill_in 'Name', with: ""
     click_on 'Update Membership type'
@@ -19,7 +19,7 @@ RSpec.describe 'MembershipType', type: :feature do
   end
 
   scenario 'EDIT when all expected information is given' do
-    visit edit_membership_type_path(membership_type)
+    visit edit_membership_type_url(membership_type)
 
     fill_in 'Name', with: 'Trial'
     fill_in 'Short name', with: 'tr'
@@ -30,7 +30,7 @@ RSpec.describe 'MembershipType', type: :feature do
   end
 
   scenario 'CREATE when name is NOT given' do
-    visit membership_types_path
+    visit membership_types_url
     click_link('+ New')
     fill_in 'Name', with: ""
     click_on 'Create Membership type'
@@ -38,7 +38,7 @@ RSpec.describe 'MembershipType', type: :feature do
   end
 
   scenario 'CREATE when all expected information is given' do
-    visit membership_types_path
+    visit membership_types_url
 
     click_link('+ New')
     fill_in 'Name', with: 'Trial'
