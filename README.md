@@ -26,6 +26,25 @@ babywearing.
 
 ## About this Project
 
+This app is multi-tenant, using [acts_as_tenent](https://github.com/ErwinM/acts_as_tenant)
+
+Each tenant is an organization. Each organization will have distinct carriers,etc.
+The entities that will be separate are all the ones with `organization_id` fields,
+plus any that belong to any records with `organization_id` fields (e.g. loans are
+tied to things with `organization_id` even though they do not need such a field themselves).
+
+The app will know which organization the user is in (or is visiting) by looking
+at the subdomain.
+
+There is a special organization with subdomain `admin`. This will manage all
+non-organization records (at this time just `Categories`). It will have its own
+set of users. This organization will have different menus (basically it will
+only need access to non-organizational resources). See the `db/seeds.rb` for info
+on which organizations and users exist after running seeds.
+
+To access the organization in dev, use `<subdomain>.lvh.me:3000`.
+Our current seed organizations are midatlantic and acme.
+
 MAB has a lending library so that their members can try different types of
 carriers and find what works best for their family. They currently have software
 that works pretty well, but is a strain on their budget. The new software will keep
@@ -107,7 +126,7 @@ Run `rspec path/to/spec.rb` to run a specific file
 
 ### Start the app
 
-Run `rails s` and browse to http://localhost:3000/
+Run `rails s` and browse to http://midatlantic.lvh.me:3000/ or another subdomain
 
 ## How to Contribute
 

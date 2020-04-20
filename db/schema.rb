@@ -94,11 +94,9 @@ ActiveRecord::Schema.define(version: 2020_03_28_044747) do
     t.bigint "borrower_id", null: false
     t.date "returned_on"
     t.text "notes"
-    t.bigint "user_id"
     t.index ["borrower_id"], name: "index_loans_on_borrower_id"
     t.index ["checkin_volunteer_id"], name: "index_loans_on_checkin_volunteer_id"
     t.index ["checkout_volunteer_id"], name: "index_loans_on_checkout_volunteer_id"
-    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -116,7 +114,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_044747) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "short_name", null: false
+    t.string "short_name"
     t.integer "organization_id"
   end
 
@@ -186,7 +184,6 @@ ActiveRecord::Schema.define(version: 2020_03_28_044747) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carriers", "locations", column: "current_location_id"
   add_foreign_key "carriers", "locations", column: "home_location_id"
-  add_foreign_key "loans", "users"
   add_foreign_key "loans", "users", column: "borrower_id"
   add_foreign_key "loans", "users", column: "checkin_volunteer_id"
   add_foreign_key "loans", "users", column: "checkout_volunteer_id"
