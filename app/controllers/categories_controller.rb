@@ -26,7 +26,8 @@ class CategoriesController < ApplicationController
     @category = authorize Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      redirect_to category_url(@category, subdomain: current_tenant.subdomain),
+                  notice: 'Category was successfully created.'
     else
       render :new
     end
@@ -37,7 +38,8 @@ class CategoriesController < ApplicationController
     authorize @category
 
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      redirect_to category_url(@category, subdomain: current_tenant.subdomain),
+                  notice: 'Category was successfully updated.'
     else
       render :edit
     end
@@ -48,7 +50,7 @@ class CategoriesController < ApplicationController
     authorize @category
 
     if @category.destroy
-      redirect_to categories_url, alert: 'Category was successfully destroyed.'
+      redirect_to categories_url(subdomain: current_tenant.subdomain), alert: 'Category was successfully destroyed.'
     end
   end
 

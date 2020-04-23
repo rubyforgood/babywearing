@@ -2,6 +2,6 @@ Welcome to Babywearing. Please click the link to one of our sites below:
 
 <ul>
   <% @organizations.each do |org| %>
-    <li><%= link_to org.name, root_url(subdomain: org.subdomain) %></li>
+    <li><%= link_to org.name, root_url(domain: @domain, subdomain: org.subdomain) %></li>
   <% end %>
 </ul>

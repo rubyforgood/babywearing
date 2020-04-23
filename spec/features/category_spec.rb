@@ -11,7 +11,7 @@ RSpec.feature "category" do
   end
 
   it "allows user to create a category" do
-    visit categories_url
+    visit categories_url(subdomain: "admin")
     find_link("+ New").click
     fill_in "Name", with: "pineapple"
     fill_in "Description", with: "sweet"
@@ -22,7 +22,7 @@ RSpec.feature "category" do
   end
 
   it "allows user to update a category" do
-    visit categories_url
+    visit categories_url(subdomain: "admin")
     click_link category.name
     expect(page).to have_content category.name
     find_link("Edit").click
@@ -33,14 +33,14 @@ RSpec.feature "category" do
   end
 
   it "allows user to delete a category" do
-    visit categories_url
+    visit categories_url(subdomain: "admin")
     expect(page).to have_content category.name
     find_link("Destroy").click
     expect(page).to have_content "Category was successfully destroyed."
   end
 
   it 'expands the subcategories table' do
-    visit(categories_url)
+    visit(categories_url(subdomain: "admin"))
     expect(page).to have_content(category.name)
     expect(page).not_to have_content(category_child.name)
     find_link('+').click
