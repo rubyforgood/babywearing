@@ -63,5 +63,5 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
 
-  config.hosts << "midatlantic.lvh.me" << "acme.lvh.me" << "admin.lvh.me" << "lvh.me" << "midatlantic.stage.lvh.me"
+   config.hosts << /^([a-zA-Z0-9]*\.)*(lvh\.me|babywearing\.exchange)$/
 end
