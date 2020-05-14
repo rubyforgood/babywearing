@@ -41,9 +41,7 @@ class AgreementsController < ApplicationController
   def destroy
     authorize @agreement
 
-    if @agreement.destroy
-      redirect_to agreements_url, alert: 'Agreement was successfully destroyed.'
-    end
+    redirect_to agreements_url, alert: 'Agreement was successfully destroyed.' if @agreement.destroy
   end
 
   private

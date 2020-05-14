@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_many :signed_agreements
   has_many :carts
-  has_many :loans, foreign_key: "borrower_id"
+  has_many :loans, foreign_key: 'borrower_id'
   has_many :memberships
 
   enum role: %i[admin volunteer member]
@@ -51,7 +51,7 @@ class User < ApplicationRecord
 
   def current_membership
     today = Time.zone.today
-    membership = memberships.where("expiration > ? AND effective <= ?", today, today).order(expiration: :desc).first
+    membership = memberships.where('expiration > ? AND effective <= ?', today, today).order(expiration: :desc).first
     return if membership.nil?
 
     membership
@@ -66,9 +66,7 @@ class User < ApplicationRecord
     return name.full if membership.nil?
 
     s = "#{name.full} - #{membership.membership_type.short_name}"
-    if membership.expired?
-      s += " (Expired)"
-    end
+    s += ' (Expired)' if membership.expired?
     s
   end
 

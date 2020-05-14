@@ -9,9 +9,9 @@ class Organization < ApplicationRecord
   has_many :locations
   has_many :users
 
-  scope :nonadmin, -> { where.not("subdomain = ?", 'admin') }
+  scope :nonadmin, -> { where.not('subdomain = ?', 'admin') }
 
   def admin?
-    subdomain == "admin"
+    subdomain == 'admin'
   end
 end

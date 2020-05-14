@@ -19,15 +19,15 @@ gem 'acts_as_tenant'
 gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
-gem "bootstrap-table-rails"
+gem 'bootstrap-table-rails'
 gem 'filterrific'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.10.0'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.8'
 gem 'money-rails', '~>1.12'
 gem 'name_of_person'
-gem "responders"
+gem 'responders'
 gem 'turbolinks', '~> 5'
 gem 'whenever', require: false
 gem 'will_paginate'
@@ -38,8 +38,8 @@ group :development, :test do
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pivotal_git_scripts'
   gem 'web-console', '>= 3.3.0'

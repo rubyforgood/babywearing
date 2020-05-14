@@ -7,7 +7,7 @@ RSpec.describe Loan do
   let(:carrier) { carriers(:carrier) }
 
   describe '#valid?' do
-    context "with a borrower, a checkout volunteer, a carrier, and a due date" do
+    context 'with a borrower, a checkout volunteer, a carrier, and a due date' do
       subject do
         described_class.new(
           carrier: carrier,
@@ -24,7 +24,7 @@ RSpec.describe Loan do
   end
 
   describe 'create' do
-    it "sets the due date to the date specified" do
+    it 'sets the due date to the date specified' do
       due_date = 20.days.from_now.utc.to_date
       loan = described_class.create(
         carrier: carrier,
@@ -37,8 +37,8 @@ RSpec.describe Loan do
     end
   end
 
-  context "without due date" do
-    it "sets the due date to be the default number of days away" do
+  context 'without due date' do
+    it 'sets the due date to be the default number of days away' do
       freeze_time do
         loan = described_class.create(
           carrier: carrier,

@@ -4,7 +4,7 @@ class Loan < ApplicationRecord
   include Loan::FilterImpl
 
   belongs_to :carrier
-  belongs_to :borrower, class_name: "User", optional: true, inverse_of: :loans # see presence validation below
+  belongs_to :borrower, class_name: 'User', optional: true, inverse_of: :loans # see presence validation below
   belongs_to :checkout_volunteer, class_name: 'User', default: -> { Current.user }
   belongs_to :checkin_volunteer, class_name: 'User', optional: true
 
@@ -14,7 +14,7 @@ class Loan < ApplicationRecord
   scope :due_in_one_week, -> { where(due_date: (Time.zone.today + 1.week)) }
 
   validates :carrier, :due_date, presence: true
-  validates :borrower, presence: { message: "must be selected" }
+  validates :borrower, presence: { message: 'must be selected' }
   after_create :checkout_carrier
   after_save :checkin_carrier
 
@@ -31,9 +31,7 @@ class Loan < ApplicationRecord
   private
 
   def checkin_carrier
-    if returned_on.present? && carrier.checked_out?
-      carrier.checkin!
-    end
+    carrier.checkin! if returned_on.present? && carrier.checked_out?
   end
 
   def checkout_carrier

@@ -7,37 +7,37 @@ RSpec.describe Location, type: :feature do
   # you can't do these things to a location
 
   before do
-    visit "/"
+    visit '/'
     sign_in user
   end
 
   it 'allows admin to CREATE new locations' do
     visit locations_url
-    find_link("+ New", match: :first).click
-    fill_in "Name", with: "Bellvue"
-    click_button "Create Location"
-    expect(page).to have_content "Bellvue"
+    find_link('+ New', match: :first).click
+    fill_in 'Name', with: 'Bellvue'
+    click_button 'Create Location'
+    expect(page).to have_content 'Bellvue'
   end
 
   it 'allows admin to UPDATE a location' do
     visit locations_url
-    find_link("+ New", match: :first).click
-    fill_in "Name", with: "Robinson"
-    click_button "Create Location"
-    expect(page).to have_content "Robinson"
-    find_link("Edit this location").click
-    fill_in "Name", with: "New location"
-    click_button "Update Location"
-    expect(page).to have_content "New location"
+    find_link('+ New', match: :first).click
+    fill_in 'Name', with: 'Robinson'
+    click_button 'Create Location'
+    expect(page).to have_content 'Robinson'
+    find_link('Edit this location').click
+    fill_in 'Name', with: 'New location'
+    click_button 'Update Location'
+    expect(page).to have_content 'New location'
   end
 
   it 'allows admin to DELETE a location' do
     visit locations_url
-    find_link("+ New", match: :first).click
-    fill_in "Name", with: "Bridgeville"
-    click_button "Create Location"
-    expect(page).to have_content "Bridgeville"
-    find_link("Delete this location").click
-    expect(page).not_to have_content "Location was successfully deleted."
+    find_link('+ New', match: :first).click
+    fill_in 'Name', with: 'Bridgeville'
+    click_button 'Create Location'
+    expect(page).to have_content 'Bridgeville'
+    find_link('Delete this location').click
+    expect(page).not_to have_content 'Location was successfully deleted.'
   end
 end

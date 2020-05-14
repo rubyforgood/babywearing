@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "Agreements", type: :request do
+RSpec.describe 'Agreements', type: :request do
   let!(:agreement) { agreements(:agreement) }
   let(:organization) { organizations(:midatlantic) }
 
@@ -16,7 +16,7 @@ RSpec.describe "Agreements", type: :request do
     end
   end
 
-  describe "GET /agreements/new" do
+  describe 'GET /agreements/new' do
     it_behaves_like 'admin authorized-only resource', :get do
       let(:endpoint) { new_agreement_url }
     end
@@ -93,7 +93,7 @@ RSpec.describe "Agreements", type: :request do
   describe 'DELETE /location/:id' do
     let(:agreement) { Agreement.create(title: 'Test', content: 'Test', organization: organization) }
 
-    it_behaves_like "admin authorized-only resource", :delete do
+    it_behaves_like 'admin authorized-only resource', :delete do
       let(:agreement) { Agreement.create(title: 'Test', content: 'Test', organization: organization) }
       let(:endpoint) { agreement_url(agreement) }
     end

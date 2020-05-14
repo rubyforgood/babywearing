@@ -7,9 +7,8 @@ class SubdomainValidator < ActiveModel::EachValidator
 
     reserved_names = %w[www ftp mail pop smtp ssl sftp]
     reserved_names = options[:reserved] if options[:reserved]
-    if reserved_names.include?(value)
-      object.errors[attribute] << 'cannot be a reserved name'
-    end
+    object.errors[attribute] << 'cannot be a reserved name' if reserved_names.include?(value)
+
     check_length(object, attribute, value)
     check_start(object, attribute, value)
     check_alphanumeric(object, attribute, value)

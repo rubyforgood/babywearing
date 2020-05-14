@@ -6,10 +6,10 @@ module Users
 
     def create
       super
-      if resource.persisted?
-        set_flash_message!(:notice, current_user == resource ? :signed_up : :signed_up_by_user)
-        resource.send_welcome_email
-      end
+      return unless resource.persisted?
+
+      set_flash_message!(:notice, current_user == resource ? :signed_up : :signed_up_by_user)
+      resource.send_welcome_email
     end
 
     private

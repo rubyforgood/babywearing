@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "FeeTypes", type: :request do
+RSpec.describe 'FeeTypes', type: :request do
   let!(:fee_type) { fee_types(:upgrade) }
   let(:organization) { organizations(:midatlantic) }
 
@@ -16,7 +16,7 @@ RSpec.describe "FeeTypes", type: :request do
     end
   end
 
-  describe "GET /fee_types/new" do
+  describe 'GET /fee_types/new' do
     it_behaves_like 'admin authorized-only resource', :get do
       let(:endpoint) { new_fee_type_url }
     end
@@ -97,7 +97,7 @@ RSpec.describe "FeeTypes", type: :request do
   describe 'DELETE /fee_type/:id' do
     let(:fee_type) { FeeType.create(name: 'Test', fee_cents: 10, organization: organization) }
 
-    it_behaves_like "admin authorized-only resource", :delete do
+    it_behaves_like 'admin authorized-only resource', :delete do
       let(:fee_type) { FeeType.create(name: 'Test', fee_cents: 10, organization: organization) }
       let(:endpoint) { fee_type_url(fee_type) }
     end

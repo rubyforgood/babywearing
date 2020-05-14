@@ -19,7 +19,7 @@ RSpec.describe 'User update information', type: :feature do
     fill_in('Current password', with: 'password')
     fill_in('First name', with: 'New first name')
     fill_in('Last name', with: 'New last name')
-    click_button("Update")
+    click_button('Update')
     expect(page).to have_content('Your account has been updated successfully.')
     visit(edit_user_registration_url)
     expect(page).to have_field('First name', with: 'New first name')
@@ -34,7 +34,7 @@ RSpec.describe 'User update information', type: :feature do
     fill_in('Current password', with: '')
     fill_in('First name', with: 'New first name')
     fill_in('Last name', with: 'New last name')
-    click_button("Update")
+    click_button('Update')
     expect(page).to have_content("Current password can't be blank")
   end
 end

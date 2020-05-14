@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "Application", type: :request do
+RSpec.describe 'Application', type: :request do
   describe 'no tenant redirect' do
     context 'without session' do
       it 'redirects to home index' do
@@ -23,18 +23,18 @@ RSpec.describe "Application", type: :request do
   end
 
   describe 'wrong tenant redirect' do
-    it "redirects to sign in" do
+    it 'redirects to sign in' do
       sign_in users(:member)
-      get users_url(subdomain: "admin")
+      get users_url(subdomain: 'admin')
 
       expect(response).to redirect_to(new_user_session_url)
     end
   end
 
-  describe "admin organization redirect" do
-    context "with no session" do
-      it "redirects to sign in" do
-        get root_url(domain: "stage.example.com", subdomain: "admin")
+  describe 'admin organization redirect' do
+    context 'with no session' do
+      it 'redirects to sign in' do
+        get root_url(domain: 'stage.example.com', subdomain: 'admin')
 
         expect(response).to redirect_to(new_user_session_url)
       end

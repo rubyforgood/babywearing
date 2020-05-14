@@ -5,19 +5,19 @@ module Features
     visit new_user_session_url
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
-    click_button "Log In"
+    click_button 'Log In'
   end
 
   def user_sign_out
-    click_link "Logout"
+    click_link 'Logout'
   end
 
   def user_should_be_signed_in
     visit root_url
-    expect(page).to have_content "Logout"
+    expect(page).to have_content 'Logout'
   end
 
   def user_should_be_signed_out
-    expect(page).to have_content "Log In"
+    expect(page).to have_content 'Log In'
   end
 end

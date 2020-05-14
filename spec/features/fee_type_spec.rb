@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.feature "fee_type" do
+RSpec.feature 'fee_type' do
   let(:user) { users(:admin) }
   let(:fee_type) { fee_types(:upgrade) }
 
   before do
-    visit "/"
+    visit '/'
     sign_in user
   end
 
@@ -14,7 +14,7 @@ RSpec.feature "fee_type" do
     click_link fee_type.name
 
     expect(page).to have_content(fee_type.name)
-    expect(page).to have_content("20.00")
+    expect(page).to have_content('20.00')
   end
 
   scenario 'EDIT when name is NOT given' do

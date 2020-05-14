@@ -293,28 +293,28 @@ RSpec.describe Carrier do
     end
   end
 
-  describe "view mode" do
+  describe 'view mode' do
     before do
       sign_in user
       visit carriers_url
     end
 
-    it "can set the view mode to list" do
-      click_on(class: "carrier-list-link")
+    it 'can set the view mode to list' do
+      click_on(class: 'carrier-list-link')
 
-      expect(page).to have_current_path(carriers_url(view: "list"))
+      expect(page).to have_current_path(carriers_url(view: 'list'))
       expect(page).to have_css('table')
     end
 
-    it "can set the view mode to icon" do
-      click_on(class: "carrier-icon-link")
+    it 'can set the view mode to icon' do
+      click_on(class: 'carrier-icon-link')
 
-      expect(page).to have_current_path(carriers_url(view: "icon"))
+      expect(page).to have_current_path(carriers_url(view: 'icon'))
       expect(page).not_to have_css('table')
     end
 
-    it "uses view mode from cookie" do
-      Capybara.current_session.driver.browser.set_cookie("carrier_view=list")
+    it 'uses view mode from cookie' do
+      Capybara.current_session.driver.browser.set_cookie('carrier_view=list')
       visit carriers_url
       expect(page).to have_css('table')
     end

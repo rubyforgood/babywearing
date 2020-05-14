@@ -9,7 +9,7 @@ module Users
     def create
       @membership = authorize @user.memberships.new(membership_params)
       if @membership.save
-        redirect_to user_path(@user), notice: "Membership successfully created."
+        redirect_to user_path(@user), notice: 'Membership successfully created.'
       else
         respond_modal_with @membership
       end
@@ -17,9 +17,7 @@ module Users
 
     def destroy
       @membership = authorize @user.memberships.find(params[:id])
-      if @membership.destroy
-        flash[:notice] = "Membership successfully removed."
-      end
+      flash[:notice] = 'Membership successfully removed.' if @membership.destroy
       redirect_to user_path(@user)
     end
 
@@ -37,7 +35,7 @@ module Users
     def update
       @membership = authorize @user.memberships.find(params[:id])
       if @membership.update(membership_params)
-        redirect_to user_path(@user), notice: "Membership successfully updated."
+        redirect_to user_path(@user), notice: 'Membership successfully updated.'
       else
         respond_modal_with @membership
       end

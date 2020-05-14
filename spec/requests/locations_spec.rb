@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "Locations", type: :request do
+RSpec.describe 'Locations', type: :request do
   let!(:location) { locations(:lancaster) }
   let(:organization) { organizations(:midatlantic) }
 
@@ -16,7 +16,7 @@ RSpec.describe "Locations", type: :request do
     end
   end
 
-  describe "GET /locations/new" do
+  describe 'GET /locations/new' do
     it_behaves_like 'admin authorized-only resource', :get do
       let(:endpoint) { new_location_url }
     end
@@ -42,7 +42,7 @@ RSpec.describe "Locations", type: :request do
     end
 
     context 'with invalid attributes' do
-      it "does not create a location" do
+      it 'does not create a location' do
         sign_in users(:admin)
         send :post, locations_url, params: { location: invalid_attr }
 
@@ -107,7 +107,7 @@ RSpec.describe "Locations", type: :request do
   describe 'DELETE /location/:id' do
     let(:location) { organization.locations.create(name: 'Test') }
 
-    it_behaves_like "admin authorized-only resource", :delete do
+    it_behaves_like 'admin authorized-only resource', :delete do
       let(:location) { organization.locations.create(name: 'Test') }
       let(:endpoint) { location_url(location) }
     end

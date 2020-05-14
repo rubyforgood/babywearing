@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe "Categories", type: :request do
+RSpec.describe 'Categories', type: :request do
   let!(:category) { categories(:category_parent) }
 
   describe 'GET /categories' do
     it 'has http status 200' do
       sign_in users(:admin_org)
-      get categories_url(subdomain: "admin")
+      get categories_url(subdomain: 'admin')
 
       expect(response).to be_successful
       expect(response.body).to match(/category parent/)
@@ -22,9 +22,9 @@ RSpec.describe "Categories", type: :request do
     context 'with valid attributes' do
       it 'creates a category' do
         sign_in users(:admin_org)
-        post categories_url(subdomain: "admin"), params: { category: valid_attr }
+        post categories_url(subdomain: 'admin'), params: { category: valid_attr }
 
-        expect(response).to redirect_to(category_url(assigns(:category), subdomain: "admin"))
+        expect(response).to redirect_to(category_url(assigns(:category), subdomain: 'admin'))
         expect(flash[:notice]).to eq('Category was successfully created.')
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe "Categories", type: :request do
     context 'with invalid attributes' do
       it "doesn't create a category" do
         sign_in users(:admin_org)
-        send :post, categories_url(subdomain: "admin"), params: { category: invalid_attr }
+        send :post, categories_url(subdomain: 'admin'), params: { category: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
       end
@@ -42,7 +42,7 @@ RSpec.describe "Categories", type: :request do
   describe 'GET /categories/:id' do
     it 'has have_http_status 200' do
       sign_in users(:admin_org)
-      get categories_url(category, subdomain: "admin")
+      get categories_url(category, subdomain: 'admin')
 
       expect(response).to be_successful
       expect(response.body).to match(/category parent/)
@@ -56,7 +56,7 @@ RSpec.describe "Categories", type: :request do
     context 'with valid attributes' do
       it 'updates the category' do
         sign_in users(:admin_org)
-        put category_url(category, subdomain: "admin"), params: { category: valid_attr }
+        put category_url(category, subdomain: 'admin'), params: { category: valid_attr }
 
         expect(flash[:notice]).to eq('Category was successfully updated.')
       end
@@ -65,7 +65,7 @@ RSpec.describe "Categories", type: :request do
     context 'with invalid attributes' do
       it "doesn't update the category" do
         sign_in users(:admin_org)
-        put category_url(category, subdomain: "admin"), params: { category: invalid_attr }
+        put category_url(category, subdomain: 'admin'), params: { category: invalid_attr }
 
         expect(response.body).to match(/prohibited this/)
       end
@@ -77,7 +77,7 @@ RSpec.describe "Categories", type: :request do
 
     it 'destroys the category' do
       sign_in users(:admin_org)
-      delete category_url(category, subdomain: "admin")
+      delete category_url(category, subdomain: 'admin')
 
       expect(response).to have_http_status(:found)
       expect(flash[:alert]).to eq('Category was successfully destroyed.')
@@ -88,7 +88,7 @@ RSpec.describe "Categories", type: :request do
     it 'has a routing error' do
       sign_in users(:member)
       expect do
-        get "http://midatlantic.example.com/categories"
+        get 'http://midatlantic.example.com/categories'
       end.to raise_error(ActionController::RoutingError)
     end
   end

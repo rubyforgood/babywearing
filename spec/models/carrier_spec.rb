@@ -5,7 +5,7 @@ RSpec.describe Carrier do
   let(:lancaster) { locations(:lancaster) }
   let(:category) { categories(:category) }
 
-  describe "associations" do
+  describe 'associations' do
     it { is_expected.to belong_to(:organization) }
   end
 
@@ -16,7 +16,7 @@ RSpec.describe Carrier do
     expect(carriers(:sold)).to be_valid
   end
 
-  it "has a photo attached" do
+  it 'has a photo attached' do
     carrier = described_class.new
     file = Rails.root.join('public', 'apple-touch-icon.png')
     carrier.photos.attach(io: File.open(file), filename: 'apple-touch-icon.png')
@@ -54,7 +54,7 @@ RSpec.describe Carrier do
   describe '#build_loan' do
     let(:carrier) { described_class.first }
 
-    context "without parameters" do
+    context 'without parameters' do
       subject(:loan) { carrier.build_loan }
 
       it 'creates a loan with the default due date set' do
