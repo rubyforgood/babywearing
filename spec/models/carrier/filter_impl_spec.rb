@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Carrier::FilterImpl do
-  describe ".with_state_in" do
-    context "with parameter available" do
-      it "returns all and only ones with available state" do
+  describe '.with_state_in' do
+    context 'with parameter available' do
+      it 'returns all and only ones with available state' do
         carrier = carriers(:carrier)
         avail = carriers(:available)
         carriers = Carrier.with_state_in([:available])

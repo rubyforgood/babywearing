@@ -15,44 +15,44 @@ RSpec.describe Membership, type: :model do
     expect(expired).to be_valid
   end
 
-  describe "associations" do
-    it "requires a user" do
+  describe 'associations' do
+    it 'requires a user' do
       membership.user = nil
 
       expect(membership).not_to be_valid
     end
 
-    it "requires a membership type" do
+    it 'requires a membership type' do
       membership.membership_type = nil
 
       expect(membership).not_to be_valid
     end
   end
 
-  describe "validations" do
-    it "sets the expiration based on membership type if necessary" do
+  describe 'validations' do
+    it 'sets the expiration based on membership type if necessary' do
       membership.expiration = nil
       membership.save
 
       expect(membership.expiration).to eq(membership.effective + membership.membership_type.duration_days.days)
     end
 
-    it "requires expiration not be before effective" do
+    it 'requires expiration not be before effective' do
       membership.expiration = membership.effective - 1.day
 
       expect(membership).not_to be_valid
     end
   end
 
-  describe "#expired?" do
-    context "when expiration passed" do
-      it "returns true" do
+  describe '#expired?' do
+    context 'when expiration passed' do
+      it 'returns true' do
         expect(expired.expired?).to be true
       end
     end
 
-    context "when expiration not passed" do
-      it "returns false" do
+    context 'when expiration not passed' do
+      it 'returns false' do
         expect(membership.expired?).to be false
       end
     end

@@ -19,19 +19,19 @@ RSpec.describe ApplicationPolicy do
   let(:member) { users(:member) }
 
   permissions :create?, :destroy?, :edit?, :index?, :new?, :show?, :update? do
-    it "denies access" do
+    it 'denies access' do
       expect(policy).not_to permit(admin)
       expect(policy).not_to permit(volunteer)
       expect(policy).not_to permit(member)
     end
   end
 
-  describe "Scope" do
+  describe 'Scope' do
     let(:scope_admin) { Pundit.policy_scope!(admin, DummyPundit) }
     let(:scope_volunteer) { Pundit.policy_scope!(admin, DummyPundit) }
     let(:scope_member) { Pundit.policy_scope!(admin, DummyPundit) }
 
-    it "allows all" do
+    it 'allows all' do
       expect(scope_admin.to_a).to match_array([1, 2, 3])
       expect(scope_volunteer.to_a).to match_array([1, 2, 3])
       expect(scope_member.to_a).to match_array([1, 2, 3])

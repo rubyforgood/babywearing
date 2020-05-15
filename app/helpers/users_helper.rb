@@ -10,11 +10,11 @@ module UsersHelper
   end
 
   def membership_status(user)
-    return "No Membership" if user.memberships.empty?
+    return 'No Membership' if user.memberships.empty?
 
     current = user.current_membership
-    return "Expired" unless current.present?
+    return 'Expired' unless current.present?
 
-    current.blocked? ? "Blocked" : "Current"
+    current.blocked? ? 'Blocked' : 'Current'
   end
 end

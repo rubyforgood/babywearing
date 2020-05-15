@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "Loans", type: :request do
+RSpec.describe 'Loans', type: :request do
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
   let(:carrier) { carriers(:carrier) }

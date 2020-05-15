@@ -5,7 +5,7 @@ RSpec.feature 'create an agreement', type: :feature do
   let(:agreement) { agreements(:agreement) }
 
   before do
-    visit "/"
+    visit '/'
     sign_in user
   end
 

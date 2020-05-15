@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "MembershipTypes", type: :request do
+RSpec.describe 'MembershipTypes', type: :request do
   let!(:membership_type) { membership_types(:annual) }
   let(:organization) { organizations(:midatlantic) }
 
@@ -16,7 +16,7 @@ RSpec.describe "MembershipTypes", type: :request do
     end
   end
 
-  describe "GET /membership_types/new" do
+  describe 'GET /membership_types/new' do
     it_behaves_like 'admin authorized-only resource', :get do
       let(:endpoint) { new_membership_type_url }
     end
@@ -32,7 +32,7 @@ RSpec.describe "MembershipTypes", type: :request do
           fee_cents: 30_00,
           duration_days: 3,
           number_of_items: 3,
-          description: "A text description goes here."
+          description: 'A text description goes here.'
         } }
       end
     end
@@ -44,7 +44,7 @@ RSpec.describe "MembershipTypes", type: :request do
         fee_cents: 30_00,
         duration_days: 3,
         number_of_items: 3,
-        description: "A text description goes here."
+        description: 'A text description goes here.'
       }
     end
     let(:invalid_attr) { { name: '' } }
@@ -90,7 +90,7 @@ RSpec.describe "MembershipTypes", type: :request do
           fee_cents: 30_00,
           duration_days: 3,
           number_of_items: 3,
-          description: "A text description goes here."
+          description: 'A text description goes here.'
         } }
       end
     end
@@ -102,7 +102,7 @@ RSpec.describe "MembershipTypes", type: :request do
         fee_cents: 30_00,
         duration_days: 3,
         number_of_items: 3,
-        description: "A text description goes here."
+        description: 'A text description goes here.'
       }
     end
     let(:invalid_attr) { { name: '' } }
@@ -135,11 +135,11 @@ RSpec.describe "MembershipTypes", type: :request do
         fee_cents: 30_00,
         duration_days: 3,
         number_of_items: 3,
-        description: "A text description goes here."
+        description: 'A text description goes here.'
       )
     end
 
-    it_behaves_like "admin authorized-only resource", :delete do
+    it_behaves_like 'admin authorized-only resource', :delete do
       let(:membership_type) do
         MembershipType.create(
           organization: organization,
@@ -148,7 +148,7 @@ RSpec.describe "MembershipTypes", type: :request do
           fee_cents: 30_00,
           duration_days: 3,
           number_of_items: 3,
-          description: "A text description goes here."
+          description: 'A text description goes here.'
         )
       end
       let(:endpoint) { membership_type_url(membership_type) }

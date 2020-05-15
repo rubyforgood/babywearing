@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "LoanListing", type: :request do
+RSpec.describe 'LoanListing', type: :request do
   describe '#index' do
     let(:admin) { users(:admin) }
 

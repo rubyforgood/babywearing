@@ -5,14 +5,14 @@ RSpec.describe 'MembershipType', type: :feature do
   let(:membership_type) { membership_types(:annual) }
 
   before do
-    visit "/"
+    visit '/'
     sign_in user
   end
 
   scenario 'EDIT when name is NOT given' do
     visit edit_membership_type_url(membership_type)
 
-    fill_in 'Name', with: ""
+    fill_in 'Name', with: ''
     click_on 'Update Membership type'
 
     expect(page).to have_content("Name can't be blank")
@@ -32,7 +32,7 @@ RSpec.describe 'MembershipType', type: :feature do
   scenario 'CREATE when name is NOT given' do
     visit membership_types_url
     click_link('+ New')
-    fill_in 'Name', with: ""
+    fill_in 'Name', with: ''
     click_on 'Create Membership type'
     expect(page).to have_content("Name can't be blank")
   end

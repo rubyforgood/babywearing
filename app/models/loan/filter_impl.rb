@@ -5,9 +5,9 @@ class Loan
     extend ActiveSupport::Concern
 
     included do
-      scope :search_carrier, ->(query) { joins(:carrier).where("carriers.model ilike ?", "%#{query}%") }
-      scope :with_due_date_before, ->(date) { where("due_date <= ?", "%#{date}%") }
-      scope :with_due_date_after, ->(date) { where("due_date >= ?", "%#{date}%") }
+      scope :search_carrier, ->(query) { joins(:carrier).where('carriers.model ilike ?', "%#{query}%") }
+      scope :with_due_date_before, ->(date) { where('due_date <= ?', "%#{date}%") }
+      scope :with_due_date_after, ->(date) { where('due_date >= ?', "%#{date}%") }
       scope :with_borrower_id, ->(user_id) { where(borrower_id: user_id) }
       scope :with_checkout_volunteer_id, ->(user_id) { where(checkout_volunteer_id: user_id) }
       scope :with_checkin_volunteer_id, ->(user_id) { where(checkin_volunteer_id: user_id) }
@@ -22,9 +22,9 @@ class Loan
 
       scope :with_overdue, lambda { |yes_or_no|
         if yes_or_no == 'Yes'
-          where("returned_on IS NULL AND due_date < ?", Time.zone.today)
+          where('returned_on IS NULL AND due_date < ?', Time.zone.today)
         elsif yes_or_no == 'No'
-          where("returned_on IS NOT NULL OR due_date >= ?", Time.zone.today)
+          where('returned_on IS NOT NULL OR due_date >= ?', Time.zone.today)
         end
       }
 

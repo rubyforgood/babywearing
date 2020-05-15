@@ -4,7 +4,7 @@ RSpec.describe Agreement do
   let(:user) { users(:user) }
   let(:agreement) { agreements(:agreement) }
 
-  describe "associations" do
+  describe 'associations' do
     it { is_expected.to belong_to(:organization) }
   end
 

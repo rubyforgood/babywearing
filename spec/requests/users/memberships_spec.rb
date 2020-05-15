@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "Users::Memberships", type: :request do
+RSpec.describe 'Users::Memberships', type: :request do
   let(:volunteer) { users(:volunteer) }
   let(:nonmember) { users(:nonmember) }
   let(:member) { users(:member) }
@@ -34,7 +34,7 @@ RSpec.describe "Users::Memberships", type: :request do
       it 'creates the membership' do
         sign_in volunteer
 
-        expect { post user_memberships_url(nonmember), params: { membership: valid_params.merge(effective: "") } }
+        expect { post user_memberships_url(nonmember), params: { membership: valid_params.merge(effective: '') } }
           .not_to change(Membership, :count)
         expect(response.body).to match(/form data-modal=\"true\"/)
         expect(response.body).to match(/Create Membership/)

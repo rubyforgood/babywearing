@@ -48,9 +48,7 @@ class FeeTypesController < ApplicationController
   def destroy
     authorize @fee_type
 
-    if @fee_type.destroy
-      redirect_to fee_types_url, alert: 'Fee type was successfully destroyed.'
-    end
+    redirect_to fee_types_url, alert: 'Fee type was successfully destroyed.' if @fee_type.destroy
   end
 
   private

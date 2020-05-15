@@ -8,6 +8,6 @@ module FormsHelper
   #   <%= form_errors @record %>
   #
   def form_errors(model)
-    render "shared/form_errors", model: model
+    render 'shared/form_errors', model: model
   end
 end

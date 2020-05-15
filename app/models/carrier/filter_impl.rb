@@ -5,12 +5,12 @@ class Carrier
     extend ActiveSupport::Concern
 
     included do
-      scope :search_manufacturer, ->(query) { where("manufacturer ilike ?", "%#{query}%") }
-      scope :search_item_id, ->(query) { where("item_id ilike ?", "%#{query}%") }
-      scope :search_model, ->(query) { where("model ilike ?", "%#{query}%") }
-      scope :search_name, ->(query) { where("name ilike ?", "%#{query}%") }
-      scope :with_category_id, ->(category_id) { where("category_id = ?", category_id) }
-      scope :with_current_location_id, ->(current_location_id) { where("current_location_id = ?", current_location_id) }
+      scope :search_manufacturer, ->(query) { where('manufacturer ilike ?', "%#{query}%") }
+      scope :search_item_id, ->(query) { where('item_id ilike ?', "%#{query}%") }
+      scope :search_model, ->(query) { where('model ilike ?', "%#{query}%") }
+      scope :search_name, ->(query) { where('name ilike ?', "%#{query}%") }
+      scope :with_category_id, ->(category_id) { where('category_id = ?', category_id) }
+      scope :with_current_location_id, ->(current_location_id) { where('current_location_id = ?', current_location_id) }
       scope :with_state_in, ->(state) { where(state: state) }
 
       filterrific(available_filters: %i[

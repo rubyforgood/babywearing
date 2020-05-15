@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "modal_responder"
+require 'modal_responder'
 
 class ApplicationController < ActionController::Base
   # set_current_tenant_by_subdomain(:organization, :subdomain)
@@ -54,8 +54,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_version
-    @version = ""
-    fn = File.join(Rails.root, "deploy", "deploy_hash")
+    @version = ''
+    fn = File.join(Rails.root, 'deploy', 'deploy_hash')
     return unless File.exist?(fn)
 
     @version = File.open(fn, &:gets).strip[0..5]

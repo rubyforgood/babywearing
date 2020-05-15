@@ -47,9 +47,7 @@ class MembershipTypesController < ApplicationController
   def destroy
     authorize @membership_type
 
-    if @membership_type.destroy
-      redirect_to membership_types_url, alert: 'Membership type was successfully destroyed.'
-    end
+    redirect_to membership_types_url, alert: 'Membership type was successfully destroyed.' if @membership_type.destroy
   end
 
   private

@@ -1,7 +1,5 @@
 require: rubocop-rspec
 
-# TBR = to be removed and fixed
-
 AllCops:
   Exclude:
     - 'db/schema.rb'
@@ -15,17 +13,8 @@ AllCops:
 Rails:
   Enabled: true
 
-# TBR
-Style/IfUnlessModifier:
-  Enabled: false
-
-# TBR
-Style/GuardClause:
-  Enabled: false
-
 Style/Documentation:
   Enabled: false
-
 
 Style/EmptyMethod:
   Enabled: false
@@ -38,10 +27,6 @@ Metrics/MethodLength:
 
 Metrics/LineLength:
   Max: 120
-
-# TBR
-Style/StringLiterals:
-  Enabled: false
 
 Metrics/BlockLength:
   Exclude:

@@ -3,13 +3,13 @@
 module CarriersHelper
   def carrier_badge_class(carrier)
     if carrier.available?
-      "badge badge-success"
+      'badge badge-success'
     else
-      "badge badge-danger"
+      'badge badge-danger'
     end
   end
 
   def carrier_editable_states_for_select
-    Carrier.aasm.states_for_select.reject { |s| s.first == "Checked out" }
+    Carrier.aasm.states_for_select.reject { |s| s.first == 'Checked out' }
   end
 end

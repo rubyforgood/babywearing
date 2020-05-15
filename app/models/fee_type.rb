@@ -5,5 +5,5 @@ class FeeType < ApplicationRecord
 
   validates_presence_of :name, :fee_cents
 
-  monetize :fee_cents, as: "fee"
+  monetize :fee_cents, as: 'fee'
 end

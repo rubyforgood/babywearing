@@ -26,6 +26,6 @@ class Membership < ApplicationRecord
     return if expiration.nil? || effective.nil?
     return if expiration >= effective
 
-    errors.add(:expiration, "cannot be before effective date")
+    errors.add(:expiration, 'cannot be before effective date')
   end
 end

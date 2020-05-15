@@ -49,9 +49,9 @@ class CategoriesController < ApplicationController
   def destroy
     authorize @category
 
-    if @category.destroy
-      redirect_to categories_url(subdomain: current_tenant.subdomain), alert: 'Category was successfully destroyed.'
-    end
+    return unless @category.destroy
+
+    redirect_to categories_url(subdomain: current_tenant.subdomain), alert: 'Category was successfully destroyed.'
   end
 
   private
