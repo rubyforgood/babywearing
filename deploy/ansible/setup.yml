@@ -1,0 +1,73 @@
+---
+
+- hosts: "{{ target | default('localhost')}}"
+  vars:
+    bundler_version: "1.17.3"
+    rbenv_root: "{{ ansible_env.HOME }}/.rbenv"
+
+  vars_files:
+    - vault.yml
+  remote_user: babywearing
+  tasks:
+  - name: Check for target
+    fail: msg="You must specify target, e.g. 'ansible-playbook setup.yml -e target=stage2'"
+    when: target is not defined
+
+  - name: Install rbenv and dependencies
+    import_role:
+      name: suzuki-shunsuke.rbenv # ansible-galaxy install suzuki-shunsuke.rbenv
+    vars:
+      rbenv_is_dependencies_installed: yes
+      rbenv_rc_path: "{{ ansible_env.HOME }}/.bashrc"
+      rbenv_debian_build_dependencies:
+        - autoconf
+        - bison
+        - build-essential
+        - libssl-dev
+        - libyaml-dev
+        - libreadline6-dev
+        - zlib1g-dev
+        - libncurses5-dev
+        - libffi-dev
+        - libgdbm5
+        - libgdbm-dev
+
+  - name: Install other dependencies
+    apt:
+      name:
+        - nodejs
+        - postgresql-client
+        - libpq-dev
+        - python-psycopg2
+        - imagemagick
+      update_cache: yes
+    become: yes
+
+  - name: Import rbenv module
+    import_role:
+      name: suzuki-shunsuke.rbenv-module
+
+  - name: rbenv install --skip-existing 2.6.5
+    rbenv: # ansible-galaxy install suzuki-shunsuke.rbenv-module
+      version: 2.6.5
+      rbenv_root: "{{rbenv_root}}"
+
+  - name: rbenv global 2.6.5
+    rbenv:
+      subcommand: global
+      version: 2.6.5
+      rbenv_root: "{{rbenv_root}}"
+
+  - name: gem install bundler
+    gem:
+      name: bundler
+      version: "{{bundler_version}}"
+      executable: "{{rbenv_root}}/shims/gem"
+
+  - name: Install nginx
+    import_role:
+      name: nginx
+
+  - name: Setup postgres app user
+    import_role:
+      name: postgres-user

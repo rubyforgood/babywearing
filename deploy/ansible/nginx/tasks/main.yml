@@ -1,0 +1,40 @@
+---
+
+- name: Install nginx
+  become: yes
+  apt:
+    name: nginx
+    state: latest
+
+- name: Upload nginx config
+  become: yes
+  template:
+    src: nginx.conf.j2
+    dest: "/etc/nginx/sites-available/{{ansible_host}}"
+  notify:
+    - Restart nginx
+
+- name: Disable default nginx config
+  become: yes
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify:
+    - Restart nginx
+
+- name: Disable default nginx config
+  become: yes
+  file:
+    path: /etc/nginx/sites-available/default
+    state: absent
+  notify:
+    - Restart nginx
+
+- name: Enable nginx config
+  become: yes
+  file:
+    src: "/etc/nginx/sites-available/{{ansible_host}}"
+    dest: "/etc/nginx/sites-enabled/{{ansible_host}}"
+    state: link
+  notify:
+    - Restart nginx

@@ -34,5 +34,7 @@ module Babywearing
     config.action_mailer.delivery_job = "ActionMailer::MailDeliveryJob"
 
     config.autoload_paths += Dir[Rails.root.join("app", "validators")]
+
+    config.short_server_name = Socket.gethostname.split("-").last # don't try this at home
   end
 end

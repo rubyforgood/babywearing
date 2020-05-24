@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  vars:
+    server_name: "{{ target }}"
+    azure_rg_name: "babywearing-{{server_name}}"
+  vars_files:
+    - vault.yml
+  roles:
+    - create-azure-vm
+    - postgres

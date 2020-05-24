@@ -35,3 +35,7 @@ db/.DS_Store
 
 # Ignore coverage files from simplecov
 /coverage
+
+.vault_pass.txt
+
+.envrc

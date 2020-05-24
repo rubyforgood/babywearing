@@ -24,6 +24,8 @@ gem 'filterrific'
 gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.10.0'
 gem 'jquery-rails'
+gem 'mina'
+gem 'mina-puma', require: false
 gem 'mini_magick', '~> 4.8'
 gem 'money-rails', '~>1.12'
 gem 'name_of_person'

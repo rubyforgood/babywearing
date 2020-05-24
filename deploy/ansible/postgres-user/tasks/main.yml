@@ -1,0 +1,14 @@
+---
+- name: Variables
+  include_vars: "{{playbook_dir}}/postgres/vars/main.yml"
+
+- name: Make database user for app
+  postgresql_user:
+    db: "{{postgres_db_name}}"
+    login_host: "{{postgres_hostname}}"
+    login_user: "{{postgres_admin_login}}@{{server_name}}"
+    login_password: "{{postgres_admin_password}}"
+    name: "{{postgres_app_user}}"
+    password: "{{postgres_app_password}}"
+    priv: "CONNECT/ALL"
+

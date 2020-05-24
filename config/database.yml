@@ -60,6 +60,8 @@ development:
 production:
   <<: *default
   database: babywearing_production
+  username: <%= "babywearing@#{Rails.application.config.short_server_name}" %>
+  host: <%= "#{Rails.application.config.short_server_name}.postgres.database.azure.com" %>
   password: <%= Rails.application.credentials&.fetch(:database, nil)&.fetch(:password, nil) || "" %>
 
 # Warning: The database defined as "test" will be erased and

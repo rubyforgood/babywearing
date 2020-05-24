@@ -1,0 +1,106 @@
+---
+
+- name: Create SSH keypair
+  openssh_keypair:
+    path: "{{keyfile_name}}"
+
+- name: Create resource group
+  azure_rm_resourcegroup:
+    name: "{{azure_rg_name}}"
+    location: "{{azure_region}}"
+
+- name: Create virtual network
+  azure_rm_virtualnetwork:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{azure_vnet_name}}"
+    address_prefixes: "10.0.0.0/16"
+
+- name: Add subnet
+  azure_rm_subnet:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{azure_subnet_name}}"
+    address_prefix: "10.0.1.0/24"
+    virtual_network: "{{azure_vnet_name}}"
+
+- name: Create public IP address
+  azure_rm_publicipaddress:
+    resource_group: "{{azure_rg_name}}"
+    allocation_method: Static
+    domain_name: "{{azure_domain_name}}"
+    name: "{{azure_publicip_name}}"
+  register: pip_output
+- set_fact:
+    full_domain_label: "{{pip_output.state.dns_settings.fqdn}}"
+    public_ip: "{{pip_output.state.ip_address}}"
+
+- name: Create Network Security Group that allows SSH, HTTP and HTTPS
+  azure_rm_securitygroup:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{azure_sg_name}}"
+    purge_rules: yes
+    rules:
+      - name: SSH
+        protocol: Tcp
+        destination_port_range: 22
+        access: Allow
+        priority: 1001
+        direction: Inbound
+      - name: HTTP
+        protocol: Tcp
+        source_address_prefix: "*"
+        destination_port_range: 80
+        priority: 1002
+        access: Allow
+        direction: Inbound
+      - name: HTTPS
+        protocol: Tcp
+        access: Allow
+        source_address_prefix: "*"
+        destination_port_range: 443
+        priority: 1003
+        direction: Inbound
+
+- name: Create virtual network interface card
+  azure_rm_networkinterface:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{azure_nic_name}}"
+    virtual_network: "{{azure_vnet_name}}"
+    subnet: "{{azure_subnet_name}}"
+    location: "{{azure_region}}"
+    security_group: "{{azure_sg_name}}"
+    public_ip_address_name: "{{azure_publicip_name}}"
+
+- name: Create VM
+  azure_rm_virtualmachine:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{azure_vm_name}}"
+    vm_size: Standard_B2s
+    admin_username: "{{admin_username}}"
+    ssh_password_enabled: false # this results in (harmless but nonsupressable) [WARNING]: Module did not set no_log for ssh_password_enabled
+    ssh_public_keys:
+      - path: "/home/{{admin_username}}/.ssh/authorized_keys"
+        key_data: "{{ lookup('file', '{{keyfile_name}}.pub')}}"
+    network_interfaces: "{{azure_nic_name}}"
+    image:
+      offer: UbuntuServer
+      publisher: Canonical
+      sku: '18.04-LTS'
+      version: latest
+
+- name: Enter DNS CName
+  azure_rm_dnsrecordset:
+    resource_group: "{{azure_dns_resource_group}}"
+    record_type: "CNAME"
+    relative_name: "{{server_name}}"
+    zone_name: "{{azure_dns_zone_name}}"
+    records:
+      - entry: "{{full_domain_label}}"
+
+- name: Enter DNS Wildcard CName
+  azure_rm_dnsrecordset:
+    resource_group: "{{azure_dns_resource_group}}"
+    record_type: "CNAME"
+    relative_name: "*.{{server_name}}"
+    zone_name: "{{azure_dns_zone_name}}"
+    records:
+      - entry: "{{full_domain_label}}"

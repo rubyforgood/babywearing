@@ -1,0 +1,30 @@
+---
+- name: Create (or update) PostgreSQL Server
+  azure_rm_postgresqlserver:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{server_name}}"
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 5120
+    enforce_ssl: True
+    admin_username: "{{postgres_admin_login}}"
+    admin_password: "{{postgres_admin_password}}"
+    version: "10"
+
+- name: Firewall rule to allow vm access
+  azure_rm_postgresqlfirewallrule:
+    resource_group: "{{azure_rg_name}}"
+    server_name: "{{server_name}}"
+    name: "babywearing-app"
+    start_ip_address: "{{public_ip}}"
+    end_ip_address: "{{public_ip}}"
+
+- name: Create (or update) PostgreSQL Database
+  azure_rm_postgresqldatabase:
+    resource_group: "{{azure_rg_name}}"
+    server_name: "{{server_name}}"
+    name: "{{postgres_db_name}}"
+    force_update: yes
+
