@@ -13,11 +13,23 @@ AllCops:
 Rails:
   Enabled: true
 
-Style/Documentation:
+Capybara/FeatureMethods:
   Enabled: false
 
-Style/EmptyMethod:
-  Enabled: false
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
 
 Metrics/ClassLength:
   Max: 120
@@ -25,18 +37,33 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 15
 
-Metrics/LineLength:
-  Max: 120
-
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
-
-Capybara/FeatureMethods:
-  Enabled: false
 
 RSpec/ExampleLength:
   Enabled: false
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
