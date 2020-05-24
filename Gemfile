@@ -18,7 +18,7 @@ gem 'aasm'
 gem 'acts_as_tenant'
 gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap', '~> 4.4.1'
 gem 'bootstrap-table-rails'
 gem 'filterrific'
 gem 'font-awesome-rails'
