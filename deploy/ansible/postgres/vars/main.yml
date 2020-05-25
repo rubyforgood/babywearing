@@ -2,4 +2,5 @@
 postgres_admin_login: babywearing_admin
 postgres_db_name: "babywearing_production"
 postgres_app_user: "babywearing"
-postgres_hostname: "{{server_name}}.postgres.database.azure.com"
+postgres_server_name: "babywearing-{{server_name}}"
+postgres_hostname: "{{postgres_server_name}}.postgres.database.azure.com"

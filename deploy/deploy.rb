@@ -20,7 +20,7 @@ ensure!(:server_name)
 set :domain, "#{fetch(:server_name)}.babywearing.exchange"
 set :deploy_to, '/home/babywearing/app'
 set :repository, 'https://github.com/rubyforgood/babywearing.git'
-set :branch, 'ansible'
+set :branch, 'master'
 set :force_migrate, true
 
 set :user, 'babywearing' # Username in the server to SSH to.

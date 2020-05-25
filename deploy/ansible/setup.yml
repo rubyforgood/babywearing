@@ -38,6 +38,8 @@
         - nodejs
         - postgresql-client
         - libpq-dev
+        - python-pip
+        - python-setuptools
         - python-psycopg2
         - imagemagick
       update_cache: yes

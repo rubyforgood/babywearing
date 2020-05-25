@@ -5,25 +5,25 @@
     path: "{{keyfile_name}}"
 
 - name: Create resource group
-  azure_rm_resourcegroup:
+  azure.azcollection.azure_rm_resourcegroup:
     name: "{{azure_rg_name}}"
     location: "{{azure_region}}"
 
 - name: Create virtual network
-  azure_rm_virtualnetwork:
+  azure.azcollection.azure_rm_virtualnetwork:
     resource_group: "{{azure_rg_name}}"
     name: "{{azure_vnet_name}}"
     address_prefixes: "10.0.0.0/16"
 
 - name: Add subnet
-  azure_rm_subnet:
+  azure.azcollection.azure_rm_subnet:
     resource_group: "{{azure_rg_name}}"
     name: "{{azure_subnet_name}}"
     address_prefix: "10.0.1.0/24"
     virtual_network: "{{azure_vnet_name}}"
 
 - name: Create public IP address
-  azure_rm_publicipaddress:
+  azure.azcollection.azure_rm_publicipaddress:
     resource_group: "{{azure_rg_name}}"
     allocation_method: Static
     domain_name: "{{azure_domain_name}}"
@@ -34,7 +34,7 @@
     public_ip: "{{pip_output.state.ip_address}}"
 
 - name: Create Network Security Group that allows SSH, HTTP and HTTPS
-  azure_rm_securitygroup:
+  azure.azcollection.azure_rm_securitygroup:
     resource_group: "{{azure_rg_name}}"
     name: "{{azure_sg_name}}"
     purge_rules: yes
@@ -61,7 +61,7 @@
         direction: Inbound
 
 - name: Create virtual network interface card
-  azure_rm_networkinterface:
+  azure.azcollection.azure_rm_networkinterface:
     resource_group: "{{azure_rg_name}}"
     name: "{{azure_nic_name}}"
     virtual_network: "{{azure_vnet_name}}"
@@ -71,7 +71,7 @@
     public_ip_address_name: "{{azure_publicip_name}}"
 
 - name: Create VM
-  azure_rm_virtualmachine:
+  azure.azcollection.azure_rm_virtualmachine:
     resource_group: "{{azure_rg_name}}"
     name: "{{azure_vm_name}}"
     vm_size: Standard_B2s
@@ -88,7 +88,7 @@
       version: latest
 
 - name: Enter DNS CName
-  azure_rm_dnsrecordset:
+  azure.azcollection.azure_rm_dnsrecordset:
     resource_group: "{{azure_dns_resource_group}}"
     record_type: "CNAME"
     relative_name: "{{server_name}}"
@@ -97,7 +97,7 @@
       - entry: "{{full_domain_label}}"
 
 - name: Enter DNS Wildcard CName
-  azure_rm_dnsrecordset:
+  azure.azcollection.azure_rm_dnsrecordset:
     resource_group: "{{azure_dns_resource_group}}"
     record_type: "CNAME"
     relative_name: "*.{{server_name}}"

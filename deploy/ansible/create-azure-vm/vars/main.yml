@@ -9,5 +9,5 @@ azure_nic_name: "babywearing_nic-{{server_name}}"
 azure_vm_name: "babywearing-{{server_name}}"
 admin_username: "babywearing"
 azure_domain_name: "babywearing-{{server_name}}"
-azure_dns_zone_name: "babywearing.exchange"
-azure_dns_resource_group: "babywearing_dns"
+azure_dns_zone_name: "babywearing.exchange" # these are duplicated in setup playbook in nginx task
+azure_dns_resource_group: "babywearing_dns" # these are duplicated in setup playbook in nginx task

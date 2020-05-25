@@ -6,9 +6,14 @@ server {
   server_name {{ ansible_host }};
 
   listen 80;
+  listen 443 ssl;
 
   # define the public application root
   root   /home/babywearing/app/current/public;
+
+  ssl_certificate {{ fullchain }};
+  ssl_certificate_key {{ cert_key_path }};
+
   index  index.html;
 
   # define where Nginx should write its logs
