@@ -22,24 +22,37 @@ end
 
 organization = Organization.find_by(subdomain: "midatlantic")
 
+user_messages = []
 if User.count.zero?
   puts "Creating default admin users..."
-  User.create(email: "admin@example.com", password: "deleteme123_immediately",
+  admin_password = SecureRandom.base64(8)
+  midatlantic_password = SecureRandom.base64(8)
+  acme_password = SecureRandom.base64(8)
+  User.create(email: "admin@example.com", password: admin_password,
               organization: Organization.find_by(subdomain: "admin"),
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-5555", role: 0)
-  User.create(email: "admin@example.com", password: "deleteme123_immediately",
+  User.create(email: "admin@example.com", password: midatlantic_password,
               organization: organization,
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-5555", role: 0)
-  User.create(email: "admin@example.com", password: "deleteme123_immediately",
+  User.create(email: "admin@example.com", password: acme_password,
               organization: Organization.find_by(subdomain: "acme"),
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-5555", role: 0)
   puts "Done."
+
+  user_messages << "Users created:"
+  user_messages << ""
+  user_messages << "Subdomain          Username             Password"
+  user_messages << "-----------------------------------------------------------------------------"
+  user_messages << " 'admin'        'admin@example.com'  '#{admin_password}'"
+  user_messages << " 'midatlantic'  'admin@exmaple.com'  '#{midatlantic_password}'"
+  user_messages << " 'acme'         'admin@exmaple.com'  '#{acme_password}'"
+
 end
 
 ActsAsTenant.current_tenant = organization
@@ -178,3 +191,5 @@ if MembershipType.count.zero?
 end
 
 puts "Done with seeds."
+
+user_messages.each { |m| puts m }
