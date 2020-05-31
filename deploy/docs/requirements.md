@@ -77,7 +77,7 @@ This will authenticate all actions involved with azure while running the Ansible
     a. Put the password in a file called `.vault_pass.txt`. Just one line by itself. Make sure it is in the root of
     the project.
     
-    b. Create an environment variable `ANSIBLE_VAULT_PASSWORD FILE` and set it equal to the path of `.vault_pass.txt`
+    b. Create an environment variable `ANSIBLE_VAULT_PASSWORD_FILE` and set it equal to the path of `.vault_pass.txt`
     
     c. To verify that it is working, run:
      
@@ -119,5 +119,5 @@ you have installed python 3 and pip is available.
        ansible-galaxy install suzuki-shunsuke.rbenv
        ansible-galaxy install suzuki-shunsuke.rbenv-module 
        
-You should now be ready to provision a server.                    
+You should now be ready to [provision](provision.md) a server.                    
        

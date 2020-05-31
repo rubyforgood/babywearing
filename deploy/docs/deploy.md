@@ -15,7 +15,7 @@ All operations should be run from the root of the project.
 1. Setup the required directories:
 
 
-      mina -f deploy/deploy.rb setup server_name=stage2 [or whatever name you are using]
+        mina -f deploy/deploy.rb setup server_name=stage2 [or whatever name you are using]
        
 2. Deploy the app. Only `master` is deployed, but this can be set in `deploy.rb`:
 
