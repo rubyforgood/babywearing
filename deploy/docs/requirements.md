@@ -16,10 +16,15 @@ Windows, but of course some of the steps would be slightly different.
 
        brew install azure-cli
     
-4. Get credentials. You will need someone with admin on Azure to add you as an admin user in active directory
-   and for them to give you rights on the project's subscription. You will also need the Ansible vault password.
-   Ansible vault is described more fully below.
+4. Get credentials. You can get them from an admin on the project. There are three sets of needed credentials:
+ 
+    - Azure: Get the admin to add you as an admin user in active directory and give you rights on the
+      project's subscription.
+       
+    - Ansible vault password. Ansible vault is described more fully below.
    
+    - Master key for Rails credentials. Put it on one line in a file `config/master.key`.
+    
 5. Login to Azure using the CLI:
 
        az login    
@@ -77,7 +82,7 @@ This will authenticate all actions involved with azure while running the Ansible
     a. Put the password in a file called `.vault_pass.txt`. Just one line by itself. Make sure it is in the root of
     the project.
     
-    b. Create an environment variable `ANSIBLE_VAULT_PASSWORD FILE` and set it equal to the path of `.vault_pass.txt`
+    b. Create an environment variable `ANSIBLE_VAULT_PASSWORD_FILE` and set it equal to the path of `.vault_pass.txt`
     
     c. To verify that it is working, run:
      
@@ -119,5 +124,5 @@ you have installed python 3 and pip is available.
        ansible-galaxy install suzuki-shunsuke.rbenv
        ansible-galaxy install suzuki-shunsuke.rbenv-module 
        
-You should now be ready to provision a server.                    
+You should now be ready to [provision](provision.md) a server.                    
        

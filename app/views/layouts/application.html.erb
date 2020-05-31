@@ -17,7 +17,7 @@
 
     <div class="container-fluid">
       <div class="row flex-xl-nowrap">
-        <%= render "layouts/admin_sidebar" if @admin_org %>
+        <%= render "layouts/admin_sidebar" if @admin_org && current_user %>
 
         <main class="col-12 col-md-10 mt-2 mx-auto">
           <%= yield %>
