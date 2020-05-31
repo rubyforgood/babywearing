@@ -5,8 +5,6 @@ language: ruby
 
 cache:
   bundler: true
-  directories:
-    - $HOME/docker_images
 
 rvm:
   - 2.6.5
@@ -15,7 +13,6 @@ before_install:
   - gem install bundler
 
 services:
-  - docker
   - postgresql
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
@@ -28,20 +25,3 @@ script:
   - bundle exec rspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
-before_deploy:
-  - cp config/database.yml.bak config/database.yml
-  - SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec bin/rails assets:precompile
-  - openssl aes-256-cbc -K $encrypted_6d1250a3dbca_key -iv $encrypted_6d1250a3dbca_iv
-    -in deploy/machines/babywearing-stage/certs.tar.enc -out deploy/machines/babywearing-stage/certs.tar
-    -d
-  - mkdir deploy/machines/babywearing-stage/certs
-  - tar xvf deploy/machines/babywearing-stage/certs.tar -C deploy/machines/babywearing-stage/certs
-
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: ./deploy/deploy.sh
-  on:
-    branch: staging
-
