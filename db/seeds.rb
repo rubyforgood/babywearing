@@ -25,9 +25,10 @@ organization = Organization.find_by(subdomain: "midatlantic")
 user_messages = []
 if User.count.zero?
   puts "Creating default admin users..."
-  admin_password = SecureRandom.base64(8)
-  midatlantic_password = SecureRandom.base64(8)
-  acme_password = SecureRandom.base64(8)
+  admin_password = SecureRandom.alphanumeric(10)
+  midatlantic_password = SecureRandom.alphanumeric(10)
+  acme_password = SecureRandom.alphanumeric(10)
+
   User.create(email: "admin@example.com", password: admin_password,
               organization: Organization.find_by(subdomain: "admin"),
               first_name: "Delete", last_name: "Me",

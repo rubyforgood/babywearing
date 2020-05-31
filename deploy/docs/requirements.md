@@ -16,10 +16,15 @@ Windows, but of course some of the steps would be slightly different.
 
        brew install azure-cli
     
-4. Get credentials. You will need someone with admin on Azure to add you as an admin user in active directory
-   and for them to give you rights on the project's subscription. You will also need the Ansible vault password.
-   Ansible vault is described more fully below.
+4. Get credentials. You can get them from an admin on the project. There are three sets of needed credentials:
+ 
+    - Azure: Get the admin to add you as an admin user in active directory and give you rights on the
+      project's subscription.
+       
+    - Ansible vault password. Ansible vault is described more fully below.
    
+    - Master key for Rails credentials. Put it on one line in a file `config/master.key`.
+    
 5. Login to Azure using the CLI:
 
        az login    
