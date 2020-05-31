@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
   def set_version
     fn = File.join(Rails.root, 'deploy', 'deploy_hash')
-    @version = File.exist?(fn) ? File.open(fn, &:gets).strip[0..5] : ''
+    @version = File.exist?(fn) ? File.open(fn, &:gets).strip[0..5] : '0.01'
   end
 
   def user_not_authorized(_exception)
