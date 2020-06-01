@@ -1,0 +1,24 @@
+<div class="card">
+  <header class="card-header d-flex align-items-center">
+    <h3 class="mr-auto">Organizations</h3>
+    <%= link_to '+ New', new_organization_path, class: "btn btn-primary" %>
+  </header>
+
+  <section>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Subdomain</th>
+          <th scope="col">email</th>
+          <th scope="col">Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @organizations.each do |organization| %>
+          <%= render 'organization', organization: organization %>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

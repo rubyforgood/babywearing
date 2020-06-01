@@ -22,10 +22,9 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of :password, within: 8..100, allow_blank: true
 
-  has_many :signed_agreements
-  has_many :carts
-  has_many :loans, foreign_key: 'borrower_id'
-  has_many :memberships
+  has_many :signed_agreements, dependent: :destroy
+  has_many :loans, foreign_key: 'borrower_id', dependent: :destroy
+  has_many :memberships, dependent: :destroy
 
   enum role: %i[admin volunteer member]
 

@@ -28,9 +28,10 @@ Rails.application.routes.draw do
 
   resources :photos, only: :destroy
 
-  constraints subdomain: %w(admin admin.stage) do
-    root :to => "categories#index", :as=> :subdomain_root
+  constraints subdomain: %w(admin) do
+    root :to => "organizations#index", :as=> :subdomain_root
     resources :categories
+    resources :organizations
   end
 
   root 'carriers#index'

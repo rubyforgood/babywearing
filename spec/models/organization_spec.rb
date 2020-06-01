@@ -17,6 +17,13 @@ RSpec.describe Organization, type: :model do
       it 'goes just by subdomain for now' do
         expect(organizations(:admin).admin?).to be true
       end
+
+      it 'is indestructable' do
+        admin_org = organizations(:admin)
+        admin_org.destroy
+        expect(admin_org).to exist_in_database
+        expect(admin_org.errors[:base]).to include('Cannot delete admin organization.')
+      end
     end
 
     context 'with non-admin organization' do

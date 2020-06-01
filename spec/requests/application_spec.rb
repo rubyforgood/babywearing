@@ -34,7 +34,7 @@ RSpec.describe 'Application', type: :request do
   describe 'admin organization redirect' do
     context 'with no session' do
       it 'redirects to sign in' do
-        get root_url(domain: 'stage.example.com', subdomain: 'admin')
+        get root_url(subdomain: 'admin')
 
         expect(response).to redirect_to(new_user_session_url)
       end
