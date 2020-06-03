@@ -38,15 +38,15 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-middle">
-        <li class="dropdown">
+        <div class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick Access<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><%= link_to 'Locations', locations_path %></li>
-            <li><%= link_to 'Agreements', agreements_path %></li>
-            <li><%= link_to 'Fee Types', fee_types_path %></li>
-            <li><%= link_to 'Membership Types', membership_types_path %></li>
-          </ul>
-        </li>
+          <div class="dropdown-menu" role="menu">
+            <%= link_to 'Locations', locations_path, class: 'dropdown-item' %>
+            <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' %>
+            <%= link_to 'Fee Types', fee_types_path, class: 'dropdown-item' %>
+            <%= link_to 'Membership Types', membership_types_path, class: 'dropdown-item' %></li>
+          </vdiv>
+        </div>
       </ul>
     <% end %>
     <ul class="navbar-nav ml-auto">
