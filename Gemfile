@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.7.1'
 
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3.5'
@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'aasm'
-gem 'acts_as_tenant'
+gem 'acts_as_tenant', github: 'ErwinM/acts_as_tenant'
 gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.4.1'

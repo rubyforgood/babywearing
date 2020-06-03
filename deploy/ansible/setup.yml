@@ -3,6 +3,7 @@
 - hosts: "{{ target | default('localhost')}}"
   vars:
     bundler_version: "1.17.3"
+    ruby_version: "2.7.1"
     rbenv_root: "{{ ansible_env.HOME }}/.rbenv"
 
   vars_files:
@@ -49,15 +50,15 @@
     import_role:
       name: suzuki-shunsuke.rbenv-module
 
-  - name: rbenv install --skip-existing 2.6.5
+  - name: "rbenv install --skip-existing {{ruby_version}}"
     rbenv: # ansible-galaxy install suzuki-shunsuke.rbenv-module
-      version: 2.6.5
+      version: "{{ruby_version}}"
       rbenv_root: "{{rbenv_root}}"
 
-  - name: rbenv global 2.6.5
+  - name: "rbenv global {{ruby_version}}"
     rbenv:
       subcommand: global
-      version: 2.6.5
+      version: "{{ruby_version}}"
       rbenv_root: "{{rbenv_root}}"
 
   - name: gem install bundler
