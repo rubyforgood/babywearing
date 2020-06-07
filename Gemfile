@@ -31,6 +31,7 @@ gem 'money-rails', '~>1.12'
 gem 'name_of_person'
 gem 'responders'
 gem 'turbolinks', '~> 5'
+gem 'websocket-extensions', '>= 0.1.5'
 gem 'whenever', require: false
 gem 'will_paginate'
 
