@@ -35,6 +35,7 @@ module Babywearing
 
     config.autoload_paths += Dir[Rails.root.join("app", "validators")]
 
-    config.short_server_name = Socket.gethostname.split("-").last # don't try this at home
+    # this will resolve to stage, stage1, stage2, prod, etc. and is used to set config stuff during provision/deploy
+    config.short_server_name = Socket.gethostname.split("-").last
   end
 end

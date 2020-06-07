@@ -157,6 +157,7 @@ if Carrier.count.zero?
     home_location = Location.find_or_create_by(name: csv_carrier['Home Location'], organization: organization)
     current_location = Location.find_or_create_by(name: csv_carrier['Current Location'], organization: organization)
     carrier_params = {
+      item_id: csv_carrier['Item ID'],
       name: csv_carrier['Name'],
       manufacturer: csv_carrier['Manufacturer'],
       model: csv_carrier['Model'],
@@ -166,20 +167,8 @@ if Carrier.count.zero?
       current_location_id: (current_location || home_location).id,
       default_loan_length_days: csv_carrier['Default Loan Length'].to_i,
       category: Category.find_by(name: csv_carrier['Item Type'])
-      # description: strip_tags(csv_carrier['Description'])
     }
-
-    Carrier.find_or_create_by(item_id: csv_carrier['Item ID'], organization: organization) do |carrier|
-      carrier.update_attributes(carrier_params)
-
-      url = csv_carrier['Image']
-      if url.present?
-        filename = File.basename(URI.parse(url).path)
-        file = URI.open(url)
-
-        carrier.photos.attach(io: file, filename: filename)
-      end
-    end
+    organization.carriers.create(carrier_params)
   end
   puts "Done."
 end

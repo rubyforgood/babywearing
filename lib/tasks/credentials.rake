@@ -17,7 +17,7 @@ namespace :credentials do
     if key.empty?
       yml[last] = value
     else
-      yml[key.first] = {}
+      yml[key.first] ||= {}
       key.inject(yml, :fetch)[last] = value
     end
   end

@@ -11,3 +11,5 @@ admin_username: "babywearing"
 azure_domain_name: "babywearing-{{server_name}}"
 azure_dns_zone_name: "babywearing.exchange" # these are duplicated in setup playbook in nginx task
 azure_dns_resource_group: "babywearing_dns" # these are duplicated in setup playbook in nginx task
+azure_storage_account_name: "babywearing{{server_name}}imgs"
+azure_storage_container_name: "{{azure_storage_account_name}}-container"

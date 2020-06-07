@@ -104,3 +104,29 @@
     zone_name: "{{azure_dns_zone_name}}"
     records:
       - entry: "{{full_domain_label}}"
+
+- name: Create Storage Account
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{azure_storage_account_name}}"
+    type: Standard_RAGRS
+  register: storage_output
+
+- name: Create container for images
+  azure.azcollection.azure_rm_storageblob:
+    resource_group: "{{azure_rg_name}}"
+    storage_account_name: "{{azure_storage_account_name}}"
+    container: "{{azure_storage_container_name}}"
+    public_access: blob
+
+- name: Get facts for storage account
+  azure.azcollection.azure_rm_storageaccount_info:
+    resource_group: "{{azure_rg_name}}"
+    name: "{{azure_storage_account_name}}"
+    show_connection_string: yes
+  register: storage_info
+
+- name: Update app credentials
+  shell:
+    cmd: "bundle exec rails credentials:update[azure_storage-{{server_name}},{{storage_info.storageaccounts[0].primary_endpoints.key}}]"
+  when: storage_info is changed

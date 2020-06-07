@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'aasm'
 gem 'acts_as_tenant', github: 'ErwinM/acts_as_tenant'
 gem 'aws-sdk-s3'
+gem 'azure-storage', require: false
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.4.1'
 gem 'bootstrap-table-rails'
