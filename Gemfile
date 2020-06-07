@@ -62,8 +62,7 @@ group :test do
   gem 'simplecov', require: false
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'devise', '>= 4.7.1'
+gem 'devise', '>= 4.7.1' # TODO: upgrade when deprecation warning PR fully merged https://github.com/heartcombo/devise/pull/5235
 gem 'pundit'
 gem 'rubocop'
 gem 'rubocop-rspec'
