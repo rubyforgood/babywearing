@@ -11,5 +11,5 @@ account_email: "rubyforgood@pokervane.com"
 azure_dns_zone_name: "babywearing.exchange"
 azure_dns_resource_group: "babywearing_dns"
 dns_ansible_host: "*.{{ ansible_host }}" # need to store this because running on local
-
+txt_record_name: "{{ '_acme-challenge' if target == 'prod' else '_acme-challenge.{{ target }}'}}"
 

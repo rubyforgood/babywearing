@@ -54,12 +54,14 @@
     rbenv: # ansible-galaxy install suzuki-shunsuke.rbenv-module
       version: "{{ruby_version}}"
       rbenv_root: "{{rbenv_root}}"
+    register: rbenv_install_result
 
   - name: "rbenv global {{ruby_version}}"
     rbenv:
       subcommand: global
       version: "{{ruby_version}}"
       rbenv_root: "{{rbenv_root}}"
+    when: rbenv_install_result is changed
 
   - name: gem install bundler
     gem:

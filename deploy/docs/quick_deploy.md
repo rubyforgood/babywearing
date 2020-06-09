@@ -3,6 +3,8 @@
 This document summarizes the [provisioning](provisioning.md), [setup](setup.md) and [deploy](deploy.md) steps described
 in more detail elsewhere.
 
+For production provisioning, setup and deploy, use target/server_name `prod`
+
 #### Steps (replace server name as appropriate)
 
 1. Server provision:
@@ -26,7 +28,7 @@ in more detail elsewhere.
 4. Deploy   
 
     ```
-    mina -f deploy/deploy.rb deploy server_name=stage2 
+    mina -f deploy/deploy.rb deploy server_name=stage2 [branch=optional] 
     ``` 
    
 5. DB Seed (first time on server only)   
@@ -34,3 +36,8 @@ in more detail elsewhere.
     ```
     mina -f deploy/deploy.rb seed server_name=stage2 
     ``` 
+6. Carrier images (first time only)
+
+    ```
+   mina -f deploy/deploy.rb 'rake[db:image_seeds:carriers]' server_name=stage2
+   ```

@@ -58,7 +58,7 @@
   azure.azcollection.azure_rm_dnsrecordset:
     resource_group: "{{azure_dns_resource_group}}"
     record_type: "TXT"
-    relative_name: "_acme-challenge.{{ target }}" # target is from playbook file
+    relative_name: "{{txt_record_name}}"
     zone_name: "{{azure_dns_zone_name}}"
     records:
       - entry: "{{ cert_challenge.challenge_data[dns_ansible_host]['dns-01'].resource_value }}"

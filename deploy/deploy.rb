@@ -17,7 +17,11 @@ set :application_name, 'babywearing'
 set :server_name, ENV['server_name']
 ensure!(:server_name)
 
-set :domain, "#{fetch(:server_name)}.babywearing.exchange"
+set :domain, lambda {
+  s = fetch(:server_name)
+  s == 'prod' ? 'babywearing.exchange' : "#{s}.babywearing.exchange"
+}
+
 set :deploy_to, '/home/babywearing/app'
 set :repository, 'https://github.com/rubyforgood/babywearing.git'
 set :branch, ENV['branch'] || 'master'

@@ -95,6 +95,7 @@
     zone_name: "{{azure_dns_zone_name}}"
     records:
       - entry: "{{full_domain_label}}"
+  when: server_name != "prod"
 
 - name: Enter DNS Wildcard CName
   azure.azcollection.azure_rm_dnsrecordset:
@@ -104,6 +105,27 @@
     zone_name: "{{azure_dns_zone_name}}"
     records:
       - entry: "{{full_domain_label}}"
+  when: server_name != "prod"
+
+- name: Enter DNS A Record
+  azure.azcollection.azure_rm_dnsrecordset:
+    resource_group: "{{azure_dns_resource_group}}"
+    record_type: "A"
+    relative_name: "@"
+    zone_name: "{{azure_dns_zone_name}}"
+    records:
+      - entry: "{{public_ip}}"
+  when: server_name == "prod"
+
+- name: Enter DNS Wildcard Record
+  azure.azcollection.azure_rm_dnsrecordset:
+    resource_group: "{{azure_dns_resource_group}}"
+    record_type: "A"
+    relative_name: "*"
+    zone_name: "{{azure_dns_zone_name}}"
+    records:
+      - entry: "{{public_ip}}"
+  when: server_name == "prod"
 
 - name: Create Storage Account
   azure.azcollection.azure_rm_storageaccount:
@@ -129,4 +151,4 @@
 - name: Update app credentials
   shell:
     cmd: "bundle exec rails credentials:update[azure_storage-{{server_name}},{{storage_info.storageaccounts[0].primary_endpoints.key}}]"
-  when: storage_info is changed
+  when: storage_output is changed
