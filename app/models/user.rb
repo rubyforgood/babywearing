@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def send_welcome_email
-    WelcomeMailer.welcome_email(self).deliver
+    WelcomeMailer.welcome_email(self).deliver_now
   end
 
   def name_with_membership

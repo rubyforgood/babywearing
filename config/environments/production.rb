@@ -93,11 +93,17 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => "https://mab-babywearing.herokuapp.com" }
   config.action_mailer.default_options = { from: 'stephanie.funk@midatlanticbabywearing.org' }
-
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
+
+  config.action_mailer.smtp_settings = {
+      domain: 'babywearing.exchange',
+      address: 'smtp.sendgrid.net',
+      authentication: :plain,
+      port: 587,
+      user_name: 'apikey',
+      password: Rails.application.credentials&.fetch(:sendgrid)&.fetch(Rails.application.config.short_server_name.to_sym, "")
+  }
 
   config.read_encrypted_secrets = true
 
