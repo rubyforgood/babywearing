@@ -107,4 +107,10 @@ Rails.application.configure do
 
   config.read_encrypted_secrets = true
 
+  # https://blog.appsignal.com/2020/03/04/building-a-rails-app-with-multiple-subdomains.html
+  config.action_dispatch.tld_length = if Rails.application.config.short_server_name == 'prod' || Rails.env.development?
+                                        1
+                                      else
+                                        2
+                                      end
 end

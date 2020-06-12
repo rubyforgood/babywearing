@@ -28,18 +28,19 @@ if User.count.zero?
   admin_password = SecureRandom.alphanumeric(10)
   midatlantic_password = SecureRandom.alphanumeric(10)
   acme_password = SecureRandom.alphanumeric(10)
+  email = "admin@example.com"
 
-  User.create(email: "admin@example.com", password: admin_password,
+  User.create(email: email, password: admin_password,
               organization: Organization.find_by(subdomain: "admin"),
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-5555", role: 0)
-  User.create(email: "admin@example.com", password: midatlantic_password,
+  User.create(email: email, password: midatlantic_password,
               organization: organization,
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-5555", role: 0)
-  User.create(email: "admin@example.com", password: acme_password,
+  User.create(email: email, password: acme_password,
               organization: Organization.find_by(subdomain: "acme"),
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
@@ -50,9 +51,9 @@ if User.count.zero?
   user_messages << ""
   user_messages << "Subdomain          Username             Password"
   user_messages << "-----------------------------------------------------------------------------"
-  user_messages << " 'admin'        'admin@example.com'  '#{admin_password}'"
-  user_messages << " 'midatlantic'  'admin@exmaple.com'  '#{midatlantic_password}'"
-  user_messages << " 'acme'         'admin@exmaple.com'  '#{acme_password}'"
+  user_messages << " 'admin'        '#{email}'  '#{admin_password}'"
+  user_messages << " 'midatlantic'  '#{email}'  '#{midatlantic_password}'"
+  user_messages << " 'acme'         '#{email}'  '#{acme_password}'"
 
 end
 
