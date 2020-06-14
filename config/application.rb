@@ -35,7 +35,10 @@ module Babywearing
 
     config.autoload_paths += Dir[Rails.root.join("app", "validators")]
 
+    config.active_job.queue_adapter = :sidekiq
+
     # this will resolve to stage, stage1, stage2, prod, etc. and is used to set config stuff during provision/deploy
+    # and to lookup host-specific keys, etc in credentials
     config.short_server_name = Socket.gethostname.split("-").last
   end
 end

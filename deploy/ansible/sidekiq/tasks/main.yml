@@ -1,0 +1,13 @@
+---
+- name: Copy system service file
+  become: yes
+  copy:
+    src: sidekiq.service
+    dest: /etc/systemd/system
+
+- name: Start sidekiq service
+  become: yes
+  systemd:
+    name: sidekiq
+    state: started
+    daemon_reload: yes

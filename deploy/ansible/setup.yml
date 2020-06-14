@@ -43,6 +43,7 @@
         - python-setuptools
         - python-psycopg2
         - imagemagick
+        - redis
       update_cache: yes
     become: yes
 
@@ -76,3 +77,7 @@
   - name: Setup postgres app user
     import_role:
       name: postgres-user
+
+  - name: Install sidekiq
+    import_role:
+      name: sidekiq

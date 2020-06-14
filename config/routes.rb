@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "users/registrations"}
 
-
   get 'home/index'
 
   resources :users, except: [:destroy, :new] do
@@ -32,6 +31,11 @@ Rails.application.routes.draw do
     root :to => "organizations#index", :as=> :subdomain_root
     resources :categories
     resources :organizations
+  end
+
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.organization.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   root 'carriers#index'

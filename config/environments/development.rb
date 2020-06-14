@@ -30,10 +30,6 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = ENV['ACTIVE_STORAGE_SERVICE']&.to_sym || :local
 
-  config.action_mailer.raise_delivery_errors = false
-
-  config.action_mailer.perform_caching = false
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -58,10 +54,16 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.default_url_options = { host: 'lvh.me', port: 3000 }
 
   config.action_mailer.default_options = { from: 'noreply@example.com' }
   config.action_mailer.delivery_method = :smtp
+
+  # if you want to run mailcatcher in dev, put `127.0.0.1 mailcatcher` in /etc/hosts if not running in docker
   config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
 
    config.hosts << /^([a-zA-Z0-9]*\.)*(lvh\.me|babywearing\.exchange)$/

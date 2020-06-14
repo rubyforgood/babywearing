@@ -31,6 +31,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'money-rails', '~>1.12'
 gem 'name_of_person'
 gem 'responders'
+gem 'sidekiq', git: 'https://github.com/mperham/sidekiq.git' # TODO: remove git ref when 6.1 released
 gem 'turbolinks', '~> 5'
 gem 'websocket-extensions', '>= 0.1.5'
 gem 'whenever', require: false

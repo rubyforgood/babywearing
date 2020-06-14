@@ -76,6 +76,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
+      command 'sudo service sidekiq restart'
       invoke :'puma:hard_restart'
     end
     # on :launch do
