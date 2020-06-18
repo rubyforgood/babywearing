@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :render_not_authorized
 
   before_action :set_tenant_by_subdomain, :redirect_notenant, :redirect_wrong_tenant, :set_version, :set_admin_org
 
@@ -58,8 +58,7 @@ class ApplicationController < ActionController::Base
     @version = File.exist?(fn) ? File.open(fn, &:gets).strip[0..5] : '0.01'
   end
 
-  def user_not_authorized(_exception)
-    flash[:error] = "Sorry, you aren't allowed to do that. You've been redirected to your previous page instead."
-    redirect_to(request.referrer || root_path)
+  def render_not_authorized
+    render file: "#{Rails.root}/public/422.html", layout: false, status: 401
   end
 end

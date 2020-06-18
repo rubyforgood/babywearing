@@ -7,7 +7,7 @@ RSpec.describe 'LoanListing', type: :request do
     let(:admin) { users(:admin) }
 
     describe 'permissions' do
-      it_behaves_like 'admin authorized-only resource', :get do
+      it_behaves_like 'admin and volunteer authorized-only resource', :get do
         let(:endpoint) { loan_listing_url }
       end
     end

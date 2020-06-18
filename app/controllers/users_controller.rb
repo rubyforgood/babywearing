@@ -14,11 +14,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user
   end
 
   def update
     authorize @user
-    if @user.update(user_params)
+    if @user.update(permitted_attributes(@user))
       redirect_to users_url, notice: 'User was successfully updated.'
     else
       render 'edit'
@@ -36,12 +37,5 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def user_params
-    params.require(:user).permit(
-      :email, :first_name, :last_name, :street_address, :street_address_second,
-      :city, :state, :postal_code, :phone_number, :role
-    )
   end
 end

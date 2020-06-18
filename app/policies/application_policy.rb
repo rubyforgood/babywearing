@@ -8,6 +8,14 @@ class ApplicationPolicy
     @members = members
   end
 
+  def authorized_admin?
+    user&.admin?
+  end
+
+  def authorized_admin_or_volunteer?
+    user && (user.admin? || user.volunteer?)
+  end
+
   def index?
     false
   end

@@ -9,11 +9,18 @@ RSpec.describe CarrierPolicy do
   let(:volunteer) { users(:volunteer) }
   let(:member) { users(:member) }
 
-  %i[create? update? destroy?].each do |activity|
+  %i[update? destroy?].each do |activity|
     permissions activity do
       it { is_expected.not_to permit(member) }
-      it { is_expected.to permit(admin, volunteer) }
+      it { is_expected.to permit(volunteer) }
+      it { is_expected.to permit(admin) }
     end
+  end
+
+  permissions :create? do
+    it { is_expected.not_to permit(member) }
+    it { is_expected.not_to permit(volunteer) }
+    it { is_expected.to permit(admin) }
   end
 
   permissions :checkout? do

@@ -9,32 +9,34 @@ class CarrierPolicy < ApplicationPolicy
   end
 
   def new?
-    authorized?
+    authorized_admin?
   end
 
   def create?
-    authorized?
+    authorized_admin?
   end
 
   def edit?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
   def update?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
   def destroy?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
   def checkout?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
-  private
-
-  def authorized?
-    user && (user.admin? || user.volunteer?)
-  end
+  # def authorized_admin_only?
+  #   user && (user.admin? || user.volunteer?)
+  # end
+  #
+  # def authorized_admin_only?
+  #   user && (user.admin? || user.volunteer?)
+  # end
 end

@@ -31,7 +31,7 @@ class CarriersController < ApplicationController
     @carrier.save
 
     if @carrier.errors.any?
-      flash[:errors] = @carrier.errors.full_messages
+      flash[:error] = @carrier.errors.full_messages
       redirect_to new_carrier_path(@carrier)
     else
       flash[:success] = 'Carrier successfully created'
@@ -53,7 +53,7 @@ class CarriersController < ApplicationController
     authorize @carrier
     @carrier.update(carrier_params)
     if @carrier.errors.any?
-      flash[:errors] = @carrier.errors.full_messages
+      flash[:error] = @carrier.errors.full_messages
       redirect_to edit_carrier_path(@carrier)
     else
       flash[:success] = 'Carrier successfully updated'

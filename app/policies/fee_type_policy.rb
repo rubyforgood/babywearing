@@ -9,32 +9,26 @@ class FeeTypePolicy < ApplicationPolicy
   end
 
   def create?
-    authorized?
+    authorized_admin?
   end
 
   def destroy?
-    authorized?
+    authorized_admin?
   end
 
   def edit?
-    authorized?
+    authorized_admin?
   end
 
   def new?
-    authorized?
+    authorized_admin?
   end
 
   def show?
-    authorized?
+    authorized_admin?
   end
 
   def update?
-    authorized?
-  end
-
-  private
-
-  def authorized?
-    user.admin? || user.volunteer?
+    authorized_admin?
   end
 end

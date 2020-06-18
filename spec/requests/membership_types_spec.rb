@@ -11,7 +11,7 @@ RSpec.describe 'MembershipTypes', type: :request do
       sign_in users(:member)
       send :get, membership_types_url
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
       expect(response.body).to match(/Annual/)
     end
   end

@@ -47,6 +47,9 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/RepeatedExample:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

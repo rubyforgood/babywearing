@@ -9,28 +9,22 @@ class LoanPolicy < ApplicationPolicy
   end
 
   def create?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
   def edit?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
   def index?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
   def new?
-    authorized?
+    authorized_admin_or_volunteer?
   end
 
   def update?
-    authorized?
-  end
-
-  private
-
-  def authorized?
-    user.admin? || user.volunteer?
+    authorized_admin_or_volunteer?
   end
 end

@@ -36,6 +36,12 @@ class UserPolicy < ApplicationPolicy
     authorized?
   end
 
+  def permitted_attributes
+    all_attributes = User.attribute_names.to_a.map(&:to_sym)
+
+    user.admin? ? all_attributes : all_attributes - [:role]
+  end
+
   private
 
   def authorized?

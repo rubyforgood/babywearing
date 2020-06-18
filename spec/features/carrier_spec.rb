@@ -18,18 +18,6 @@ RSpec.describe Carrier do
       expect(page).to have_content('babywearing')
       expect(page).to have_content('test model')
     end
-
-    scenario 'NEW' do
-      visit new_carrier_url
-
-      expect(page).to have_content "Sorry, you aren't allowed to do that."
-    end
-
-    scenario 'EDIT' do
-      visit edit_carrier_url(carrier.id)
-
-      expect(page).to have_content "Sorry, you aren't allowed to do that."
-    end
   end
 
   describe 'ADMIN role' do
@@ -161,19 +149,6 @@ RSpec.describe Carrier do
       sign_in user
     end
 
-    scenario 'NEW' do
-      visit new_carrier_url
-
-      expect(page).to have_content('New Carrier')
-      expect(page).to have_content('Name')
-      expect(page).to have_content('Item')
-      expect(page).to have_content('Manufacturer')
-      expect(page).to have_content('Model')
-      expect(page).to have_content('Color')
-
-      expect(page).to have_current_path '/carriers/new'
-    end
-
     scenario 'SHOW' do
       visit carriers_url
       click_link carrier.name
@@ -214,52 +189,6 @@ RSpec.describe Carrier do
       click_on 'Delete'
       expect(page).to have_content('Carrier successfully destroyed')
     end
-
-    scenario 'CREATE with all required fields' do
-      visit new_carrier_url
-      fill_in 'Name', with: 'Test Name'
-      fill_in 'Item', with: 9
-      fill_in 'Manufacturer', with: 'Test Manufacturer'
-      fill_in 'Model', with: 'Test Model'
-      fill_in 'Color', with: 'White'
-      find('#carrier_category_id').find(:option, category.name).select_option
-
-      click_on 'Create Carrier'
-
-      expect(page).to have_content('Carrier successfully created')
-    end
-
-    scenario 'CREATE with duplicated item_id' do
-      visit new_carrier_url
-      fill_in 'Item', with: carrier.item_id
-
-      click_on 'Create Carrier'
-
-      expect(page).to have_content('Item ID has already been taken')
-    end
-
-    scenario 'CREATE without required fields' do
-      visit new_carrier_url(carrier.id)
-
-      click_on 'Create Carrier'
-
-      expect(page).to have_content('Name can\'t be blank')
-      expect(page).to have_content('Item can\'t be blank')
-    end
-
-    scenario 'ADD new carrier' do
-      visit root_url
-      click_on 'ADD CARRIER'
-
-      expect(page).to have_content('New Carrier')
-      expect(page).to have_content('Name')
-      expect(page).to have_content('Item')
-      expect(page).to have_content('Manufacturer')
-      expect(page).to have_content('Model')
-      expect(page).to have_content('Color')
-
-      expect(page).to have_current_path '/carriers/new'
-    end
   end
 
   describe 'MEMBER role' do
@@ -278,18 +207,6 @@ RSpec.describe Carrier do
       expect(page).to have_content('test carrier')
       expect(page).to have_content('babywearing')
       expect(page).to have_content('test model')
-    end
-
-    scenario 'NEW' do
-      visit new_carrier_url
-
-      expect(page).to have_content "Sorry, you aren't allowed to do that."
-    end
-
-    scenario 'EDIT' do
-      visit edit_carrier_url(carrier.id)
-
-      expect(page).to have_content "Sorry, you aren't allowed to do that."
     end
   end
 
