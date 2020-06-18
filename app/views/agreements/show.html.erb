@@ -15,5 +15,7 @@
 </p>
 
 <%= link_to 'Sign', signed_agreement_path(@agreement), class: 'btn btn-primary btn-sm' %> |
-<%= link_to 'Edit', edit_agreement_path(@agreement), class: 'btn btn-primary btn-sm' %> |
+<% if policy(:agreement).edit? %>
+  <%= link_to 'Edit', edit_agreement_path(@agreement), class: 'btn btn-primary btn-sm' %> |
+<% end %>
 <%= link_to 'Back', agreements_path, class: 'btn btn-primary btn-sm' %>

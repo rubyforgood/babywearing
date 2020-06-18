@@ -24,10 +24,12 @@
             <td><%= link_to agreement.title, agreement %></td>
             <td><%= truncate(agreement.content) %></td>
 
-            <td align="right">
-                <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-primary btn-sm' %> |
-                <%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-            </td>
+            <% if policy(:agreement).edit? %>
+              <td align="right">
+                  <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-primary btn-sm' %> |
+                  <%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
