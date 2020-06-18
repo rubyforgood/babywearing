@@ -18,6 +18,10 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, scope: :organization_id
   validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, allow_blank: true,
                               if: :email_changed?
+  validates_format_of :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-]\d{3}[-]\d{4})\z/,
+                                     message: 'must be 10 digits.'
+
+  validates_format_of :postal_code, with: /\A\d{5}\z/, message: 'should be a valid 5 digit number.'
   validates_presence_of :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
   validates_length_of :password, within: 8..100, allow_blank: true

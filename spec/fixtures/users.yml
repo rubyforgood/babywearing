@@ -7,7 +7,7 @@ user:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   organization: midatlantic
 
 volunteer:
@@ -19,7 +19,7 @@ volunteer:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: volunteer
   organization: midatlantic
 
@@ -32,7 +32,7 @@ admin:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: admin
   organization: midatlantic
 
@@ -45,7 +45,7 @@ member:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: member
   organization: midatlantic
 
@@ -58,7 +58,7 @@ nonmember:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: member
   organization: midatlantic
 
@@ -71,7 +71,7 @@ expired:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: member
   organization: midatlantic
 
@@ -84,7 +84,7 @@ blocked:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: member
   organization: midatlantic
 
@@ -97,7 +97,7 @@ upcoming:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: member
   organization: midatlantic
 
@@ -110,7 +110,7 @@ borrower:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: member
   organization: midatlantic
 
@@ -123,6 +123,6 @@ admin_org:
   city: 'fairfax'
   state: 'VA'
   postal_code: '22032'
-  phone_number: '18888888888'
+  phone_number: '8888888888'
   role: admin
   organization: admin
