@@ -60,10 +60,11 @@
 </div>
 
 <div class="form-group">
-  <%= f.text_field :phone_number,
+  <%= f.phone_field :phone_number,
                    required: true,
                    class: 'form-control form-control-user',
                    aria: { 'label': 'Phone' },
-                   placeholder: 'Phone'
+                   placeholder: 'Phone',
+                   value: number_to_phone(f.object.phone_number)
   %>
 </div>

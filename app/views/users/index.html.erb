@@ -18,7 +18,7 @@
       <tr>
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.email %></td>
-        <td><%= user.phone_number %></td>
+        <td><%= number_to_phone(user.phone_number) %></td>
         <td><%= user.created_at %></td>
         <td><%= user.role.humanize %></td>
         <td><%= membership_status(user) %></td>

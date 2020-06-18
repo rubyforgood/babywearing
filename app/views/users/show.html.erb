@@ -4,7 +4,7 @@
   <dt class="col-sm-2 text-md-right">Email address:</dt>
   <dd class="col-sm-10"><%= @user.email %><br></dd>
   <dt class="col-sm-2 text-md-right">Phone number:</dt>
-  <dd class="col-sm-10"><%= @user.phone_number %><br></dd>
+  <dd class="col-sm-10"><%= number_to_phone(@user.phone_number) %><br></dd>
   <dt class="col-sm-2 text-md-right">Joined on:</dt>
   <dd class="col-sm-10"><%= @user.created_at %><br></dd>
   <dt class="col-sm-2 text-md-right">Role:</dt>

@@ -4,7 +4,7 @@
   </td>
   <td><%= organization.subdomain %></td>
   <td><%= organization.email %></td>
-  <td><%= organization.phone %></td>
+  <td><%= number_to_phone(organization.phone) %></td>
   <td class="table-actions">
     <%= link_to 'Edit', edit_organization_path(organization), class: 'btn btn-primary btn-sm' %> |
     <%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'  %>

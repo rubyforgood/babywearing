@@ -34,17 +34,17 @@ if User.count.zero?
               organization: Organization.find_by(subdomain: "admin"),
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
-              phone_number: "555-5555", role: 0)
+              phone_number: "555-555-5555", role: 0)
   User.create(email: email, password: midatlantic_password,
               organization: organization,
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
-              phone_number: "555-5555", role: 0)
+              phone_number: "555-555-5555", role: 0)
   User.create(email: email, password: acme_password,
               organization: Organization.find_by(subdomain: "acme"),
               first_name: "Delete", last_name: "Me",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
-              phone_number: "555-5555", role: 0)
+              phone_number: "555-555-5555", role: 0)
   puts "Done."
 
   user_messages << "Users created:"

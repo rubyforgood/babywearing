@@ -46,8 +46,8 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number, class: "form-control" %>
+    <%= form.label :phone_number, 'Phone number (xxx-xxx-xxxx)' %>
+    <%= form.phone_field :phone_number, class: "form-control", value: number_to_phone(form.object.phone_number) %>
   </div>
 
   <%= form.submit class: "btn btn-primary" %>
