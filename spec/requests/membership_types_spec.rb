@@ -7,8 +7,11 @@ RSpec.describe 'MembershipTypes', type: :request do
   let(:organization) { organizations(:midatlantic) }
 
   describe 'GET /membership_types' do
+    it_behaves_like 'admin authorized-only resource', :get do
+      let(:endpoint) { new_membership_type_url }
+    end
     it 'has http status 200' do
-      sign_in users(:member)
+      sign_in users(:admin)
       send :get, membership_types_url
 
       expect(response).to be_successful

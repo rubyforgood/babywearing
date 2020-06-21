@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.all
+    authorize @locations
   end
 
   def show

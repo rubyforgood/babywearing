@@ -1,18 +1,16 @@
 <div class="card">
   <header class="card-header d-flex align-items-center">
     <h3 class="mr-auto">Agreements</h3>
-    <% if policy(:agreement).new? %>
-      <%= link_to '+ New', new_agreement_path, class: "btn btn-primary" %>
-    <% end %>
+    <%= link_to '+ New', new_agreement_path, class: "btn btn-primary" %>
   </header>
 
   <section>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Signed</th>
-          <th scope="col">Title</th>
-          <th scope="col">Content</th>
+          <th scope="col">Name</th>
+          <th scope="col">Active Version</th>
+          <th scope="col">Updated</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -20,16 +18,15 @@
       <tbody>
         <% @agreements.each do |agreement| %>
           <tr>
-            <td><%= check_box_tag 'signed', '', agreement.signed_by?(current_user), disabled: true %></td>
-            <td><%= link_to agreement.title, agreement %></td>
-            <td><%= truncate(agreement.content) %></td>
-
-            <% if policy(:agreement).edit? %>
-              <td align="right">
-                  <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-primary btn-sm' %> |
-                  <%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-              </td>
-            <% end %>
+            <td><%= link_to agreement.name, agreement %></td>
+            <% active_version = agreement.active_version %>
+            <td><%= active_version.nil? ?  "None" : (link_to active_version.version, agreement_version_path(agreement, active_version)) %></td>
+            <td><%= agreement.updated_at %></td>
+            <td align="right">
+              <%= link_to 'View', agreement, class: 'btn btn-primary btn-sm' %> |
+              <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-primary btn-sm' %> |
+              <%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            </td>
           </tr>
         <% end %>
       </tbody>

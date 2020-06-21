@@ -4,7 +4,7 @@ class AgreementsController < ApplicationController
   before_action :set_agreement, only: %i[show edit update destroy]
 
   def index
-    @agreements = Agreement.all
+    @agreements = Agreement.order(:name)
   end
 
   def show
@@ -51,6 +51,6 @@ class AgreementsController < ApplicationController
   end
 
   def agreement_params
-    params.require(:agreement).permit(:title, :content)
+    params.require(:agreement).permit(:name)
   end
 end

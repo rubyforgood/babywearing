@@ -6,6 +6,7 @@ class FeeTypesController < ApplicationController
   # GET /fee_types
   def index
     @fee_types = FeeType.all
+    authorize @fee_types
   end
 
   # GET /fee_types/1

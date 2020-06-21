@@ -1,0 +1,39 @@
+<div class="card mt-3">
+  <header class="card-header d-flex align-items-center">
+    <h3 class="mr-auto">Versions</h3>
+    <%= link_to '+ New', new_agreement_version_path(agreement), class: "btn btn-primary" %>
+  </header>
+
+  <section>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Active?</th>
+        <th scope="col">Version</th>
+        <th scope="col">Last Modified By</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% if agreement.versions.empty? %>
+        <tr><td colspan="100%">No versions available.</td></tr>
+      <% end %>
+      <% agreement.versions.each do |version| %>
+        <tr>
+          <td><%= version.title %></td>
+          <td><% if version.active %>&#10003;<% end %></td>
+          <td><%= version.version %></td>
+          <td><%= link_to version.last_modified_by.name, version.last_modified_by %></td>
+          <td align="right">
+            <%= link_to 'View', agreement_version_path(version.agreement, version), class: 'btn btn-primary btn-sm' %> |
+            <%= link_to 'Edit', edit_agreement_version_path(version.agreement, version), class: 'btn btn-primary btn-sm' %> |
+            <%= link_to 'Destroy', agreement_version_path(version.agreement, version), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

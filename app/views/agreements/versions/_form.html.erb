@@ -1,0 +1,25 @@
+<%= form_with model: version, local: true do |form| %>
+  <%= form_errors @version %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :version %>
+    <%= form.text_field :version, class: "form-control" %>
+  </div>
+
+  <div class="form-check form-group">
+    <%= form.check_box :active,
+                       class: "form-check-input",
+                       disabled: !form.object.active && form.object.agreement.active_version %>
+    <%= form.label :active, class: "form-check-label" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_area :content, class: "form-control" %>
+  </div>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

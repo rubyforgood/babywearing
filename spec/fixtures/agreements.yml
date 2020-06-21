@@ -1,4 +1,3 @@
 agreement:
-  title: "Test Agreement"
-  content: "Test Content"
+  name: "Test Agreement"
   organization: midatlantic

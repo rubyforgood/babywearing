@@ -1,0 +1,18 @@
+<h1> <%= @version.agreement.name %> Version <%= @version.version %></h1>
+
+<dl class="row mt-5">
+  <dt class="col-sm-2 text-md-right">Title:</dt>
+  <dd class="col-sm-10"><%= @version.title %><br></dd>
+  <dt class="col-sm-2 text-md-right">Content:</dt>
+  <dd class="col-sm-10"><%= @version.content %><br></dd>
+  <dt class="col-sm-2 text-md-right">Last Modified By:</dt>
+  <dd class="col-sm-10"><%= @version.last_modified_by.name %><br></dd>
+  <dt class="col-sm-2 text-md-right">Active:</dt>
+  <dd class="col-sm-10"><%= (@version.active) ? 'Yes' : 'No' %><br></dd>
+  <dt class="col-sm-2 text-md-right">Created:</dt>
+  <dd class="col-sm-10"><%= @version.created_at %></dd>
+  <dt class="col-sm-2 text-md-right">Updated:</dt>
+  <dd class="col-sm-10"><%= @version.updated_at %></dd>
+</dl>
+
+<div><%= link_to 'Edit Version', edit_agreement_version_path(@version.agreement, @version), class: "btn btn-primary btn-sm" %></div>

@@ -35,6 +35,7 @@ RSpec.describe 'Organizations', type: :request do
 
   describe '#destroy' do
     it 'destroys the organization' do
+      AgreementVersion.where(agreement_id: organization.agreements).delete_all # TODO: this can be better
       sign_in users(:admin_org)
       delete organization_url(organization, subdomain: 'admin')
 

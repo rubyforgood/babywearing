@@ -32,17 +32,17 @@ if User.count.zero?
 
   User.create(email: email, password: admin_password,
               organization: Organization.find_by(subdomain: "admin"),
-              first_name: "Delete", last_name: "Me",
+              first_name: "Seed", last_name: "User",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-555-5555", role: 0)
   User.create(email: email, password: midatlantic_password,
               organization: organization,
-              first_name: "Delete", last_name: "Me",
+              first_name: "Seed", last_name: "User",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-555-5555", role: 0)
   User.create(email: email, password: acme_password,
               organization: Organization.find_by(subdomain: "acme"),
-              first_name: "Delete", last_name: "Me",
+              first_name: "Seed", last_name: "User",
               street_address: "123 Hugo Street", city: "Hugo", state: "FL", postal_code: '33313',
               phone_number: "555-555-5555", role: 0)
   puts "Done."
@@ -61,18 +61,22 @@ ActsAsTenant.current_tenant = organization
 
 if Agreement.count.zero?
   puts "Creating agreements..."
-  Agreement.create(title: 'Membership Agreement',
-                   organization: organization,
-                   content: 'MidAtlantic Babywearing is the local babywearing education group for Pennsylvania,
-    New Jersey, and Delaware, and is a non-profit group.
+
+  admin = organization.users.where(role: :admin).first
+  agreement = Agreement.create(name: 'Membership Agreement', organization: organization)
+  agreement.versions.create(title: agreement.name, last_modified_by: admin, content:
+    'MidAtlantic Babywearing is the local babywearing education group for Pennsylvania, New Jersey, and Delaware,
+     and is a non-profit group.
+
     To become a member of our chapter you must:
     1) Fill out the membership application and agreement.
     2) Pay your dues of $30/single carrier or $50/two carriers for 12 months or $10/one month trial by PayPal
     Membership Donation becomes active when application AND payment have been received.')
 
-  Agreement.create(title: 'Lending Library Use Agreement',
-                   organization: organization,
-                   content: 'MAB has a library of baby carriers and babywearing educational materials for members to borrow.
+  agreement = Agreement.create(name: 'Lending Library Use Agreement', organization: organization)
+  agreement.versions.create(title: agreement.name, last_modified_by: admin, content:
+      'MAB has a library of baby carriers and babywearing educational materials for members to borrow.
+
     The following policies apply:
     1. Your Responsibility. You assume the responsibility for safely using all carriers and for inspecting
     the stitching and fabric on all carriers to satisfy yourself that the carrier is sound and suitable for

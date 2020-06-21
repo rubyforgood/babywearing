@@ -11,7 +11,7 @@ RSpec.describe 'Agreements', type: :request do
       sign_in users(:member)
       send :get, agreements_url
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
       expect(response.body).to match(/Test Agreement/)
     end
   end
@@ -25,11 +25,11 @@ RSpec.describe 'Agreements', type: :request do
   describe 'POST /agreements' do
     it_behaves_like 'admin authorized-only resource', :post do
       let(:endpoint) { agreements_url }
-      let(:params) { { agreement: { title: 'Test', content: 'Test content' } } }
+      let(:params) { { agreement: { name: 'Name' } } }
     end
 
-    let(:valid_attr) { { title: 'Some agreement', content: 'Some content' } }
-    let(:invalid_attr) { { title: '' } }
+    let(:valid_attr) { { name: 'Some agreement' } }
+    let(:invalid_attr) { { name: '' } }
 
     context 'with valid attributes' do
       it 'creates a agreement' do
@@ -56,7 +56,7 @@ RSpec.describe 'Agreements', type: :request do
       sign_in users(:member)
       send :get, agreements_url(agreement)
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
       expect(response.body).to match(/Test Agreemen/)
     end
   end
@@ -65,11 +65,11 @@ RSpec.describe 'Agreements', type: :request do
     it_behaves_like 'admin authorized-only resource', :put do
       let(:agreement) { agreements(:agreement) }
       let(:endpoint) { agreement_url(agreement) }
-      let(:params) { { agreement: { title: 'Test', content: 'Test' } } }
+      let(:params) { { agreement: { name: 'Test' } } }
     end
 
-    let(:valid_attr) { { title: 'New agreement', content: 'New content' } }
-    let(:invalid_attr) { { title: '' } }
+    let(:valid_attr) { { name: 'New agreement' } }
+    let(:invalid_attr) { { name: '' } }
 
     context 'with valid attributes' do
       it 'updates the agreement' do
@@ -91,10 +91,10 @@ RSpec.describe 'Agreements', type: :request do
   end
 
   describe 'DELETE /location/:id' do
-    let(:agreement) { Agreement.create(title: 'Test', content: 'Test', organization: organization) }
+    let(:agreement) { Agreement.create(name: 'Test', organization: organization) }
 
     it_behaves_like 'admin authorized-only resource', :delete do
-      let(:agreement) { Agreement.create(title: 'Test', content: 'Test', organization: organization) }
+      let(:agreement) { Agreement.create(name: 'Test', organization: organization) }
       let(:endpoint) { agreement_url(agreement) }
     end
 

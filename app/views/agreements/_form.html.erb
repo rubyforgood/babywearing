@@ -2,13 +2,8 @@
   <%= form_errors agreement %>
 
   <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :content %>
-    <%= form.text_area :content, rows: 10, class: "form-control" %>
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <%= form.submit class: "btn btn-primary" %>

@@ -9,14 +9,6 @@ RSpec.describe SignedAgreement do
     sign_in user
   end
 
-  scenario 'SHOW' do
-    visit agreement_url(agreement.id)
-    click_link 'Sign'
-
-    expect(page).to have_content(agreement.title)
-    expect(page).to have_content(agreement.content)
-  end
-
   scenario 'CREATE with valid signature' do
     visit signed_agreement_url(agreement.id)
 

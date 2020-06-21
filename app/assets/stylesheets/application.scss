@@ -64,7 +64,7 @@ $navbar-brand-padding-y: 8px;
   position: fixed;
 }
 
-.dropdown-toggle {
+.dropdown-toggle, .dropdown-toggle:hover {
   font-size: 1.7rem;
   color: #fff
 }
@@ -72,6 +72,11 @@ $navbar-brand-padding-y: 8px;
 .dropdown .dropdown-menu{
   font-size: 1.1rem;
   color: #fff;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  text-decoration: none;
+  background-color: lightgrey;
 }
 
 .nav-item {
@@ -155,4 +160,9 @@ $navbar-brand-padding-y: 8px;
 }
 .members-icon {
   font-size: 5.6em;
+}
+
+a, a:hover {
+  text-decoration: none;
+  color: currentColor;
 }

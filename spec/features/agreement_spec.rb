@@ -11,57 +11,53 @@ RSpec.feature 'create an agreement', type: :feature do
 
   scenario 'SHOW' do
     visit agreements_url
-    click_on agreement.title
+    click_on agreement.name
 
     expect(page).to have_content('Test Agreement')
-    expect(page).to have_content('Content')
   end
 
   scenario 'EDIT when name is NOT given' do
     visit edit_agreement_url(agreement.id)
 
-    fill_in 'Title', with: nil
+    fill_in 'Name', with: nil
     click_on 'Update Agreement'
 
-    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Name can't be blank")
   end
 
   scenario 'EDIT when all expected information is given' do
     visit edit_agreement_url(agreement.id)
 
-    fill_in 'Title', with: 'Fake agreement'
-    fill_in 'Content', with: 'Content of Fake agreement'
+    fill_in 'Name', with: 'Fake agreement'
     click_on 'Update Agreement'
 
     expect(page).to have_content('Agreement was successfully updated.')
     expect(page).to have_content('Fake agreement')
-    expect(page).to have_content('Content of Fake agreement')
   end
 
   scenario 'DESTROY when delete button is clicked' do
+    AgreementVersion.update_all(active: false) # TODO: this can be better
     visit agreements_url
     click_link 'Destroy'
 
     expect(page).to have_content('Agreement was successfully destroyed.')
   end
 
-  scenario 'CREATE when title is NOT given' do
+  scenario 'CREATE when name is NOT given' do
     visit agreements_url
 
     click_link('+ New')
-    fill_in 'Title', with: nil
-    fill_in 'Content', with: 'Content of Fake Agreement'
+    fill_in 'Name', with: nil
     click_on 'Create Agreement'
 
-    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Name can't be blank")
   end
 
   scenario 'CREATE when all expected information is given' do
     visit agreements_url
 
     click_link('+ New')
-    fill_in 'Title', with: 'Fake Agreement'
-    fill_in 'Content', with: 'Content of Fake Agreement'
+    fill_in 'Name', with: 'Fake Agreement'
     click_on 'Create Agreement'
 
     expect(page).to have_content('Agreement was successfully created.')

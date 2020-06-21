@@ -37,17 +37,19 @@
           <% end %>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-middle">
-        <div class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick Access<span class="caret"></span></a>
-          <div class="dropdown-menu" role="menu">
-            <%= link_to 'Locations', locations_path, class: 'dropdown-item' %>
-            <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' %>
-            <%= link_to 'Fee Types', fee_types_path, class: 'dropdown-item' %>
-            <%= link_to 'Membership Types', membership_types_path, class: 'dropdown-item' %></li>
-          </vdiv>
-        </div>
-      </ul>
+      <% if show_quick_access?(current_user) %>
+        <ul class="nav navbar-nav navbar-middle">
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick Access<span class="caret"></span></a>
+            <div class="dropdown-menu" role="menu">
+              <%= link_to 'Locations', locations_path, class: 'dropdown-item' if policy(Location).index? %>
+              <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' if policy(Agreement).index? && !@admin_org %>
+              <%= link_to 'Fee Types', fee_types_path, class: 'dropdown-item' if policy(FeeType).index? %>
+              <%= link_to 'Membership Types', membership_types_path, class: 'dropdown-item' if policy(MembershipType).index? %></li>
+            </div>
+          </div>
+        </ul>
+      <% end %>
     <% end %>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
@@ -56,7 +58,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <h6 class="dropdown-header">Logged in as <strong><%= current_user.email %></strong></h6>
-          <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' %>
+          <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' unless @admin_org %>
           <%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %>
           <div class="dropdown-divider"></div>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>

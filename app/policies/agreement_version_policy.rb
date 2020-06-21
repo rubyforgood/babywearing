@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class AgreementPolicy < ApplicationPolicy
-  attr_reader :user, :agreement
+class AgreementVersionPolicy < ApplicationPolicy
+  attr_reader :user, :agreement_version
 
-  def initialize(user, agreement)
+  def initialize(user, agreement_version)
     @user = user
-    @agreement = agreement
+    @agreement_version = agreement_version
   end
 
   def index?
@@ -13,6 +13,10 @@ class AgreementPolicy < ApplicationPolicy
   end
 
   def new?
+    authorized_admin?
+  end
+
+  def show?
     authorized_admin?
   end
 

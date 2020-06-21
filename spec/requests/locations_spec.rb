@@ -7,8 +7,11 @@ RSpec.describe 'Locations', type: :request do
   let(:organization) { organizations(:midatlantic) }
 
   describe 'GET /locations' do
-    it 'has http status 200' do
-      sign_in users(:member)
+    it_behaves_like 'admin authorized-only resource', :get do
+      let(:endpoint) { locations_url }
+    end
+    it 'gets the index' do
+      sign_in users(:admin)
       send :get, locations_url
 
       expect(response).to be_successful

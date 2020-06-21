@@ -20,6 +20,10 @@ class FeeTypePolicy < ApplicationPolicy
     authorized_admin?
   end
 
+  def index?
+    authorized_admin?
+  end
+
   def new?
     authorized_admin?
   end

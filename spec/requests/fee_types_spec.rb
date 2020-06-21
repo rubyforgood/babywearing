@@ -6,12 +6,15 @@ RSpec.describe 'FeeTypes', type: :request do
   let!(:fee_type) { fee_types(:upgrade) }
   let(:organization) { organizations(:midatlantic) }
 
-  describe 'GET /fee_type' do
-    it 'has http status 200' do
+  describe 'GET /fee_types' do
+    it_behaves_like 'admin authorized-only resource', :get do
+      let(:endpoint) { fee_types_url }
+    end
+    it 'gets the index' do
       sign_in users(:admin)
       get fee_types_url
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
       expect(response.body).to match(/Upgrade Membership/)
     end
   end

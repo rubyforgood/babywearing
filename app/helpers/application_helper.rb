@@ -13,4 +13,8 @@ module ApplicationHelper
   def show_membership_links?
     !request.path.match(%r{/users/})
   end
+
+  def show_quick_access?(_user)
+    policy(Location).index? || policy(Agreement).new? || policy(FeeType).index? || policy(MembershipType).index?
+  end
 end

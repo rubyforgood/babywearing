@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_044747) do
+ActiveRecord::Schema.define(version: 2020_06_18_212111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,20 @@ ActiveRecord::Schema.define(version: 2020_03_28_044747) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "agreement_versions", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.bigint "agreement_id", null: false
+    t.bigint "last_modified_by_id"
+    t.string "version", null: false
+    t.boolean "active", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["agreement_id"], name: "index_agreement_versions_on_agreement_id"
+  end
+
   create_table "agreements", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "organization_id"
@@ -182,6 +193,8 @@ ActiveRecord::Schema.define(version: 2020_03_28_044747) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agreement_versions", "agreements"
+  add_foreign_key "agreement_versions", "users", column: "last_modified_by_id"
   add_foreign_key "carriers", "locations", column: "current_location_id"
   add_foreign_key "carriers", "locations", column: "home_location_id"
   add_foreign_key "loans", "users", column: "borrower_id"

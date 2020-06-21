@@ -1,0 +1,7 @@
+agreement_version:
+  title: "Test Agreement"
+  content: "Test Content"
+  version: "1"
+  active: true
+  last_modified_by: admin
+  agreement: agreement
