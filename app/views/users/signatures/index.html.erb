@@ -1,0 +1,11 @@
+<header class="card-header d-flex align-items-center">
+  <h3>Signatures</h3>
+</header>
+<% if @unsigned_agreements.empty? && @signatures.empty? %>
+  <div class="p-3 mt-5">No signatures required at this time.</div>
+<% else %>
+  <div class="container signatures-list mt-5">
+    <%= render partial: "unsigned_agreements_table", locals: { versions: @unsigned_agreements } %>
+    <%= render partial: "signatures_table", locals: { signatures: @signatures } %>
+  </div>
+<% end %>

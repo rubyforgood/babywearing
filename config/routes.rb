@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy, :new] do
     resources :memberships, except: :index, controller: 'users/memberships'
+    resources :signatures, except: %i[:destroy, :edit, :update], controller: 'users/signatures'
   end
 
   # TODO: this should go away, we don't need a whole resource, module and controller just to modify a field on a record
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
     resources :deactivate, only: :create
   end
 
-  resources :signed_agreements, only: [:show, :create]
   resources :fee_types
 
   resources :agreements do

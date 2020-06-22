@@ -1,0 +1,23 @@
+<% if signatures.size > 0 %>
+  <header class="card-header d-flex align-items-center">
+    <h3>Signed Agreements</h3>
+  </header>
+  <table data-toggle="table">
+    <thead class="thead-light">
+    <tr>
+      <th>Title</th>
+      <th>Signed At</th>
+      <th>View Agreement</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @signatures.each do |signature| %>
+        <tr>
+          <td><%= signature.agreement_version.title %></td>
+          <td><%= signature.signed_at %></td>
+          <td>View Agreement</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

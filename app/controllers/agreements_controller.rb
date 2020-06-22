@@ -7,10 +7,6 @@ class AgreementsController < ApplicationController
     @agreements = Agreement.order(:name)
   end
 
-  def show
-    @signed_agreement = SignedAgreement.find_by(agreement_id: @agreement.id, user_id: current_user.id)
-  end
-
   def new
     @agreement = authorize Agreement.new
   end

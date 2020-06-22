@@ -1,0 +1,7 @@
+<div class="col-md-6 card px-0">
+  <div class="card-header"><h3>Sign <%= @signature.agreement_version.title %></h3></div>
+  <div class="card-body">
+    <%= render 'form', signature: @signature %>
+    <%= link_to 'Back', :back %>
+  </div>
+</div>

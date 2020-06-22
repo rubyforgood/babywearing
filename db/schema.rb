@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_212111) do
+ActiveRecord::Schema.define(version: 2020_06_21_184058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,14 +159,15 @@ ActiveRecord::Schema.define(version: 2020_06_18_212111) do
     t.index ["subdomain"], name: "index_organizations_on_subdomain"
   end
 
-  create_table "signed_agreements", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "agreement_id"
-    t.string "signature"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["agreement_id"], name: "index_signed_agreements_on_agreement_id"
-    t.index ["user_id"], name: "index_signed_agreements_on_user_id"
+  create_table "signatures", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "agreement_version_id", null: false
+    t.string "signature", null: false
+    t.datetime "signed_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["agreement_version_id"], name: "index_signatures_on_agreement_version_id"
+    t.index ["user_id"], name: "index_signatures_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -202,4 +203,6 @@ ActiveRecord::Schema.define(version: 2020_06_18_212111) do
   add_foreign_key "loans", "users", column: "checkout_volunteer_id"
   add_foreign_key "memberships", "membership_types"
   add_foreign_key "memberships", "users"
+  add_foreign_key "signatures", "agreement_versions"
+  add_foreign_key "signatures", "users"
 end

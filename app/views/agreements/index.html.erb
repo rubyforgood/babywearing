@@ -16,18 +16,22 @@
       </thead>
 
       <tbody>
-        <% @agreements.each do |agreement| %>
-          <tr>
-            <td><%= link_to agreement.name, agreement %></td>
-            <% active_version = agreement.active_version %>
-            <td><%= active_version.nil? ?  "None" : (link_to active_version.version, agreement_version_path(agreement, active_version)) %></td>
-            <td><%= agreement.updated_at %></td>
-            <td align="right">
-              <%= link_to 'View', agreement, class: 'btn btn-primary btn-sm' %> |
-              <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-primary btn-sm' %> |
-              <%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-            </td>
-          </tr>
+        <% if @agreements.empty? %>
+          <tr><td colspan="100%">There are no agreements yet.</td></tr>
+        <% else %>
+          <% @agreements.each do |agreement| %>
+            <tr>
+              <td><%= link_to agreement.name, agreement %></td>
+              <% active_version = agreement.active_version %>
+              <td><%= active_version.nil? ?  "None" : (link_to active_version.version, agreement_version_path(agreement, active_version)) %></td>
+              <td><%= agreement.updated_at %></td>
+              <td align="right">
+                <%= link_to 'View', agreement, class: 'btn btn-primary btn-sm' %> |
+                <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-primary btn-sm' %> |
+                <%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

@@ -1,5 +1,8 @@
-<%= form_with model: version, local: true do |form| %>
-  <%= form_errors @version %>
+<%= form_with model: [version.agreement, version],
+              url: (version.persisted?) ? agreement_version_path(version.agreement, version) : agreement_versions_path(version.agreement),
+              method: (version.persisted?) ? :patch : :post,
+              local: true do |form| %>
+  <%= form_errors version %>
 
   <div class="form-group">
     <%= form.label :title %>

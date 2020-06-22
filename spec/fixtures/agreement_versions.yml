@@ -5,3 +5,19 @@ agreement_version:
   active: true
   last_modified_by: admin
   agreement: agreement
+
+inactive_agreement_version:
+  title: "Test Agreement"
+  content: "Test Content Inactive"
+  version: "0.1"
+  active: false
+  last_modified_by: admin
+  agreement: agreement
+
+member_agreement_version:
+  title: "Test Agreement"
+  content: "Test Content"
+  version: "1"
+  active: true
+  last_modified_by: admin
+  agreement: member_agreement

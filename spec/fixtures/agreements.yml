@@ -1,3 +1,7 @@
 agreement:
   name: "Test Agreement"
   organization: midatlantic
+
+member_agreement:
+  name: "Member Agreement"
+  organization: midatlantic

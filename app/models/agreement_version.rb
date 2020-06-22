@@ -4,6 +4,8 @@ class AgreementVersion < ApplicationRecord
   belongs_to :agreement
   belongs_to :last_modified_by, class_name: 'User'
 
+  has_many :signatures, dependent: :destroy
+
   before_destroy :active_indestructable
 
   validates_presence_of :title, :content, :version

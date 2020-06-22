@@ -58,7 +58,8 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <h6 class="dropdown-header">Logged in as <strong><%= current_user.email %></strong></h6>
-          <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' unless @admin_org %>
+          <%= link_to 'Agreements', user_signatures_path(current_user), class: 'dropdown-item' unless @admin_org ||
+                                                                  AgreementVersion.active.count == 0 %>
           <%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %>
           <div class="dropdown-divider"></div>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>

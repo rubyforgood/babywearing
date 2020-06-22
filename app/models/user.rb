@@ -27,9 +27,9 @@ class User < ApplicationRecord
 
   before_validation :scrub_phone_number
 
-  has_many :signed_agreements, dependent: :destroy
   has_many :loans, foreign_key: 'borrower_id', dependent: :destroy
   has_many :memberships, dependent: :destroy
+  has_many :signatures, dependent: :destroy
 
   enum role: %i[admin volunteer member]
 
@@ -53,6 +53,10 @@ class User < ApplicationRecord
     end
   end
 
+  def active_signatures
+    signatures.active
+  end
+
   def current_membership
     today = Time.zone.today
     membership = memberships.where('expiration > ? AND effective <= ?', today, today).order(expiration: :desc).first
@@ -72,6 +76,10 @@ class User < ApplicationRecord
     s = "#{name.full} - #{membership.membership_type.short_name}"
     s += ' (Expired)' if membership.expired?
     s
+  end
+
+  def unsigned_agreements
+    AgreementVersion.active.where.not(id: active_signatures.pluck(:agreement_version_id))
   end
 
   private

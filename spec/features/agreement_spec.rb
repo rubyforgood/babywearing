@@ -38,7 +38,7 @@ RSpec.feature 'create an agreement', type: :feature do
   scenario 'DESTROY when delete button is clicked' do
     AgreementVersion.update_all(active: false) # TODO: this can be better
     visit agreements_url
-    click_link 'Destroy'
+    first(:link, 'Destroy').click
 
     expect(page).to have_content('Agreement was successfully destroyed.')
   end

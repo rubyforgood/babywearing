@@ -1,0 +1,25 @@
+<% if versions.size > 0 %>
+  <header class="card-header d-flex align-items-center">
+    <h3>Agreements Needing Signature</h3>
+  </header>
+  <table data-toggle="table">
+    <thead class="thead-light">
+    <tr>
+      <th>Title</th>
+      <th>View and Sign Agreement</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% versions.each do |version| %>
+        <tr>
+          <td><%= version.title %></td>
+          <td><%= link_to "View and Sign Agreement",
+                          new_user_signature_path(
+                              current_user,
+                              agreement_version_id: version.id),
+                              class: 'btn-primary btn-sm' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

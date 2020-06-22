@@ -1,0 +1,17 @@
+signature:
+  user: member
+  agreement_version: agreement_version
+  signature: 'ABC'
+  signed_at: <%= Time.zone.now %>
+
+member_agreement_signature:
+  user: member
+  agreement_version: member_agreement_version
+  signature: 'ABC'
+  signed_at: <%= Time.zone.now %>
+
+inactive_signature:
+  user: member
+  agreement_version: inactive_agreement_version
+  signature: 'ABC'
+  signed_at: <%= Time.zone.now - 1.day %>

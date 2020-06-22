@@ -1,0 +1,20 @@
+<%= form_with model: [signature.user, signature],
+              method: (signature.persisted?) ? :patch : :post do |form| %>
+  <%= form_errors signature %>
+
+  <div class="container">
+    <p>By filling in the signature field with your name or initials below, you agree to the following:</p>
+    <div class="mb-4">
+      <h3><%= form.object.agreement_version.title %></h3>
+      <div class="border p-3">
+        <%= signature.agreement_version.content %>
+      </div>
+    </div>
+  </div>
+  <%= form.hidden_field :agreement_version_id %>
+  <div class="form-group">
+    <%= form.label :signature %>
+    <%= form.text_field :signature, class: "form-control" %>
+  </div>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

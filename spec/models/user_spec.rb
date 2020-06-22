@@ -11,6 +11,7 @@ RSpec.describe User do
 
   describe 'associations' do
     it { is_expected.to belong_to(:organization) }
+    it { is_expected.to have_many(:signatures) }
   end
 
   describe 'validations' do
@@ -19,6 +20,20 @@ RSpec.describe User do
     it { is_expected.not_to allow_value('8' * 11).for(:phone_number) }
     it { is_expected.not_to allow_value('').for(:phone_number) }
     it { is_expected.not_to allow_value(nil).for(:phone_number) }
+  end
+
+  describe '#active_signatures' do
+    context 'with no active signatures' do
+      it 'returns an empty collection' do
+        expect(nonmember.active_signatures).to be_empty
+      end
+    end
+
+    context 'with active signatures' do
+      it 'returns the signatures' do
+        expect(member.active_signatures).to eq([signatures(:signature), signatures(:member_agreement_signature)])
+      end
+    end
   end
 
   describe '#current_membership' do
@@ -87,6 +102,23 @@ RSpec.describe User do
         member.save
 
         expect(member.phone_number).to eq('4563455654')
+      end
+    end
+  end
+
+  describe '#unsigned_agreements' do
+    context 'with no unsigned agreements' do
+      it 'returns an empty collection' do
+        expect(member.unsigned_agreements).to be_empty
+      end
+    end
+
+    context 'with unsigned agreements' do
+      it 'returns the collection' do
+        expect(nonmember.unsigned_agreements).to match_array([
+                                                               signatures(:signature).agreement_version,
+                                                               signatures(:member_agreement_signature).agreement_version
+                                                             ])
       end
     end
   end
