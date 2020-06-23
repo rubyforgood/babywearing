@@ -38,6 +38,7 @@ module Agreements
 
     def new
       @version = authorize @agreement.versions.build
+      @version.copy_content
     end
 
     def show

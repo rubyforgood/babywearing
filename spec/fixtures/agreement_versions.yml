@@ -21,3 +21,20 @@ member_agreement_version:
   active: true
   last_modified_by: admin
   agreement: member_agreement
+
+inactive_version1:
+  title: "Version 1"
+  content: "Content 1"
+  version: "1"
+  active: false
+  last_modified_by: admin
+  agreement: inactive_agreement
+  created_at: <%= Time.zone.now - 1.hour %>
+
+inactive_version2:
+  title: "Version 2"
+  content: "Content 2"
+  version: "2"
+  active: false
+  last_modified_by: admin
+  agreement: inactive_agreement

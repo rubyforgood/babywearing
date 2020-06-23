@@ -5,3 +5,11 @@ agreement:
 member_agreement:
   name: "Member Agreement"
   organization: midatlantic
+
+versionless_agreement:
+  name: "Versionless Agreement"
+  organization: midatlantic
+
+inactive_agreement:
+  name: "Inactive Agreement"
+  organization: midatlantic

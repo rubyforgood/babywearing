@@ -9,6 +9,7 @@ class AgreementVersion < ApplicationRecord
   before_destroy :active_indestructable
 
   validates_presence_of :title, :content, :version
+  validates_uniqueness_of :version, scope: :agreement_id, case_sensitive: false
 
   scope :active, -> { where(active: true) }
   validates :active, uniqueness: {
@@ -16,6 +17,20 @@ class AgreementVersion < ApplicationRecord
     scope: :agreement,
     message: 'cannot have more than one active version per agreement'
   }
+
+  def copy_content
+    active_version = agreement.active_version
+    if active_version
+      self.title = active_version.title
+      self.content = active_version.content
+    else
+      inactive_version = agreement.versions.where(active: false).order(created_at: :desc).first
+      if inactive_version
+        self.title = inactive_version.title
+        self.content = inactive_version.content
+      end
+    end
+  end
 
   private
 

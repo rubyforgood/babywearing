@@ -10,7 +10,7 @@ RSpec.describe 'Agreements::Versions', type: :request do
   let(:valid_params) do
     { title: 'hi ho hi',
       content: 'ho hi ho',
-      version: '1',
+      version: '2',
       active: 'false' }
   end
 
