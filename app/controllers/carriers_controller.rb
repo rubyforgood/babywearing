@@ -41,6 +41,12 @@ class CarriersController < ApplicationController
 
   def show
     @loans = @carrier.loans
+    @has_unsigned_agreements = current_user.present? && current_user.unsigned_agreements.count.positive?
+    return unless @has_unsigned_agreements
+
+    flash.now[:alert] = 'Our agreements have been updated. You need to sign our agreement(s) before you can '\
+                        ' checkout a carrier. '\
+                      "Please click <a href='/users/#{current_user.id}/signatures'>here</a> to sign.".html_safe
   end
 
   def edit

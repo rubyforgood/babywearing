@@ -166,3 +166,7 @@ a, a:hover {
   text-decoration: none;
   color: currentColor;
 }
+
+div.alert a {
+  text-decoration: underline;
+}

@@ -139,3 +139,16 @@ admin_org:
   phone_number: '8888888888'
   role: admin
   organization: admin
+
+acme_admin:
+  email: 'admin@test.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Admin'
+  last_name: 'User'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '8888888888'
+  role: admin
+  organization: acme

@@ -35,9 +35,8 @@ RSpec.describe 'Organizations', type: :request do
 
   describe '#destroy' do
     it 'destroys the organization' do
-      AgreementVersion.update_all(active: false) # TODO: this can be better
       sign_in users(:admin_org)
-      delete organization_url(organization, subdomain: 'admin')
+      delete organization_url(organizations(:emca), subdomain: 'admin')
 
       expect(response).to redirect_to(organizations_url(subdomain: 'admin'))
       expect(flash[:alert]).to eq('Organization was successfully destroyed.')

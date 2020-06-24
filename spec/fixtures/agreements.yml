@@ -13,3 +13,7 @@ versionless_agreement:
 inactive_agreement:
   name: "Inactive Agreement"
   organization: midatlantic
+
+acme_agreement:
+  name: "Acme Member Agreement"
+  organization: acme

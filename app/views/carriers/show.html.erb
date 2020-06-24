@@ -10,9 +10,8 @@
         <%= tag.h1 @carrier.name %>
 
         <% if @carrier.may_checkout? && policy(@carrier).checkout? %>
-          <%= link_to 'Checkout', new_carrier_loan_url(@carrier), class: 'btn-primary btn-sm', data: {modal: true} %>
+            <%= link_to 'Checkout', new_carrier_loan_url(@carrier), class: 'btn-primary btn-sm', data: {modal: true} %>
         <% end %>
-
         <% if @current_loan && @carrier.may_checkin? && policy(@carrier).checkout? %>
           <%= link_to 'Checkin', edit_carrier_loan_url(@carrier, @current_loan), class: 'btn-primary btn-sm', data: {modal: true} %>
         <% end %>

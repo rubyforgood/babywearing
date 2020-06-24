@@ -79,7 +79,9 @@ class User < ApplicationRecord
   end
 
   def unsigned_agreements
-    AgreementVersion.active.where.not(id: active_signatures.pluck(:agreement_version_id))
+    AgreementVersion.joins(:agreement).active
+                    .where('agreements.organization_id = ?', organization_id)
+                    .where.not(id: active_signatures.pluck(:agreement_version_id))
   end
 
   private

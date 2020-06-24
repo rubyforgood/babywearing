@@ -10,7 +10,7 @@ module Users
         redirect_to user_signatures_path(@user), notice: 'Agreement successfully signed.'
       else
         flash[:error] = @signature.errors.full_messages
-        redirect_to(new_user_signature_path(@user))
+        redirect_to(new_user_signature_path(@user, agreement_version_id: params[:agreement_version_id]))
       end
     end
 

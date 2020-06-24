@@ -14,7 +14,7 @@
   <%= form.hidden_field :agreement_version_id %>
   <div class="form-group">
     <%= form.label :signature %>
-    <%= form.text_field :signature, class: "form-control" %>
+    <%= form.text_field :signature, class: "form-control col-3" %>
   </div>
-  <%= form.submit class: "btn btn-primary" %>
+  <%= form.submit "Sign Agreement", class: "btn btn-primary" %>
 <% end %>

@@ -6,3 +6,12 @@ midatlantic:
   name: "Midatlantic Babywearing"
   subdomain: "midatlantic"
 
+acme:
+  name: "Acme Babywearing"
+  subdomain: "acme"
+
+emca:
+  name: "Emca Babywearing"
+  subdomain: "emca"
+
+

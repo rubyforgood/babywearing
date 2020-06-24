@@ -38,3 +38,11 @@ inactive_version2:
   active: false
   last_modified_by: admin
   agreement: inactive_agreement
+
+acme_version:
+  title: "Acme Member Agreement"
+  content: "Test Content"
+  version: "1"
+  active: true
+  last_modified_by: admin
+  agreement: acme_agreement
