@@ -5,8 +5,6 @@ class User < ApplicationRecord
 
   has_person_name
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
   validates :first_name, :last_name, :street_address, :city,
@@ -63,6 +61,15 @@ class User < ApplicationRecord
     return if membership.nil?
 
     membership
+  end
+
+  def loans_available_to_member?
+    return unless current_membership
+
+    allowed_loans = current_membership.membership_type.number_of_items
+    outstanding_loans = loans&.count
+
+    allowed_loans > outstanding_loans
   end
 
   def send_welcome_email

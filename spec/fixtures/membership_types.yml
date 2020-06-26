@@ -3,7 +3,15 @@ annual:
   short_name: 'AN'
   fee_cents: 30_00
   duration_days: 365
-  number_of_items: 3
+  number_of_items: 6
   description: "A text description goes here."
   organization: midatlantic
 
+double:
+  name: "Double"
+  short_name: "SN"
+  fee_cents: 10_00
+  duration_days: 365
+  number_of_items: 2
+  description: "Only borrow 2 items"
+  organization: midatlantic

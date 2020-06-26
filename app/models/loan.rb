@@ -15,6 +15,9 @@ class Loan < ApplicationRecord
 
   validates :carrier, :due_date, presence: true
   validates :borrower, presence: { message: 'must be selected' }
+  validate :current_membership
+  validate :loans_available_to_member
+
   after_create :checkout_carrier
   after_save :checkin_carrier
 
@@ -29,6 +32,19 @@ class Loan < ApplicationRecord
   end
 
   private
+
+  def current_membership
+    msg = 'does not have a current membership.'
+    errors.add(:member, msg) unless borrower&.current_membership
+  end
+
+  def loans_available_to_member
+    # a checkin is also a loan event and we always want to allow return
+    return if returned_on || borrower.nil?
+
+    msg = 'already has maximum number of carriers checked out.'
+    errors.add(:member, msg) unless borrower.loans_available_to_member?
+  end
 
   def checkin_carrier
     carrier.checkin! if returned_on.present? && carrier.checked_out?

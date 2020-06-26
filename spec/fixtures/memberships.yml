@@ -1,6 +1,6 @@
 member:
   user: member
-  membership_type: annual
+  membership_type: double  
   effective: <%= Time.zone.today - 1.week %>
   expiration: <%= Time.zone.today + 358.days %>
 
@@ -22,3 +22,9 @@ upcoming:
   membership_type: annual
   effective: <%= Time.zone.today + 1.week %>
   expiration: <%= Time.zone.today + 53.weeks %>
+
+borrower:
+  user: borrower
+  membership_type: annual
+  effective: <%= Time.zone.today - 1.week %>
+  expiration: <%= Time.zone.today + 358.days %>

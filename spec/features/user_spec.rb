@@ -110,7 +110,7 @@ RSpec.describe User do
     expect(page).to have_content(borrower.email)
     expect(page).to have_content(number_to_phone(borrower.phone_number))
     expect(page).to have_content(borrower.created_at)
-    expect(page).to have_content(borrower.role)
+    expect(page).to have_content(borrower.role.humanize)
     expect(page).to have_content(loan.carrier.name)
   end
 end

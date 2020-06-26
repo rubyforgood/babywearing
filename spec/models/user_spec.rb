@@ -73,7 +73,7 @@ RSpec.describe User do
 
     context 'with current membership' do
       it 'returns the full name with the membership type short name' do
-        expect(member.name_with_membership).to eq('Member Bember - AN')
+        expect(member.name_with_membership).to eq('Member Bember - SN')
       end
     end
 
@@ -119,6 +119,36 @@ RSpec.describe User do
                                                                signatures(:signature).agreement_version,
                                                                signatures(:member_agreement_signature).agreement_version
                                                              ])
+      end
+    end
+  end
+
+  describe '#loans_available_to_member?' do
+    let(:membership_type) { membership_types(:annual) } # allows 3 loans
+    let(:carrier_1) { carriers(:available) }
+    let(:carrier_2) { carriers(:available) }
+
+    context 'with more checkouts allowed' do
+      it 'returns true' do
+        Loan.create(carrier: carrier_1,
+                    borrower: member,
+                    checkout_volunteer: admin,
+                    due_date: Time.zone.today + 10.days)
+        expect(member.loans_available_to_member?).to be true
+      end
+    end
+
+    context 'with no more checkouts allowed' do
+      it 'returns false' do
+        Loan.create(carrier: carrier_1,
+                    borrower: member,
+                    checkout_volunteer: admin,
+                    due_date: Time.zone.today + 10.days)
+        Loan.create(carrier: carrier_2,
+                    borrower: member,
+                    checkout_volunteer: admin,
+                    due_date: Time.zone.today + 10.days)
+        expect(member.loans_available_to_member?).to be false
       end
     end
   end
