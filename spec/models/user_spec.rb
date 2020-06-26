@@ -6,6 +6,7 @@ RSpec.describe User do
   let(:member) { users(:member) }
   let(:upcoming) { users(:upcoming) }
   let(:nonmember) { users(:nonmember) }
+  let(:unsigned) { users(:unsigned) }
   let(:expired) { users(:expired) }
   let(:admin) { users(:admin) }
 
@@ -25,7 +26,7 @@ RSpec.describe User do
   describe '#active_signatures' do
     context 'with no active signatures' do
       it 'returns an empty collection' do
-        expect(nonmember.active_signatures).to be_empty
+        expect(unsigned.active_signatures).to be_empty
       end
     end
 
@@ -115,10 +116,10 @@ RSpec.describe User do
 
     context 'with unsigned agreements' do
       it 'returns the collection' do
-        expect(nonmember.unsigned_agreements).to match_array([
-                                                               signatures(:signature).agreement_version,
-                                                               signatures(:member_agreement_signature).agreement_version
-                                                             ])
+        expect(unsigned.unsigned_agreements).to match_array([
+                                                              signatures(:signature).agreement_version,
+                                                              signatures(:member_agreement_signature).agreement_version
+                                                            ])
       end
     end
   end

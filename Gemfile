@@ -7,7 +7,7 @@ ruby '2.7.1'
 
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3.5'
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.0.3.2'
 gem 'sassc', '2.3.0'
 gem 'sassc-rails', '~> 2.1' # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -30,6 +30,7 @@ gem 'mina-puma', require: false
 gem 'mini_magick', '~> 4.8'
 gem 'money-rails', '~>1.12'
 gem 'name_of_person'
+gem 'rack', '>= 2.2.3'
 gem 'responders'
 gem 'sidekiq', git: 'https://github.com/mperham/sidekiq.git' # TODO: remove git ref when 6.1 released
 gem 'turbolinks', '~> 5'

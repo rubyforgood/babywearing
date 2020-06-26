@@ -152,3 +152,16 @@ acme_admin:
   phone_number: '8888888888'
   role: admin
   organization: acme
+
+unsigned:
+  email: 'unsigned@test.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Unsigned'
+  last_name: 'Borrower'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '8888888888'
+  role: member
+  organization: midatlantic

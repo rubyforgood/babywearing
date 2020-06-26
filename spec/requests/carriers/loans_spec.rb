@@ -16,6 +16,28 @@ RSpec.describe 'Loans', type: :request do
     end
 
     context 'with valid attributes' do
+      it "can't create a loan with a user with unsigned agreements" do
+        sign_in volunteer
+
+        expect do
+          post carrier_loans_url(carrier),
+               params: { loan: valid_params.merge(borrower_id: users(:unsigned).id) }
+        end
+          .not_to change(Loan, :count)
+        expect(flash[:error]).to eq('Member has unsigned agreements. They must login and sign them.')
+      end
+
+      it "can't create a loan for a user without a membership" do
+        sign_in volunteer
+
+        expect do
+          post carrier_loans_url(carrier),
+               params: { loan: valid_params.merge(borrower_id: users(:nonmember).id) }
+        end
+          .not_to change(Loan, :count)
+        expect(flash[:error]).to eq('Member selected has no current membership.')
+      end
+
       it 'creates a loan for the carrier, with current user as a checkout volunteer' do
         sign_in volunteer
 
@@ -39,7 +61,7 @@ RSpec.describe 'Loans', type: :request do
 
         expect { post carrier_loans_url(carrier), params: { loan: valid_params.except(:borrower_id) } }
           .not_to change(Loan, :count)
-        expect(response.body).to match(/Borrower must be selected/)
+        expect(flash[:error]).to match(/Borrower must be selected/)
       end
     end
   end

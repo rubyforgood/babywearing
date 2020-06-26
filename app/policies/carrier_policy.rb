@@ -29,7 +29,7 @@ class CarrierPolicy < ApplicationPolicy
   end
 
   def checkout?
-    (authorized_admin_or_volunteer? || @user.unsigned_agreements.empty?) && carrier&.available?
+    authorized_admin_or_volunteer? && carrier&.available?
   end
 
   # def authorized_admin_only?
