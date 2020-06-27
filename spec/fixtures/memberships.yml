@@ -4,6 +4,12 @@ member:
   effective: <%= Time.zone.today - 1.week %>
   expiration: <%= Time.zone.today + 358.days %>
 
+unsigned:
+  user: unsigned
+  membership_type: double
+  effective: <%= Time.zone.today - 1.week %>
+  expiration: <%= Time.zone.today + 358.days %>
+
 blocked:
   user: blocked
   membership_type: annual

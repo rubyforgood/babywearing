@@ -7,11 +7,15 @@ RSpec.describe Signature do
   let(:signature) { signatures(:signature) }
   let(:nonmember_signature) { signatures(:nonmember_signature) }
   let(:nonmember_agreement_signature) { signatures(:nonmember_agreement_signature) }
+  let(:borrower_agreement_signature) { signatures(:borrower_agreement_signature) }
+  let(:borrower_member_agreement_signature) { signatures(:borrower_member_agreement_signature) }
   let(:member_agreement_signature) { signatures(:member_agreement_signature) }
 
   describe '.active' do
     it 'returns the signatures for the active agreement versions' do
       expect(described_class.active).to match_array([signature,
+                                                     borrower_member_agreement_signature,
+                                                     borrower_agreement_signature,
                                                      member_agreement_signature,
                                                      nonmember_signature,
                                                      nonmember_agreement_signature])

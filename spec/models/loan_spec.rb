@@ -92,14 +92,12 @@ RSpec.describe Loan do
 
   describe '.outstanding' do
     it 'returns all outstanding loans' do
-      described_class.delete_all
-      loan_os1 = described_class.create(carrier: carrier,
-                                        borrower: borrower,
-                                        checkout_volunteer: volunteer,
-                                        due_date: Time.zone.today + 10.days)
-      outstanding_loans = carrier.loans.outstanding
-      expect(outstanding_loans.size).to eq(1)
-      expect(outstanding_loans.map(&:id)).to match_array([loan_os1.id])
+      outstanding_loans = borrower.loans.outstanding
+
+      expect(outstanding_loans.count).to eq(3)
+      expect(outstanding_loans).to match_array(
+        [loans(:overdue_1), loans(:overdue_2), loans(:outstanding)]
+      )
     end
   end
 end

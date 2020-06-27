@@ -4,8 +4,6 @@ module Carriers
   class LoansController < ApplicationController
     include CarrierScoped
     before_action :verify_state, except: %i[edit update]
-    before_action :set_member, only: :create
-    before_action :verify_agreements, :verify_membership, only: %i[create]
 
     respond_to :html, :json
 
@@ -50,33 +48,10 @@ module Carriers
                           due_date: @loan.due_date.to_s).successful_checkout_email.deliver_later
     end
 
-    def set_member
-      @member = User.find_by(id: loan_params[:borrower_id])
-      return if @member.present?
-
-      flash[:error] = 'Borrower must be selected.'
-      @loan = @carrier.loans.new(loan_params)
-      respond_modal_with @loan, location: carrier_path(@carrier)
-    end
-
     def update_loan
       merging = {}
       merging = { checkin_volunteer_id: current_user.id } if @loan.outstanding? && loan_params[:returned_on].present?
       @loan.update(loan_params.merge(merging))
-    end
-
-    def verify_agreements
-      return if @member.unsigned_agreements.empty?
-
-      flash[:error] = 'Member has unsigned agreements. They must login and sign them.'
-      redirect_to carrier_path(@carrier)
-    end
-
-    def verify_membership
-      return if @member.current_membership.present?
-
-      flash[:error] = 'Member selected has no current membership.'
-      redirect_to carrier_path(@carrier)
     end
 
     def verify_state

@@ -10,6 +10,18 @@ member_agreement_signature:
   signature: 'ABC'
   signed_at: <%= Time.zone.now %>
 
+borrower_agreement_signature:
+  user: borrower
+  agreement_version: agreement_version
+  signature: 'ABC'
+  signed_at: <%= Time.zone.now %>
+
+borrower_member_agreement_signature:
+  user: borrower
+  agreement_version: member_agreement_version
+  signature: 'ABC'
+  signed_at: <%= Time.zone.now %>
+
 nonmember_signature:
   user: nonmember
   agreement_version: agreement_version

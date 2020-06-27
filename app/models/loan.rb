@@ -8,7 +8,7 @@ class Loan < ApplicationRecord
   belongs_to :checkout_volunteer, class_name: 'User', default: -> { Current.user }
   belongs_to :checkin_volunteer, class_name: 'User', optional: true
 
-  scope :outstanding, -> { where(checkin_volunteer_id: nil) }
+  scope :outstanding, -> { where(returned_on: nil) }
   scope :overdue, -> { where(checkin_volunteer_id: nil).where(due_date.lt(Time.zone.today)) }
   scope :due_today, -> { where(due_date: Time.zone.today) }
   scope :due_in_one_week, -> { where(due_date: (Time.zone.today + 1.week)) }
@@ -17,6 +17,7 @@ class Loan < ApplicationRecord
   validates :borrower, presence: { message: 'must be selected' }
   validate :current_membership
   validate :loans_available_to_member
+  validate :signed_agreements
 
   after_create :checkout_carrier
   after_save :checkin_carrier
@@ -34,8 +35,7 @@ class Loan < ApplicationRecord
   private
 
   def current_membership
-    msg = 'does not have a current membership.'
-    errors.add(:member, msg) unless borrower&.current_membership
+    errors.add(:member, 'does not have a current membership.') unless borrower&.current_membership
   end
 
   def loans_available_to_member
@@ -52,5 +52,9 @@ class Loan < ApplicationRecord
 
   def checkout_carrier
     carrier.checkout!
+  end
+
+  def signed_agreements
+    errors.add(:member, 'has agreements needing signature.') if borrower&.unsigned_agreements&.any?
   end
 end
