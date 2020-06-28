@@ -26,7 +26,7 @@
         <% end %>
         <% if policy(User).new? %>
           <li class="nav-item active background-dark-purple">
-            <%= link_to users_path, class: 'nav-link nav-icon nav-fourth' do %>
+            <%= link_to carriers_path(params: {with_state_in: "checked_out"}), class: 'nav-link nav-icon nav-fourth' do %>
               <%= image_tag "BW- CART ICON.svg", alt: "View Loans" %><p>VIEW LOANS</p>
             <% end %>
           </li>
