@@ -25,3 +25,13 @@ script:
   - bundle exec rspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_40af3bd1890e_key -iv $encrypted_40af3bd1890e_iv -in deploy/babywearing-stage.enc -out ~\/.ssh/babywearing-stage -d
+
+deploy:
+  provider: script
+  script: mina -f deploy/deploy.rb deploy server_name=stage
+  on:
+    branch: master
+
