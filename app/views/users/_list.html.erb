@@ -1,0 +1,39 @@
+<%= render 'shared/pagination', items: users %>
+<table class="table" data-toggle="table">
+  <thead class="thead-light">
+    <tr>
+      <th data-sortable="true">Name</th>
+      <th data-sortable="true">Email</th>
+      <th>Phone</th>
+      <th>Join Date</th>
+      <th data-sortable="true">Role</th>
+      <th data-sortable="true">Status</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if users.empty? %>
+      <tr>
+        <td colspan="100%">No members to show</td>
+      </tr>
+    <% else %>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= number_to_phone(user.phone_number) %></td>
+          <td><%= I18n.localize user.created_at.to_date %></td>
+          <td><%= user.role.humanize %></td>
+          <td><%= membership_status(user) %></td>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% unless users.empty? %>
+  <div class="mt-4">
+    <%= button_to "Export to CSV", "/users.csv", :method => :get %>
+  </div>
+<% end %>

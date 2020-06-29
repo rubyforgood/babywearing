@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   acts_as_tenant(:organization)
+  include User::FilterImpl
 
   has_person_name
 
@@ -34,6 +35,21 @@ class User < ApplicationRecord
   scope :admins, -> { where(role: admin) }
   scope :volunteers, -> { where(role: :volunteer) }
 
+  scope :with_current_membership, lambda {
+    t = Time.zone.today
+    distinct.left_joins(:memberships).where('memberships.expiration >= ? and '\
+                                        'memberships.effective <= ? and '\
+                                        'memberships.blocked = ?', t, t, false)
+  }
+
+  scope :with_expired_membership, lambda {
+    distinct.left_joins(:memberships).where('memberships.expiration < ?', Time.zone.today)
+  }
+
+  scope :without_membership, lambda {
+    left_outer_joins(:memberships).where(memberships: { id: nil })
+  }
+
   # see https://github.com/heartcombo/devise/wiki/How-to:-Scope-login-to-subdomain
   def self.find_for_authentication(warden_conditions)
     where(email: warden_conditions[:email], organization_id: warden_conditions[:organization_id]).first
@@ -57,10 +73,16 @@ class User < ApplicationRecord
 
   def current_membership
     today = Time.zone.today
-    membership = memberships.where('expiration > ? AND effective <= ?', today, today).order(expiration: :desc).first
+    membership = memberships.where(
+      'expiration >= ? AND effective <= ? and blocked= ?', today, today, false
+    ).order(expiration: :desc).first
     return if membership.nil?
 
     membership
+  end
+
+  def latest_membership
+    memberships.order(expiration: :desc).first
   end
 
   def loans_available_to_member?

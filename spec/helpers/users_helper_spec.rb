@@ -16,7 +16,7 @@ RSpec.describe UsersHelper do
   describe '#membership_status' do
     context 'with no membership' do
       it 'is none' do
-        expect(helper.membership_status(nonmember)).to eq('No Membership')
+        expect(helper.membership_status(nonmember)).to eq('None')
       end
     end
 

@@ -1,5 +1,5 @@
 user:
-  email: 'hello@test.com'
+  email: 'hello@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Pineapple'
   last_name: 'Pop'
@@ -9,9 +9,10 @@ user:
   postal_code: '22032'
   phone_number: '8888888888'
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
 
 volunteer:
-  email: 'volunteer@test.com'
+  email: 'volunteer@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Volunteer'
   last_name: 'Person'
@@ -22,9 +23,10 @@ volunteer:
   phone_number: '8888888888'
   role: volunteer
   organization: midatlantic
+  created_at: <%= Time.zone.today - 9.days %>
 
 admin:
-  email: 'admin@test.com'
+  email: 'admin@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Admin'
   last_name: 'User'
@@ -35,9 +37,10 @@ admin:
   phone_number: '8888888888'
   role: admin
   organization: midatlantic
+  created_at: <%= Time.zone.today - 8.days %>
 
 admin2:
-  email: 'admin2@test.com'
+  email: 'admin2@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Admin'
   last_name: 'User2'
@@ -48,9 +51,10 @@ admin2:
   phone_number: '8888888888'
   role: admin
   organization: midatlantic
+  created_at: <%= Time.zone.today - 1.days %>
 
 member:
-  email: 'member@test.com'
+  email: 'member@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Member'
   last_name: 'Bember'
@@ -61,9 +65,10 @@ member:
   phone_number: '8888888888'
   role: member
   organization: midatlantic
+  created_at: <%= Time.zone.today %>
 
 nonmember:
-  email: 'nonmember@test.com'
+  email: 'nonmember@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Nonmember'
   last_name: 'Bember'
@@ -74,9 +79,10 @@ nonmember:
   phone_number: '8888888888'
   role: member
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
 
 expired:
-  email: 'expired@test.com'
+  email: 'expired@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Expired'
   last_name: 'Bember'
@@ -87,9 +93,10 @@ expired:
   phone_number: '8888888888'
   role: member
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
 
 blocked:
-  email: 'blocked@test.com'
+  email: 'blocked@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Blocked'
   last_name: 'Bember'
@@ -100,9 +107,10 @@ blocked:
   phone_number: '8888888888'
   role: member
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
 
 upcoming:
-  email: 'upcoming@test.com'
+  email: 'upcoming@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Upcoming'
   last_name: 'Bember'
@@ -113,9 +121,10 @@ upcoming:
   phone_number: '8888888888'
   role: member
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
 
 borrower:
-  email: 'borrower@test.com'
+  email: 'borrower@midatlantic.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Borrower'
   last_name: 'Sorrower'
@@ -126,9 +135,10 @@ borrower:
   phone_number: '8888888888'
   role: member
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
 
 admin_org:
-  email: 'admin@test.com'
+  email: 'admin@admin.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Admin'
   last_name: 'User'
@@ -139,9 +149,10 @@ admin_org:
   phone_number: '8888888888'
   role: admin
   organization: admin
+  created_at: <%= Time.zone.today - 10.days %>
 
 acme_admin:
-  email: 'admin@test.com'
+  email: 'admin@acme.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   first_name: 'Admin'
   last_name: 'User'
@@ -152,6 +163,7 @@ acme_admin:
   phone_number: '8888888888'
   role: admin
   organization: acme
+  created_at: <%= Time.zone.today - 10.days %>
 
 unsigned:
   email: 'unsigned@test.com'
@@ -165,3 +177,4 @@ unsigned:
   phone_number: '8888888888'
   role: member
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>

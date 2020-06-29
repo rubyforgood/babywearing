@@ -3,15 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe User do
+  let(:user) { users(:user) }
   let(:member) { users(:member) }
   let(:upcoming) { users(:upcoming) }
   let(:nonmember) { users(:nonmember) }
   let(:unsigned) { users(:unsigned) }
   let(:expired) { users(:expired) }
   let(:admin) { users(:admin) }
+  let(:admin2) { users(:admin2) }
+  let(:volunteer) { users(:volunteer) }
+  let(:borrower) { users(:borrower) }
+  let(:blocked) { users(:blocked) }
+
+  around do |example|
+    ActsAsTenant.with_tenant(organizations(:midatlantic)) do
+      example.run
+    end
+  end
 
   describe 'associations' do
-    it { is_expected.to belong_to(:organization) }
     it { is_expected.to have_many(:signatures) }
   end
 
@@ -50,6 +60,12 @@ RSpec.describe User do
       end
     end
 
+    context 'with blocked membership' do
+      it 'is nil' do
+        expect(blocked.current_membership).to be_nil
+      end
+    end
+
     context 'with current membership' do
       it 'returns the membership' do
         expect(member.current_membership).to eq(memberships(:member))
@@ -59,6 +75,20 @@ RSpec.describe User do
     context 'with upcoming membership' do
       it 'is nil' do
         expect(upcoming.current_membership).to be_nil
+      end
+    end
+  end
+
+  describe '#latest_membership' do
+    context 'with no membership' do
+      it 'is nil' do
+        expect(nonmember.latest_membership).to be_nil
+      end
+    end
+
+    context 'with multiple memberships' do
+      it 'returns the latest expiration' do
+        expect(member.latest_membership).to eq(memberships(:member))
       end
     end
   end
@@ -74,7 +104,7 @@ RSpec.describe User do
 
     context 'with current membership' do
       it 'returns the full name with the membership type short name' do
-        expect(member.name_with_membership).to eq('Member Bember - SN')
+        expect(member.name_with_membership).to eq('Member Bember - AN')
       end
     end
 
@@ -87,7 +117,37 @@ RSpec.describe User do
     end
   end
 
-  describe 'phone_number' do
+  describe '#loans_available_to_member?' do
+    let(:membership_type) { membership_types(:annual) } # allows 3 loans
+    let(:carrier_1) { carriers(:available) }
+    let(:carrier_2) { carriers(:available) }
+
+    context 'with more checkouts allowed' do
+      it 'returns true' do
+        Loan.create(carrier: carrier_1,
+                    borrower: member,
+                    checkout_volunteer: admin,
+                    due_date: Time.zone.today + 10.days)
+        expect(member.loans_available_to_member?).to be true
+      end
+    end
+
+    context 'with no more checkouts allowed' do
+      it 'returns false' do
+        Loan.create(carrier: carrier_1,
+                    borrower: member,
+                    checkout_volunteer: admin,
+                    due_date: Time.zone.today + 10.days)
+        Loan.create(carrier: carrier_2,
+                    borrower: member,
+                    checkout_volunteer: admin,
+                    due_date: Time.zone.today + 10.days)
+        expect(member.loans_available_to_member?).to be false
+      end
+    end
+  end
+
+  describe '#phone_number' do
     context 'with dashes' do
       it 'scrubs the dashes' do
         member.phone_number = '456-345-5654'
@@ -124,33 +184,21 @@ RSpec.describe User do
     end
   end
 
-  describe '#loans_available_to_member?' do
-    let(:membership_type) { membership_types(:annual) } # allows 3 loans
-    let(:carrier_1) { carriers(:available) }
-    let(:carrier_2) { carriers(:available) }
-
-    context 'with more checkouts allowed' do
-      it 'returns true' do
-        Loan.create(carrier: carrier_1,
-                    borrower: member,
-                    checkout_volunteer: admin,
-                    due_date: Time.zone.today + 10.days)
-        expect(member.loans_available_to_member?).to be true
-      end
+  describe '.with_current_membership' do
+    it 'includes users with a current membership' do
+      expect(described_class.with_current_membership).to match_array([member, unsigned, borrower])
     end
+  end
 
-    context 'with no more checkouts allowed' do
-      it 'returns false' do
-        Loan.create(carrier: carrier_1,
-                    borrower: member,
-                    checkout_volunteer: admin,
-                    due_date: Time.zone.today + 10.days)
-        Loan.create(carrier: carrier_2,
-                    borrower: member,
-                    checkout_volunteer: admin,
-                    due_date: Time.zone.today + 10.days)
-        expect(member.loans_available_to_member?).to be false
-      end
+  describe '.with_expired_membership' do
+    it 'includes users with an expired membership even if they also have a current one' do
+      expect(described_class.with_expired_membership).to match_array([member, expired])
+    end
+  end
+
+  describe '.without_membership' do
+    it 'includes users without any membership at all' do
+      expect(described_class.without_membership).to match_array([user, volunteer, nonmember, admin, admin2])
     end
   end
 end

@@ -1,34 +1,12 @@
 <h1>Members</h1>
-<%= render 'shared/pagination', items: @users %>
-<table data-toggle="table">
-  <thead class="thead-light">
-    <tr>
-      <th data-sortable="true">Name</th>
-      <th data-sortable="true">Email</th>
-      <th>Phone</th>
-      <th>Join Date</th>
-      <th data-sortable="true">Role</th>
-      <th data-sortable="true">Status</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user_path(user) %></td>
-        <td><%= user.email %></td>
-        <td><%= number_to_phone(user.phone_number) %></td>
-        <td><%= user.created_at %></td>
-        <td><%= user.role.humanize %></td>
-        <td><%= membership_status(user) %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% unless @users.empty? %>
-  <div class="mt-4">
-    <%= button_to "Export to CSV", "/users.csv", :method => :get %>
+<div class="card">
+  <div class="card filter-card">
+    <div class="card-header">Filters</div>
+    <div class="card-body">
+      <%= render partial: 'filter_form', locals: { filterrific: @filterrific } %>
+    </div>
+    <div id="filterrific_results">
+      <%= render partial: "list", locals: { users: @users } %>
+    </div>
   </div>
-<% end %>
+</div>
