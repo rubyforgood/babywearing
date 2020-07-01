@@ -1,3 +1,6 @@
+addons:
+  ssh_known_hosts: stage.babywearing.exchange
+
 env:
   global:
     - CC_TEST_REPORTER_ID=b80cc9abeed21ed522cf2d3831da7ed52dfd6e18bdce2ade4125fd033e96a951
@@ -27,11 +30,13 @@ after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 before_deploy:
-  - openssl aes-256-cbc -K $encrypted_40af3bd1890e_key -iv $encrypted_40af3bd1890e_iv -in deploy/babywearing-stage.enc -out ~\/.ssh/babywearing-stage -d
-
+  - openssl aes-256-cbc -K $encrypted_40af3bd1890e_key -iv $encrypted_40af3bd1890e_iv -in deploy/babywearing-stage.enc -out $HOME/babywearing_id -d
+  - openssl aes-256-cbc -K $encrypted_8ad82cc635a3_key -iv $encrypted_8ad82cc635a3_iv -in deploy/master.key.enc -out config/master.key -d
+  - chmod 600 $HOME/babywearing_id
 deploy:
+  skip_cleanup: true
   provider: script
-  script: mina -f deploy/deploy.rb deploy server_name=stage
+  script: gem install mina && gem install mina-puma && mina -f deploy/deploy.rb deploy server_name=stage
   on:
     branch: master
 

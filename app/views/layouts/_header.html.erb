@@ -1,1 +1,6 @@
+<div style="display: none">
+  <% fn = File.join(Rails.root, "deploy", "commit_hash") %>
+  <%= File.read(fn) if File.exist?(fn) %>
+</div>
+
 <%= render signed_in? ? 'layouts/header_signed_in' : 'layouts/header_signed_out' %>

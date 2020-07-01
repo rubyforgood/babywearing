@@ -24,11 +24,11 @@ set :domain, lambda {
 
 set :deploy_to, '/home/babywearing/app'
 set :repository, 'https://github.com/rubyforgood/babywearing.git'
-set :branch, ENV['branch'] || 'master'
+set :branch, ENV['branch'] || ENV['TRAVIS_BRANCH'] || 'master'
 set :force_migrate, true
 
 set :user, 'babywearing' # Username in the server to SSH to.
-set :identity_file, "~/.ssh/babywearing-#{fetch(:server_name)}"
+set :identity_file, ENV['DEPLOY_IDENTITY_FILE'] || "~/.ssh/babywearing-#{fetch(:server_name)}"
 
 #   set :port, '30000'           # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
@@ -58,7 +58,7 @@ end
 desc 'Deploys the current version to the server.'
 task :deploy do
   # uncomment this line to make sure you pushed your local branch to the remote origin
-  invoke :'git:ensure_pushed'
+  # invoke :'git:ensure_pushed'
   run(:local) do
     command "scp -i #{fetch(:identity_file)} #{fetch(:local_rails_root)}/config/master.key "\
                       "#{fetch(:user)}@#{fetch(:domain)}:/home/babywearing"

@@ -41,3 +41,5 @@ db/.DS_Store
 dump.rdb
 
 .envrc
+
+deploy/commit_hash
