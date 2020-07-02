@@ -18,7 +18,11 @@ module Carriers
 
     def edit
       @loan = authorize @carrier.loans.find(params[:id])
-      @checkin = params[:checkin].present?
+      if params[:checkin].present?
+        @checkin = true
+        @loan.returned_on = Time.zone.today
+      end
+
       respond_modal_with @loan
     end
 

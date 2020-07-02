@@ -12,8 +12,8 @@
         <% if @carrier.may_checkout? && policy(@carrier).checkout? %>
             <%= link_to 'Checkout', new_carrier_loan_url(@carrier), class: 'btn-primary btn-sm', data: {modal: true} %>
         <% end %>
-        <% if @current_loan && @carrier.may_checkin? && policy(@carrier).checkout? %>
-          <%= link_to 'Checkin', edit_carrier_loan_url(@carrier, @current_loan), class: 'btn-primary btn-sm', data: {modal: true} %>
+        <% if @current_loan && @carrier.may_checkin? && policy(@carrier).checkin? %>
+          <%= link_to 'Checkin', edit_carrier_loan_url(@carrier, @current_loan, checkin: 1), class: 'btn-primary btn-sm', data: {modal: true} %>
         <% end %>
 
         <% if policy(@carrier).edit? %>

@@ -4,8 +4,10 @@ pairs:
   yc: Yungchih Chen
   ps: Polly Schandorf
   mf: Mark Fraser
+  jc: John Cato
 email_addresses:
   yc: yungchih_chen@yahoo.com
   mf: mark@pokervane.com
   ps: pollysileo@gmail.com
+  jc: jchristopher.cato@gmail.com
 global: false  # Set to true for git-pair to change git configuration for all your projects

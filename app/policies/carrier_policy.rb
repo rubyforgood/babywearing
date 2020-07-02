@@ -28,6 +28,10 @@ class CarrierPolicy < ApplicationPolicy
     authorized_admin_or_volunteer?
   end
 
+  def checkin?
+    authorized_admin_or_volunteer? && carrier&.checked_out?
+  end
+
   def checkout?
     authorized_admin_or_volunteer? && carrier&.available?
   end

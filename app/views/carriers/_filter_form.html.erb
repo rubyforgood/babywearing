@@ -30,17 +30,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-sm-3">
       <%= f.select(
               :with_current_location_id,
               filterrific.select_options[:with_current_location_id],
               { include_blank: 'Any Location' },
-
+              class: 'form-control'
       ) %>
+    </div>
+    <div class="col-sm-3">
       <%= f.select(
               :with_category_id,
               filterrific.select_options[:with_category_id],
               { include_blank: 'Any Category' },
+              class: 'form-control'
 
       ) %>
     </div>

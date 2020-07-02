@@ -7,7 +7,8 @@ RSpec.describe 'Loans', type: :request do
   let(:member) { users(:member) }
   let(:carrier) { carriers(:carrier) }
   let(:valid_params) { { borrower_id: users(:member).id, due_date: Date.current + 5.days } }
-  let(:checked_out_carrier) { carriers(:checked_out) }
+  let(:loan) { loans(:overdue_1) }
+  let(:checked_out) { carriers(:checked_out_overdue_1) }
 
   describe '#create' do
     it_behaves_like 'admin and volunteer authorized-only resource', :post do
@@ -67,11 +68,17 @@ RSpec.describe 'Loans', type: :request do
   end
 
   describe '#edit' do
-    let(:loan) { carriers(:available).loans.create(borrower: member, checkout_volunteer: volunteer) }
-
     it_behaves_like 'admin and volunteer authorized-only resource', :get do
-      let(:endpoint) { edit_carrier_loan_url(loan.carrier, loan) }
+      let(:endpoint) { edit_carrier_loan_url(checked_out, loan) }
       let(:params) { { loan: { due_date: 1.year.from_now } } }
+    end
+    context 'with checkin parameter' do
+      it 'initializes returned_on with today' do
+        sign_in volunteer
+        get edit_carrier_loan_url(checked_out, loan, checkin: 1)
+
+        expect(response.body).to match(/#{Time.zone.today}/)
+      end
     end
   end
 
@@ -82,7 +89,7 @@ RSpec.describe 'Loans', type: :request do
     context 'when carrier not available' do
       it 'returns a 404' do
         sign_in volunteer
-        get new_carrier_loan_url(checked_out_carrier)
+        get new_carrier_loan_url(checked_out)
 
         expect(response).to be_not_found
       end
