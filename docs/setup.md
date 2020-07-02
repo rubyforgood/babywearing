@@ -7,3 +7,7 @@
 3. Install dependencies by running `bundle install`
 
 4. Configure your remote so that it points to the upstream repository in Git with `git remote add upstream https://github.com/rubyforgood/babywearing.git`
+
+5. Run `rake db:setup` to set up the database.
+
+6. Optional: run `rake db:image_seeds:carriers` to seed the carrier images. This takes several minutes.

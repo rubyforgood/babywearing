@@ -17,6 +17,3 @@ only need access to non-organizational resources). See the `db/seeds.rb` for inf
 on which organizations and users exist after running seeds.
 
 5. To access the organization in dev, use `<subdomain>.lvh.me:3000`.
-
-6. As of this writing the docker (and deployment) stuff has not been updated
-with multi-tenant. It will not be usable again until that happens
