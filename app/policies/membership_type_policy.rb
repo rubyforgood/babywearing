@@ -16,6 +16,10 @@ class MembershipTypePolicy < ApplicationPolicy
     authorized_admin?
   end
 
+  def index?
+    authorized_admin?
+  end
+
   def edit?
     authorized_admin?
   end
