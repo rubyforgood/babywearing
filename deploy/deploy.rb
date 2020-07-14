@@ -77,7 +77,7 @@ task :deploy do
 
     on :launch do
       command 'sudo service sidekiq restart'
-      invoke :'puma:hard_restart'
+      command 'sudo service puma restart'
     end
     # on :launch do
     #   in_path(fetch(:current_path)) do
@@ -86,7 +86,6 @@ task :deploy do
     #   end
     # end
   end
-
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
   # run(:local){ say 'done' }
 end

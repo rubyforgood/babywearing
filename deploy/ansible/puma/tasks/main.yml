@@ -2,13 +2,13 @@
 - name: Copy system service file
   become: yes
   copy:
-    src: sidekiq.service
+    src: puma.service
     dest: /etc/systemd/system
 
-- name: Enable sidekiq service
+- name: Enable puma service
   become: yes
   systemd:
-    name: sidekiq
+    name: puma
     enabled: yes
 
 - name: Force systemd to reread configs

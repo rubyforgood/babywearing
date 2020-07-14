@@ -5,18 +5,18 @@ in more detail elsewhere.
 
 For production provisioning, setup and deploy, use target/server_name `prod`
 
-#### Steps (replace server name as appropriate)
+#### Steps (from project root; replace server name as appropriate)
 
 1. Server provision:
 
     ```
-     ansible-playbook provision.yml -e target=stage2
+     ansible-playbook deploy/ansible/provision.yml -e target=stage
     ``` 
     
 2. Server setup
 
     ```
-    ansible-playbook setup.yml -i deploy/ansible/hosts -e target=stage2
+    ansible-playbook deploy/ansible/setup.yml -i deploy/ansible/hosts -e target=stage2
     ```     
 
 3. Server directory setup (for first time on server only):

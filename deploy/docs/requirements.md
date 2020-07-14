@@ -99,7 +99,8 @@ the playbooks will now be able to read the encrypted vault as needed.
 There are many ways to install Ansible and Python. It is best not to use the system Python. For more information,
 see [this article](https://opensource.com/article/19/5/python-3-default-mac). I suggest you follow the instructions
 there to use `pyenv`. Especially if you are used to `rbenv`. They are very similar. The rest of these steps assume
-you have installed python 3 and pip is available.
+you have installed python 3 and pip is available. There is a library issue with Python 3.8.x so for now you should
+install version 3.7.8
 
 #### Steps        
        
@@ -124,5 +125,5 @@ you have installed python 3 and pip is available.
        ansible-galaxy install suzuki-shunsuke.rbenv
        ansible-galaxy install suzuki-shunsuke.rbenv-module 
        
-You should now be ready to [provision](provision.md) a server.                    
+You should now be ready to [provision](provisioning.md) a server.                    
        

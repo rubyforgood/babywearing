@@ -62,7 +62,7 @@
       subcommand: global
       version: "{{ruby_version}}"
       rbenv_root: "{{rbenv_root}}"
-    when: rbenv_install_result is changed
+    #when: rbenv_install_result is changed
 
   - name: gem install bundler
     gem:
@@ -77,6 +77,10 @@
   - name: Setup postgres app user
     import_role:
       name: postgres-user
+
+  - name: Install puma service
+    import_role:
+      name: puma
 
   - name: Install sidekiq
     import_role:
