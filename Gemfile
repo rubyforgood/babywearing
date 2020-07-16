@@ -21,6 +21,7 @@ gem 'azure-storage', require: false
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.4.1'
 gem 'bootstrap-table-rails'
+gem 'bugsnag'
 gem 'filterrific'
 gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.10.0'

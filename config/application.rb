@@ -40,5 +40,6 @@ module Babywearing
     # this will resolve to stage, stage1, stage2, prod, etc. and is used to set config stuff during provision/deploy
     # and to lookup host-specific keys, etc in credentials
     config.short_server_name = Socket.gethostname.split("-").last
+    config.app_version = '0.61'
   end
 end

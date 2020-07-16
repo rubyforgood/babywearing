@@ -119,6 +119,8 @@ GEM
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
     bootstrap-table-rails (1.13.4)
+    bugsnag (6.13.1)
+      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.32.2)
@@ -370,6 +372,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.4.1)
   bootstrap-table-rails
+  bugsnag
   capybara
   devise (>= 4.7.1)
   factory_bot_rails (~> 5.0)
