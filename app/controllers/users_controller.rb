@@ -30,8 +30,6 @@ class UsersController < ApplicationController
   def show
     authorize @user
 
-    raise 'temporary for testing bugsnag' if Rails.application.config.short_server_name == 'stage'
-
     @loans = @user.loans
     @memberships = { history: @user.memberships.order(expiration: :desc), current: [@user.current_membership].compact }
   end
