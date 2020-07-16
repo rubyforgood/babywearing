@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from Pundit::NotAuthorizedError, with: :render_not_authorized
 
-  before_action :set_tenant_by_subdomain, :redirect_notenant, :redirect_wrong_tenant, :set_version, :set_admin_org
+  before_action :set_tenant_by_subdomain, :redirect_notenant, :redirect_wrong_tenant, :set_admin_org
 
   # See `lib/modal_responder.rb` for deatils.
   def respond_modal_with(*args, &blk)
@@ -51,11 +51,6 @@ class ApplicationController < ActionController::Base
 
     tenant = Organization.find_by(subdomain: subdomain)
     ActsAsTenant.current_tenant = tenant
-  end
-
-  def set_version
-    fn = File.join(Rails.root, 'deploy', 'deploy_hash')
-    @version = File.exist?(fn) ? File.open(fn, &:gets).strip[0..5] : '0.01'
   end
 
   def render_not_authorized
