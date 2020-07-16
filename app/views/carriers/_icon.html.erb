@@ -16,14 +16,11 @@
             <% end %>
           <% end %>
           <div class="card-body">
-            <div class="row"><div class="carrier-name"><%= link_to carrier.name, carrier %></div></div>
+            <div class="row"><div class="carrier-name"><strong><%= link_to carrier.name, carrier %></strong></div></div>
             <div class="row"><div class="col">Item ID:</div><div class="col"><%= carrier.item_id %></div></div>
-            <div class="row"><div class="col">Manufacturer:</div><div class="col"><%= carrier.manufacturer %></div></div>
-            <div class="row"><div class="col">Model:</div><div class="col"><%= carrier.model %></div></div>
             <div class="row"><div class="col">Current Location:</div><div class="col"><%= carrier.current_location.name %></div></div>
-            <div class="row"><div class="col">Home Location:</div><div class="col"><%= carrier.home_location.name %></div></div>
             <div class="row"><div class="col">Category:</div><div class="col"><%= carrier.category.name %></div></div>
-            <div class="row"><div class="col">State:</div><div class="col"><%= carrier.state.titleize %></div></div>
+            <div class="row"><div class="col">State:</div><div class="col"><strong><%= carrier.state.titleize %></strong></div></div>
             <% if loan = carrier.outstanding_loan %>
               <div class="row" title="Due: <%= loan.due_date %>">
                 <div class="col">
