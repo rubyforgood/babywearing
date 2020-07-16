@@ -191,7 +191,7 @@ RSpec.describe Carrier do
     end
   end
 
-  describe 'MEMBER role' do
+  describe 'USER role' do
     let(:carrier) { carriers(:carrier) }
     let(:user) { users(:member) }
 

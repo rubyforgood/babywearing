@@ -94,7 +94,7 @@ RSpec.describe 'Users', type: :request do
         sign_in volunteer
         put user_url(member), params: { user: { role: 'volunteer' } }
 
-        expect(member.reload.role).to eq('member')
+        expect(member.reload.role).to eq('user')
       end
     end
   end

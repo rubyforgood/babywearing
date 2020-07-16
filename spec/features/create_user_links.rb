@@ -16,7 +16,7 @@ RSpec.feature 'create user links' do
     end
   end
 
-  scenario 'when user is a member' do
+  scenario 'when user has user role' do
     sign_in member
     visit(root_path)
 

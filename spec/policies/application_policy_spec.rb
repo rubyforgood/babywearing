@@ -29,12 +29,12 @@ RSpec.describe ApplicationPolicy do
   describe 'Scope' do
     let(:scope_admin) { Pundit.policy_scope!(admin, DummyPundit) }
     let(:scope_volunteer) { Pundit.policy_scope!(admin, DummyPundit) }
-    let(:scope_member) { Pundit.policy_scope!(admin, DummyPundit) }
+    let(:scope_user) { Pundit.policy_scope!(admin, DummyPundit) }
 
     it 'allows all' do
       expect(scope_admin.to_a).to match_array([1, 2, 3])
       expect(scope_volunteer.to_a).to match_array([1, 2, 3])
-      expect(scope_member.to_a).to match_array([1, 2, 3])
+      expect(scope_user.to_a).to match_array([1, 2, 3])
     end
   end
 end

@@ -30,7 +30,7 @@ class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :signatures, dependent: :destroy
 
-  enum role: %i[admin volunteer member]
+  enum role: %i[admin volunteer user]
 
   scope :admins, -> { where(role: admin) }
   scope :volunteers, -> { where(role: :volunteer) }

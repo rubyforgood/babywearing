@@ -14,7 +14,7 @@ RSpec.describe User do
     sign_in volunteer
 
     visit new_user_registration_url
-    expect(page).to have_content 'Create New Member'
+    expect(page).to have_content 'Create New User'
 
     fill_in 'Enter email address', with: 'alicia@gmail.com'
     fill_in 'Password', with: 'just4now'
@@ -26,29 +26,29 @@ RSpec.describe User do
     fill_in 'State', with: 'VA'
     fill_in 'Postal code', with: '22032'
     fill_in 'Phone', with: '8008885555'
-    click_button 'Create New Member'
-    expect(page).to have_content('New member created successfully.', count: 1)
+    click_button 'Create New User'
+    expect(page).to have_content('New user created successfully.', count: 1)
     expect(page).to have_content("Logged in as #{volunteer.email}")
   end
 
   scenario 'should allow user who is an admin to see list of users' do
     sign_in admin
     visit root_url
-    click_on 'VIEW MEMBERS'
-    expect(page).to have_content 'Members'
+    click_on 'VIEW USERS'
+    expect(page).to have_content 'Users'
   end
 
   scenario 'should allow user who is a volunteer to see list of users' do
     sign_in volunteer
     visit root_url
-    click_on 'VIEW MEMBERS'
-    expect(page).to have_content 'Members'
+    click_on 'VIEW USERS'
+    expect(page).to have_content 'Users'
   end
 
-  scenario 'should not allow a member to see a list of users' do
+  scenario 'should not allow a user to see a list of users' do
     sign_in member
     visit users_url
-    expect(page).not_to have_content 'Members'
+    expect(page).not_to have_content 'Users'
   end
 
   scenario 'should allow user who is an admin to export list of users' do
@@ -81,22 +81,22 @@ RSpec.describe User do
     expect(page).to have_content 'Log In'
   end
 
-  scenario 'should allow user who is an admin to see members tile on header' do
+  scenario 'should allow user who is an admin to see users tile on header' do
     sign_in admin
     visit root_url
-    expect(page).to have_content 'VIEW MEMBERS'
+    expect(page).to have_content 'VIEW USERS'
   end
 
-  scenario 'should allow user who is a volunteer to see members tile on header' do
+  scenario 'should allow user who is a volunteer to see users tile on header' do
     sign_in volunteer
     visit root_url
-    expect(page).to have_content 'VIEW MEMBERS'
+    expect(page).to have_content 'VIEW USERS'
   end
 
-  scenario 'should not allow user who is a member to see members tile on header' do
+  scenario 'should not allow user who is has user role to see users tile on header' do
     sign_in member
     visit root_url
-    expect(page).not_to have_content 'VIEW MEMBERS'
+    expect(page).not_to have_content 'VIEW USERS'
   end
 
   scenario 'should allow an admin to see User information page with loan history' do
