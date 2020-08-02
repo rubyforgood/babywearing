@@ -42,9 +42,9 @@ class User
   def self.name_search(query)
     splitted = query.strip.split(' ')
     if splitted.length > 1
-      where('first_name ilike ? and last_name ilike ?', "%#{splitted.first}%", "%#{splitted.last}%")
+      User.default_scoped.where('first_name ilike ? and last_name ilike ?', "%#{splitted.first}%", "%#{splitted.last}%")
     else
-      where('first_name ilike ? or last_name ilike ?', "%#{splitted.first}%", "%#{splitted.first}%")
+      User.default_scoped.where('first_name ilike ? or last_name ilike ?', "%#{splitted.first}%", "%#{splitted.first}%")
     end
   end
 

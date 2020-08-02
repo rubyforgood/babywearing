@@ -18,7 +18,7 @@
 
   <div class="form-group">
     <%= form.label :duration_days %>
-    <%= form.text_field :duration_days, class: "form-control" %>
+    <%= form.number_field :duration_days, max: 99999, class: "form-control" %>
   </div>
 
   <div class="form-group">
