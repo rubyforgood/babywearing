@@ -95,14 +95,6 @@ Rails.application.configure do
 
   config.action_mailer.default_options = { from: 'stephanie.funk@midatlanticbabywearing.org' }
 
-  mailer_host = if Rails.application.config.short_server_name == "prod"
-                  "babywearing.exchange"
-                else
-                  "#{Rails.application.config.short_server_name}.babywearing.exchange"
-                end
-
-  config.action_mailer.default_url_options = { host: mailer_host }
-
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
