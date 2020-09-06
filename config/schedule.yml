@@ -1,0 +1,4 @@
+send_reminder_emails:
+  cron: "0 16 * * *" # top of hour 16 once per day
+  class: 'ReminderEmailJob'
+  queue: mailers

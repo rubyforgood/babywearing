@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :deactivate, only: :create
   end
 
+  resources :email_templates
+
   resources :fee_types
 
   resources :agreements do
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   require 'sidekiq/web'
+  require 'sidekiq/cron/web'
   authenticate :user, lambda { |u| u.organization.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end

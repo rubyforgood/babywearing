@@ -12,7 +12,7 @@ RSpec.feature 'create user links' do
       sign_in user
       visit(root_path)
 
-      expect(page).to have_link('CREATE USER')
+      expect(page).to have_link('NEW USER')
     end
   end
 
@@ -20,12 +20,12 @@ RSpec.feature 'create user links' do
     sign_in member
     visit(root_path)
 
-    expect(page).not_to have_link('CREATE USER')
+    expect(page).not_to have_link('NEW USER')
   end
 
   scenario 'when user is not logged in' do
     visit(root_path)
 
-    expect(page).not_to have_link('CREATE USER')
+    expect(page).not_to have_link('NEW USER')
   end
 end

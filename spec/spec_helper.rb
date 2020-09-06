@@ -3,6 +3,7 @@
 require 'simplecov'
 SimpleCov.start do
   SimpleCov.add_filter '/spec'
+  SimpleCov.add_filter '/config'
 end
 
 require 'sidekiq/testing'

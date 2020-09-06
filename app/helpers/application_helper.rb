@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def boolean_display(item)
+    item ? 'Yes' : 'No'
+  end
+
   def flash_class(level)
     case level.to_sym
     when :notice then 'alert alert-info'

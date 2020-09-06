@@ -1,27 +1,26 @@
 # frozen_string_literal: true
 
+require 'email_template_parser'
+
 class ReminderMailer < ApplicationMailer
-  before_action do
-    @user_name = params[:user_name]
-    @user_email = params[:user_email]
-    @carrier_name = params[:carrier_name]
-    @location = params[:location]
-    @due_date = params[:due_date]
+  def reminder_email(loan, template)
+    ActsAsTenant.with_tenant(loan.carrier.organization) do
+      return unless template.organization == ActsAsTenant.current_tenant && template.active
+
+      parse_body(loan, template)
+      mail(to: loan.borrower.email, from: template.organization.reply_email, subject: template.subject) do |format|
+        format.html { render html: @body.html_safe }
+      end
+    end
   end
 
-  def overdue_email
-    mail(to: @user_email, subject: 'Baby Carrier Overdue For Return')
-  end
+  private
 
-  def due_today_email
-    mail(to: @user_email, subject: 'Baby Carrier Due For Return')
-  end
-
-  def week_advance_notice_email
-    mail(to: @user_email, subject: 'Baby Carrier Due For Return in One Week')
-  end
-
-  def successful_checkout_email
-    mail(to: @user_email, subject: "You've Successfully Checked Out #{@carrier_name}")
+  def parse_body(loan, template)
+    @body = EmailTemplateParser.new(
+      user_name: loan.borrower.first_name,
+      carrier_name: loan.carrier.name,
+      due_date: loan.due_date
+    ).parse_body(template.body)
   end
 end

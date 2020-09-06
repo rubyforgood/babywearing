@@ -1,0 +1,43 @@
+<div class="card">
+  <header class="card-header d-flex align-items-center">
+    <h3 class="mr-auto">Email Templates</h3>
+    <% if policy(:email_template).new? %>
+      <%= link_to '+ New', new_email_template_path, class: "btn btn-primary" %>
+    <% end %>
+  </header>
+
+  <section>
+    <table class="table text-center email-templates-index">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Active</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Body</th>
+        <th scope="col">When Sent</th>
+        <th scope="col">When Days</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @email_templates.each do |email_template| %>
+        <tr>
+          <td><%= email_template.name %></td>
+          <td><%= email_template.type.titleize %></td>
+          <td><%= boolean_display(email_template.active) %></td>
+          <td><%= email_template.subject %></td>
+          <td><%= truncate(email_template.body) %></td>
+          <td class="text-center"><%= when_sent_display(email_template) %></td>
+          <td class="text-center"><%= when_days_display(email_template) %></td>
+          <td align="right">
+            <%= link_to 'Edit', edit_email_template_path(email_template), class: 'btn btn-primary btn-sm' %> |
+            <%= link_to 'Destroy', email_template_path(email_template), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

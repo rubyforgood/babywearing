@@ -5,3 +5,7 @@ washington:
 lancaster:
   name: "Lancaster"
   organization: midatlantic
+
+acme:
+  name: "Acme Location"
+  organization: acme

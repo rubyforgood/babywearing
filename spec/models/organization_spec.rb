@@ -11,6 +11,7 @@ RSpec.describe Organization, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
     it { is_expected.to validate_presence_of(:subdomain) }
+    it { is_expected.to validate_presence_of(:reply_email) }
     it { is_expected.to validate_uniqueness_of(:subdomain).case_insensitive }
     it { is_expected.to allow_value('8' * 10).for(:phone) }
     it { is_expected.not_to allow_value('8' * 3).for(:phone) }

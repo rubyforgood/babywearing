@@ -28,7 +28,7 @@ RSpec.describe Loan do
       it 'does allow checkout' do
         expect(described_class.create(
                  carrier: carrier,
-                 borrower: borrower,
+                 borrower: users(:member),
                  checkout_volunteer: volunteer
                )).to be_valid
       end
@@ -93,10 +93,9 @@ RSpec.describe Loan do
   describe '.outstanding' do
     it 'returns all outstanding loans' do
       outstanding_loans = borrower.loans.outstanding
-
-      expect(outstanding_loans.count).to eq(3)
       expect(outstanding_loans).to match_array(
-        [loans(:overdue_1), loans(:overdue_2), loans(:outstanding)]
+        [loans(:one_week_overdue), loans(:two_weeks_overdue),
+         loans(:due_today_1), loans(:outstanding)]
       )
     end
   end

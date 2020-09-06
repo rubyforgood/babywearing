@@ -11,14 +11,38 @@ returned:
   borrower: borrower
   returned_on: <%= Time.zone.now - 2.months %>
 
-overdue_1:
+due_today_1:
+  carrier: carrier_1
+  due_date: <%= Time.zone.now %>
+  checkout_volunteer: volunteer
+  borrower: borrower
+
+due_today_2:
+  carrier: carrier_2
+  due_date: <%= Time.zone.now %>
+  checkout_volunteer: volunteer
+  borrower: borrower_2
+
+due_one_week:
+  carrier: carrier_3
+  due_date: <%= Time.zone.now + 1.week %>
+  checkout_volunteer: volunteer
+  borrower: borrower_3
+
+one_week_overdue:
   carrier: checked_out_overdue_1
   due_date: <%= Time.zone.now - 1.week %>
   checkout_volunteer: volunteer
   borrower: borrower
 
-overdue_2:
+two_weeks_overdue:
   carrier: checked_out_overdue_2
   due_date: <%= Time.zone.now - 2.weeks %>
   checkout_volunteer: volunteer
   borrower: borrower
+
+acme_outstanding:
+  carrier: acme
+  due_date: <%= Time.zone.today + 2.days %>
+  checkout_volunteer: acme_volunteer
+  borrower: acme_borrower

@@ -2,3 +2,10 @@ en:
   date:
     formats:
       default: '%m/%d/%y'
+  activerecord:
+    attributes:
+      email_template:
+        when_sent: "When sent in relation to due date (only applicable to Reminder type templates)"
+        when_days: "Days before or after due date to send (only applicable to non-manual Reminder emails)"
+      organization:
+        reply_email: "Reply Email (for automated emails)"

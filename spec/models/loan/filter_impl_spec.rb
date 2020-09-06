@@ -1,28 +1,37 @@
 # frozen_string_literal: true
 
 RSpec.describe Loan::FilterImpl do
+  let(:organization) { organizations(:midatlantic) }
+
+  around do |example|
+    ActsAsTenant.with_tenant(organization) do
+      example.run
+    end
+  end
+
   describe '.with_overdue' do
     describe '.with_Yes' do
       it 'returns all overdue loans' do
-        overdues = Loan.with_overdue('Yes')
+        overdues = organization.loans.with_overdue('Yes')
 
-        expect(overdues).to match_array([loans(:overdue_1), loans(:overdue_2)])
+        expect(overdues).to match_array([loans(:one_week_overdue), loans(:two_weeks_overdue)])
       end
     end
 
     describe '.with_No' do
       it 'returns all not overdue loans' do
-        not_overdues = Loan.with_overdue('No')
+        not_overdues = organization.loans.with_overdue('No')
 
-        expect(not_overdues).to match_array([loans(:outstanding), loans(:returned)])
+        expect(not_overdues).to match_array([loans(:outstanding), loans(:returned), loans(:due_today_1),
+                                             loans(:due_today_2), loans(:due_one_week)])
       end
     end
 
     describe '.with_Any' do
       it 'returns all loans' do
-        all_loans = Loan.with_overdue('Any')
+        all_loans = organization.loans.with_overdue('Any')
 
-        expect(all_loans).to match_array(Loan.all)
+        expect(all_loans).to match_array(organization.loans.all)
       end
     end
   end
@@ -30,14 +39,15 @@ RSpec.describe Loan::FilterImpl do
   describe '.with_outstanding' do
     context 'with parameter available' do
       it 'returns all and only outstanding loans' do
-        loans = Loan.with_outstanding('Yes')
+        loans = organization.loans.with_outstanding('Yes')
 
-        expect(loans).to match_array([loans(:outstanding), loans(:overdue_1), loans(:overdue_2)])
+        expect(loans).to match_array([loans(:outstanding), loans(:due_one_week), loans(:due_today_1),
+                                      loans(:due_today_2), loans(:one_week_overdue), loans(:two_weeks_overdue)])
       end
 
       it 'returns all and returned loans' do
         returned = loans(:returned)
-        loans = Loan.with_outstanding('No')
+        loans = organization.loans.with_outstanding('No')
 
         expect(loans.size).to eq(1)
         expect(loans.first.id).to eq(returned.id)

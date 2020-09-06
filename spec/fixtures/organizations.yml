@@ -1,17 +1,21 @@
 admin:
   name: "Site Administration"
   subdomain: "admin"
+  reply_email: "noreply@example.com"
 
 midatlantic:
   name: "Midatlantic Babywearing"
   subdomain: "midatlantic"
+  reply_email: "noreply@example.com"
 
 acme:
   name: "Acme Babywearing"
   subdomain: "acme"
+  reply_email: "noreply@example.com"
 
 emca:
   name: "Emca Babywearing"
   subdomain: "emca"
+  reply_email: "noreply@example.com"
 
 

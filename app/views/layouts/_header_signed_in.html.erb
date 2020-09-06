@@ -6,7 +6,7 @@
         <% if policy(User).new? %>
           <li class="nav-item active background-blue">
             <%= link_to new_user_registration_path, class: 'nav-link nav-icon nav-first' do %>
-              <%= image_tag "BW- CREATE USER ICON.svg", alt: "Create a User" %><p>CREATE USER</p>
+              <%= image_tag "BW- CREATE USER ICON.svg", alt: "Create a User" %><p>NEW USER</p>
             <% end %>
           </li>
         <% end %>
@@ -37,14 +37,15 @@
           <% end %>
         </li>
       </ul>
-      <% if show_quick_access?(current_user) %>
+      <% if !@admin_org && show_quick_access?(current_user) %>
         <ul class="nav navbar-nav navbar-middle">
           <div class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick Access<span class="caret"></span></a>
             <div class="dropdown-menu" role="menu">
-              <%= link_to 'Locations', locations_path, class: 'dropdown-item' if policy(Location).index? %>
-              <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' if policy(Agreement).index? && !@admin_org %>
+              <%= link_to 'Agreements', agreements_path, class: 'dropdown-item' if policy(Agreement).index? %>
+              <%= link_to 'Email Templates', email_templates_path, class: 'dropdown-item' if policy(EmailTemplate).index? %>
               <%= link_to 'Fee Types', fee_types_path, class: 'dropdown-item' if policy(FeeType).index? %>
+              <%= link_to 'Locations', locations_path, class: 'dropdown-item' if policy(Location).index? %>
               <%= link_to 'Membership Types', membership_types_path, class: 'dropdown-item' if policy(MembershipType).index? %></li>
             </div>
           </div>

@@ -19,7 +19,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-
 //= require filterrific/filterrific-jquery
+//= require tinymce
 //= require_tree .
 

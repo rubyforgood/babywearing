@@ -137,6 +137,34 @@ borrower:
   organization: midatlantic
   created_at: <%= Time.zone.today - 10.days %>
 
+borrower_2:
+  email: 'borrower2@midatlantic.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Borrowertwo'
+  last_name: 'Sorrower'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '8888888888'
+  role: user
+  organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
+
+borrower_3:
+  email: 'borrower3@midatlantic.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Borrowertwo'
+  last_name: 'Sorrower'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '8888888888'
+  role: user
+  organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
+
 admin_org:
   email: 'admin@admin.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
@@ -177,4 +205,32 @@ unsigned:
   phone_number: '8888888888'
   role: user
   organization: midatlantic
+  created_at: <%= Time.zone.today - 10.days %>
+
+acme_borrower:
+  email: 'borrower@example.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Borrower'
+  last_name: 'Acme'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '8888888888'
+  role: user
+  organization: acme
+  created_at: <%= Time.zone.today - 10.days %>
+
+acme_volunteer:
+  email: 'volunteer@example.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  first_name: 'Volunteer'
+  last_name: 'Acme'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '8888888888'
+  role: volunteer
+  organization: acme
   created_at: <%= Time.zone.today - 10.days %>

@@ -132,7 +132,7 @@ RSpec.describe 'Agreements::Versions', type: :request do
         sign_in admin
         original_content = version.content
         put agreement_version_url(agreement, version),
-            params: { agreement_version: valid_params.merge({ content: '' }) }
+            params: { agreement_version: valid_params.merge(content: '') }
 
         expect(flash[:error].first).to match(/Content can't be blank/)
         expect(version.reload.content).to eq(original_content)

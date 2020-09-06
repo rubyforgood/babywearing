@@ -33,10 +33,13 @@ gem 'money-rails', '~>1.12'
 gem 'name_of_person'
 gem 'rack', '>= 2.2.3'
 gem 'responders'
-gem 'sidekiq', git: 'https://github.com/mperham/sidekiq.git' # TODO: remove git ref when 6.1 released
+gem 'sidekiq'
+gem 'sidekiq-cron'
+# from github due to deprecations mentioned here: https://github.com/rails/sprockets-rails/issues/464
+gem 'sprockets-rails', github: 'rails/sprockets-rails'
+gem 'tinymce-rails'
 gem 'turbolinks', '~> 5'
 gem 'websocket-extensions', '>= 0.1.5'
-gem 'whenever', require: false
 gem 'will_paginate'
 
 group :development, :test do
@@ -59,7 +62,7 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_bot_rails', '~> 5.0'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails', '~> 4.0'
   # add simpleCov for Code Climate test coverage visibility
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'

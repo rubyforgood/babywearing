@@ -1,0 +1,20 @@
+<h1>Email template: <%= @email_template.name %></h1>
+<dl class="row mt-5">
+  <dt class="col-sm-2 text-md-right">Type:</dt>
+  <dd class="col-sm-10"><%= @email_template.type.humanize %></dd>
+  <dt class="col-sm-2 text-md-right">Active:</dt>
+  <dd class="col-sm-10"><%= boolean_display(@email_template.active) %></dd>
+  <dt class="col-sm-2 text-md-right">Name:</dt>
+  <dd class="col-sm-10"><%= @email_template.name %></dd>
+  <dt class="col-sm-2 text-md-right">When Sent:</dt>
+  <dd class="col-sm-10"><%= @email_template.when_sent %></dd>
+  <dt class="col-sm-2 text-md-right">When Days:</dt>
+  <dd class="col-sm-10"><%= @email_template.when_days %></dd>
+  <dt class="col-sm-2 text-md-right">Subject:</dt>
+  <dd class="col-sm-10"><%= @email_template.subject %></dd>
+  <dt class="col-sm-2 text-md-right">Body:</dt>
+  <dd class="col-sm-10"><%= @email_template.body %></dd>
+</dl>
+<div>
+  <%= link_to 'Edit Email Template', edit_email_template_path(@email_template), class: "btn btn-primary btn-sm" %>
+</div>

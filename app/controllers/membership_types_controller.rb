@@ -5,7 +5,7 @@ class MembershipTypesController < ApplicationController
 
   # GET /membership_types
   def index
-    @membership_types = MembershipType.all
+    authorize @membership_types = MembershipType.all
   end
 
   # GET /membership_types/1

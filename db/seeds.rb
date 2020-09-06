@@ -5,18 +5,20 @@ require 'uri'
 
 include ActionView::Helpers::SanitizeHelper # included for strip_tags method to remove html from carrier descriptions
 
-
 if Organization.count.zero?
   puts "Creating organizations..."
   Organization.create!(name: "Babywearing Admin", subdomain: "admin",
                       address: "update me", city: "Reston", state: "VA", zip: "20190",
-                      email: "admin@example.com" )
+                      email: "admin@example.com",
+                       reply_email: "noreply@example.com")
   Organization.create!(name: "Mid-Atlantic Babywearing", subdomain: "midatlantic",
                       address: "update me", city: "Reston", state: "VA", zip: "20190",
-                      email: "updateme@example.com" )
+                      email: "stephanie.funk@midatlanticbabywearing.org",
+                       reply_email: "noreply@midatlanticbabywearing.org")
   Organization.create!(name: "Acme Babywearing", subdomain: "acme",
                       address: "123 Reve Street", city: "Dreamland", state: "MI", zip: "48080",
-                      email: "dreamland@example.com" )
+                      email: "dreamland@example.com",
+                       reply_email: "noreply@example.com")
   puts "Done"
 end
 
@@ -64,7 +66,7 @@ if Agreement.count.zero?
 
   admin = organization.users.where(role: :admin).first
   agreement = Agreement.create(name: 'Membership Agreement', organization: organization)
-  agreement.versions.create(title: agreement.name, last_modified_by: admin, content:
+  agreement.versions.create(title: agreement.name, active: true, version: "1", last_modified_by: admin, content:
     'MidAtlantic Babywearing is the local babywearing education group for Pennsylvania, New Jersey, and Delaware,
      and is a non-profit group.
 
@@ -74,7 +76,7 @@ if Agreement.count.zero?
     Membership Donation becomes active when application AND payment have been received.')
 
   agreement = Agreement.create(name: 'Lending Library Use Agreement', organization: organization)
-  agreement.versions.create(title: agreement.name, last_modified_by: admin, content:
+  agreement.versions.create(title: agreement.name, active: true, version: "1", last_modified_by: admin, content:
       'MAB has a library of baby carriers and babywearing educational materials for members to borrow.
 
     The following policies apply:
@@ -183,6 +185,72 @@ if MembershipType.count.zero?
 
   MembershipType.create(name: "Annual", organization: organization, fee_cents: 5000, duration_days: 365, number_of_items: 3, short_name: "AN")
   MembershipType.create(name: "Monthly", organization: organization, fee_cents: 500, duration_days: 31, number_of_items: 1, short_name: "MO")
+end
+
+if ReminderEmailTemplate.count.zero?
+  puts 'Creating reminder email templates...'
+
+  ReminderEmailTemplate.create(name: "Due in one week", subject: "Carrier is due in one week", body:
+      "Hello %USER_NAME%,
+        <p>This is to remind you that your %CARRIER_NAME% is due on %DUE_DATE%.
+        Please contact us if you anticipate any issues returning the carrier by the due date.</p>
+
+        <p>Thank you,</p>
+
+        Midatlantic Babywearing</p>", when_sent: 'before_due_date', when_days: 7, active: false)
+  ReminderEmailTemplate.create(name: "Due today", subject: "Carrier is due TODAY", body:
+      "Hello %USER_NAME%,
+        <p>This is to remind you that your %CARRIER_NAME% is due TODAY.
+        Please contact us if you anticipate any issues returning the carrier today.</p>
+
+        <p>Thank you,</p>
+
+        <p>Midatlantic Babywearing</p>", when_sent: 'on_due_date', when_days: 0, active: false)
+
+  ReminderEmailTemplate.create(name: "Day Overdue", subject: "Carrier is overdue", body:
+      "Hello %USER_NAME%,
+        <p>This is to remind you that your %CARRIER_NAME% was due on %DUE_DATE% and is now OVERDUE.
+        Please contact us as soon as possible let us know when you will be returning the carrier.</p>
+
+        <p>Thank you,</p>
+
+        <p>Midatlantic Babywearing</p>", when_sent: 'after_due_date', when_days: 1, active: false)
+
+  ReminderEmailTemplate.create(name: "Week Overdue", subject: "Carrier is overdue", body:
+      "Hello %USER_NAME%,
+        <p>This is to remind you that your %CARRIER_NAME% was due on %DUE_DATE% and is now one week OVERDUE.
+        Please contact us as soon as possible let us know when you will be returning the carrier.</p>
+
+        <p>Thank you,</p>
+
+        <p>Midatlantic Babywearing</p>", when_sent: 'after_due_date', when_days: 7, active: false)
+
+end
+
+if WelcomeEmailTemplate.count.zero?
+
+  puts "Creating welcome email template..."
+
+  WelcomeEmailTemplate.create(name: "Welcome", subject: "Welcome to Midatlantic Babywearing!", body:
+        "<p>Welcome to Midatlantic Babywearing!</p>
+        <p>We are so excited to have you join us. We hope you enjoy trying all the different carriers as
+        much as we do. Our volunteers are ready to help guide, teach and support you on your babywearing journey.
+       Feel free to reach out on facebook, email, or soon on our website.</p>", active: false
+  )
+
+end
+
+if CheckoutEmailTemplate.count.zero?
+
+  puts "Creating checkout email template..."
+
+  CheckoutEmailTemplate.create(name: "Checkout", subject: "Midatlantic Babywearing Carrier Checkout", body:
+      "<p>Thank you for checking out carrier %CARRIER_NAME% from Midatlantic Babywearing.</p>
+      <p>The carrier is due on %DUE_DATE%.</p>
+      <p>We will email you reminders before the carrier due date.</p>
+      <p>Enjoy the carrier!</p>", active: false
+  )
+
 end
 
 puts "Done with seeds."

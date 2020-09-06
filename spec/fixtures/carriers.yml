@@ -11,6 +11,74 @@ carrier:
   notes: 'yes I carry babies'
   organization: midatlantic
 
+carrier_1:
+  name: "test carrier 1"
+  item_id: "TEST12341"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  notes: 'yes I carry babies'
+  organization: midatlantic
+  state: 'checked_out'
+
+carrier_2:
+  name: "test carrier 2"
+  item_id: "TEST12342"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  notes: 'yes I carry babies'
+  organization: midatlantic
+  state: 'checked_out'
+
+carrier_3:
+  name: "test carrier 3"
+  item_id: "TEST12343"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  notes: 'yes I carry babies'
+  organization: midatlantic
+  state: 'checked_out'
+
+carrier_4:
+  name: "test carrier 3"
+  item_id: "TEST12343"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  notes: 'yes I carry babies'
+  organization: midatlantic
+
+carrier_5:
+  name: "test carrier 3"
+  item_id: "TEST12343"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: washington
+  current_location: lancaster
+  notes: 'yes I carry babies'
+  organization: midatlantic
+
 unavailable:
   name: "unavailable carrier"
   item_id: "TEST1235"
@@ -101,3 +169,15 @@ available:
   home_location: washington
   current_location: lancaster
   organization: midatlantic
+
+acme:
+  name: "carrier of acme org"
+  item_id: "TEST1239"
+  category: category_parent
+  manufacturer: "babywearing"
+  model: "test model"
+  color: "blue"
+  size: 5
+  home_location: acme
+  current_location: acme
+  organization: acme

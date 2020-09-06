@@ -8,7 +8,7 @@ RSpec.describe 'MembershipTypes', type: :request do
 
   describe 'GET /membership_types' do
     it_behaves_like 'admin authorized-only resource', :get do
-      let(:endpoint) { new_membership_type_url }
+      let(:endpoint) { membership_types_url }
     end
     it 'has http status 200' do
       sign_in users(:admin)
@@ -73,11 +73,11 @@ RSpec.describe 'MembershipTypes', type: :request do
   end
 
   describe 'GET /membership_type/:id' do
-    it 'has have_http_status 200' do
-      sign_in users(:member)
+    it 'successfully gets the show page' do
+      sign_in users(:admin)
       send :get, membership_types_url(membership_type)
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
       expect(response.body).to match(/Annual/)
     end
   end

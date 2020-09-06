@@ -16,7 +16,7 @@ class LoanListingController < ApplicationController
 
   def init_filters
     @filterrific = initialize_filterrific(
-      Loan.includes(%i[carrier checkin_volunteer checkout_volunteer borrower]), params[:filterrific],
+      current_tenant.loans.includes(%i[carrier checkin_volunteer checkout_volunteer borrower]), params[:filterrific],
       select_options: {
         with_borrower_id: Loan::FilterImpl.options_for_borrower_filter,
         with_checkout_volunteer_id: Loan::FilterImpl.options_for_volunteer_filters,

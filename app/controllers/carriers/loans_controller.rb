@@ -45,11 +45,7 @@ module Carriers
     end
 
     def send_success_email
-      ReminderMailer.with(user_name: @loan.borrower.first_name,
-                          user_email: @loan.borrower.email,
-                          carrier_name: @carrier.display_name,
-                          location: @carrier.current_location.name,
-                          due_date: @loan.due_date.to_s).successful_checkout_email.deliver_later
+      CheckoutMailer.checkout_email(@loan).deliver_later
     end
 
     def update_loan

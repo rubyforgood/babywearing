@@ -7,7 +7,7 @@ RSpec.describe 'Loans', type: :request do
   let(:member) { users(:member) }
   let(:carrier) { carriers(:carrier) }
   let(:valid_params) { { borrower_id: users(:member).id, due_date: Date.current + 5.days } }
-  let(:loan) { loans(:overdue_1) }
+  let(:loan) { loans(:one_week_overdue) }
   let(:checked_out) { carriers(:checked_out_overdue_1) }
 
   describe '#create' do

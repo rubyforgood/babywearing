@@ -13,6 +13,8 @@ RSpec.describe User do
   let(:admin2) { users(:admin2) }
   let(:volunteer) { users(:volunteer) }
   let(:borrower) { users(:borrower) }
+  let(:borrower_2) { users(:borrower_2) }
+  let(:borrower_3) { users(:borrower_3) }
   let(:blocked) { users(:blocked) }
 
   around do |example|
@@ -186,7 +188,8 @@ RSpec.describe User do
 
   describe '.with_current_membership' do
     it 'includes users with a current membership' do
-      expect(described_class.with_current_membership).to match_array([member, unsigned, borrower])
+      members = described_class.with_current_membership
+      expect(members).to match_array([member, unsigned, borrower, borrower_2, borrower_3])
     end
   end
 
@@ -198,7 +201,9 @@ RSpec.describe User do
 
   describe '.without_membership' do
     it 'includes users without any membership at all' do
-      expect(described_class.without_membership).to match_array([user, volunteer, nonmember, admin, admin2])
+      expect(described_class.without_membership).to match_array(
+        [user, volunteer, nonmember, admin, admin2]
+      )
     end
   end
 end

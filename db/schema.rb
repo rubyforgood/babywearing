@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_184058) do
+ActiveRecord::Schema.define(version: 2020_09_03_141934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,20 @@ ActiveRecord::Schema.define(version: 2020_06_21_184058) do
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
+  create_table "email_templates", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "type", null: false
+    t.string "name"
+    t.string "subject", null: false
+    t.text "body", null: false
+    t.string "when_sent"
+    t.integer "when_days"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active", default: false, null: false
+    t.index ["organization_id"], name: "index_email_templates_on_organization_id"
+  end
+
   create_table "fee_types", force: :cascade do |t|
     t.string "name", null: false
     t.integer "fee_cents"
@@ -156,6 +170,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_184058) do
     t.string "zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reply_email", default: "noreply@example.com", null: false
     t.index ["subdomain"], name: "index_organizations_on_subdomain"
   end
 
@@ -198,6 +213,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_184058) do
   add_foreign_key "agreement_versions", "users", column: "last_modified_by_id"
   add_foreign_key "carriers", "locations", column: "current_location_id"
   add_foreign_key "carriers", "locations", column: "home_location_id"
+  add_foreign_key "email_templates", "organizations"
   add_foreign_key "loans", "users", column: "borrower_id"
   add_foreign_key "loans", "users", column: "checkin_volunteer_id"
   add_foreign_key "loans", "users", column: "checkout_volunteer_id"

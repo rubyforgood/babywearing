@@ -1,0 +1,46 @@
+<%= form_with(model: email_template.becomes(EmailTemplate), local: true) do |form| %>
+  <%= form_errors email_template %>
+
+  <% if form.object.new_record? %>
+    <div class="form-group">
+      <%= form.label :type %>
+      <%= form.select :type, types_for_select, { include_blank: "- Select template type -"}, class: "form-control" %>
+    </div>
+  <% end %>
+  <div class="form-check form-group">
+    <%= form.check_box :active,
+                       class: "form-check-input" %>
+    <%= form.label :active, class: "form-check-label" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <% if form.object.new_record? || form.object.type == "ReminderEmailTemplate" %>
+    <div class="form-group">
+      <%= form.label :when_sent %>
+      <%= form.select :when_sent, ReminderEmailTemplate.when_sents.keys.map { |ws| [ws.humanize, ws] }, {}, { class: "form-control" } %>
+    </div>
+    <div class="form-group">
+      <%= form.label :when_days %>
+      <%= form.number_field :when_days, class: "form-control" %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %> <%= link_to "(Placeholders)", "#placeholders" %>
+    <%= form.text_area :body, rows: 30, cols: 120, class: "form-control tinymce" %>
+  </div>
+
+
+  <%= form.submit class: "btn btn-primary" %> <%= link_to 'Back', email_templates_path, class: 'btn btn-primary mt-1' %>
+  <%= render partial: 'placeholders' %>
+<% end %>
+
+<%= tinymce %>

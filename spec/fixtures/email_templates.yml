@@ -1,0 +1,75 @@
+checkout:
+  organization: midatlantic
+  type: "CheckoutEmailTemplate"
+  name: "Checkout"
+  subject: "Midatantic Carrier Checkout"
+  body: "Hello %USER_NAME%,<p>Thank you for checking out %CARRIER_NAME%. The carrier is due on %DUE_DATE%</p>."
+  active: true
+
+acme_checkout:
+  organization: acme
+  type: "CheckoutEmailTemplate"
+  name: "Checkout"
+  subject: "Acme Carrier Checkout"
+  body: "Hello %USER_NAME%,<p>Thank you for checking out %CARRIER_NAME%. The carrier is due on %DUE_DATE%</p>."
+  active: true
+
+reminder_one_week:
+  organization: midatlantic
+  type: "ReminderEmailTemplate"
+  name: "One Week"
+  subject: "Midatantic Carrier One Week Due Reminder"
+  body: Hello %USER_NAME%,<p>This is to remind you that your %CARRIER_NAME% is due on %DUE_DATE%.</p>
+        <p>Thank you,</p>
+        <p>Midatlantic Babywearing</p>
+  when_days: 7
+  when_sent: :before_due_date
+  active: true
+
+reminder_today:
+  organization: midatlantic
+  type: "ReminderEmailTemplate"
+  name: "Today"
+  subject: "Midatantic Carrier Due Today Reminder"
+  body: Hello %USER_NAME%,<p>This is to remind you that your %CARRIER_NAME% is due TODAY.</p>
+    <p>Thank you,</p>
+    <p>Midatlantic Babywearing</p>
+  when_days: 0
+  when_sent: :on_due_date
+  active: true
+
+reminder_week_overdue:
+  organization: midatlantic
+  type: "ReminderEmailTemplate"
+  name: "One Week Overdue"
+  subject: "Midatantic Carrier Overdue Reminder"
+  body: Hello %USER_NAME%,<p>This is to remind you that your %CARRIER_NAME% was due on %DUE_DATE%.</p>
+    <p>Thank you,</p>
+    <p>Midatlantic Babywearing</p>
+  when_days: 7
+  when_sent: :after_due_date
+  active: true
+
+reminder_inactive:
+  organization: midatlantic
+  type: "ReminderEmailTemplate"
+  name: "One Day"
+  subject: "Midatantic Carrier One Day Due Reminder"
+  body: Hello %USER_NAME%,<p>This is to remind you that your %CARRIER_NAME% is due TOMORROW.</p>
+    <p>Thank you,</p>
+    <p>Midatlantic Babywearing</p>
+  when_days: 1
+  when_sent: :before_due_date
+  active: false
+
+welcome:
+  organization: midatlantic
+  type: "WelcomeEmailTemplate"
+  name: "Welcome"
+  subject: "Babywearing Account Registration"
+  body: Hello %USER_NAME%,<p>It is our pleasure to welcome you to Midatlantic Babywearing. Happy carrying!</p>
+    <p>Thank you,</p>
+    <p>Midatlantic Babywearing</p>
+  when_days: 7
+  when_sent: :before_due_date
+  active: true

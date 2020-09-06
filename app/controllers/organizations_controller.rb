@@ -50,6 +50,7 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :subdomain, :email, :phone, :notes, :address, :city, :state, :zip)
+    params.require(:organization).permit(:name, :subdomain, :email, :reply_email, :phone, :notes, :address,
+                                         :city, :state, :zip)
   end
 end
