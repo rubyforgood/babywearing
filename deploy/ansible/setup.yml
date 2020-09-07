@@ -70,6 +70,10 @@
       version: "{{bundler_version}}"
       executable: "{{rbenv_root}}/shims/gem"
 
+  - name: Install certs
+    import_role:
+      name: certs
+
   - name: Install nginx
     import_role:
       name: nginx

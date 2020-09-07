@@ -10,7 +10,7 @@ For production provisioning, setup and deploy, use target/server_name `prod`
 1. Server provision:
 
     ```
-     ansible-playbook deploy/ansible/provision.yml -e target=stage
+     ansible-playbook deploy/ansible/provision.yml -e target=stage2
     ``` 
     
 2. Server setup

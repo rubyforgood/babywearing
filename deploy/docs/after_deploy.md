@@ -44,10 +44,12 @@ all of these instances won't exist but it doesn't hurt to have them in there.
 
 * To load the carrier images on a newly deployed server, ssh to the server and do:
 
+```
      `ssh bwstage`
      
      `cd app/current`
 
      `RAILS_ENV=production bundle exec rake db:image_seeds:carriers`
+```
      
-     
+* Within less than 90 days, and every less than 90 days thereafter, [run the renewal playbook](./certs.md).    

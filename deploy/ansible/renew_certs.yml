@@ -1,0 +1,14 @@
+---
+
+- hosts: "{{ target | default('localhost')}}"
+
+  remote_user: babywearing
+
+  tasks:
+    - name: Check for target
+      fail: msg="You must specify target, e.g. 'ansible-playbook renew_certs.yml -e target=stage2'"
+      when: target is not defined
+
+    - name: Install or renew certs
+      import_role:
+        name: certs

@@ -1,0 +1,16 @@
+---
+csr_directory: "/etc/ssl/csr"
+csr_path: "{{ csr_directory }}/{{ target }}.csr"
+cert_directory: "/etc/ssl/cert"
+cert_path: "{{ cert_directory }}/{{ ansible_host }}.crt"
+chain: "{{ cert_directory }}/{{ ansible_host }}-intermediate.crt"
+fullchain: "{{ cert_directory }}/{{ ansible_host }}-fullchain.crt"
+cert_key_path: "/etc/ssl/private/certkey.key"
+account_key_path: "/etc/ssl/private/account.key"
+account_email: "rubyforgood@pokervane.com"
+azure_dns_zone_name: "babywearing.exchange"
+azure_dns_resource_group: "babywearing_dns"
+dns_ansible_host: "*.{{ ansible_host }}" # need to store this because running on local
+txt_record_name_nonprod: "_acme-challenge.{{ target }}"
+txt_record_name: "{{ '_acme-challenge' if target == 'prod' else txt_record_name_nonprod}}"
+
